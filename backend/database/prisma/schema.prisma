@@ -1,0 +1,242 @@
+// Prisma 7 schema for Universal Agent - Phase 2 (identity, orgs, tenancy)
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserStatus {
+  active
+  suspended
+  deleted
+}
+
+enum OrgKind {
+  personal
+  team
+}
+
+enum OrgStatus {
+  active
+  archived
+  suspended
+}
+
+enum MembershipRole {
+  owner
+  admin
+  member
+  viewer
+}
+
+enum InvitationStatus {
+  pending
+  accepted
+  expired
+  cancelled
+  revoked
+}
+
+enum SessionRevokedReason {
+  logout
+  password_changed
+  user_suspended
+  admin_revoked
+  refresh_reuse
+  expired
+  device_revoked
+}
+
+enum AuditActorType {
+  user
+  system
+  operator
+  device
+  api_key
+}
+
+enum AuditResult {
+  success
+  failure
+  denied
+}
+
+model users {
+  id                  String     @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  email               String     @unique @db.Text
+  email_verified_at   DateTime?  @db.Timestamptz
+  password_hash       String     @db.Text
+  password_changed_at DateTime?  @db.Timestamptz
+  display_name        String?    @db.Text
+  locale              String?    @db.Text
+  timezone            String?    @db.Text
+  mfa_enabled         Boolean    @default(false)
+  totp_secret_enc     String?    @db.Text
+  status              UserStatus @default(active)
+  last_login_at       DateTime?  @db.Timestamptz
+  created_at          DateTime   @default(now()) @db.Timestamptz
+  updated_at          DateTime   @updatedAt @db.Timestamptz
+  deleted_at          DateTime?  @db.Timestamptz
+
+  memberships    memberships[]
+  sessions       sessions[]
+  invitations_by invitations[] @relation("invitations_invited_by")
+  audit_events   audit_events[]
+}
+
+// Organizations are the tenancy root (ADR-008)
+model organizations {
+  id                          String    @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  name                        String    @db.Text
+  slug                        String    @unique @db.Text
+  kind                        OrgKind   @default(team)
+  default_execution_location  String?   @db.Text
+  data_retention_days         Int?      @default(90)
+  settings                    Json?     @db.JsonB
+  status                      OrgStatus @default(active)
+  created_at                  DateTime  @default(now()) @db.Timestamptz
+  updated_at                  DateTime  @updatedAt @db.Timestamptz
+  deleted_at                  DateTime? @db.Timestamptz
+
+  memberships  memberships[]
+  invitations  invitations[]
+  sessions     sessions[]
+  audit_events audit_events[]
+}
+
+model memberships {
+  id              String         @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  user_id         String         @db.Uuid
+  organization_id String         @db.Uuid
+  role            MembershipRole @default(member)
+  joined_at       DateTime       @default(now()) @db.Timestamptz
+  invited_by      String?        @db.Uuid
+
+  user         users         @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+
+  @@unique([user_id, organization_id])
+}
+
+model invitations {
+  id              String           @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id String           @db.Uuid
+  email           String           @db.Text
+  role            MembershipRole   @default(member)
+  token_hash      String           @unique @db.Text
+  status          InvitationStatus @default(pending)
+  expires_at      DateTime         @db.Timestamptz
+  accepted_at     DateTime?        @db.Timestamptz
+  revoked_at      DateTime?        @db.Timestamptz
+  invited_by      String           @db.Uuid
+  created_at      DateTime         @default(now()) @db.Timestamptz
+  updated_at      DateTime         @updatedAt @db.Timestamptz
+
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+  inviter      users         @relation("invitations_invited_by", fields: [invited_by], references: [id], onDelete: Restrict)
+
+  @@index([organization_id, status])
+  @@index([email])
+}
+
+// Sessions are user sessions within an org context (may be active for an org)
+model sessions {
+  id                   String                 @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  user_id              String                 @db.Uuid
+  organization_id      String                 @db.Uuid
+  token_hash           String                 @unique @db.Text
+  user_agent           String?                @db.Text
+  ip_hash              String?                @db.Text
+  created_at           DateTime               @default(now()) @db.Timestamptz
+  last_seen_at         DateTime               @default(now()) @db.Timestamptz
+  expires_at           DateTime               @db.Timestamptz
+  revoked_at           DateTime?              @db.Timestamptz
+  revoked_reason       SessionRevokedReason?  @map("revoked_reason")
+  mfa_satisfied_at     DateTime?              @db.Timestamptz
+  logout_at            DateTime?              @db.Timestamptz
+
+  user         users         @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+  refresh_tokens refresh_tokens[]
+
+  @@index([user_id])
+  @@index([organization_id])
+  @@index([expires_at])
+  @@index([revoked_at])
+}
+
+model refresh_tokens {
+  id            String    @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  session_id    String    @db.Uuid
+  token_hash    String    @unique @db.Text
+  family_id     String    @db.Uuid
+  replaced_by   String?   @db.Uuid
+  used_at       DateTime? @db.Timestamptz
+  expires_at    DateTime  @db.Timestamptz
+  created_at    DateTime  @default(now()) @db.Timestamptz
+  revoked_at    DateTime? @db.Timestamptz
+
+  session sessions @relation(fields: [session_id], references: [id], onDelete: Cascade)
+
+  @@index([session_id])
+  @@index([family_id])
+  @@index([expires_at])
+  @@index([revoked_at])
+}
+
+model login_attempts {
+  id           String   @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  email_digest String   @db.Text
+  ip_hash      String   @db.Text
+  success      Boolean
+  method       String   @db.Text
+  created_at   DateTime @default(now()) @db.Timestamptz
+
+  @@index([email_digest, created_at])
+  @@index([ip_hash, created_at])
+}
+
+model idempotency_keys {
+  id              String    @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id String    @db.Uuid
+  scope           String    @db.Text
+  key             String    @db.Text
+  request_digest  String    @db.Text
+  response_status Int?
+  response_body   Json?     @db.JsonB
+  state           String    @db.Text // 'in_progress' | 'completed'
+  expires_at      DateTime  @db.Timestamptz
+  created_at      DateTime  @default(now()) @db.Timestamptz
+  updated_at      DateTime  @updatedAt @db.Timestamptz
+
+  @@unique([organization_id, scope, key])
+  @@index([expires_at])
+}
+
+model audit_events {
+  id                  String        @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id     String?       @db.Uuid
+  actor_type          AuditActorType
+  actor_id            String?       @db.Uuid
+  device_id           String?       @db.Uuid
+  action              String        @db.Text
+  resource_type       String        @db.Text
+  resource_id         String?       @db.Text
+  result              AuditResult   @default(success)
+  reason              String?       @db.Text
+  ip_hash             String?       @db.Text
+  user_agent_digest   String?       @db.Text
+  trace_id            String?       @db.Text
+  metadata            Json?         @db.JsonB
+  created_at          DateTime      @default(now()) @db.Timestamptz
+
+  organization organizations? @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+  user         users?         @relation(fields: [actor_id], references: [id], onDelete: Restrict)
+
+  @@index([organization_id, created_at])
+  @@index([actor_id, created_at])
+  @@index([resource_type, resource_id])
+}

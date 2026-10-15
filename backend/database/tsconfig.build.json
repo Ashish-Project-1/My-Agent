@@ -1,0 +1,12 @@
+{
+  "extends": "@ua/tsconfig/base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": ".",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "noEmit": false
+  },
+  "include": ["src", "generated/prisma/*.ts"]
+}

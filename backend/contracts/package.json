@@ -23,11 +23,11 @@
     "generate:openapi": "tsc -p tsconfig.build.json && node scripts/generate-openapi.mjs"
   },
   "dependencies": {
-    "zod": "4.6.7"
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@ua/tsconfig": "workspace:*",
-    "typescript": "7.0.2",
-    "vitest": "5.0.4"
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   }
 }

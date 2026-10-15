@@ -1,0 +1,1 @@
+{"extends":"@ua/tsconfig/base.json","compilerOptions":{"outDir":"./dist"},"include":["src","test"]}

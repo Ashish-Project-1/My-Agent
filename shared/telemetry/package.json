@@ -2,7 +2,7 @@
   "name": "@ua/telemetry",
   "version": "0.0.0",
   "private": true,
-  "description": "Correlation ids and trace context propagation (docs/planning/03 §5.12, 16).",
+  "description": "Correlation ids and trace context propagation (docs/planning/03 Â§5.12, 16).",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -26,7 +26,7 @@
   "devDependencies": {
     "@types/node": "24.19.2",
     "@ua/tsconfig": "workspace:*",
-    "typescript": "7.0.2",
-    "vitest": "5.0.4"
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   }
 }
