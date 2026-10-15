@@ -23,11 +23,15 @@ services:
     # fresh cluster on every run.
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-universal_agent}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       POSTGRES_DB: ${POSTGRES_DB:-universal_agent}
       PGDATA: /var/lib/postgresql/data
-      POSTGRES_HOST_AUTH_METHOD: trust
+    # 55432, not 5432: a locally installed PostgreSQL service commonly owns the
+    # host's 5432, and Docker's publish fails silently against it — host
+    # connections then reach the native server and fail authentication. The
+    # 5433-5632 block is also reserved by Windows/Hyper-V port exclusions.
     ports:
-      - "${POSTGRES_PORT:-5432}:5432"
+      - "${POSTGRES_PORT:-55432}:5432"
     volumes:
       - ./.data/postgres:/var/lib/postgresql/data
     healthcheck:

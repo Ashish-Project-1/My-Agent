@@ -13,7 +13,8 @@
       "!**/.turbo",
       "!**/.next",
       "!**/node_modules",
-      "!**/openapi.json"
+      "!**/openapi.json",
+      "!**/generated"
     ]
   },
   "formatter": {

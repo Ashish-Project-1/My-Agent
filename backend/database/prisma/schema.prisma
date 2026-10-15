@@ -1,7 +1,7 @@
 // Prisma 7 schema for Universal Agent - Phase 2 (identity, orgs, tenancy)
 generator client {
   provider = "prisma-client"
-  output   = "../generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {

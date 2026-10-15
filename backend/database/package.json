@@ -10,10 +10,6 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
-    },
-    "./generated/*": {
-      "types": "./generated/prisma/*.d.ts",
-      "default": "./generated/prisma/*.js"
     }
   },
   "files": [
