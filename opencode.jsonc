@@ -1,0 +1,277 @@
+// OpenCode V2 project configuration.
+// Docs: https://opencode.ai/v2/docs/config  |  MCP: https://opencode.ai/v2/docs/mcp-servers
+//
+// How this file is organised:
+//   - "Active" servers connect as soon as you start OpenCode.
+//   - "Ready to enable" servers are written out in full but set to disabled: true.
+//     Remove the "disabled" line (and export the env vars from .env.example) to use them.
+//   - See INTEGRATIONS.md for every tool in the catalogue and how (or whether) it plugs in.
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // ---------------------------------------------------------------------------
+  // Instructions, formatting, search
+  // ---------------------------------------------------------------------------
+  "instructions": ["AGENTS.md"],
+  "formatter": true,
+  "websearch": { "provider": "random" },
+
+  // ---------------------------------------------------------------------------
+  // Plugins
+  // Context7's official OpenCode plugin bundles its MCP server + an auto-triggering
+  // skill. Install once with:  opencode plugin add @upstash/context7-opencode
+  // Then authenticate once with:  opencode mcp auth context7
+  // ---------------------------------------------------------------------------
+  "plugins": ["@upstash/context7-opencode"],
+
+  // ---------------------------------------------------------------------------
+  // Permissions — read/write to your repo is fine; these guard the destructive edges.
+  // effect: "ask" prompts before running, "deny" blocks outright.
+  // ---------------------------------------------------------------------------
+  "permissions": [
+    { "action": "shell", "resource": "rm -rf /*", "effect": "deny" },
+    { "action": "shell", "resource": "git push*", "effect": "ask" },
+    { "action": "shell", "resource": "git reset --hard*", "effect": "ask" },
+    { "action": "shell", "resource": "terraform apply*", "effect": "ask" },
+    { "action": "shell", "resource": "terraform destroy*", "effect": "ask" },
+    { "action": "shell", "resource": "*migrate deploy*", "effect": "ask" },
+    { "action": "shell", "resource": "*kubectl delete*", "effect": "ask" },
+    { "action": "shell", "resource": "*vercel --prod*", "effect": "ask" },
+    { "action": "shell", "resource": "*railway up*", "effect": "ask" }
+  ],
+
+  // ---------------------------------------------------------------------------
+  // Agents — a read-only reviewer so a review can never quietly edit your code.
+  // ---------------------------------------------------------------------------
+  "agents": {
+    "reviewer": {
+      "description": "Read-only review of the current changes",
+      "mode": "subagent",
+      "system": "Review code for correctness, security, data loss and missing tests. Never edit files. Report findings most severe first, each with file:line and a one-line fix.",
+      "permissions": [{ "action": "edit", "resource": "*", "effect": "deny" }]
+    }
+  },
+
+  // ---------------------------------------------------------------------------
+  // Commands — /review, /security, /verify
+  // ---------------------------------------------------------------------------
+  "commands": {
+    "review": {
+      "description": "Review the current changes",
+      "template": "Use the reviewer subagent to review the current `git diff HEAD` plus any staged changes. Report findings most severe first."
+    },
+    "security": {
+      "description": "Run the local security scans that are installed",
+      "template": "Detect and run whichever of these is available in this project, skipping the ones that are not installed: `semgrep scan`, `gitleaks detect`, `npm audit`, `osv-scanner -r .`, `trivy fs .`. Summarise findings by severity with file references."
+    },
+    "verify": {
+      "description": "Run tests and typecheck",
+      "template": "Run this project's test command and its typecheck/lint command. Fix what is broken, then report what changed."
+    }
+  },
+
+  // ---------------------------------------------------------------------------
+  // MCP servers
+  //
+  // Windows note: if a local (`npx ...`) server fails to start, wrap it as
+  // ["cmd", "/c", "npx", "-y", "<package>"] — Windows sometimes will not spawn the
+  // npx.cmd shim directly.
+  //
+  // Remote servers named below that use OAuth need a one-time sign-in:
+  // run /mcps in OpenCode, pick the server, and approve in the browser.
+  // ---------------------------------------------------------------------------
+  "mcp": {
+    "servers": {
+      // ======================= ACTIVE ======================================
+      // Free, no account required.
+      "deepwiki": {
+        "type": "remote",
+        "url": "https://mcp.deepwiki.com/mcp",
+        "oauth": false
+      },
+      "exa": {
+        "type": "remote",
+        "url": "https://mcp.exa.ai/mcp",
+        "oauth": false
+      },
+      // Local browser automation + debugging. First run downloads the browser.
+      "playwright": {
+        "type": "local",
+        "command": ["npx", "-y", "@playwright/mcp@latest"]
+      },
+      "chrome-devtools": {
+        "type": "local",
+        "command": ["npx", "-y", "chrome-devtools-mcp@latest"]
+      },
+
+      // ======================= READY TO ENABLE =============================
+      // Everything below is inert until you delete its "disabled" line.
+      // Only turn on what you actually use — every connected server adds tools
+      // to the model's context.
+
+      // --- Git, project management, docs (OAuth sign-in via /mcps) ---
+      "github": {
+        "type": "remote",
+        "url": "https://api.githubcopilot.com/mcp/",
+        "disabled": true
+      },
+      "gitlab": {
+        "type": "remote",
+        "url": "https://gitlab.com/api/v4/mcp",
+        "disabled": true
+      },
+      "linear": {
+        "type": "remote",
+        "url": "https://mcp.linear.app/mcp",
+        "disabled": true
+      },
+      "atlassian": {
+        "type": "remote",
+        "url": "https://mcp.atlassian.com/v2/mcp",
+        "disabled": true
+      },
+      "notion": {
+        "type": "remote",
+        "url": "https://mcp.notion.com/mcp",
+        "disabled": true
+      },
+
+      // --- Design (Figma needs a Dev/Full seat) ---
+      "figma": {
+        "type": "remote",
+        "url": "https://mcp.figma.com/mcp",
+        "disabled": true
+      },
+
+      // --- Observability (OAuth) ---
+      "sentry": {
+        "type": "remote",
+        "url": "https://mcp.sentry.dev/mcp",
+        "disabled": true
+      },
+      "posthog": {
+        "type": "remote",
+        "url": "https://mcp.posthog.com/mcp",
+        "disabled": true
+      },
+      "grafana": {
+        "type": "local",
+        "command": ["uvx", "mcp-grafana"],
+        "environment": {
+          "GRAFANA_URL": "{env:GRAFANA_URL}",
+          "GRAFANA_API_KEY": "{env:GRAFANA_API_KEY}"
+        },
+        "disabled": true
+      },
+
+      // --- Deployment (OAuth) ---
+      "vercel": {
+        "type": "remote",
+        "url": "https://mcp.vercel.com",
+        "disabled": true
+      },
+      "railway": {
+        // Bundled into the Railway CLI — run `railway login` first.
+        "type": "local",
+        "command": ["railway", "mcp"],
+        "disabled": true
+      },
+
+      // --- Databases / backend (need a key or connection string) ---
+      "supabase": {
+        "type": "remote",
+        "url": "https://mcp.supabase.com/mcp",
+        "disabled": true
+      },
+      "neon": {
+        "type": "local",
+        "command": ["npx", "-y", "@neondatabase/mcp-server-neon", "start", "{env:NEON_API_KEY}"],
+        "disabled": true
+      },
+      "mongodb": {
+        "type": "local",
+        "command": ["npx", "-y", "mongodb-mcp-server"],
+        "environment": { "MDB_MCP_CONNECTION_STRING": "{env:MDB_MCP_CONNECTION_STRING}" },
+        "disabled": true
+      },
+      "prisma": {
+        // Runs from inside a Prisma project directory.
+        "type": "local",
+        "command": ["npx", "-y", "prisma", "mcp"],
+        "disabled": true
+      },
+
+      // --- Code intelligence (local tools) ---
+      "serena": {
+        // Semantic, symbol-level code navigation. Requires uv (https://docs.astral.sh/uv/).
+        "type": "local",
+        "command": [
+          "uvx",
+          "--from",
+          "git+https://github.com/oraios/serena",
+          "serena",
+          "start-mcp-server",
+          "--context",
+          "ide-assistant"
+        ],
+        "disabled": true
+      },
+
+      // --- Security scanning (local tools) ---
+      "semgrep": {
+        "type": "local",
+        "command": ["uvx", "semgrep-mcp"],
+        "environment": { "SEMGREP_APP_TOKEN": "{env:SEMGREP_APP_TOKEN}" },
+        "disabled": true
+      },
+      "trivy": {
+        // Requires Trivy + the MCP plugin: `trivy plugin install mcp`.
+        "type": "local",
+        "command": ["trivy", "mcp"],
+        "disabled": true
+      },
+
+      // --- Infrastructure ---
+      "kubernetes": {
+        "type": "local",
+        "command": ["npx", "-y", "mcp-server-kubernetes"],
+        "disabled": true
+      },
+      "terraform": {
+        "type": "local",
+        "command": ["npx", "-y", "terraform-mcp-server"],
+        "environment": { "TFE_TOKEN": "{env:TFE_TOKEN}" },
+        "disabled": true
+      },
+
+      // --- Research / scraping (need a key; Exa above is already free) ---
+      "tavily": {
+        "type": "local",
+        "command": ["npx", "-y", "tavily-mcp@latest"],
+        "environment": { "TAVILY_API_KEY": "{env:TAVILY_API_KEY}" },
+        "disabled": true
+      },
+      "firecrawl": {
+        "type": "local",
+        "command": ["npx", "-y", "firecrawl-mcp"],
+        "environment": { "FIRECRAWL_API_KEY": "{env:FIRECRAWL_API_KEY}" },
+        "disabled": true
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Local models (optional).
+  // OpenCode auto-discovers Ollama, LM Studio and vLLM at their default ports —
+  // no config is needed if you run them on localhost. On a 16 GB / 8 GB-VRAM
+  // Windows box, `ollama pull qwen2.5-coder:7b` then set:
+  //
+  //   "model": "ollama/qwen2.5-coder:7b"
+  //
+  // Use a non-default port like this:
+  //
+  //   "providers": {
+  //     "ollama": { "settings": { "baseURL": "http://127.0.0.1:5678/v1" } }
+  //   }
+  // ---------------------------------------------------------------------------
+}
