@@ -167,6 +167,26 @@ and it is the better default anyway: 5433–5632 is reserved by Windows/Hyper-V
 port exclusions, so a developer with a local PostgreSQL cannot use 5432 at all.
 `backend/database/.env` points at 55432.
 
+**8. Phase 2's cloud-foundation deliverables are deferred.**
+`planning/17` §Phase 2 asks for a Terraform skeleton, a remote-state backend with
+locking, and managed Postgres/Redis in dev/staging, with "Terraform plan is
+reproducible" as an exit criterion. All of it is gated on the managed
+Postgres/Redis provider choice (Q-T2), which is unresolved — Decision 6 in §5.
+The same planning section says the choice is "needed before staging is real, but
+not before local development", so Phase 2 is being built local-first and the
+cloud foundation lands with the provider decision. Until then that one exit
+criterion is unmet, and saying otherwise would be false.
+
+**9. Row-level security is deferred to the gate the plan itself names.**
+`planning/17` §Phase 2 lists "RLS as a backstop", but the same document puts
+"RLS enabled and proven in production" at Phase 10, and `planning/06` §1 places
+RLS at Phase 10 as well. Phase 2 builds the structural half — mandatory
+`organization_id` on every tenant table plus a tenant-scoped data-access layer
+whose queries cannot omit the filter — and the cross-tenant isolation suite
+proves it. RLS is added at Phase 10, before paying customers and real data make
+a mistake expensive. The isolation suite itself is **not** deferred:
+`planning/17` §Phase 2 is explicit that deferring it is not acceptable.
+
 ## 5. Open decisions
 
 | # | Decision | Blocks | Where |
@@ -178,6 +198,6 @@ port exclusions, so a developer with a local PostgreSQL cannot use 5432 at all.
 | 5 | Where `@ua/ui` and `@ua/client` live — `planning/03` §5 names them as dependencies but never places them | Phase 6 frontend work | `planning/03` §5 |
 | 6 | Managed Postgres/Redis provider (Q-T2) | Phase 2 deploy | `planning/20` |
 
-Deviations 3–7 are recorded here because a planning document still says
+Deviations 3–9 are recorded here because a planning document still says
 otherwise. When a decision is made, update both the planning document and this
 file in the same commit.
