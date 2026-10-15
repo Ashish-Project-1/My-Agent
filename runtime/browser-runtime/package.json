@@ -1,0 +1,6 @@
+{
+  "name": "@ua/browser-runtime",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Placeholder package, no code yet. Specified by docs/planning/03-system-architecture.md 5.11."
+}

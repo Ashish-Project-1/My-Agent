@@ -1,0 +1,145 @@
+# Implementation status
+
+| | |
+|---|---|
+| Last updated | 2026-10-15 |
+| Owner | Architecture |
+| Purpose | The single place that says what is **built** versus what the planning documents only describe as planned. |
+
+`docs/planning/` is a plan. Nothing in it is implemented by virtue of having been
+written down. This file records the actual state of the repository and the
+deviations taken while building it.
+
+---
+
+## 1. ADR ratification (Phase 0 deliverable)
+
+`ADR-001` … `ADR-028` in [`planning/04-architecture-decision-records.md`](planning/04-architecture-decision-records.md)
+are **ratified as the baseline** for this repository. Building continues against
+them; revisiting one requires a superseding ADR, not a drive-by change.
+
+Their status markers carry through unchanged:
+
+- **Final (18):** ADR-001, 002, 003, 004, 005, 006, 007, 008, 012, 013, 016,
+  017, 018, 019, 021, 022, 023, 027.
+- **Provisional — chosen, revisitable only at the stated trigger (10):** ADR-009
+  (identity), 010 (Electron), 011 (OpenCode SDK), 014 (Node 24 LTS), 015
+  (TypeScript 7), 020 (Prisma 7.10), 024 (Docker/Kubernetes), 025 (Terraform),
+  026 (OpenTelemetry), 028 (Windows device testing).
+- **Partly provisional:** ADR-019's managed-Postgres provider choice, ADR-021's
+  queue engine choice (Redis vs Valkey), ADR-022's per-hardware model choice,
+  ADR-027's repo host.
+
+ADR-015 is the one provisional decision already exercised: TypeScript 7.0.2
+compiles, typechecks and tests this tree clean today (see §3), so the revisit
+trigger in `04` ("if any required tool does not support 7.x cleanly") has not
+fired. It is validated, not closed — Prisma and NestJS have not been run against
+it yet.
+
+## 2. What is built
+
+**Phase 0 — repository foundation.** Complete.
+
+- `git init`; first commit preserved `AGENTS.md`, `INTEGRATIONS.md`,
+  `opencode.jsonc` and `.env.example` byte-identical (exiting criteria of
+  `planning/17` §Phase 0).
+- Hygiene files: `.gitignore`, `.gitattributes`, `.editorconfig`, `.npmrc`,
+  `README.md`, `SECURITY.md`, `.github/CODEOWNERS`, `.githooks/pre-commit`.
+- ADR ratification: this document, §1.
+
+**Phase 1 — toolchain, contracts, CI.** Complete, with the deviations in §4.
+
+- pnpm 12 workspaces + Turborepo 2.11.8 task graph (`build`, `typecheck`, `test`,
+  `test:integration`, `test:e2e`, `lint`, `clean`) with declared `dependsOn` and
+  `outputs`, concurrency capped at 4 per `planning/05` §1.3.
+- Directory skeleton from `planning/03` §5: 26 packages, 20 of them placeholders
+  with a single `package.json` and no source.
+- `backend/contracts` (`@ua/contracts`): Zod 4 schemas for task, risk, error and
+  registry contracts, plus `generate-openapi.mjs` producing the committed
+  `openapi.json` (12 schemas).
+- `shared/logger` (structured JSON + redaction deny-list), `shared/error-handling`
+  (error taxonomy → `ProblemDetails`), `shared/telemetry` (request id,
+  traceparent, async correlation), `shared/test-utilities` (frozen clock,
+  deterministic ids, two-org fixtures), `shared/typescript-config`.
+- `.github/workflows/ci.yml`: `secret-scan`, `lint`, `verify` (ubuntu +
+  windows matrix), `contract` (drift check on `openapi.json`).
+- `infrastructure/docker/docker-compose.yml`: PostgreSQL 18 and Redis 8 with data
+  on `./.data/` (gitignored, on `F:` with the repository).
+- Startup/env config drift check (`scripts/check-env-example.mjs`) and secret
+  scanning (`scripts/scan-secrets.mjs`) wired into both CI and the pre-commit
+  hook.
+
+**Not built:** everything from Phase 2 onward. There is no authentication, no
+database schema, no agent loop, no tools, no approvals, and no frontend code.
+
+## 3. Verification
+
+All of the following pass locally from this working tree:
+
+```
+pnpm build            5 packages compiled (the other 21 are placeholders with no build task)
+pnpm typecheck        the same 5 packages, src/ and test/ both clean
+pnpm test             108 tests across those 5 packages, 0 failures
+pnpm lint             65 files checked, 0 errors
+pnpm generate:openapi 12 schemas → backend/contracts/openapi.json
+pnpm check:env        .env.example intact and credential-free
+pnpm scan:secrets     95 tracked files clean (4 explicitly opted out)
+```
+
+The Phase 1 exit criterion additionally requires a green run **from a clean
+checkout on both operating systems**. That is what `.github/workflows/ci.yml`
+does, but it has never run: the repository has no remote (§4, deviation 1), so
+the CI jobs are unverified rather than passing.
+
+## 4. Deviations from the plan
+
+**1. No GitHub remote — CI is written but unproven.**
+`planning/17` §Phase 1 exit criteria say "CI green on both OSes". This repository
+is local-only; creating a remote and enabling branch protection requires the
+owner (`AGENTS.md` asks before anything irreversible). The workflow is therefore
+`[UNVERIFIED]`. Action: create the remote, push, and check that `verify` and
+`contract` pass on Windows as well as Linux.
+
+**2. MinIO is not in the compose file.**
+`planning/05` §5 step 5 says `docker compose up postgres redis minio`. As of
+2026-10-15 `minio/minio` returns HTTP 401 for an anonymous pull, and
+`bitnami/minio` and `scality/cloudserver:latest` are 404. Two S3-compatible
+images were verified pullable: `chrislusf/seaweedfs` and `localstack/localstack`.
+Object storage is not needed until Phase 2 (ADR-013), so the service is simply
+absent rather than guessed at. **Open decision:** pick one before Phase 2, then
+update `planning/05` §5 row 5.
+
+**3. Q-T3 resolved as Biome.**
+`planning/20` leaves the formatter/linter choice open: Biome vs ESLint + Prettier.
+Chosen: **Biome 2.5.15** — one dependency, one binary, one config for lint and
+format, and it holds up the exact-strictness TypeScript settings without plugin
+version-skew risk (the failure mode `planning/05` Q-T1 warns about). Consequence:
+the `shared/eslint-config` package named in `planning/03` §5 does not exist.
+
+**4. `CONTRIBUTING.md` and `LICENSE` are not written.**
+Both are listed as `[OPEN]` in `planning/17` §Phase 0 and `planning/15` §3
+(licence choice unresolved — Q-DEV-6). `package.json` carries
+`"license": "UNLICENSED"` as the honest interim value. README carries a short
+contributing section in the meantime.
+
+**5. `@types/node` is pinned to 24.19.2, not latest.**
+Latest is 26.x, which describes Node 26's runtime. The runtime is Node 24 LTS
+(ADR-014), so the matching type definitions are the correct pin.
+
+**6. `pnpm.onlyBuiltDependencies` lives in `pnpm-workspace.yaml`, not
+`package.json`.** pnpm 12 warns and drops the key from `package.json`.
+
+## 5. Open decisions
+
+| # | Decision | Blocks | Where |
+|---|---|---|---|
+| 1 | S3-compatible object storage: SeaweedFS vs LocalStack | Phase 2 (ADR-013) | `planning/05` §5 row 5 |
+| 2 | Git remote host + branch protection on `main` | Phase 1 exit criteria | `planning/15` §7 |
+| 3 | Repository licence (Q-DEV-6) | Public release | `planning/20` |
+| 4 | `CONTRIBUTING.md` contents | Public contribution | `planning/17` §Phase 0 |
+| 5 | Where `@ua/ui` and `@ua/client` live — `planning/03` §5 names them as dependencies but never places them | Phase 6 frontend work | `planning/03` §5 |
+| 6 | Managed Postgres/Redis provider (Q-T2) | Phase 2 deploy | `planning/20` |
+
+Deviations 3–7 are recorded here because a planning document still says
+otherwise. When a decision is made, update both the planning document and this
+file in the same commit.

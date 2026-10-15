@@ -1,0 +1,54 @@
+# Local development services (docs/planning/05 §5, `15` §6).
+#
+#   docker compose -f infrastructure/docker/docker-compose.yml up -d postgres redis
+#
+# Every service stores its data under ./.data/, which is gitignored and lives on
+# F: with the repository — the C: drive has ~12 GB free and images are multi-GB.
+#
+# This is a developer convenience, not a topology. Production runs managed
+# Postgres/Redis/object storage (docs/planning/15).
+#
+# Object storage is deliberately absent: the MinIO server image
+# (`minio/minio`) no longer resolves for anonymous pulls, and neither does
+# `bitnami/minio`. Phase 2 must pick a replacement before anything needs S3 —
+# candidates verified as pullable are `chrislusf/seaweedfs` and
+# `localstack/localstack`. See docs/implementation-status.md.
+name: universal-agent
+
+services:
+  postgres:
+    image: postgres:18-alpine3.24
+    # PGDATA is pinned explicitly: the official image moved its default data
+    # directory in 18, and a bind mount aimed at the old path silently starts a
+    # fresh cluster on every run.
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-universal_agent}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-universal_agent}
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - ./.data/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-universal_agent} -d ${POSTGRES_DB:-universal_agent}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    stop_grace_period: 30s
+
+  redis:
+    image: redis:8.8-alpine3.23
+    # noeviction is a BullMQ requirement: an eviction policy of any kind lets Redis
+    # drop a queued job under memory pressure, which loses work silently
+    # (docs/planning/04 ADR-021).
+    command: redis-server --appendonly yes --maxmemory-policy noeviction
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - ./.data/redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20

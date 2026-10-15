@@ -1,0 +1,33 @@
+{
+  "name": "@ua/contracts",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Single source of truth for every wire schema (docs/planning/03 §5.8).",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "openapi.json"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "generate:openapi": "tsc -p tsconfig.build.json && node scripts/generate-openapi.mjs"
+  },
+  "dependencies": {
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@ua/tsconfig": "workspace:*",
+    "typescript": "7.0.2",
+    "vitest": "5.0.4"
+  }
+}

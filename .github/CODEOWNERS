@@ -1,0 +1,13 @@
+# Review ownership (docs/planning/17 Phase 1).
+#
+# One owner is a placeholder until the repository has more maintainers: branch
+# protection needs a code owner before it can require a review, and the
+# security-critical surfaces below are the reason the list exists at all.
+*                       @ashishkumar593
+
+# Security controls: a change here is a change to what the agent is allowed to do.
+/shared/logger/          @ashishkumar593
+/shared/error-handling/  @ashishkumar593
+/backend/contracts/      @ashishkumar593
+/.github/workflows/      @ashishkumar593
+/scripts/                @ashishkumar593

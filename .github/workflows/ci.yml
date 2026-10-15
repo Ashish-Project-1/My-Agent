@@ -1,0 +1,93 @@
+# CI baseline (docs/planning/17 Phase 1, `15` §7).
+#
+# Least privilege: this workflow only ever reads the repository.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Fast, OS-independent gates first: a leaked key or an unformatted file should
+  # fail in seconds, not after a Windows matrix build.
+  secret-scan:
+    name: secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+      - run: node scripts/scan-secrets.mjs
+      - run: node scripts/check-env-example.mjs
+
+  lint:
+    name: lint and format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+        with:
+          run_install: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+
+  # The Phase 1 exit criterion: build, typecheck and test from a clean checkout on
+  # both operating systems. Windows is not a nice-to-have — the local runner is a
+  # Windows service (docs/planning/09).
+  verify:
+    name: verify (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+        with:
+          run_install: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm turbo run build typecheck test
+
+  # The generated OpenAPI document is committed, so a schema change that was not
+  # regenerated — and therefore an undocumented breaking change — fails here
+  # (docs/planning/07 §7).
+  contract:
+    name: contract drift
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+        with:
+          run_install: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm generate:openapi
+      - name: fail if openapi.json is out of date
+        run: git diff --exit-code -- backend/contracts/openapi.json
+
+  # Placeholder for the gates that arrive with the modules they check. Declared
+  # now so the required-check list does not have to change later.
+  #   integration: needs Postgres and Redis services (Phase 3)
+  #   e2e:         needs Playwright browsers (Phase 7)

@@ -1,0 +1,32 @@
+{
+  "name": "@ua/error-handling",
+  "version": "0.0.0",
+  "private": true,
+  "description": "One error taxonomy and its HTTP mapping (docs/planning/03 §5.12).",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@ua/contracts": "workspace:*",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@ua/tsconfig": "workspace:*",
+    "typescript": "7.0.2",
+    "vitest": "5.0.4"
+  }
+}

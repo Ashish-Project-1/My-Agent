@@ -1,0 +1,245 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Universal Agent API",
+    "version": "0.0.0",
+    "description": "Generated from @ua/contracts by scripts/generate-openapi.mjs. Do not edit by hand."
+  },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "Uuid": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "string",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+      },
+      "Ulid": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "string",
+        "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+      },
+      "IdempotencyKey": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "anyOf": [
+          {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+          },
+          {
+            "type": "string",
+            "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+          }
+        ]
+      },
+      "Timestamp": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
+      },
+      "Money": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "amountMinor": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          },
+          "currency": {
+            "type": "string",
+            "pattern": "^[A-Z]{3}$"
+          }
+        },
+        "required": [
+          "amountMinor",
+          "currency"
+        ],
+        "additionalProperties": false
+      },
+      "ErrorCode": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "string",
+        "enum": [
+          "invalid_request",
+          "validation_failed",
+          "unauthenticated",
+          "forbidden",
+          "insufficient_role",
+          "not_found",
+          "conflict",
+          "idempotency_conflict",
+          "state_conflict",
+          "approval_expired",
+          "gone",
+          "payload_too_large",
+          "unprocessable_entity",
+          "rate_limited",
+          "internal_error",
+          "bad_gateway",
+          "service_unavailable",
+          "gateway_timeout"
+        ]
+      },
+      "FieldError": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "pointer": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "detail": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pointer",
+          "code",
+          "detail"
+        ],
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "integer",
+            "minimum": 400,
+            "maximum": 599
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "invalid_request",
+              "validation_failed",
+              "unauthenticated",
+              "forbidden",
+              "insufficient_role",
+              "not_found",
+              "conflict",
+              "idempotency_conflict",
+              "state_conflict",
+              "approval_expired",
+              "gone",
+              "payload_too_large",
+              "unprocessable_entity",
+              "rate_limited",
+              "internal_error",
+              "bad_gateway",
+              "service_unavailable",
+              "gateway_timeout"
+            ]
+          },
+          "detail": {
+            "type": "string"
+          },
+          "instance": {
+            "type": "string",
+            "minLength": 1
+          },
+          "requestId": {
+            "type": "string",
+            "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+          },
+          "traceId": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{2}-[0-9a-f]{32}-[0-9a-f]{16}-[0-9a-f]{2}$"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "pointer": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "detail": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "pointer",
+                "code",
+                "detail"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "type",
+          "title",
+          "status",
+          "code",
+          "detail",
+          "instance",
+          "requestId",
+          "traceId"
+        ],
+        "additionalProperties": false
+      },
+      "TaskState": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "string",
+        "enum": [
+          "QUEUED",
+          "PLANNING",
+          "RUNNING",
+          "WAITING_APPROVAL",
+          "WAITING_DEVICE",
+          "PAUSED",
+          "VERIFYING",
+          "COMPLETED",
+          "FAILED",
+          "CANCELLED",
+          "EXPIRED"
+        ]
+      },
+      "StepKind": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "string",
+        "enum": [
+          "model",
+          "tool",
+          "approval",
+          "verify"
+        ]
+      },
+      "ExecutionLocation": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "string",
+        "enum": [
+          "device",
+          "cloud"
+        ]
+      },
+      "RiskClass": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "string",
+        "enum": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R4"
+        ]
+      }
+    }
+  }
+}

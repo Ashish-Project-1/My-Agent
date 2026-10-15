@@ -1,0 +1,16 @@
+# Workspace layout mirrors docs/planning/03-system-architecture.md §5.
+packages:
+  - backend/apps/*
+  - backend/apps/workers/*
+  - backend/modules/*
+  - backend/contracts
+  - backend/database
+  - frontend/*
+  - frontend/ide-extensions/*
+  - runtime/*
+  - shared/*
+
+# Package build scripts may only run for these. Everything else stays unbuilt, so
+# a compromised transitive dependency cannot execute code by adding a postinstall.
+onlyBuiltDependencies:
+  - esbuild

@@ -1,0 +1,50 @@
+# Normalise everything to LF in the repository (docs + code are LF).
+* text=auto eol=lf
+
+# Windows scripts must keep CRLF: cmd.exe mishandles LF in .cmd/.bat (goto labels break).
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Binary assets — never touch.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.icns binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.zip binary
+*.gz binary
+*.7z binary
+*.exe binary
+*.dll binary
+*.so binary
+*.dylib binary
+*.node binary
+*.pdf binary
+
+# Model weights and local artifacts — large, must never be diffed or normalised.
+*.onnx binary
+*.gguf binary
+*.safetensors binary
+*.pt binary
+*.pth binary
+*.bin binary
+
+# Generated lockfile: keep it diffable and stable.
+pnpm-lock.yaml text eol=lf
+
+# Generated OpenAPI document is a build artefact reviewed as text.
+openapi.json text eol=lf
+
+# Markdown docs: LF, no whitespace mangling.
+*.md text eol=lf
+
+# Linguist: keep generated artefacts out of language statistics.
+openapi.json linguist-generated=true
+pnpm-lock.yaml linguist-generated=true
