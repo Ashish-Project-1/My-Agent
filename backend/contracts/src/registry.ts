@@ -1,6 +1,7 @@
 import {
   AuthSessionResponse,
   CreateOrganizationRequest,
+  ForgotPasswordRequest,
   LoginRequest,
   MembershipRole,
   MeResponse,
@@ -8,7 +9,10 @@ import {
   OrganizationListResponse,
   OrganizationSummary,
   RegisterRequest,
+  ResendVerificationRequest,
+  ResetPasswordRequest,
   UserProfile,
+  VerifyEmailRequest,
 } from "./auth.js";
 import { IdempotencyKey, Money, Timestamp, Ulid, Uuid } from "./common.js";
 import { ErrorCode, FieldError, ProblemDetails } from "./errors.js";
@@ -37,6 +41,10 @@ export const SCHEMAS = {
   LoginRequest,
   AuthSessionResponse,
   MeResponse,
+  VerifyEmailRequest,
+  ResendVerificationRequest,
+  ForgotPasswordRequest,
+  ResetPasswordRequest,
   UserProfile,
   CreateOrganizationRequest,
   OrganizationListResponse,

@@ -123,6 +123,39 @@ export const MeResponse = z
   .strict();
 export type MeResponse = z.infer<typeof MeResponse>;
 
+/** Email verification request. */
+export const VerifyEmailRequest = z
+  .object({
+    token: z.string().min(1),
+  })
+  .strict();
+export type VerifyEmailRequest = z.infer<typeof VerifyEmailRequest>;
+
+/** Resend email verification request. */
+export const ResendVerificationRequest = z
+  .object({
+    email: Email,
+  })
+  .strict();
+export type ResendVerificationRequest = z.infer<typeof ResendVerificationRequest>;
+
+/** Forgot password request (always returns 202 regardless of whether account exists). */
+export const ForgotPasswordRequest = z
+  .object({
+    email: Email,
+  })
+  .strict();
+export type ForgotPasswordRequest = z.infer<typeof ForgotPasswordRequest>;
+
+/** Reset password request. */
+export const ResetPasswordRequest = z
+  .object({
+    token: z.string().min(1),
+    password: Password,
+  })
+  .strict();
+export type ResetPasswordRequest = z.infer<typeof ResetPasswordRequest>;
+
 export const CreateOrganizationRequest = z
   .object({
     name: z.string().trim().min(1).max(DISPLAY_NAME_MAX_LENGTH),
