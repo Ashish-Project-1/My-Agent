@@ -2,5 +2,37 @@
   "name": "@ua/api",
   "version": "0.0.0",
   "private": true,
-  "description": "Placeholder package, no code yet. Specified by docs/planning/03-system-architecture.md 5.5."
+  "description": "Identity, organization and API surface over Fastify (docs/planning/03 §5.5, 07).",
+  "type": "module",
+  "main": "./dist/main.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "start": "node dist/main.js"
+  },
+  "dependencies": {
+    "@fastify/cookie": "catalog:",
+    "@nestjs/common": "catalog:",
+    "@nestjs/core": "catalog:",
+    "@nestjs/platform-fastify": "catalog:",
+    "@ua/contracts": "workspace:*",
+    "@ua/database": "workspace:*",
+    "@ua/error-handling": "workspace:*",
+    "@ua/logger": "workspace:*",
+    "argon2": "catalog:",
+    "fastify": "catalog:",
+    "reflect-metadata": "catalog:",
+    "ulid": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "catalog:",
+    "@types/node": "catalog:",
+    "@ua/test-utilities": "workspace:*",
+    "@ua/tsconfig": "workspace:*",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
 }

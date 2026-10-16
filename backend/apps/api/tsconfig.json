@@ -1,0 +1,16 @@
+{
+  "extends": "@ua/tsconfig/base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "types": ["node"],
+    // NestJS resolves constructor dependencies from metadata emitted by the
+    // legacy decorator transform, which `base.json` deliberately leaves off for
+    // the packages that do not need it.
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "include": ["src", "test"]
+}

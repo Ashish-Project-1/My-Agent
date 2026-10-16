@@ -1,3 +1,15 @@
+import {
+  AuthSessionResponse,
+  CreateOrganizationRequest,
+  LoginRequest,
+  MembershipRole,
+  MeResponse,
+  OrganizationKind,
+  OrganizationListResponse,
+  OrganizationSummary,
+  RegisterRequest,
+  UserProfile,
+} from "./auth.js";
 import { IdempotencyKey, Money, Timestamp, Ulid, Uuid } from "./common.js";
 import { ErrorCode, FieldError, ProblemDetails } from "./errors.js";
 import { RiskClass } from "./risk.js";
@@ -20,6 +32,17 @@ export const SCHEMAS = {
   ErrorCode,
   FieldError,
   ProblemDetails,
+  // Identity and tenancy (docs/planning/07 §3.1–§3.2)
+  RegisterRequest,
+  LoginRequest,
+  AuthSessionResponse,
+  MeResponse,
+  UserProfile,
+  CreateOrganizationRequest,
+  OrganizationListResponse,
+  OrganizationSummary,
+  MembershipRole,
+  OrganizationKind,
   TaskState,
   StepKind,
   ExecutionLocation,

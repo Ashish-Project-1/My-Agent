@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Last updated | 2026-10-15 |
+| Last updated | 2026-10-16 |
 | Owner | Architecture |
 | Purpose | The single place that says what is **built** versus what the planning documents only describe as planned. |
 
@@ -110,20 +110,51 @@ it yet.
   `organization_id` must be in the scope, and the scope's relation-field map must
   match the schema, so drift is a test failure rather than a silent hole.
 
-**Not built:** the API surface, RLS policies, Terraform, and everything from
-Phase 3 onward. There is no authentication endpoint, no agent loop, no tools, no
-approvals, and no frontend code.
+**Phase 2 — the API slice (`backend/apps/api`, `@ua/api`).** Built.
+
+- NestJS 12 on the Fastify 5 adapter, assembled by `src/app.ts` (`createApp`), so
+  the production entrypoint (`main.ts`) and the integration tests boot the same
+  wiring. `reflect-metadata` is imported first in `app.ts`: without it Nest's
+  dependency scan throws a `TypeError` that `logger: false` hides and
+  `process.exit(1)` reports as a bare exit code.
+- Routes: `POST /v1/auth/register` (201), `POST /v1/auth/login` (200),
+  `POST /v1/auth/refresh` (200), `POST /v1/auth/logout` (204), `GET /v1/me` (200),
+  `GET /v1/organizations`, `POST /v1/organizations` (201),
+  `GET /v1/organizations/:orgId`, `GET /healthz`, `GET /readyz`.
+- `AuthGuard` is registered as a global `APP_GUARD` and denies by default: a route
+  is anonymous only where `@Public()` says so. Unsafe methods additionally require
+  the CSRF double-submit — the `ua_csrf` cookie plus the matching `x-csrf-token`
+  header, both checked against a value derived from the session, so a sibling
+  subdomain that can set a cookie still cannot forge the request.
+- Sessions are opaque tokens stored as hashes. Registration, login and refresh all
+  rotate the session token; refresh tokens are one family per session and a reused
+  token revokes the family (`reason: refresh_token_reused`). The unscoped Prisma
+  client is confined to `src/identity`, `src/auth`, `src/organizations`,
+  `src/audit` and the `src/health` readiness probe, and
+  `test/unscoped-client.test.ts` fails if any other module reaches for it.
+- Constructor dependencies are **value** imports. With `emitDecoratorMetadata`,
+  an injected class imported via `import type` degrades to `Function` and Nest
+  cannot resolve it; the module must import the class as a value (a DI failure is
+  a boot failure, not a per-request one).
+- Errors are answered as Problem Details by a global filter; validation is Zod
+  through a pipe; the unique-violation check understands Prisma 7's driver-adapter
+  error shape (`meta.driverAdapterError.cause.constraint.index`), not only the
+  older `meta.target`, so a duplicate email is a 409 rather than a 500.
+
+**Not built:** the desktop/agent runtime, RLS policies, Terraform, and everything
+from Phase 3 onward. There is no agent loop, no tools, no approvals, and no
+frontend code.
 
 ## 3. Verification
 
 All of the following pass locally from this working tree:
 
 ```
-pnpm build            6 packages compiled (the other 20 are placeholders with no build task)
+pnpm build            7 packages compiled (the other 19 are placeholders with no build task)
 pnpm typecheck        the same 7 packages with a typecheck task, src/ and test/ both clean
-pnpm test             115 tests across those 6 packages, 0 failures
-pnpm test:integration 15 isolation tests against PostgreSQL 18, 0 failures
-pnpm lint             75 files checked, 0 errors
+pnpm test             172 tests across 7 packages, 0 failures
+pnpm test:integration 38 tests against PostgreSQL 18, 0 failures (15 tenant isolation, 23 API)
+pnpm lint             123 files checked, 0 errors
 pnpm generate:openapi 12 schemas → backend/contracts/openapi.json
 pnpm check:env        .env.example intact and credential-free
 pnpm scan:secrets     133 tracked files clean (4 opted out; pnpm-lock.yaml is skipped)
@@ -213,6 +244,22 @@ proves it. RLS is added at Phase 10, before paying customers and real data make
 a mistake expensive. The isolation suite itself is **not** deferred:
 `planning/17` §Phase 2 is explicit that deferring it is not acceptable.
 
+**10. Biome needs two settings to lint the NestJS API.** Neither is a choice so
+much as a requirement of the framework (`planning/20` Q-T3 chose Biome without
+anticipating either, because Phase 1 had no decorators).
+
+- `javascript.parser.unsafeParameterDecoratorsEnabled: true`. NestJS injects by
+  parameter decorator (`@Body`, `@Param`, `@Req`, `@Inject`). Without this, Biome
+  cannot parse a controller at all — every one is a parse error.
+- `lint/style/useImportType` is turned **off** for `backend/apps/api/**`. Nest
+  resolves a constructor dependency from the type in the decorator metadata that
+  `emitDecoratorMetadata` writes, and a `import type` is erased before that
+  metadata is emitted, so an injected class imported as a type degrades to
+  `Function` and the app fails to boot. Biome's safe autofix rewrites exactly
+  those imports to `import type`, so leaving the rule on means `pnpm format`
+  silently breaks the server. Turning it off for the API package is the fix;
+  every other package keeps the rule.
+
 ## 5. Open decisions
 
 | # | Decision | Blocks | Where |
@@ -224,6 +271,6 @@ a mistake expensive. The isolation suite itself is **not** deferred:
 | 5 | Where `@ua/ui` and `@ua/client` live — `planning/03` §5 names them as dependencies but never places them | Phase 6 frontend work | `planning/03` §5 |
 | 6 | Managed Postgres/Redis provider (Q-T2) | Phase 2 deploy | `planning/20` |
 
-Deviations 3–9 are recorded here because a planning document still says
+Deviations 3–10 are recorded here because a planning document still says
 otherwise. When a decision is made, update both the planning document and this
 file in the same commit.
