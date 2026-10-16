@@ -39,6 +39,9 @@ blob-report/
 # Local model weights and large binaries (never in git; see 09 §models)
 # ---------------------------------------------------------------------------
 models/
+# The generated Prisma client is checked in (docs/implementation-status.md), and
+# its per-model type files live under a `models/` directory of their own.
+!backend/database/src/generated/prisma/models/
 *.gguf
 *.onnx
 *.safetensors

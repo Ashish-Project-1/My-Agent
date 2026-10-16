@@ -16,7 +16,8 @@
     },
     "test:integration": {
       "dependsOn": ["^build"],
-      "outputs": []
+      "outputs": [],
+      "cache": false
     },
     "test:e2e": {
       "dependsOn": ["^build"],

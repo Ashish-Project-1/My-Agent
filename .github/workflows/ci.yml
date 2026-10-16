@@ -87,7 +87,43 @@ jobs:
       - name: fail if openapi.json is out of date
         run: git diff --exit-code -- backend/contracts/openapi.json
 
+  # Phase 2's exit criterion: no query can reach another tenant's rows. It needs a
+  # real PostgreSQL — Prisma's filters are only proved against the engine that
+  # evaluates them — so it stays out of `verify` and runs here (docs/planning/17
+  # Phase 2; the unit suite is deliberately database-free).
+  integration:
+    name: tenant isolation
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18-alpine3.24
+        env:
+          POSTGRES_USER: universal_agent
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: universal_agent
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U universal_agent -d universal_agent"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      # A throwaway credential for the ephemeral service container, not a secret.
+      DATABASE_URL: postgresql://universal_agent:postgres@localhost:5432/universal_agent # scan-secrets:allow
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+        with:
+          run_install: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @ua/database db:deploy
+      - run: pnpm test:integration
+
   # Placeholder for the gates that arrive with the modules they check. Declared
   # now so the required-check list does not have to change later.
-  #   integration: needs Postgres and Redis services (Phase 3)
-  #   e2e:         needs Playwright browsers (Phase 7)
+  #   e2e: needs Playwright browsers (Phase 7)

@@ -84,6 +84,7 @@ model users {
   memberships    memberships[]
   sessions       sessions[]
   invitations_by invitations[] @relation("invitations_invited_by")
+  invited_memberships memberships[] @relation("memberships_invited_by")
   audit_events   audit_events[]
 }
 
@@ -101,10 +102,11 @@ model organizations {
   updated_at                  DateTime  @updatedAt @db.Timestamptz
   deleted_at                  DateTime? @db.Timestamptz
 
-  memberships  memberships[]
-  invitations  invitations[]
-  sessions     sessions[]
-  audit_events audit_events[]
+  memberships      memberships[]
+  invitations      invitations[]
+  sessions         sessions[]
+  audit_events     audit_events[]
+  idempotency_keys idempotency_keys[]
 }
 
 model memberships {
@@ -117,6 +119,7 @@ model memberships {
 
   user         users         @relation(fields: [user_id], references: [id], onDelete: Restrict)
   organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+  inviter      users?        @relation("memberships_invited_by", fields: [invited_by], references: [id], onDelete: Restrict)
 
   @@unique([user_id, organization_id])
 }
@@ -211,6 +214,8 @@ model idempotency_keys {
   expires_at      DateTime  @db.Timestamptz
   created_at      DateTime  @default(now()) @db.Timestamptz
   updated_at      DateTime  @updatedAt @db.Timestamptz
+
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
 
   @@unique([organization_id, scope, key])
   @@index([expires_at])
