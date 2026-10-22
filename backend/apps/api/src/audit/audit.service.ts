@@ -16,7 +16,10 @@ export interface AuditEvent {
   /** Null for an event that happened before a tenant was known, such as a failed sign-in. */
   readonly organizationId: string | null;
   readonly actorType: AuditActorType;
+  /** The user who acted. Null when the actor is a device (`deviceId` names it). */
   readonly actorId: string | null;
+  /** The device that acted, when it named itself with its own key (FR-DEV-01). */
+  readonly deviceId?: string;
   readonly action: string;
   readonly resourceType: string;
   readonly resourceId?: string | null;
@@ -46,6 +49,7 @@ export class AuditService {
         organization_id: event.organizationId,
         actor_type: event.actorType,
         actor_id: event.actorId,
+        device_id: event.deviceId ?? null,
         action: event.action,
         resource_type: event.resourceType,
         resource_id: event.resourceId ?? null,

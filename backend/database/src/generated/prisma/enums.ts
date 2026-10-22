@@ -87,3 +87,104 @@ export const AuditResult = {
 } as const
 
 export type AuditResult = (typeof AuditResult)[keyof typeof AuditResult]
+
+
+export const TaskState = {
+  QUEUED: 'QUEUED',
+  PLANNING: 'PLANNING',
+  RUNNING: 'RUNNING',
+  WAITING_APPROVAL: 'WAITING_APPROVAL',
+  WAITING_DEVICE: 'WAITING_DEVICE',
+  PAUSED: 'PAUSED',
+  VERIFYING: 'VERIFYING',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED',
+  CANCELLED: 'CANCELLED',
+  EXPIRED: 'EXPIRED'
+} as const
+
+export type TaskState = (typeof TaskState)[keyof typeof TaskState]
+
+
+export const TaskStepKind = {
+  model: 'model',
+  tool: 'tool',
+  approval: 'approval',
+  verify: 'verify'
+} as const
+
+export type TaskStepKind = (typeof TaskStepKind)[keyof typeof TaskStepKind]
+
+
+export const TaskStepState = {
+  PENDING: 'PENDING',
+  RUNNING: 'RUNNING',
+  WAITING_APPROVAL: 'WAITING_APPROVAL',
+  BLOCKED: 'BLOCKED',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED',
+  SKIPPED: 'SKIPPED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type TaskStepState = (typeof TaskStepState)[keyof typeof TaskStepState]
+
+
+export const TaskEventActor = {
+  user: 'user',
+  device: 'device',
+  worker: 'worker',
+  system: 'system'
+} as const
+
+export type TaskEventActor = (typeof TaskEventActor)[keyof typeof TaskEventActor]
+
+
+export const ExecutionLocation = {
+  device: 'device',
+  cloud: 'cloud'
+} as const
+
+export type ExecutionLocation = (typeof ExecutionLocation)[keyof typeof ExecutionLocation]
+
+
+export const DeviceStatus = {
+  pending: 'pending',
+  active: 'active',
+  revoked: 'revoked'
+} as const
+
+export type DeviceStatus = (typeof DeviceStatus)[keyof typeof DeviceStatus]
+
+
+export const DeviceCommandState = {
+  pending: 'pending',
+  sent: 'sent',
+  acked: 'acked',
+  expired: 'expired'
+} as const
+
+export type DeviceCommandState = (typeof DeviceCommandState)[keyof typeof DeviceCommandState]
+
+
+export const DeviceCommandKind = {
+  diagnostics_ping: 'diagnostics_ping'
+} as const
+
+export type DeviceCommandKind = (typeof DeviceCommandKind)[keyof typeof DeviceCommandKind]
+
+
+export const WorkspaceMode = {
+  read_only: 'read_only',
+  read_write: 'read_write'
+} as const
+
+export type WorkspaceMode = (typeof WorkspaceMode)[keyof typeof WorkspaceMode]
+
+
+export const WorkspaceGrantEffect = {
+  allow: 'allow',
+  deny: 'deny'
+} as const
+
+export type WorkspaceGrantEffect = (typeof WorkspaceGrantEffect)[keyof typeof WorkspaceGrantEffect]

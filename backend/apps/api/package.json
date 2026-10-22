@@ -21,6 +21,7 @@
     "@ua/database": "workspace:*",
     "@ua/error-handling": "workspace:*",
     "@ua/logger": "workspace:*",
+    "@ua/sandbox-manager": "workspace:*",
     "argon2": "catalog:",
     "fastify": "catalog:",
     "reflect-metadata": "catalog:",

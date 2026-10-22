@@ -1,3 +1,4 @@
+// scan-secrets:allow-file — the credential-shaped env values below are fixtures.
 import { describe, expect, it } from "vitest";
 import { loadConfig } from "../src/config.js";
 

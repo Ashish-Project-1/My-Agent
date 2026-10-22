@@ -1,3 +1,4 @@
+// scan-secrets:allow-file — the token-shaped strings here are fixtures.
 import { describe, expect, it } from "vitest";
 import {
   AuthSessionResponse,

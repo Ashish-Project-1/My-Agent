@@ -16,6 +16,17 @@ export const TENANT_MODELS = [
   "sessions",
   "idempotency_keys",
   "audit_events",
+  "agent_sessions",
+  "tasks",
+  "task_steps",
+  "task_events",
+  "task_checkpoints",
+  "devices",
+  "device_pairing_codes",
+  "device_commands",
+  "workspaces",
+  "workspace_grants",
+  "outbox",
 ] as const;
 
 const TENANT_MODEL_SET: ReadonlySet<string> = new Set(TENANT_MODELS);
@@ -36,6 +47,24 @@ export const RELATION_FIELDS: Record<string, readonly string[]> = {
   sessions: ["user", "organization", "refresh_tokens"],
   idempotency_keys: ["organization"],
   audit_events: ["organization", "user"],
+  agent_sessions: ["organization", "user", "tasks"],
+  tasks: [
+    "organization",
+    "agent_session",
+    "created_by_user",
+    "task_steps",
+    "task_events",
+    "task_checkpoints",
+  ],
+  task_steps: ["task", "organization"],
+  task_events: ["task", "organization"],
+  task_checkpoints: ["task", "organization"],
+  devices: ["organization", "owner", "device_commands", "workspaces"],
+  device_pairing_codes: ["organization"],
+  device_commands: ["device", "organization"],
+  workspaces: ["organization", "device", "creator", "grants"],
+  workspace_grants: ["organization", "workspace", "granter"],
+  outbox: ["organization"],
 };
 
 /** Raised when a caller asks an organization scope to do something it cannot make safe. */

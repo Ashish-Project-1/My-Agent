@@ -10,7 +10,10 @@
  */
 export * from "./auth.js";
 export * from "./common.js";
+export * from "./device.js";
 export * from "./errors.js";
+export * from "./queue.js";
 export * from "./registry.js";
 export * from "./risk.js";
 export * from "./task.js";
+export * from "./workspace.js";

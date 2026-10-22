@@ -2,5 +2,28 @@
   "name": "@ua/web-app",
   "version": "0.0.0",
   "private": true,
-  "description": "Placeholder package, no code yet. Specified by docs/planning/03-system-architecture.md 5.1."
+  "description": "End-user product UI (docs/planning/03 §5.1).",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@ua/contracts": "workspace:*",
+    "@ua/ui": "workspace:*",
+    "next": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
 }

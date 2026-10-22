@@ -1,3 +1,4 @@
+// scan-secrets:allow-file — the passwords and connection strings here are test fixtures.
 import type { NestFastifyApplication } from "@nestjs/platform-fastify";
 import { createPrismaClient } from "@ua/database";
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
@@ -11,7 +12,21 @@ const prisma = createPrismaClient(DATABASE_URL);
 
 async function cleanup() {
   // Children before parents: every relation here is ON DELETE RESTRICT, and
-  // audit_events references both organizations and users.
+  // audit_events references both organizations and users. Task children cascade
+  // from tasks, but tasks/agent_sessions/outbox still hold the org FK.
+  await prisma.task_checkpoints.deleteMany();
+  await prisma.task_events.deleteMany();
+  await prisma.task_steps.deleteMany();
+  await prisma.tasks.deleteMany();
+  await prisma.agent_sessions.deleteMany();
+  await prisma.device_commands.deleteMany();
+  await prisma.device_pairing_codes.deleteMany();
+  await prisma.workspace_grants.deleteMany();
+  await prisma.workspaces.deleteMany();
+  await prisma.devices.deleteMany();
+  await prisma.outbox.deleteMany();
+  await prisma.job_leases.deleteMany();
+  await prisma.idempotency_keys.deleteMany();
   await prisma.login_attempts.deleteMany();
   await prisma.refresh_tokens.deleteMany();
   await prisma.sessions.deleteMany();

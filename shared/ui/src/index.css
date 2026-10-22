@@ -1,0 +1,63 @@
+/*
+ * Design tokens (docs/planning/12 §4).
+ *
+ * Every value here is a product decision that appears in the UX specification,
+ * not a taste decision made in a component. Apps consume this file through
+ * `@import "@ua/ui"` and use the generated utilities — `bg-surface`, `text-ink`
+ * — so a token change reaches every surface at once.
+ *
+ * Tailwind 4 reads `@theme` from any imported stylesheet, so importing this
+ * file is enough: no `tailwind.config`, no JS theme object, no build step.
+ */
+
+@theme {
+  /* Surfaces, from the page up. */
+  --color-canvas: #f7f7f8;
+  --color-surface: #ffffff;
+  --color-raised: #ffffff;
+  --color-line: #e4e4e7;
+
+  /* Text, from body copy down to the faintest label. Contrast against
+     `--color-surface` is >= 4.5:1 for ink and ink-muted. */
+  --color-ink: #18181b;
+  --color-ink-muted: #52525b;
+  --color-ink-subtle: #71717a;
+
+  /* Indigo (docs/planning/12 §4 "Primary actions"). */
+  --color-primary: #4f46e5;
+  --color-primary-strong: #4338ca;
+  --color-on-primary: #ffffff;
+
+  /* Semantic state colours, used by badges, rules and inline status text. */
+  --color-info: #0284c7;
+  --color-success: #15803d;
+  --color-warning: #b45309;
+  --color-danger: #b91c1c;
+
+  /* Focus is its own token so it can never drift from the ring that uses it. */
+  --color-focus: #4f46e5;
+
+  /* Geometry. Controls are 8px, cards 12px, badges fully round. */
+  --radius-control: 8px;
+  --radius-card: 12px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04);
+
+  /* Motion: one easing curve and one hover duration for the whole product. */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --duration-hover: 150ms;
+
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* A visible focus ring on every interactive element, so keyboard users are not
+   left guessing (docs/planning/12 §5). */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+}

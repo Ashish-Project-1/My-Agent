@@ -267,6 +267,11 @@ export type usersWhereInput = {
   invitations_by?: Prisma.InvitationsListRelationFilter
   invited_memberships?: Prisma.MembershipsListRelationFilter
   audit_events?: Prisma.Audit_eventsListRelationFilter
+  agent_sessions?: Prisma.Agent_sessionsListRelationFilter
+  tasks?: Prisma.TasksListRelationFilter
+  devices?: Prisma.DevicesListRelationFilter
+  workspaces?: Prisma.WorkspacesListRelationFilter
+  workspace_grants?: Prisma.Workspace_grantsListRelationFilter
 }
 
 export type usersOrderByWithRelationInput = {
@@ -290,6 +295,11 @@ export type usersOrderByWithRelationInput = {
   invitations_by?: Prisma.invitationsOrderByRelationAggregateInput
   invited_memberships?: Prisma.membershipsOrderByRelationAggregateInput
   audit_events?: Prisma.audit_eventsOrderByRelationAggregateInput
+  agent_sessions?: Prisma.agent_sessionsOrderByRelationAggregateInput
+  tasks?: Prisma.tasksOrderByRelationAggregateInput
+  devices?: Prisma.devicesOrderByRelationAggregateInput
+  workspaces?: Prisma.workspacesOrderByRelationAggregateInput
+  workspace_grants?: Prisma.workspace_grantsOrderByRelationAggregateInput
 }
 
 export type usersWhereUniqueInput = Prisma.AtLeast<{
@@ -316,6 +326,11 @@ export type usersWhereUniqueInput = Prisma.AtLeast<{
   invitations_by?: Prisma.InvitationsListRelationFilter
   invited_memberships?: Prisma.MembershipsListRelationFilter
   audit_events?: Prisma.Audit_eventsListRelationFilter
+  agent_sessions?: Prisma.Agent_sessionsListRelationFilter
+  tasks?: Prisma.TasksListRelationFilter
+  devices?: Prisma.DevicesListRelationFilter
+  workspaces?: Prisma.WorkspacesListRelationFilter
+  workspace_grants?: Prisma.Workspace_grantsListRelationFilter
 }, "id" | "email">
 
 export type usersOrderByWithAggregationInput = {
@@ -381,6 +396,11 @@ export type usersCreateInput = {
   invitations_by?: Prisma.invitationsCreateNestedManyWithoutInviterInput
   invited_memberships?: Prisma.membershipsCreateNestedManyWithoutInviterInput
   audit_events?: Prisma.audit_eventsCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
 }
 
 export type usersUncheckedCreateInput = {
@@ -404,6 +424,11 @@ export type usersUncheckedCreateInput = {
   invitations_by?: Prisma.invitationsUncheckedCreateNestedManyWithoutInviterInput
   invited_memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutInviterInput
   audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
 }
 
 export type usersUpdateInput = {
@@ -427,6 +452,11 @@ export type usersUpdateInput = {
   invitations_by?: Prisma.invitationsUpdateManyWithoutInviterNestedInput
   invited_memberships?: Prisma.membershipsUpdateManyWithoutInviterNestedInput
   audit_events?: Prisma.audit_eventsUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
 }
 
 export type usersUncheckedUpdateInput = {
@@ -450,6 +480,11 @@ export type usersUncheckedUpdateInput = {
   invitations_by?: Prisma.invitationsUncheckedUpdateManyWithoutInviterNestedInput
   invited_memberships?: Prisma.membershipsUncheckedUpdateManyWithoutInviterNestedInput
   audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
 }
 
 export type usersCreateManyInput = {
@@ -668,6 +703,78 @@ export type usersUpdateOneWithoutAudit_eventsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutAudit_eventsInput, Prisma.usersUpdateWithoutAudit_eventsInput>, Prisma.usersUncheckedUpdateWithoutAudit_eventsInput>
 }
 
+export type usersCreateNestedOneWithoutAgent_sessionsInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutAgent_sessionsInput, Prisma.usersUncheckedCreateWithoutAgent_sessionsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutAgent_sessionsInput
+  connect?: Prisma.usersWhereUniqueInput
+}
+
+export type usersUpdateOneRequiredWithoutAgent_sessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutAgent_sessionsInput, Prisma.usersUncheckedCreateWithoutAgent_sessionsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutAgent_sessionsInput
+  upsert?: Prisma.usersUpsertWithoutAgent_sessionsInput
+  connect?: Prisma.usersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutAgent_sessionsInput, Prisma.usersUpdateWithoutAgent_sessionsInput>, Prisma.usersUncheckedUpdateWithoutAgent_sessionsInput>
+}
+
+export type usersCreateNestedOneWithoutTasksInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutTasksInput, Prisma.usersUncheckedCreateWithoutTasksInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutTasksInput
+  connect?: Prisma.usersWhereUniqueInput
+}
+
+export type usersUpdateOneWithoutTasksNestedInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutTasksInput, Prisma.usersUncheckedCreateWithoutTasksInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutTasksInput
+  upsert?: Prisma.usersUpsertWithoutTasksInput
+  disconnect?: Prisma.usersWhereInput | boolean
+  delete?: Prisma.usersWhereInput | boolean
+  connect?: Prisma.usersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutTasksInput, Prisma.usersUpdateWithoutTasksInput>, Prisma.usersUncheckedUpdateWithoutTasksInput>
+}
+
+export type usersCreateNestedOneWithoutDevicesInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutDevicesInput, Prisma.usersUncheckedCreateWithoutDevicesInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutDevicesInput
+  connect?: Prisma.usersWhereUniqueInput
+}
+
+export type usersUpdateOneRequiredWithoutDevicesNestedInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutDevicesInput, Prisma.usersUncheckedCreateWithoutDevicesInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutDevicesInput
+  upsert?: Prisma.usersUpsertWithoutDevicesInput
+  connect?: Prisma.usersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutDevicesInput, Prisma.usersUpdateWithoutDevicesInput>, Prisma.usersUncheckedUpdateWithoutDevicesInput>
+}
+
+export type usersCreateNestedOneWithoutWorkspacesInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutWorkspacesInput, Prisma.usersUncheckedCreateWithoutWorkspacesInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutWorkspacesInput
+  connect?: Prisma.usersWhereUniqueInput
+}
+
+export type usersUpdateOneRequiredWithoutWorkspacesNestedInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutWorkspacesInput, Prisma.usersUncheckedCreateWithoutWorkspacesInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutWorkspacesInput
+  upsert?: Prisma.usersUpsertWithoutWorkspacesInput
+  connect?: Prisma.usersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutWorkspacesInput, Prisma.usersUpdateWithoutWorkspacesInput>, Prisma.usersUncheckedUpdateWithoutWorkspacesInput>
+}
+
+export type usersCreateNestedOneWithoutWorkspace_grantsInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutWorkspace_grantsInput, Prisma.usersUncheckedCreateWithoutWorkspace_grantsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutWorkspace_grantsInput
+  connect?: Prisma.usersWhereUniqueInput
+}
+
+export type usersUpdateOneRequiredWithoutWorkspace_grantsNestedInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutWorkspace_grantsInput, Prisma.usersUncheckedCreateWithoutWorkspace_grantsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutWorkspace_grantsInput
+  upsert?: Prisma.usersUpsertWithoutWorkspace_grantsInput
+  connect?: Prisma.usersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutWorkspace_grantsInput, Prisma.usersUpdateWithoutWorkspace_grantsInput>, Prisma.usersUncheckedUpdateWithoutWorkspace_grantsInput>
+}
+
 export type usersCreateWithoutMembershipsInput = {
   id?: string
   email: string
@@ -688,6 +795,11 @@ export type usersCreateWithoutMembershipsInput = {
   invitations_by?: Prisma.invitationsCreateNestedManyWithoutInviterInput
   invited_memberships?: Prisma.membershipsCreateNestedManyWithoutInviterInput
   audit_events?: Prisma.audit_eventsCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
 }
 
 export type usersUncheckedCreateWithoutMembershipsInput = {
@@ -710,6 +822,11 @@ export type usersUncheckedCreateWithoutMembershipsInput = {
   invitations_by?: Prisma.invitationsUncheckedCreateNestedManyWithoutInviterInput
   invited_memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutInviterInput
   audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
 }
 
 export type usersCreateOrConnectWithoutMembershipsInput = {
@@ -737,6 +854,11 @@ export type usersCreateWithoutInvited_membershipsInput = {
   sessions?: Prisma.sessionsCreateNestedManyWithoutUserInput
   invitations_by?: Prisma.invitationsCreateNestedManyWithoutInviterInput
   audit_events?: Prisma.audit_eventsCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
 }
 
 export type usersUncheckedCreateWithoutInvited_membershipsInput = {
@@ -759,6 +881,11 @@ export type usersUncheckedCreateWithoutInvited_membershipsInput = {
   sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutUserInput
   invitations_by?: Prisma.invitationsUncheckedCreateNestedManyWithoutInviterInput
   audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
 }
 
 export type usersCreateOrConnectWithoutInvited_membershipsInput = {
@@ -797,6 +924,11 @@ export type usersUpdateWithoutMembershipsInput = {
   invitations_by?: Prisma.invitationsUpdateManyWithoutInviterNestedInput
   invited_memberships?: Prisma.membershipsUpdateManyWithoutInviterNestedInput
   audit_events?: Prisma.audit_eventsUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
 }
 
 export type usersUncheckedUpdateWithoutMembershipsInput = {
@@ -819,6 +951,11 @@ export type usersUncheckedUpdateWithoutMembershipsInput = {
   invitations_by?: Prisma.invitationsUncheckedUpdateManyWithoutInviterNestedInput
   invited_memberships?: Prisma.membershipsUncheckedUpdateManyWithoutInviterNestedInput
   audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
 }
 
 export type usersUpsertWithoutInvited_membershipsInput = {
@@ -852,6 +989,11 @@ export type usersUpdateWithoutInvited_membershipsInput = {
   sessions?: Prisma.sessionsUpdateManyWithoutUserNestedInput
   invitations_by?: Prisma.invitationsUpdateManyWithoutInviterNestedInput
   audit_events?: Prisma.audit_eventsUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
 }
 
 export type usersUncheckedUpdateWithoutInvited_membershipsInput = {
@@ -874,6 +1016,11 @@ export type usersUncheckedUpdateWithoutInvited_membershipsInput = {
   sessions?: Prisma.sessionsUncheckedUpdateManyWithoutUserNestedInput
   invitations_by?: Prisma.invitationsUncheckedUpdateManyWithoutInviterNestedInput
   audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
 }
 
 export type usersCreateWithoutInvitations_byInput = {
@@ -896,6 +1043,11 @@ export type usersCreateWithoutInvitations_byInput = {
   sessions?: Prisma.sessionsCreateNestedManyWithoutUserInput
   invited_memberships?: Prisma.membershipsCreateNestedManyWithoutInviterInput
   audit_events?: Prisma.audit_eventsCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
 }
 
 export type usersUncheckedCreateWithoutInvitations_byInput = {
@@ -918,6 +1070,11 @@ export type usersUncheckedCreateWithoutInvitations_byInput = {
   sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutUserInput
   invited_memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutInviterInput
   audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
 }
 
 export type usersCreateOrConnectWithoutInvitations_byInput = {
@@ -956,6 +1113,11 @@ export type usersUpdateWithoutInvitations_byInput = {
   sessions?: Prisma.sessionsUpdateManyWithoutUserNestedInput
   invited_memberships?: Prisma.membershipsUpdateManyWithoutInviterNestedInput
   audit_events?: Prisma.audit_eventsUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
 }
 
 export type usersUncheckedUpdateWithoutInvitations_byInput = {
@@ -978,6 +1140,11 @@ export type usersUncheckedUpdateWithoutInvitations_byInput = {
   sessions?: Prisma.sessionsUncheckedUpdateManyWithoutUserNestedInput
   invited_memberships?: Prisma.membershipsUncheckedUpdateManyWithoutInviterNestedInput
   audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
 }
 
 export type usersCreateWithoutSessionsInput = {
@@ -1000,6 +1167,11 @@ export type usersCreateWithoutSessionsInput = {
   invitations_by?: Prisma.invitationsCreateNestedManyWithoutInviterInput
   invited_memberships?: Prisma.membershipsCreateNestedManyWithoutInviterInput
   audit_events?: Prisma.audit_eventsCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
 }
 
 export type usersUncheckedCreateWithoutSessionsInput = {
@@ -1022,6 +1194,11 @@ export type usersUncheckedCreateWithoutSessionsInput = {
   invitations_by?: Prisma.invitationsUncheckedCreateNestedManyWithoutInviterInput
   invited_memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutInviterInput
   audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
 }
 
 export type usersCreateOrConnectWithoutSessionsInput = {
@@ -1060,6 +1237,11 @@ export type usersUpdateWithoutSessionsInput = {
   invitations_by?: Prisma.invitationsUpdateManyWithoutInviterNestedInput
   invited_memberships?: Prisma.membershipsUpdateManyWithoutInviterNestedInput
   audit_events?: Prisma.audit_eventsUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
 }
 
 export type usersUncheckedUpdateWithoutSessionsInput = {
@@ -1082,6 +1264,11 @@ export type usersUncheckedUpdateWithoutSessionsInput = {
   invitations_by?: Prisma.invitationsUncheckedUpdateManyWithoutInviterNestedInput
   invited_memberships?: Prisma.membershipsUncheckedUpdateManyWithoutInviterNestedInput
   audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
 }
 
 export type usersCreateWithoutAudit_eventsInput = {
@@ -1104,6 +1291,11 @@ export type usersCreateWithoutAudit_eventsInput = {
   sessions?: Prisma.sessionsCreateNestedManyWithoutUserInput
   invitations_by?: Prisma.invitationsCreateNestedManyWithoutInviterInput
   invited_memberships?: Prisma.membershipsCreateNestedManyWithoutInviterInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
 }
 
 export type usersUncheckedCreateWithoutAudit_eventsInput = {
@@ -1126,6 +1318,11 @@ export type usersUncheckedCreateWithoutAudit_eventsInput = {
   sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutUserInput
   invitations_by?: Prisma.invitationsUncheckedCreateNestedManyWithoutInviterInput
   invited_memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutInviterInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
 }
 
 export type usersCreateOrConnectWithoutAudit_eventsInput = {
@@ -1164,6 +1361,11 @@ export type usersUpdateWithoutAudit_eventsInput = {
   sessions?: Prisma.sessionsUpdateManyWithoutUserNestedInput
   invitations_by?: Prisma.invitationsUpdateManyWithoutInviterNestedInput
   invited_memberships?: Prisma.membershipsUpdateManyWithoutInviterNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
 }
 
 export type usersUncheckedUpdateWithoutAudit_eventsInput = {
@@ -1186,6 +1388,631 @@ export type usersUncheckedUpdateWithoutAudit_eventsInput = {
   sessions?: Prisma.sessionsUncheckedUpdateManyWithoutUserNestedInput
   invitations_by?: Prisma.invitationsUncheckedUpdateManyWithoutInviterNestedInput
   invited_memberships?: Prisma.membershipsUncheckedUpdateManyWithoutInviterNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
+}
+
+export type usersCreateWithoutAgent_sessionsInput = {
+  id?: string
+  email: string
+  email_verified_at?: Date | string | null
+  password_hash: string
+  password_changed_at?: Date | string | null
+  display_name?: string | null
+  locale?: string | null
+  timezone?: string | null
+  mfa_enabled?: boolean
+  totp_secret_enc?: string | null
+  status?: $Enums.UserStatus
+  last_login_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutUserInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutUserInput
+  invitations_by?: Prisma.invitationsCreateNestedManyWithoutInviterInput
+  invited_memberships?: Prisma.membershipsCreateNestedManyWithoutInviterInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
+}
+
+export type usersUncheckedCreateWithoutAgent_sessionsInput = {
+  id?: string
+  email: string
+  email_verified_at?: Date | string | null
+  password_hash: string
+  password_changed_at?: Date | string | null
+  display_name?: string | null
+  locale?: string | null
+  timezone?: string | null
+  mfa_enabled?: boolean
+  totp_secret_enc?: string | null
+  status?: $Enums.UserStatus
+  last_login_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutUserInput
+  invitations_by?: Prisma.invitationsUncheckedCreateNestedManyWithoutInviterInput
+  invited_memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutInviterInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
+}
+
+export type usersCreateOrConnectWithoutAgent_sessionsInput = {
+  where: Prisma.usersWhereUniqueInput
+  create: Prisma.XOR<Prisma.usersCreateWithoutAgent_sessionsInput, Prisma.usersUncheckedCreateWithoutAgent_sessionsInput>
+}
+
+export type usersUpsertWithoutAgent_sessionsInput = {
+  update: Prisma.XOR<Prisma.usersUpdateWithoutAgent_sessionsInput, Prisma.usersUncheckedUpdateWithoutAgent_sessionsInput>
+  create: Prisma.XOR<Prisma.usersCreateWithoutAgent_sessionsInput, Prisma.usersUncheckedCreateWithoutAgent_sessionsInput>
+  where?: Prisma.usersWhereInput
+}
+
+export type usersUpdateToOneWithWhereWithoutAgent_sessionsInput = {
+  where?: Prisma.usersWhereInput
+  data: Prisma.XOR<Prisma.usersUpdateWithoutAgent_sessionsInput, Prisma.usersUncheckedUpdateWithoutAgent_sessionsInput>
+}
+
+export type usersUpdateWithoutAgent_sessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  password_changed_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  display_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mfa_enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totp_secret_enc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutUserNestedInput
+  invitations_by?: Prisma.invitationsUpdateManyWithoutInviterNestedInput
+  invited_memberships?: Prisma.membershipsUpdateManyWithoutInviterNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
+}
+
+export type usersUncheckedUpdateWithoutAgent_sessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  password_changed_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  display_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mfa_enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totp_secret_enc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutUserNestedInput
+  invitations_by?: Prisma.invitationsUncheckedUpdateManyWithoutInviterNestedInput
+  invited_memberships?: Prisma.membershipsUncheckedUpdateManyWithoutInviterNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
+}
+
+export type usersCreateWithoutTasksInput = {
+  id?: string
+  email: string
+  email_verified_at?: Date | string | null
+  password_hash: string
+  password_changed_at?: Date | string | null
+  display_name?: string | null
+  locale?: string | null
+  timezone?: string | null
+  mfa_enabled?: boolean
+  totp_secret_enc?: string | null
+  status?: $Enums.UserStatus
+  last_login_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutUserInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutUserInput
+  invitations_by?: Prisma.invitationsCreateNestedManyWithoutInviterInput
+  invited_memberships?: Prisma.membershipsCreateNestedManyWithoutInviterInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutUserInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
+}
+
+export type usersUncheckedCreateWithoutTasksInput = {
+  id?: string
+  email: string
+  email_verified_at?: Date | string | null
+  password_hash: string
+  password_changed_at?: Date | string | null
+  display_name?: string | null
+  locale?: string | null
+  timezone?: string | null
+  mfa_enabled?: boolean
+  totp_secret_enc?: string | null
+  status?: $Enums.UserStatus
+  last_login_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutUserInput
+  invitations_by?: Prisma.invitationsUncheckedCreateNestedManyWithoutInviterInput
+  invited_memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutInviterInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutUserInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
+}
+
+export type usersCreateOrConnectWithoutTasksInput = {
+  where: Prisma.usersWhereUniqueInput
+  create: Prisma.XOR<Prisma.usersCreateWithoutTasksInput, Prisma.usersUncheckedCreateWithoutTasksInput>
+}
+
+export type usersUpsertWithoutTasksInput = {
+  update: Prisma.XOR<Prisma.usersUpdateWithoutTasksInput, Prisma.usersUncheckedUpdateWithoutTasksInput>
+  create: Prisma.XOR<Prisma.usersCreateWithoutTasksInput, Prisma.usersUncheckedCreateWithoutTasksInput>
+  where?: Prisma.usersWhereInput
+}
+
+export type usersUpdateToOneWithWhereWithoutTasksInput = {
+  where?: Prisma.usersWhereInput
+  data: Prisma.XOR<Prisma.usersUpdateWithoutTasksInput, Prisma.usersUncheckedUpdateWithoutTasksInput>
+}
+
+export type usersUpdateWithoutTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  password_changed_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  display_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mfa_enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totp_secret_enc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutUserNestedInput
+  invitations_by?: Prisma.invitationsUpdateManyWithoutInviterNestedInput
+  invited_memberships?: Prisma.membershipsUpdateManyWithoutInviterNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutUserNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
+}
+
+export type usersUncheckedUpdateWithoutTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  password_changed_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  display_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mfa_enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totp_secret_enc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutUserNestedInput
+  invitations_by?: Prisma.invitationsUncheckedUpdateManyWithoutInviterNestedInput
+  invited_memberships?: Prisma.membershipsUncheckedUpdateManyWithoutInviterNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutUserNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
+}
+
+export type usersCreateWithoutDevicesInput = {
+  id?: string
+  email: string
+  email_verified_at?: Date | string | null
+  password_hash: string
+  password_changed_at?: Date | string | null
+  display_name?: string | null
+  locale?: string | null
+  timezone?: string | null
+  mfa_enabled?: boolean
+  totp_secret_enc?: string | null
+  status?: $Enums.UserStatus
+  last_login_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutUserInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutUserInput
+  invitations_by?: Prisma.invitationsCreateNestedManyWithoutInviterInput
+  invited_memberships?: Prisma.membershipsCreateNestedManyWithoutInviterInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutCreated_by_userInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
+}
+
+export type usersUncheckedCreateWithoutDevicesInput = {
+  id?: string
+  email: string
+  email_verified_at?: Date | string | null
+  password_hash: string
+  password_changed_at?: Date | string | null
+  display_name?: string | null
+  locale?: string | null
+  timezone?: string | null
+  mfa_enabled?: boolean
+  totp_secret_enc?: string | null
+  status?: $Enums.UserStatus
+  last_login_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutUserInput
+  invitations_by?: Prisma.invitationsUncheckedCreateNestedManyWithoutInviterInput
+  invited_memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutInviterInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutCreated_by_userInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
+}
+
+export type usersCreateOrConnectWithoutDevicesInput = {
+  where: Prisma.usersWhereUniqueInput
+  create: Prisma.XOR<Prisma.usersCreateWithoutDevicesInput, Prisma.usersUncheckedCreateWithoutDevicesInput>
+}
+
+export type usersUpsertWithoutDevicesInput = {
+  update: Prisma.XOR<Prisma.usersUpdateWithoutDevicesInput, Prisma.usersUncheckedUpdateWithoutDevicesInput>
+  create: Prisma.XOR<Prisma.usersCreateWithoutDevicesInput, Prisma.usersUncheckedCreateWithoutDevicesInput>
+  where?: Prisma.usersWhereInput
+}
+
+export type usersUpdateToOneWithWhereWithoutDevicesInput = {
+  where?: Prisma.usersWhereInput
+  data: Prisma.XOR<Prisma.usersUpdateWithoutDevicesInput, Prisma.usersUncheckedUpdateWithoutDevicesInput>
+}
+
+export type usersUpdateWithoutDevicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  password_changed_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  display_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mfa_enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totp_secret_enc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutUserNestedInput
+  invitations_by?: Prisma.invitationsUpdateManyWithoutInviterNestedInput
+  invited_memberships?: Prisma.membershipsUpdateManyWithoutInviterNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutCreated_by_userNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
+}
+
+export type usersUncheckedUpdateWithoutDevicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  password_changed_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  display_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mfa_enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totp_secret_enc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutUserNestedInput
+  invitations_by?: Prisma.invitationsUncheckedUpdateManyWithoutInviterNestedInput
+  invited_memberships?: Prisma.membershipsUncheckedUpdateManyWithoutInviterNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutCreated_by_userNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
+}
+
+export type usersCreateWithoutWorkspacesInput = {
+  id?: string
+  email: string
+  email_verified_at?: Date | string | null
+  password_hash: string
+  password_changed_at?: Date | string | null
+  display_name?: string | null
+  locale?: string | null
+  timezone?: string | null
+  mfa_enabled?: boolean
+  totp_secret_enc?: string | null
+  status?: $Enums.UserStatus
+  last_login_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutUserInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutUserInput
+  invitations_by?: Prisma.invitationsCreateNestedManyWithoutInviterInput
+  invited_memberships?: Prisma.membershipsCreateNestedManyWithoutInviterInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOwnerInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
+}
+
+export type usersUncheckedCreateWithoutWorkspacesInput = {
+  id?: string
+  email: string
+  email_verified_at?: Date | string | null
+  password_hash: string
+  password_changed_at?: Date | string | null
+  display_name?: string | null
+  locale?: string | null
+  timezone?: string | null
+  mfa_enabled?: boolean
+  totp_secret_enc?: string | null
+  status?: $Enums.UserStatus
+  last_login_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutUserInput
+  invitations_by?: Prisma.invitationsUncheckedCreateNestedManyWithoutInviterInput
+  invited_memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutInviterInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOwnerInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
+}
+
+export type usersCreateOrConnectWithoutWorkspacesInput = {
+  where: Prisma.usersWhereUniqueInput
+  create: Prisma.XOR<Prisma.usersCreateWithoutWorkspacesInput, Prisma.usersUncheckedCreateWithoutWorkspacesInput>
+}
+
+export type usersUpsertWithoutWorkspacesInput = {
+  update: Prisma.XOR<Prisma.usersUpdateWithoutWorkspacesInput, Prisma.usersUncheckedUpdateWithoutWorkspacesInput>
+  create: Prisma.XOR<Prisma.usersCreateWithoutWorkspacesInput, Prisma.usersUncheckedCreateWithoutWorkspacesInput>
+  where?: Prisma.usersWhereInput
+}
+
+export type usersUpdateToOneWithWhereWithoutWorkspacesInput = {
+  where?: Prisma.usersWhereInput
+  data: Prisma.XOR<Prisma.usersUpdateWithoutWorkspacesInput, Prisma.usersUncheckedUpdateWithoutWorkspacesInput>
+}
+
+export type usersUpdateWithoutWorkspacesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  password_changed_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  display_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mfa_enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totp_secret_enc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutUserNestedInput
+  invitations_by?: Prisma.invitationsUpdateManyWithoutInviterNestedInput
+  invited_memberships?: Prisma.membershipsUpdateManyWithoutInviterNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOwnerNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
+}
+
+export type usersUncheckedUpdateWithoutWorkspacesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  password_changed_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  display_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mfa_enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totp_secret_enc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutUserNestedInput
+  invitations_by?: Prisma.invitationsUncheckedUpdateManyWithoutInviterNestedInput
+  invited_memberships?: Prisma.membershipsUncheckedUpdateManyWithoutInviterNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOwnerNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
+}
+
+export type usersCreateWithoutWorkspace_grantsInput = {
+  id?: string
+  email: string
+  email_verified_at?: Date | string | null
+  password_hash: string
+  password_changed_at?: Date | string | null
+  display_name?: string | null
+  locale?: string | null
+  timezone?: string | null
+  mfa_enabled?: boolean
+  totp_secret_enc?: string | null
+  status?: $Enums.UserStatus
+  last_login_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutUserInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutUserInput
+  invitations_by?: Prisma.invitationsCreateNestedManyWithoutInviterInput
+  invited_memberships?: Prisma.membershipsCreateNestedManyWithoutInviterInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
+}
+
+export type usersUncheckedCreateWithoutWorkspace_grantsInput = {
+  id?: string
+  email: string
+  email_verified_at?: Date | string | null
+  password_hash: string
+  password_changed_at?: Date | string | null
+  display_name?: string | null
+  locale?: string | null
+  timezone?: string | null
+  mfa_enabled?: boolean
+  totp_secret_enc?: string | null
+  status?: $Enums.UserStatus
+  last_login_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutUserInput
+  invitations_by?: Prisma.invitationsUncheckedCreateNestedManyWithoutInviterInput
+  invited_memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutInviterInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
+}
+
+export type usersCreateOrConnectWithoutWorkspace_grantsInput = {
+  where: Prisma.usersWhereUniqueInput
+  create: Prisma.XOR<Prisma.usersCreateWithoutWorkspace_grantsInput, Prisma.usersUncheckedCreateWithoutWorkspace_grantsInput>
+}
+
+export type usersUpsertWithoutWorkspace_grantsInput = {
+  update: Prisma.XOR<Prisma.usersUpdateWithoutWorkspace_grantsInput, Prisma.usersUncheckedUpdateWithoutWorkspace_grantsInput>
+  create: Prisma.XOR<Prisma.usersCreateWithoutWorkspace_grantsInput, Prisma.usersUncheckedCreateWithoutWorkspace_grantsInput>
+  where?: Prisma.usersWhereInput
+}
+
+export type usersUpdateToOneWithWhereWithoutWorkspace_grantsInput = {
+  where?: Prisma.usersWhereInput
+  data: Prisma.XOR<Prisma.usersUpdateWithoutWorkspace_grantsInput, Prisma.usersUncheckedUpdateWithoutWorkspace_grantsInput>
+}
+
+export type usersUpdateWithoutWorkspace_grantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  password_changed_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  display_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mfa_enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totp_secret_enc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutUserNestedInput
+  invitations_by?: Prisma.invitationsUpdateManyWithoutInviterNestedInput
+  invited_memberships?: Prisma.membershipsUpdateManyWithoutInviterNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
+}
+
+export type usersUncheckedUpdateWithoutWorkspace_grantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  password_changed_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  display_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mfa_enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totp_secret_enc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutUserNestedInput
+  invitations_by?: Prisma.invitationsUncheckedUpdateManyWithoutInviterNestedInput
+  invited_memberships?: Prisma.membershipsUncheckedUpdateManyWithoutInviterNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 
@@ -1199,6 +2026,11 @@ export type UsersCountOutputType = {
   invitations_by: number
   invited_memberships: number
   audit_events: number
+  agent_sessions: number
+  tasks: number
+  devices: number
+  workspaces: number
+  workspace_grants: number
 }
 
 export type UsersCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1207,6 +2039,11 @@ export type UsersCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.
   invitations_by?: boolean | UsersCountOutputTypeCountInvitations_byArgs
   invited_memberships?: boolean | UsersCountOutputTypeCountInvited_membershipsArgs
   audit_events?: boolean | UsersCountOutputTypeCountAudit_eventsArgs
+  agent_sessions?: boolean | UsersCountOutputTypeCountAgent_sessionsArgs
+  tasks?: boolean | UsersCountOutputTypeCountTasksArgs
+  devices?: boolean | UsersCountOutputTypeCountDevicesArgs
+  workspaces?: boolean | UsersCountOutputTypeCountWorkspacesArgs
+  workspace_grants?: boolean | UsersCountOutputTypeCountWorkspace_grantsArgs
 }
 
 /**
@@ -1254,6 +2091,41 @@ export type UsersCountOutputTypeCountAudit_eventsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.audit_eventsWhereInput
 }
 
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountAgent_sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.agent_sessionsWhereInput
+}
+
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.tasksWhereInput
+}
+
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountDevicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.devicesWhereInput
+}
+
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountWorkspacesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.workspacesWhereInput
+}
+
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountWorkspace_grantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.workspace_grantsWhereInput
+}
+
 
 export type usersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1276,6 +2148,11 @@ export type usersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   invitations_by?: boolean | Prisma.users$invitations_byArgs<ExtArgs>
   invited_memberships?: boolean | Prisma.users$invited_membershipsArgs<ExtArgs>
   audit_events?: boolean | Prisma.users$audit_eventsArgs<ExtArgs>
+  agent_sessions?: boolean | Prisma.users$agent_sessionsArgs<ExtArgs>
+  tasks?: boolean | Prisma.users$tasksArgs<ExtArgs>
+  devices?: boolean | Prisma.users$devicesArgs<ExtArgs>
+  workspaces?: boolean | Prisma.users$workspacesArgs<ExtArgs>
+  workspace_grants?: boolean | Prisma.users$workspace_grantsArgs<ExtArgs>
   _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["users"]>
 
@@ -1340,6 +2217,11 @@ export type usersInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   invitations_by?: boolean | Prisma.users$invitations_byArgs<ExtArgs>
   invited_memberships?: boolean | Prisma.users$invited_membershipsArgs<ExtArgs>
   audit_events?: boolean | Prisma.users$audit_eventsArgs<ExtArgs>
+  agent_sessions?: boolean | Prisma.users$agent_sessionsArgs<ExtArgs>
+  tasks?: boolean | Prisma.users$tasksArgs<ExtArgs>
+  devices?: boolean | Prisma.users$devicesArgs<ExtArgs>
+  workspaces?: boolean | Prisma.users$workspacesArgs<ExtArgs>
+  workspace_grants?: boolean | Prisma.users$workspace_grantsArgs<ExtArgs>
   _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type usersIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1353,6 +2235,11 @@ export type $usersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     invitations_by: Prisma.$invitationsPayload<ExtArgs>[]
     invited_memberships: Prisma.$membershipsPayload<ExtArgs>[]
     audit_events: Prisma.$audit_eventsPayload<ExtArgs>[]
+    agent_sessions: Prisma.$agent_sessionsPayload<ExtArgs>[]
+    tasks: Prisma.$tasksPayload<ExtArgs>[]
+    devices: Prisma.$devicesPayload<ExtArgs>[]
+    workspaces: Prisma.$workspacesPayload<ExtArgs>[]
+    workspace_grants: Prisma.$workspace_grantsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1769,6 +2656,11 @@ export interface Prisma__usersClient<T, Null = never, ExtArgs extends runtime.Ty
   invitations_by<T extends Prisma.users$invitations_byArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$invitations_byArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$invitationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invited_memberships<T extends Prisma.users$invited_membershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$invited_membershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$membershipsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   audit_events<T extends Prisma.users$audit_eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$audit_eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$audit_eventsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  agent_sessions<T extends Prisma.users$agent_sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$agent_sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$agent_sessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tasks<T extends Prisma.users$tasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$tasksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  devices<T extends Prisma.users$devicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$devicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$devicesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  workspaces<T extends Prisma.users$workspacesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$workspacesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$workspacesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  workspace_grants<T extends Prisma.users$workspace_grantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$workspace_grantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$workspace_grantsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2323,6 +3215,126 @@ export type users$audit_eventsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.Audit_eventsScalarFieldEnum | Prisma.Audit_eventsScalarFieldEnum[]
+}
+
+/**
+ * users.agent_sessions
+ */
+export type users$agent_sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the agent_sessions
+   */
+  select?: Prisma.agent_sessionsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the agent_sessions
+   */
+  omit?: Prisma.agent_sessionsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.agent_sessionsInclude<ExtArgs> | null
+  where?: Prisma.agent_sessionsWhereInput
+  orderBy?: Prisma.agent_sessionsOrderByWithRelationInput | Prisma.agent_sessionsOrderByWithRelationInput[]
+  cursor?: Prisma.agent_sessionsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Agent_sessionsScalarFieldEnum | Prisma.Agent_sessionsScalarFieldEnum[]
+}
+
+/**
+ * users.tasks
+ */
+export type users$tasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the tasks
+   */
+  select?: Prisma.tasksSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the tasks
+   */
+  omit?: Prisma.tasksOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tasksInclude<ExtArgs> | null
+  where?: Prisma.tasksWhereInput
+  orderBy?: Prisma.tasksOrderByWithRelationInput | Prisma.tasksOrderByWithRelationInput[]
+  cursor?: Prisma.tasksWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TasksScalarFieldEnum | Prisma.TasksScalarFieldEnum[]
+}
+
+/**
+ * users.devices
+ */
+export type users$devicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the devices
+   */
+  select?: Prisma.devicesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the devices
+   */
+  omit?: Prisma.devicesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.devicesInclude<ExtArgs> | null
+  where?: Prisma.devicesWhereInput
+  orderBy?: Prisma.devicesOrderByWithRelationInput | Prisma.devicesOrderByWithRelationInput[]
+  cursor?: Prisma.devicesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DevicesScalarFieldEnum | Prisma.DevicesScalarFieldEnum[]
+}
+
+/**
+ * users.workspaces
+ */
+export type users$workspacesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the workspaces
+   */
+  select?: Prisma.workspacesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the workspaces
+   */
+  omit?: Prisma.workspacesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.workspacesInclude<ExtArgs> | null
+  where?: Prisma.workspacesWhereInput
+  orderBy?: Prisma.workspacesOrderByWithRelationInput | Prisma.workspacesOrderByWithRelationInput[]
+  cursor?: Prisma.workspacesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WorkspacesScalarFieldEnum | Prisma.WorkspacesScalarFieldEnum[]
+}
+
+/**
+ * users.workspace_grants
+ */
+export type users$workspace_grantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the workspace_grants
+   */
+  select?: Prisma.workspace_grantsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the workspace_grants
+   */
+  omit?: Prisma.workspace_grantsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.workspace_grantsInclude<ExtArgs> | null
+  where?: Prisma.workspace_grantsWhereInput
+  orderBy?: Prisma.workspace_grantsOrderByWithRelationInput | Prisma.workspace_grantsOrderByWithRelationInput[]
+  cursor?: Prisma.workspace_grantsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Workspace_grantsScalarFieldEnum | Prisma.Workspace_grantsScalarFieldEnum[]
 }
 
 /**

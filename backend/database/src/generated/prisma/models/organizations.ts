@@ -265,6 +265,17 @@ export type organizationsWhereInput = {
   sessions?: Prisma.SessionsListRelationFilter
   audit_events?: Prisma.Audit_eventsListRelationFilter
   idempotency_keys?: Prisma.Idempotency_keysListRelationFilter
+  agent_sessions?: Prisma.Agent_sessionsListRelationFilter
+  tasks?: Prisma.TasksListRelationFilter
+  task_steps?: Prisma.Task_stepsListRelationFilter
+  task_events?: Prisma.Task_eventsListRelationFilter
+  task_checkpoints?: Prisma.Task_checkpointsListRelationFilter
+  devices?: Prisma.DevicesListRelationFilter
+  device_pairing_codes?: Prisma.Device_pairing_codesListRelationFilter
+  device_commands?: Prisma.Device_commandsListRelationFilter
+  workspaces?: Prisma.WorkspacesListRelationFilter
+  workspace_grants?: Prisma.Workspace_grantsListRelationFilter
+  outbox?: Prisma.OutboxListRelationFilter
 }
 
 export type organizationsOrderByWithRelationInput = {
@@ -284,6 +295,17 @@ export type organizationsOrderByWithRelationInput = {
   sessions?: Prisma.sessionsOrderByRelationAggregateInput
   audit_events?: Prisma.audit_eventsOrderByRelationAggregateInput
   idempotency_keys?: Prisma.idempotency_keysOrderByRelationAggregateInput
+  agent_sessions?: Prisma.agent_sessionsOrderByRelationAggregateInput
+  tasks?: Prisma.tasksOrderByRelationAggregateInput
+  task_steps?: Prisma.task_stepsOrderByRelationAggregateInput
+  task_events?: Prisma.task_eventsOrderByRelationAggregateInput
+  task_checkpoints?: Prisma.task_checkpointsOrderByRelationAggregateInput
+  devices?: Prisma.devicesOrderByRelationAggregateInput
+  device_pairing_codes?: Prisma.device_pairing_codesOrderByRelationAggregateInput
+  device_commands?: Prisma.device_commandsOrderByRelationAggregateInput
+  workspaces?: Prisma.workspacesOrderByRelationAggregateInput
+  workspace_grants?: Prisma.workspace_grantsOrderByRelationAggregateInput
+  outbox?: Prisma.outboxOrderByRelationAggregateInput
 }
 
 export type organizationsWhereUniqueInput = Prisma.AtLeast<{
@@ -306,6 +328,17 @@ export type organizationsWhereUniqueInput = Prisma.AtLeast<{
   sessions?: Prisma.SessionsListRelationFilter
   audit_events?: Prisma.Audit_eventsListRelationFilter
   idempotency_keys?: Prisma.Idempotency_keysListRelationFilter
+  agent_sessions?: Prisma.Agent_sessionsListRelationFilter
+  tasks?: Prisma.TasksListRelationFilter
+  task_steps?: Prisma.Task_stepsListRelationFilter
+  task_events?: Prisma.Task_eventsListRelationFilter
+  task_checkpoints?: Prisma.Task_checkpointsListRelationFilter
+  devices?: Prisma.DevicesListRelationFilter
+  device_pairing_codes?: Prisma.Device_pairing_codesListRelationFilter
+  device_commands?: Prisma.Device_commandsListRelationFilter
+  workspaces?: Prisma.WorkspacesListRelationFilter
+  workspace_grants?: Prisma.Workspace_grantsListRelationFilter
+  outbox?: Prisma.OutboxListRelationFilter
 }, "id" | "slug">
 
 export type organizationsOrderByWithAggregationInput = {
@@ -361,6 +394,17 @@ export type organizationsCreateInput = {
   sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
   audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
   idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateInput = {
@@ -380,6 +424,17 @@ export type organizationsUncheckedCreateInput = {
   sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
   audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
   idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUpdateInput = {
@@ -399,6 +454,17 @@ export type organizationsUpdateInput = {
   sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
   audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
   idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateInput = {
@@ -418,6 +484,17 @@ export type organizationsUncheckedUpdateInput = {
   sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
   audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
   idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateManyInput = {
@@ -608,6 +685,160 @@ export type organizationsUpdateOneWithoutAudit_eventsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutAudit_eventsInput, Prisma.organizationsUpdateWithoutAudit_eventsInput>, Prisma.organizationsUncheckedUpdateWithoutAudit_eventsInput>
 }
 
+export type organizationsCreateNestedOneWithoutAgent_sessionsInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutAgent_sessionsInput, Prisma.organizationsUncheckedCreateWithoutAgent_sessionsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutAgent_sessionsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+}
+
+export type organizationsUpdateOneRequiredWithoutAgent_sessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutAgent_sessionsInput, Prisma.organizationsUncheckedCreateWithoutAgent_sessionsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutAgent_sessionsInput
+  upsert?: Prisma.organizationsUpsertWithoutAgent_sessionsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutAgent_sessionsInput, Prisma.organizationsUpdateWithoutAgent_sessionsInput>, Prisma.organizationsUncheckedUpdateWithoutAgent_sessionsInput>
+}
+
+export type organizationsCreateNestedOneWithoutTasksInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutTasksInput, Prisma.organizationsUncheckedCreateWithoutTasksInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutTasksInput
+  connect?: Prisma.organizationsWhereUniqueInput
+}
+
+export type organizationsUpdateOneRequiredWithoutTasksNestedInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutTasksInput, Prisma.organizationsUncheckedCreateWithoutTasksInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutTasksInput
+  upsert?: Prisma.organizationsUpsertWithoutTasksInput
+  connect?: Prisma.organizationsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutTasksInput, Prisma.organizationsUpdateWithoutTasksInput>, Prisma.organizationsUncheckedUpdateWithoutTasksInput>
+}
+
+export type organizationsCreateNestedOneWithoutTask_stepsInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutTask_stepsInput, Prisma.organizationsUncheckedCreateWithoutTask_stepsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutTask_stepsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+}
+
+export type organizationsUpdateOneRequiredWithoutTask_stepsNestedInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutTask_stepsInput, Prisma.organizationsUncheckedCreateWithoutTask_stepsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutTask_stepsInput
+  upsert?: Prisma.organizationsUpsertWithoutTask_stepsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutTask_stepsInput, Prisma.organizationsUpdateWithoutTask_stepsInput>, Prisma.organizationsUncheckedUpdateWithoutTask_stepsInput>
+}
+
+export type organizationsCreateNestedOneWithoutTask_eventsInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutTask_eventsInput, Prisma.organizationsUncheckedCreateWithoutTask_eventsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutTask_eventsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+}
+
+export type organizationsUpdateOneRequiredWithoutTask_eventsNestedInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutTask_eventsInput, Prisma.organizationsUncheckedCreateWithoutTask_eventsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutTask_eventsInput
+  upsert?: Prisma.organizationsUpsertWithoutTask_eventsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutTask_eventsInput, Prisma.organizationsUpdateWithoutTask_eventsInput>, Prisma.organizationsUncheckedUpdateWithoutTask_eventsInput>
+}
+
+export type organizationsCreateNestedOneWithoutTask_checkpointsInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutTask_checkpointsInput, Prisma.organizationsUncheckedCreateWithoutTask_checkpointsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutTask_checkpointsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+}
+
+export type organizationsUpdateOneRequiredWithoutTask_checkpointsNestedInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutTask_checkpointsInput, Prisma.organizationsUncheckedCreateWithoutTask_checkpointsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutTask_checkpointsInput
+  upsert?: Prisma.organizationsUpsertWithoutTask_checkpointsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutTask_checkpointsInput, Prisma.organizationsUpdateWithoutTask_checkpointsInput>, Prisma.organizationsUncheckedUpdateWithoutTask_checkpointsInput>
+}
+
+export type organizationsCreateNestedOneWithoutOutboxInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutOutboxInput, Prisma.organizationsUncheckedCreateWithoutOutboxInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutOutboxInput
+  connect?: Prisma.organizationsWhereUniqueInput
+}
+
+export type organizationsUpdateOneRequiredWithoutOutboxNestedInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutOutboxInput, Prisma.organizationsUncheckedCreateWithoutOutboxInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutOutboxInput
+  upsert?: Prisma.organizationsUpsertWithoutOutboxInput
+  connect?: Prisma.organizationsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutOutboxInput, Prisma.organizationsUpdateWithoutOutboxInput>, Prisma.organizationsUncheckedUpdateWithoutOutboxInput>
+}
+
+export type organizationsCreateNestedOneWithoutDevicesInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutDevicesInput, Prisma.organizationsUncheckedCreateWithoutDevicesInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutDevicesInput
+  connect?: Prisma.organizationsWhereUniqueInput
+}
+
+export type organizationsUpdateOneRequiredWithoutDevicesNestedInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutDevicesInput, Prisma.organizationsUncheckedCreateWithoutDevicesInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutDevicesInput
+  upsert?: Prisma.organizationsUpsertWithoutDevicesInput
+  connect?: Prisma.organizationsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutDevicesInput, Prisma.organizationsUpdateWithoutDevicesInput>, Prisma.organizationsUncheckedUpdateWithoutDevicesInput>
+}
+
+export type organizationsCreateNestedOneWithoutDevice_pairing_codesInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutDevice_pairing_codesInput, Prisma.organizationsUncheckedCreateWithoutDevice_pairing_codesInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutDevice_pairing_codesInput
+  connect?: Prisma.organizationsWhereUniqueInput
+}
+
+export type organizationsUpdateOneRequiredWithoutDevice_pairing_codesNestedInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutDevice_pairing_codesInput, Prisma.organizationsUncheckedCreateWithoutDevice_pairing_codesInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutDevice_pairing_codesInput
+  upsert?: Prisma.organizationsUpsertWithoutDevice_pairing_codesInput
+  connect?: Prisma.organizationsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutDevice_pairing_codesInput, Prisma.organizationsUpdateWithoutDevice_pairing_codesInput>, Prisma.organizationsUncheckedUpdateWithoutDevice_pairing_codesInput>
+}
+
+export type organizationsCreateNestedOneWithoutDevice_commandsInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutDevice_commandsInput, Prisma.organizationsUncheckedCreateWithoutDevice_commandsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutDevice_commandsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+}
+
+export type organizationsUpdateOneRequiredWithoutDevice_commandsNestedInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutDevice_commandsInput, Prisma.organizationsUncheckedCreateWithoutDevice_commandsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutDevice_commandsInput
+  upsert?: Prisma.organizationsUpsertWithoutDevice_commandsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutDevice_commandsInput, Prisma.organizationsUpdateWithoutDevice_commandsInput>, Prisma.organizationsUncheckedUpdateWithoutDevice_commandsInput>
+}
+
+export type organizationsCreateNestedOneWithoutWorkspacesInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutWorkspacesInput, Prisma.organizationsUncheckedCreateWithoutWorkspacesInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutWorkspacesInput
+  connect?: Prisma.organizationsWhereUniqueInput
+}
+
+export type organizationsUpdateOneRequiredWithoutWorkspacesNestedInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutWorkspacesInput, Prisma.organizationsUncheckedCreateWithoutWorkspacesInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutWorkspacesInput
+  upsert?: Prisma.organizationsUpsertWithoutWorkspacesInput
+  connect?: Prisma.organizationsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutWorkspacesInput, Prisma.organizationsUpdateWithoutWorkspacesInput>, Prisma.organizationsUncheckedUpdateWithoutWorkspacesInput>
+}
+
+export type organizationsCreateNestedOneWithoutWorkspace_grantsInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutWorkspace_grantsInput, Prisma.organizationsUncheckedCreateWithoutWorkspace_grantsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutWorkspace_grantsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+}
+
+export type organizationsUpdateOneRequiredWithoutWorkspace_grantsNestedInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutWorkspace_grantsInput, Prisma.organizationsUncheckedCreateWithoutWorkspace_grantsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutWorkspace_grantsInput
+  upsert?: Prisma.organizationsUpsertWithoutWorkspace_grantsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutWorkspace_grantsInput, Prisma.organizationsUpdateWithoutWorkspace_grantsInput>, Prisma.organizationsUncheckedUpdateWithoutWorkspace_grantsInput>
+}
+
 export type organizationsCreateWithoutMembershipsInput = {
   id?: string
   name: string
@@ -624,6 +855,17 @@ export type organizationsCreateWithoutMembershipsInput = {
   sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
   audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
   idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutMembershipsInput = {
@@ -642,6 +884,17 @@ export type organizationsUncheckedCreateWithoutMembershipsInput = {
   sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
   audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
   idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutMembershipsInput = {
@@ -676,6 +929,17 @@ export type organizationsUpdateWithoutMembershipsInput = {
   sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
   audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
   idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutMembershipsInput = {
@@ -694,6 +958,17 @@ export type organizationsUncheckedUpdateWithoutMembershipsInput = {
   sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
   audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
   idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutInvitationsInput = {
@@ -712,6 +987,17 @@ export type organizationsCreateWithoutInvitationsInput = {
   sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
   audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
   idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutInvitationsInput = {
@@ -730,6 +1016,17 @@ export type organizationsUncheckedCreateWithoutInvitationsInput = {
   sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
   audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
   idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutInvitationsInput = {
@@ -764,6 +1061,17 @@ export type organizationsUpdateWithoutInvitationsInput = {
   sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
   audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
   idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutInvitationsInput = {
@@ -782,6 +1090,17 @@ export type organizationsUncheckedUpdateWithoutInvitationsInput = {
   sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
   audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
   idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutSessionsInput = {
@@ -800,6 +1119,17 @@ export type organizationsCreateWithoutSessionsInput = {
   invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
   audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
   idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutSessionsInput = {
@@ -818,6 +1148,17 @@ export type organizationsUncheckedCreateWithoutSessionsInput = {
   invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
   audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
   idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutSessionsInput = {
@@ -852,6 +1193,17 @@ export type organizationsUpdateWithoutSessionsInput = {
   invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
   audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
   idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutSessionsInput = {
@@ -870,6 +1222,17 @@ export type organizationsUncheckedUpdateWithoutSessionsInput = {
   invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
   audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
   idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutIdempotency_keysInput = {
@@ -888,6 +1251,17 @@ export type organizationsCreateWithoutIdempotency_keysInput = {
   invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
   sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
   audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutIdempotency_keysInput = {
@@ -906,6 +1280,17 @@ export type organizationsUncheckedCreateWithoutIdempotency_keysInput = {
   invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
   sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
   audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutIdempotency_keysInput = {
@@ -940,6 +1325,17 @@ export type organizationsUpdateWithoutIdempotency_keysInput = {
   invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
   sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
   audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutIdempotency_keysInput = {
@@ -958,6 +1354,17 @@ export type organizationsUncheckedUpdateWithoutIdempotency_keysInput = {
   invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
   sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
   audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutAudit_eventsInput = {
@@ -976,6 +1383,17 @@ export type organizationsCreateWithoutAudit_eventsInput = {
   invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
   sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
   idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutAudit_eventsInput = {
@@ -994,6 +1412,17 @@ export type organizationsUncheckedCreateWithoutAudit_eventsInput = {
   invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
   sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
   idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutAudit_eventsInput = {
@@ -1028,6 +1457,17 @@ export type organizationsUpdateWithoutAudit_eventsInput = {
   invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
   sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
   idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutAudit_eventsInput = {
@@ -1046,6 +1486,1469 @@ export type organizationsUncheckedUpdateWithoutAudit_eventsInput = {
   invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
   sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
   idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsCreateWithoutAgent_sessionsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsUncheckedCreateWithoutAgent_sessionsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsCreateOrConnectWithoutAgent_sessionsInput = {
+  where: Prisma.organizationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutAgent_sessionsInput, Prisma.organizationsUncheckedCreateWithoutAgent_sessionsInput>
+}
+
+export type organizationsUpsertWithoutAgent_sessionsInput = {
+  update: Prisma.XOR<Prisma.organizationsUpdateWithoutAgent_sessionsInput, Prisma.organizationsUncheckedUpdateWithoutAgent_sessionsInput>
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutAgent_sessionsInput, Prisma.organizationsUncheckedCreateWithoutAgent_sessionsInput>
+  where?: Prisma.organizationsWhereInput
+}
+
+export type organizationsUpdateToOneWithWhereWithoutAgent_sessionsInput = {
+  where?: Prisma.organizationsWhereInput
+  data: Prisma.XOR<Prisma.organizationsUpdateWithoutAgent_sessionsInput, Prisma.organizationsUncheckedUpdateWithoutAgent_sessionsInput>
+}
+
+export type organizationsUpdateWithoutAgent_sessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsUncheckedUpdateWithoutAgent_sessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsCreateWithoutTasksInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsUncheckedCreateWithoutTasksInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsCreateOrConnectWithoutTasksInput = {
+  where: Prisma.organizationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutTasksInput, Prisma.organizationsUncheckedCreateWithoutTasksInput>
+}
+
+export type organizationsUpsertWithoutTasksInput = {
+  update: Prisma.XOR<Prisma.organizationsUpdateWithoutTasksInput, Prisma.organizationsUncheckedUpdateWithoutTasksInput>
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutTasksInput, Prisma.organizationsUncheckedCreateWithoutTasksInput>
+  where?: Prisma.organizationsWhereInput
+}
+
+export type organizationsUpdateToOneWithWhereWithoutTasksInput = {
+  where?: Prisma.organizationsWhereInput
+  data: Prisma.XOR<Prisma.organizationsUpdateWithoutTasksInput, Prisma.organizationsUncheckedUpdateWithoutTasksInput>
+}
+
+export type organizationsUpdateWithoutTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsUncheckedUpdateWithoutTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsCreateWithoutTask_stepsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsUncheckedCreateWithoutTask_stepsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsCreateOrConnectWithoutTask_stepsInput = {
+  where: Prisma.organizationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutTask_stepsInput, Prisma.organizationsUncheckedCreateWithoutTask_stepsInput>
+}
+
+export type organizationsUpsertWithoutTask_stepsInput = {
+  update: Prisma.XOR<Prisma.organizationsUpdateWithoutTask_stepsInput, Prisma.organizationsUncheckedUpdateWithoutTask_stepsInput>
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutTask_stepsInput, Prisma.organizationsUncheckedCreateWithoutTask_stepsInput>
+  where?: Prisma.organizationsWhereInput
+}
+
+export type organizationsUpdateToOneWithWhereWithoutTask_stepsInput = {
+  where?: Prisma.organizationsWhereInput
+  data: Prisma.XOR<Prisma.organizationsUpdateWithoutTask_stepsInput, Prisma.organizationsUncheckedUpdateWithoutTask_stepsInput>
+}
+
+export type organizationsUpdateWithoutTask_stepsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsUncheckedUpdateWithoutTask_stepsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsCreateWithoutTask_eventsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsUncheckedCreateWithoutTask_eventsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsCreateOrConnectWithoutTask_eventsInput = {
+  where: Prisma.organizationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutTask_eventsInput, Prisma.organizationsUncheckedCreateWithoutTask_eventsInput>
+}
+
+export type organizationsUpsertWithoutTask_eventsInput = {
+  update: Prisma.XOR<Prisma.organizationsUpdateWithoutTask_eventsInput, Prisma.organizationsUncheckedUpdateWithoutTask_eventsInput>
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutTask_eventsInput, Prisma.organizationsUncheckedCreateWithoutTask_eventsInput>
+  where?: Prisma.organizationsWhereInput
+}
+
+export type organizationsUpdateToOneWithWhereWithoutTask_eventsInput = {
+  where?: Prisma.organizationsWhereInput
+  data: Prisma.XOR<Prisma.organizationsUpdateWithoutTask_eventsInput, Prisma.organizationsUncheckedUpdateWithoutTask_eventsInput>
+}
+
+export type organizationsUpdateWithoutTask_eventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsUncheckedUpdateWithoutTask_eventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsCreateWithoutTask_checkpointsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsUncheckedCreateWithoutTask_checkpointsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsCreateOrConnectWithoutTask_checkpointsInput = {
+  where: Prisma.organizationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutTask_checkpointsInput, Prisma.organizationsUncheckedCreateWithoutTask_checkpointsInput>
+}
+
+export type organizationsUpsertWithoutTask_checkpointsInput = {
+  update: Prisma.XOR<Prisma.organizationsUpdateWithoutTask_checkpointsInput, Prisma.organizationsUncheckedUpdateWithoutTask_checkpointsInput>
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutTask_checkpointsInput, Prisma.organizationsUncheckedCreateWithoutTask_checkpointsInput>
+  where?: Prisma.organizationsWhereInput
+}
+
+export type organizationsUpdateToOneWithWhereWithoutTask_checkpointsInput = {
+  where?: Prisma.organizationsWhereInput
+  data: Prisma.XOR<Prisma.organizationsUpdateWithoutTask_checkpointsInput, Prisma.organizationsUncheckedUpdateWithoutTask_checkpointsInput>
+}
+
+export type organizationsUpdateWithoutTask_checkpointsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsUncheckedUpdateWithoutTask_checkpointsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsCreateWithoutOutboxInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsUncheckedCreateWithoutOutboxInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsCreateOrConnectWithoutOutboxInput = {
+  where: Prisma.organizationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutOutboxInput, Prisma.organizationsUncheckedCreateWithoutOutboxInput>
+}
+
+export type organizationsUpsertWithoutOutboxInput = {
+  update: Prisma.XOR<Prisma.organizationsUpdateWithoutOutboxInput, Prisma.organizationsUncheckedUpdateWithoutOutboxInput>
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutOutboxInput, Prisma.organizationsUncheckedCreateWithoutOutboxInput>
+  where?: Prisma.organizationsWhereInput
+}
+
+export type organizationsUpdateToOneWithWhereWithoutOutboxInput = {
+  where?: Prisma.organizationsWhereInput
+  data: Prisma.XOR<Prisma.organizationsUpdateWithoutOutboxInput, Prisma.organizationsUncheckedUpdateWithoutOutboxInput>
+}
+
+export type organizationsUpdateWithoutOutboxInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsUncheckedUpdateWithoutOutboxInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsCreateWithoutDevicesInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsUncheckedCreateWithoutDevicesInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsCreateOrConnectWithoutDevicesInput = {
+  where: Prisma.organizationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutDevicesInput, Prisma.organizationsUncheckedCreateWithoutDevicesInput>
+}
+
+export type organizationsUpsertWithoutDevicesInput = {
+  update: Prisma.XOR<Prisma.organizationsUpdateWithoutDevicesInput, Prisma.organizationsUncheckedUpdateWithoutDevicesInput>
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutDevicesInput, Prisma.organizationsUncheckedCreateWithoutDevicesInput>
+  where?: Prisma.organizationsWhereInput
+}
+
+export type organizationsUpdateToOneWithWhereWithoutDevicesInput = {
+  where?: Prisma.organizationsWhereInput
+  data: Prisma.XOR<Prisma.organizationsUpdateWithoutDevicesInput, Prisma.organizationsUncheckedUpdateWithoutDevicesInput>
+}
+
+export type organizationsUpdateWithoutDevicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsUncheckedUpdateWithoutDevicesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsCreateWithoutDevice_pairing_codesInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsUncheckedCreateWithoutDevice_pairing_codesInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsCreateOrConnectWithoutDevice_pairing_codesInput = {
+  where: Prisma.organizationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutDevice_pairing_codesInput, Prisma.organizationsUncheckedCreateWithoutDevice_pairing_codesInput>
+}
+
+export type organizationsUpsertWithoutDevice_pairing_codesInput = {
+  update: Prisma.XOR<Prisma.organizationsUpdateWithoutDevice_pairing_codesInput, Prisma.organizationsUncheckedUpdateWithoutDevice_pairing_codesInput>
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutDevice_pairing_codesInput, Prisma.organizationsUncheckedCreateWithoutDevice_pairing_codesInput>
+  where?: Prisma.organizationsWhereInput
+}
+
+export type organizationsUpdateToOneWithWhereWithoutDevice_pairing_codesInput = {
+  where?: Prisma.organizationsWhereInput
+  data: Prisma.XOR<Prisma.organizationsUpdateWithoutDevice_pairing_codesInput, Prisma.organizationsUncheckedUpdateWithoutDevice_pairing_codesInput>
+}
+
+export type organizationsUpdateWithoutDevice_pairing_codesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsUncheckedUpdateWithoutDevice_pairing_codesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsCreateWithoutDevice_commandsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsUncheckedCreateWithoutDevice_commandsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsCreateOrConnectWithoutDevice_commandsInput = {
+  where: Prisma.organizationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutDevice_commandsInput, Prisma.organizationsUncheckedCreateWithoutDevice_commandsInput>
+}
+
+export type organizationsUpsertWithoutDevice_commandsInput = {
+  update: Prisma.XOR<Prisma.organizationsUpdateWithoutDevice_commandsInput, Prisma.organizationsUncheckedUpdateWithoutDevice_commandsInput>
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutDevice_commandsInput, Prisma.organizationsUncheckedCreateWithoutDevice_commandsInput>
+  where?: Prisma.organizationsWhereInput
+}
+
+export type organizationsUpdateToOneWithWhereWithoutDevice_commandsInput = {
+  where?: Prisma.organizationsWhereInput
+  data: Prisma.XOR<Prisma.organizationsUpdateWithoutDevice_commandsInput, Prisma.organizationsUncheckedUpdateWithoutDevice_commandsInput>
+}
+
+export type organizationsUpdateWithoutDevice_commandsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsUncheckedUpdateWithoutDevice_commandsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsCreateWithoutWorkspacesInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsUncheckedCreateWithoutWorkspacesInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsCreateOrConnectWithoutWorkspacesInput = {
+  where: Prisma.organizationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutWorkspacesInput, Prisma.organizationsUncheckedCreateWithoutWorkspacesInput>
+}
+
+export type organizationsUpsertWithoutWorkspacesInput = {
+  update: Prisma.XOR<Prisma.organizationsUpdateWithoutWorkspacesInput, Prisma.organizationsUncheckedUpdateWithoutWorkspacesInput>
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutWorkspacesInput, Prisma.organizationsUncheckedCreateWithoutWorkspacesInput>
+  where?: Prisma.organizationsWhereInput
+}
+
+export type organizationsUpdateToOneWithWhereWithoutWorkspacesInput = {
+  where?: Prisma.organizationsWhereInput
+  data: Prisma.XOR<Prisma.organizationsUpdateWithoutWorkspacesInput, Prisma.organizationsUncheckedUpdateWithoutWorkspacesInput>
+}
+
+export type organizationsUpdateWithoutWorkspacesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsUncheckedUpdateWithoutWorkspacesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsCreateWithoutWorkspace_grantsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsUncheckedCreateWithoutWorkspace_grantsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsCreateOrConnectWithoutWorkspace_grantsInput = {
+  where: Prisma.organizationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutWorkspace_grantsInput, Prisma.organizationsUncheckedCreateWithoutWorkspace_grantsInput>
+}
+
+export type organizationsUpsertWithoutWorkspace_grantsInput = {
+  update: Prisma.XOR<Prisma.organizationsUpdateWithoutWorkspace_grantsInput, Prisma.organizationsUncheckedUpdateWithoutWorkspace_grantsInput>
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutWorkspace_grantsInput, Prisma.organizationsUncheckedCreateWithoutWorkspace_grantsInput>
+  where?: Prisma.organizationsWhereInput
+}
+
+export type organizationsUpdateToOneWithWhereWithoutWorkspace_grantsInput = {
+  where?: Prisma.organizationsWhereInput
+  data: Prisma.XOR<Prisma.organizationsUpdateWithoutWorkspace_grantsInput, Prisma.organizationsUncheckedUpdateWithoutWorkspace_grantsInput>
+}
+
+export type organizationsUpdateWithoutWorkspace_grantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsUncheckedUpdateWithoutWorkspace_grantsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 
@@ -1059,6 +2962,17 @@ export type OrganizationsCountOutputType = {
   sessions: number
   audit_events: number
   idempotency_keys: number
+  agent_sessions: number
+  tasks: number
+  task_steps: number
+  task_events: number
+  task_checkpoints: number
+  devices: number
+  device_pairing_codes: number
+  device_commands: number
+  workspaces: number
+  workspace_grants: number
+  outbox: number
 }
 
 export type OrganizationsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1067,6 +2981,17 @@ export type OrganizationsCountOutputTypeSelect<ExtArgs extends runtime.Types.Ext
   sessions?: boolean | OrganizationsCountOutputTypeCountSessionsArgs
   audit_events?: boolean | OrganizationsCountOutputTypeCountAudit_eventsArgs
   idempotency_keys?: boolean | OrganizationsCountOutputTypeCountIdempotency_keysArgs
+  agent_sessions?: boolean | OrganizationsCountOutputTypeCountAgent_sessionsArgs
+  tasks?: boolean | OrganizationsCountOutputTypeCountTasksArgs
+  task_steps?: boolean | OrganizationsCountOutputTypeCountTask_stepsArgs
+  task_events?: boolean | OrganizationsCountOutputTypeCountTask_eventsArgs
+  task_checkpoints?: boolean | OrganizationsCountOutputTypeCountTask_checkpointsArgs
+  devices?: boolean | OrganizationsCountOutputTypeCountDevicesArgs
+  device_pairing_codes?: boolean | OrganizationsCountOutputTypeCountDevice_pairing_codesArgs
+  device_commands?: boolean | OrganizationsCountOutputTypeCountDevice_commandsArgs
+  workspaces?: boolean | OrganizationsCountOutputTypeCountWorkspacesArgs
+  workspace_grants?: boolean | OrganizationsCountOutputTypeCountWorkspace_grantsArgs
+  outbox?: boolean | OrganizationsCountOutputTypeCountOutboxArgs
 }
 
 /**
@@ -1114,6 +3039,83 @@ export type OrganizationsCountOutputTypeCountIdempotency_keysArgs<ExtArgs extend
   where?: Prisma.idempotency_keysWhereInput
 }
 
+/**
+ * OrganizationsCountOutputType without action
+ */
+export type OrganizationsCountOutputTypeCountAgent_sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.agent_sessionsWhereInput
+}
+
+/**
+ * OrganizationsCountOutputType without action
+ */
+export type OrganizationsCountOutputTypeCountTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.tasksWhereInput
+}
+
+/**
+ * OrganizationsCountOutputType without action
+ */
+export type OrganizationsCountOutputTypeCountTask_stepsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.task_stepsWhereInput
+}
+
+/**
+ * OrganizationsCountOutputType without action
+ */
+export type OrganizationsCountOutputTypeCountTask_eventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.task_eventsWhereInput
+}
+
+/**
+ * OrganizationsCountOutputType without action
+ */
+export type OrganizationsCountOutputTypeCountTask_checkpointsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.task_checkpointsWhereInput
+}
+
+/**
+ * OrganizationsCountOutputType without action
+ */
+export type OrganizationsCountOutputTypeCountDevicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.devicesWhereInput
+}
+
+/**
+ * OrganizationsCountOutputType without action
+ */
+export type OrganizationsCountOutputTypeCountDevice_pairing_codesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.device_pairing_codesWhereInput
+}
+
+/**
+ * OrganizationsCountOutputType without action
+ */
+export type OrganizationsCountOutputTypeCountDevice_commandsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.device_commandsWhereInput
+}
+
+/**
+ * OrganizationsCountOutputType without action
+ */
+export type OrganizationsCountOutputTypeCountWorkspacesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.workspacesWhereInput
+}
+
+/**
+ * OrganizationsCountOutputType without action
+ */
+export type OrganizationsCountOutputTypeCountWorkspace_grantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.workspace_grantsWhereInput
+}
+
+/**
+ * OrganizationsCountOutputType without action
+ */
+export type OrganizationsCountOutputTypeCountOutboxArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.outboxWhereInput
+}
+
 
 export type organizationsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1132,6 +3134,17 @@ export type organizationsSelect<ExtArgs extends runtime.Types.Extensions.Interna
   sessions?: boolean | Prisma.organizations$sessionsArgs<ExtArgs>
   audit_events?: boolean | Prisma.organizations$audit_eventsArgs<ExtArgs>
   idempotency_keys?: boolean | Prisma.organizations$idempotency_keysArgs<ExtArgs>
+  agent_sessions?: boolean | Prisma.organizations$agent_sessionsArgs<ExtArgs>
+  tasks?: boolean | Prisma.organizations$tasksArgs<ExtArgs>
+  task_steps?: boolean | Prisma.organizations$task_stepsArgs<ExtArgs>
+  task_events?: boolean | Prisma.organizations$task_eventsArgs<ExtArgs>
+  task_checkpoints?: boolean | Prisma.organizations$task_checkpointsArgs<ExtArgs>
+  devices?: boolean | Prisma.organizations$devicesArgs<ExtArgs>
+  device_pairing_codes?: boolean | Prisma.organizations$device_pairing_codesArgs<ExtArgs>
+  device_commands?: boolean | Prisma.organizations$device_commandsArgs<ExtArgs>
+  workspaces?: boolean | Prisma.organizations$workspacesArgs<ExtArgs>
+  workspace_grants?: boolean | Prisma.organizations$workspace_grantsArgs<ExtArgs>
+  outbox?: boolean | Prisma.organizations$outboxArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organizations"]>
 
@@ -1184,6 +3197,17 @@ export type organizationsInclude<ExtArgs extends runtime.Types.Extensions.Intern
   sessions?: boolean | Prisma.organizations$sessionsArgs<ExtArgs>
   audit_events?: boolean | Prisma.organizations$audit_eventsArgs<ExtArgs>
   idempotency_keys?: boolean | Prisma.organizations$idempotency_keysArgs<ExtArgs>
+  agent_sessions?: boolean | Prisma.organizations$agent_sessionsArgs<ExtArgs>
+  tasks?: boolean | Prisma.organizations$tasksArgs<ExtArgs>
+  task_steps?: boolean | Prisma.organizations$task_stepsArgs<ExtArgs>
+  task_events?: boolean | Prisma.organizations$task_eventsArgs<ExtArgs>
+  task_checkpoints?: boolean | Prisma.organizations$task_checkpointsArgs<ExtArgs>
+  devices?: boolean | Prisma.organizations$devicesArgs<ExtArgs>
+  device_pairing_codes?: boolean | Prisma.organizations$device_pairing_codesArgs<ExtArgs>
+  device_commands?: boolean | Prisma.organizations$device_commandsArgs<ExtArgs>
+  workspaces?: boolean | Prisma.organizations$workspacesArgs<ExtArgs>
+  workspace_grants?: boolean | Prisma.organizations$workspace_grantsArgs<ExtArgs>
+  outbox?: boolean | Prisma.organizations$outboxArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type organizationsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1197,6 +3221,17 @@ export type $organizationsPayload<ExtArgs extends runtime.Types.Extensions.Inter
     sessions: Prisma.$sessionsPayload<ExtArgs>[]
     audit_events: Prisma.$audit_eventsPayload<ExtArgs>[]
     idempotency_keys: Prisma.$idempotency_keysPayload<ExtArgs>[]
+    agent_sessions: Prisma.$agent_sessionsPayload<ExtArgs>[]
+    tasks: Prisma.$tasksPayload<ExtArgs>[]
+    task_steps: Prisma.$task_stepsPayload<ExtArgs>[]
+    task_events: Prisma.$task_eventsPayload<ExtArgs>[]
+    task_checkpoints: Prisma.$task_checkpointsPayload<ExtArgs>[]
+    devices: Prisma.$devicesPayload<ExtArgs>[]
+    device_pairing_codes: Prisma.$device_pairing_codesPayload<ExtArgs>[]
+    device_commands: Prisma.$device_commandsPayload<ExtArgs>[]
+    workspaces: Prisma.$workspacesPayload<ExtArgs>[]
+    workspace_grants: Prisma.$workspace_grantsPayload<ExtArgs>[]
+    outbox: Prisma.$outboxPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1609,6 +3644,17 @@ export interface Prisma__organizationsClient<T, Null = never, ExtArgs extends ru
   sessions<T extends Prisma.organizations$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$sessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   audit_events<T extends Prisma.organizations$audit_eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$audit_eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$audit_eventsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   idempotency_keys<T extends Prisma.organizations$idempotency_keysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$idempotency_keysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$idempotency_keysPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  agent_sessions<T extends Prisma.organizations$agent_sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$agent_sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$agent_sessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tasks<T extends Prisma.organizations$tasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$tasksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  task_steps<T extends Prisma.organizations$task_stepsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$task_stepsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$task_stepsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  task_events<T extends Prisma.organizations$task_eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$task_eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$task_eventsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  task_checkpoints<T extends Prisma.organizations$task_checkpointsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$task_checkpointsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$task_checkpointsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  devices<T extends Prisma.organizations$devicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$devicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$devicesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  device_pairing_codes<T extends Prisma.organizations$device_pairing_codesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$device_pairing_codesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$device_pairing_codesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  device_commands<T extends Prisma.organizations$device_commandsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$device_commandsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$device_commandsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  workspaces<T extends Prisma.organizations$workspacesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$workspacesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$workspacesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  workspace_grants<T extends Prisma.organizations$workspace_grantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$workspace_grantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$workspace_grantsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  outbox<T extends Prisma.organizations$outboxArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$outboxArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$outboxPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2159,6 +4205,270 @@ export type organizations$idempotency_keysArgs<ExtArgs extends runtime.Types.Ext
   take?: number
   skip?: number
   distinct?: Prisma.Idempotency_keysScalarFieldEnum | Prisma.Idempotency_keysScalarFieldEnum[]
+}
+
+/**
+ * organizations.agent_sessions
+ */
+export type organizations$agent_sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the agent_sessions
+   */
+  select?: Prisma.agent_sessionsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the agent_sessions
+   */
+  omit?: Prisma.agent_sessionsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.agent_sessionsInclude<ExtArgs> | null
+  where?: Prisma.agent_sessionsWhereInput
+  orderBy?: Prisma.agent_sessionsOrderByWithRelationInput | Prisma.agent_sessionsOrderByWithRelationInput[]
+  cursor?: Prisma.agent_sessionsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Agent_sessionsScalarFieldEnum | Prisma.Agent_sessionsScalarFieldEnum[]
+}
+
+/**
+ * organizations.tasks
+ */
+export type organizations$tasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the tasks
+   */
+  select?: Prisma.tasksSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the tasks
+   */
+  omit?: Prisma.tasksOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tasksInclude<ExtArgs> | null
+  where?: Prisma.tasksWhereInput
+  orderBy?: Prisma.tasksOrderByWithRelationInput | Prisma.tasksOrderByWithRelationInput[]
+  cursor?: Prisma.tasksWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TasksScalarFieldEnum | Prisma.TasksScalarFieldEnum[]
+}
+
+/**
+ * organizations.task_steps
+ */
+export type organizations$task_stepsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the task_steps
+   */
+  select?: Prisma.task_stepsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the task_steps
+   */
+  omit?: Prisma.task_stepsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.task_stepsInclude<ExtArgs> | null
+  where?: Prisma.task_stepsWhereInput
+  orderBy?: Prisma.task_stepsOrderByWithRelationInput | Prisma.task_stepsOrderByWithRelationInput[]
+  cursor?: Prisma.task_stepsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Task_stepsScalarFieldEnum | Prisma.Task_stepsScalarFieldEnum[]
+}
+
+/**
+ * organizations.task_events
+ */
+export type organizations$task_eventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the task_events
+   */
+  select?: Prisma.task_eventsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the task_events
+   */
+  omit?: Prisma.task_eventsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.task_eventsInclude<ExtArgs> | null
+  where?: Prisma.task_eventsWhereInput
+  orderBy?: Prisma.task_eventsOrderByWithRelationInput | Prisma.task_eventsOrderByWithRelationInput[]
+  cursor?: Prisma.task_eventsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Task_eventsScalarFieldEnum | Prisma.Task_eventsScalarFieldEnum[]
+}
+
+/**
+ * organizations.task_checkpoints
+ */
+export type organizations$task_checkpointsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the task_checkpoints
+   */
+  select?: Prisma.task_checkpointsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the task_checkpoints
+   */
+  omit?: Prisma.task_checkpointsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.task_checkpointsInclude<ExtArgs> | null
+  where?: Prisma.task_checkpointsWhereInput
+  orderBy?: Prisma.task_checkpointsOrderByWithRelationInput | Prisma.task_checkpointsOrderByWithRelationInput[]
+  cursor?: Prisma.task_checkpointsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Task_checkpointsScalarFieldEnum | Prisma.Task_checkpointsScalarFieldEnum[]
+}
+
+/**
+ * organizations.devices
+ */
+export type organizations$devicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the devices
+   */
+  select?: Prisma.devicesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the devices
+   */
+  omit?: Prisma.devicesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.devicesInclude<ExtArgs> | null
+  where?: Prisma.devicesWhereInput
+  orderBy?: Prisma.devicesOrderByWithRelationInput | Prisma.devicesOrderByWithRelationInput[]
+  cursor?: Prisma.devicesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DevicesScalarFieldEnum | Prisma.DevicesScalarFieldEnum[]
+}
+
+/**
+ * organizations.device_pairing_codes
+ */
+export type organizations$device_pairing_codesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the device_pairing_codes
+   */
+  select?: Prisma.device_pairing_codesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the device_pairing_codes
+   */
+  omit?: Prisma.device_pairing_codesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.device_pairing_codesInclude<ExtArgs> | null
+  where?: Prisma.device_pairing_codesWhereInput
+  orderBy?: Prisma.device_pairing_codesOrderByWithRelationInput | Prisma.device_pairing_codesOrderByWithRelationInput[]
+  cursor?: Prisma.device_pairing_codesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Device_pairing_codesScalarFieldEnum | Prisma.Device_pairing_codesScalarFieldEnum[]
+}
+
+/**
+ * organizations.device_commands
+ */
+export type organizations$device_commandsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the device_commands
+   */
+  select?: Prisma.device_commandsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the device_commands
+   */
+  omit?: Prisma.device_commandsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.device_commandsInclude<ExtArgs> | null
+  where?: Prisma.device_commandsWhereInput
+  orderBy?: Prisma.device_commandsOrderByWithRelationInput | Prisma.device_commandsOrderByWithRelationInput[]
+  cursor?: Prisma.device_commandsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Device_commandsScalarFieldEnum | Prisma.Device_commandsScalarFieldEnum[]
+}
+
+/**
+ * organizations.workspaces
+ */
+export type organizations$workspacesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the workspaces
+   */
+  select?: Prisma.workspacesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the workspaces
+   */
+  omit?: Prisma.workspacesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.workspacesInclude<ExtArgs> | null
+  where?: Prisma.workspacesWhereInput
+  orderBy?: Prisma.workspacesOrderByWithRelationInput | Prisma.workspacesOrderByWithRelationInput[]
+  cursor?: Prisma.workspacesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WorkspacesScalarFieldEnum | Prisma.WorkspacesScalarFieldEnum[]
+}
+
+/**
+ * organizations.workspace_grants
+ */
+export type organizations$workspace_grantsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the workspace_grants
+   */
+  select?: Prisma.workspace_grantsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the workspace_grants
+   */
+  omit?: Prisma.workspace_grantsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.workspace_grantsInclude<ExtArgs> | null
+  where?: Prisma.workspace_grantsWhereInput
+  orderBy?: Prisma.workspace_grantsOrderByWithRelationInput | Prisma.workspace_grantsOrderByWithRelationInput[]
+  cursor?: Prisma.workspace_grantsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Workspace_grantsScalarFieldEnum | Prisma.Workspace_grantsScalarFieldEnum[]
+}
+
+/**
+ * organizations.outbox
+ */
+export type organizations$outboxArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the outbox
+   */
+  select?: Prisma.outboxSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the outbox
+   */
+  omit?: Prisma.outboxOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.outboxInclude<ExtArgs> | null
+  where?: Prisma.outboxWhereInput
+  orderBy?: Prisma.outboxOrderByWithRelationInput | Prisma.outboxOrderByWithRelationInput[]
+  cursor?: Prisma.outboxWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OutboxScalarFieldEnum | Prisma.OutboxScalarFieldEnum[]
 }
 
 /**

@@ -13,6 +13,17 @@ export const AUDIT_ACTIONS = {
   authRefresh: "auth.refresh",
   authLogout: "auth.logout",
   organizationCreate: "organization.create",
+  taskCreate: "task.create",
+  devicePairingCodeCreate: "device.pairing_code.create",
+  deviceRegister: "device.register",
+  deviceApprove: "device.approve",
+  deviceRevoke: "device.revoke",
+  deviceCommandCreate: "device.command.create",
+  workspaceCreate: "workspace.create",
+  workspaceUpdate: "workspace.update",
+  workspaceRemove: "workspace.remove",
+  workspaceGrantCreate: "workspace.grant.create",
+  workspaceGrantRevoke: "workspace.grant.revoke",
 } as const;
 
 export type AuditAction = (typeof AUDIT_ACTIONS)[keyof typeof AUDIT_ACTIONS];

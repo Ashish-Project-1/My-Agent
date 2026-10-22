@@ -64,6 +64,82 @@ enum AuditResult {
   denied
 }
 
+enum TaskState {
+  QUEUED
+  PLANNING
+  RUNNING
+  WAITING_APPROVAL
+  WAITING_DEVICE
+  PAUSED
+  VERIFYING
+  COMPLETED
+  FAILED
+  CANCELLED
+  EXPIRED
+}
+
+enum TaskStepKind {
+  model
+  tool
+  approval
+  verify
+}
+
+enum TaskStepState {
+  PENDING
+  RUNNING
+  WAITING_APPROVAL
+  BLOCKED
+  COMPLETED
+  FAILED
+  SKIPPED
+  CANCELLED
+}
+
+enum TaskEventActor {
+  user
+  device
+  worker
+  system
+}
+
+enum ExecutionLocation {
+  device
+  cloud
+}
+
+enum DeviceStatus {
+  pending
+  active
+  revoked
+}
+
+enum DeviceCommandState {
+  pending
+  sent
+  acked
+  expired
+}
+
+enum DeviceCommandKind {
+  diagnostics_ping
+}
+
+// Workspace mode: what the user allowed, not what the tool asked for
+// (docs/planning/09 §6). `read_only` is a real boundary, not a hint.
+enum WorkspaceMode {
+  read_only
+  read_write
+}
+
+// `external_directory` grants are additive (allow) or subtractive (deny): a
+// standing grant can widen what a workspace permits, and a deny can veto part of
+// one (docs/planning/06 §2.2).
+enum WorkspaceGrantEffect {
+  allow
+  deny
+}
+
 model users {
   id                  String     @id @default(dbgenerated("uuidv7()")) @db.Uuid
   email               String     @unique @db.Text
@@ -81,32 +157,48 @@ model users {
   updated_at          DateTime   @updatedAt @db.Timestamptz
   deleted_at          DateTime?  @db.Timestamptz
 
-  memberships    memberships[]
-  sessions       sessions[]
-  invitations_by invitations[] @relation("invitations_invited_by")
-  invited_memberships memberships[] @relation("memberships_invited_by")
-  audit_events   audit_events[]
+  memberships         memberships[]
+  sessions            sessions[]
+  invitations_by      invitations[]      @relation("invitations_invited_by")
+  invited_memberships memberships[]      @relation("memberships_invited_by")
+  audit_events        audit_events[]
+  agent_sessions      agent_sessions[]
+  tasks               tasks[]            @relation("tasks_created_by")
+  devices             devices[]          @relation("devices_owned_by")
+  workspaces          workspaces[]       @relation("workspaces_created_by")
+  workspace_grants    workspace_grants[] @relation("workspace_grants_granted_by")
 }
 
 // Organizations are the tenancy root (ADR-008)
 model organizations {
-  id                          String    @id @default(dbgenerated("uuidv7()")) @db.Uuid
-  name                        String    @db.Text
-  slug                        String    @unique @db.Text
-  kind                        OrgKind   @default(team)
-  default_execution_location  String?   @db.Text
-  data_retention_days         Int?      @default(90)
-  settings                    Json?     @db.JsonB
-  status                      OrgStatus @default(active)
-  created_at                  DateTime  @default(now()) @db.Timestamptz
-  updated_at                  DateTime  @updatedAt @db.Timestamptz
-  deleted_at                  DateTime? @db.Timestamptz
+  id                         String    @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  name                       String    @db.Text
+  slug                       String    @unique @db.Text
+  kind                       OrgKind   @default(team)
+  default_execution_location String?   @db.Text
+  data_retention_days        Int?      @default(90)
+  settings                   Json?     @db.JsonB
+  status                     OrgStatus @default(active)
+  created_at                 DateTime  @default(now()) @db.Timestamptz
+  updated_at                 DateTime  @updatedAt @db.Timestamptz
+  deleted_at                 DateTime? @db.Timestamptz
 
-  memberships      memberships[]
-  invitations      invitations[]
-  sessions         sessions[]
-  audit_events     audit_events[]
-  idempotency_keys idempotency_keys[]
+  memberships          memberships[]
+  invitations          invitations[]
+  sessions             sessions[]
+  audit_events         audit_events[]
+  idempotency_keys     idempotency_keys[]
+  agent_sessions       agent_sessions[]
+  tasks                tasks[]
+  task_steps           task_steps[]
+  task_events          task_events[]
+  task_checkpoints     task_checkpoints[]
+  devices              devices[]
+  device_pairing_codes device_pairing_codes[]
+  device_commands      device_commands[]
+  workspaces           workspaces[]
+  workspace_grants     workspace_grants[]
+  outbox               outbox[]
 }
 
 model memberships {
@@ -147,22 +239,22 @@ model invitations {
 
 // Sessions are user sessions within an org context (may be active for an org)
 model sessions {
-  id                   String                 @id @default(dbgenerated("uuidv7()")) @db.Uuid
-  user_id              String                 @db.Uuid
-  organization_id      String                 @db.Uuid
-  token_hash           String                 @unique @db.Text
-  user_agent           String?                @db.Text
-  ip_hash              String?                @db.Text
-  created_at           DateTime               @default(now()) @db.Timestamptz
-  last_seen_at         DateTime               @default(now()) @db.Timestamptz
-  expires_at           DateTime               @db.Timestamptz
-  revoked_at           DateTime?              @db.Timestamptz
-  revoked_reason       SessionRevokedReason?  @map("revoked_reason")
-  mfa_satisfied_at     DateTime?              @db.Timestamptz
-  logout_at            DateTime?              @db.Timestamptz
+  id               String                @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  user_id          String                @db.Uuid
+  organization_id  String                @db.Uuid
+  token_hash       String                @unique @db.Text
+  user_agent       String?               @db.Text
+  ip_hash          String?               @db.Text
+  created_at       DateTime              @default(now()) @db.Timestamptz
+  last_seen_at     DateTime              @default(now()) @db.Timestamptz
+  expires_at       DateTime              @db.Timestamptz
+  revoked_at       DateTime?             @db.Timestamptz
+  revoked_reason   SessionRevokedReason? @map("revoked_reason")
+  mfa_satisfied_at DateTime?             @db.Timestamptz
+  logout_at        DateTime?             @db.Timestamptz
 
-  user         users         @relation(fields: [user_id], references: [id], onDelete: Restrict)
-  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+  user           users            @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  organization   organizations    @relation(fields: [organization_id], references: [id], onDelete: Restrict)
   refresh_tokens refresh_tokens[]
 
   @@index([user_id])
@@ -172,15 +264,15 @@ model sessions {
 }
 
 model refresh_tokens {
-  id            String    @id @default(dbgenerated("uuidv7()")) @db.Uuid
-  session_id    String    @db.Uuid
-  token_hash    String    @unique @db.Text
-  family_id     String    @db.Uuid
-  replaced_by   String?   @db.Uuid
-  used_at       DateTime? @db.Timestamptz
-  expires_at    DateTime  @db.Timestamptz
-  created_at    DateTime  @default(now()) @db.Timestamptz
-  revoked_at    DateTime? @db.Timestamptz
+  id          String    @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  session_id  String    @db.Uuid
+  token_hash  String    @unique @db.Text
+  family_id   String    @db.Uuid
+  replaced_by String?   @db.Uuid
+  used_at     DateTime? @db.Timestamptz
+  expires_at  DateTime  @db.Timestamptz
+  created_at  DateTime  @default(now()) @db.Timestamptz
+  revoked_at  DateTime? @db.Timestamptz
 
   session sessions @relation(fields: [session_id], references: [id], onDelete: Cascade)
 
@@ -203,17 +295,17 @@ model login_attempts {
 }
 
 model idempotency_keys {
-  id              String    @id @default(dbgenerated("uuidv7()")) @db.Uuid
-  organization_id String    @db.Uuid
-  scope           String    @db.Text
-  key             String    @db.Text
-  request_digest  String    @db.Text
+  id              String   @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id String   @db.Uuid
+  scope           String   @db.Text
+  key             String   @db.Text
+  request_digest  String   @db.Text
   response_status Int?
-  response_body   Json?     @db.JsonB
-  state           String    @db.Text // 'in_progress' | 'completed'
-  expires_at      DateTime  @db.Timestamptz
-  created_at      DateTime  @default(now()) @db.Timestamptz
-  updated_at      DateTime  @updatedAt @db.Timestamptz
+  response_body   Json?    @db.JsonB
+  state           String   @db.Text // 'in_progress' | 'completed'
+  expires_at      DateTime @db.Timestamptz
+  created_at      DateTime @default(now()) @db.Timestamptz
+  updated_at      DateTime @updatedAt @db.Timestamptz
 
   organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
 
@@ -222,21 +314,21 @@ model idempotency_keys {
 }
 
 model audit_events {
-  id                  String        @id @default(dbgenerated("uuidv7()")) @db.Uuid
-  organization_id     String?       @db.Uuid
-  actor_type          AuditActorType
-  actor_id            String?       @db.Uuid
-  device_id           String?       @db.Uuid
-  action              String        @db.Text
-  resource_type       String        @db.Text
-  resource_id         String?       @db.Text
-  result              AuditResult   @default(success)
-  reason              String?       @db.Text
-  ip_hash             String?       @db.Text
-  user_agent_digest   String?       @db.Text
-  trace_id            String?       @db.Text
-  metadata            Json?         @db.JsonB
-  created_at          DateTime      @default(now()) @db.Timestamptz
+  id                String         @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id   String?        @db.Uuid
+  actor_type        AuditActorType
+  actor_id          String?        @db.Uuid
+  device_id         String?        @db.Uuid
+  action            String         @db.Text
+  resource_type     String         @db.Text
+  resource_id       String?        @db.Text
+  result            AuditResult    @default(success)
+  reason            String?        @db.Text
+  ip_hash           String?        @db.Text
+  user_agent_digest String?        @db.Text
+  trace_id          String?        @db.Text
+  metadata          Json?          @db.JsonB
+  created_at        DateTime       @default(now()) @db.Timestamptz
 
   organization organizations? @relation(fields: [organization_id], references: [id], onDelete: Restrict)
   user         users?         @relation(fields: [actor_id], references: [id], onDelete: Restrict)
@@ -244,4 +336,315 @@ model audit_events {
   @@index([organization_id, created_at])
   @@index([actor_id, created_at])
   @@index([resource_type, resource_id])
+}
+
+// --- Phase 3: task core and durable job pipeline (06 §2.3, §2.8) ---
+
+model agent_sessions {
+  id                 String            @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id    String            @db.Uuid
+  user_id            String            @db.Uuid
+  title              String?           @db.Text
+  execution_location ExecutionLocation @default(cloud)
+  model_config       Json?             @db.JsonB
+  token_usage        Int?              @default(-1)
+  created_at         DateTime          @default(now()) @db.Timestamptz
+  archived_at        DateTime?         @db.Timestamptz
+
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+  user         users         @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  tasks        tasks[]
+
+  @@index([organization_id, created_at])
+  @@index([user_id, created_at])
+}
+
+model tasks {
+  id                 String            @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id    String            @db.Uuid
+  agent_session_id   String            @db.Uuid
+  created_by         String?           @db.Uuid
+  device_id          String?           @db.Uuid
+  goal               String            @db.Text
+  constraints        Json?             @db.JsonB
+  execution_location ExecutionLocation @default(cloud)
+  state              TaskState         @default(QUEUED)
+  state_changed_at   DateTime          @default(now()) @db.Timestamptz
+  risk_class         String?           @db.Text
+  plan               Json?             @db.JsonB
+  policy_version     String?           @db.Text
+  budget_used        Json?             @db.JsonB
+  result_summary     String?           @db.Text
+  error_code         String?           @db.Text
+  error_message      String?           @db.Text
+  idempotency_key_id String?           @db.Uuid
+  started_at         DateTime?         @db.Timestamptz
+  finished_at        DateTime?         @db.Timestamptz
+  lease_owner        String?           @db.Text
+  lease_expires_at   DateTime?         @db.Timestamptz
+  attempts           Int               @default(0)
+  created_at         DateTime          @default(now()) @db.Timestamptz
+  updated_at         DateTime          @updatedAt @db.Timestamptz
+
+  organization     organizations      @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+  agent_session    agent_sessions     @relation(fields: [agent_session_id], references: [id], onDelete: Restrict)
+  created_by_user  users?             @relation("tasks_created_by", fields: [created_by], references: [id], onDelete: SetNull)
+  task_steps       task_steps[]
+  task_events      task_events[]
+  task_checkpoints task_checkpoints[]
+
+  @@index([organization_id, created_at])
+  @@index([organization_id, state, created_at])
+  @@index([agent_session_id, created_at])
+  @@index([lease_owner])
+  @@index([lease_expires_at])
+}
+
+model task_steps {
+  id               String        @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id  String        @db.Uuid
+  task_id          String        @db.Uuid
+  seq              Int
+  kind             TaskStepKind
+  title            String        @db.Text
+  tool_name        String?       @db.Text
+  tool_version     String?       @db.Text
+  arguments        Json?         @db.JsonB
+  arguments_digest String?       @db.Text
+  risk_class       String?       @db.Text
+  state            TaskStepState @default(PENDING)
+  depends_on       Int[]         @default([])
+  attempts         Int           @default(0)
+  max_attempts     Int           @default(3)
+  lease_owner      String?       @db.Text
+  lease_expires_at DateTime?     @db.Timestamptz
+  heartbeat_at     DateTime?     @db.Timestamptz
+  started_at       DateTime?     @db.Timestamptz
+  finished_at      DateTime?     @db.Timestamptz
+  result           Json?         @db.JsonB
+  result_digest    String?       @db.Text
+  error_code       String?       @db.Text
+  idempotency_key  String?       @db.Text
+  cost_minor       BigInt?       @default(0)
+  tokens           Int?          @default(0)
+  created_at       DateTime      @default(now()) @db.Timestamptz
+  updated_at       DateTime      @updatedAt @db.Timestamptz
+
+  task         tasks         @relation(fields: [task_id], references: [id], onDelete: Cascade)
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+
+  @@unique([task_id, seq])
+  @@unique([task_id, idempotency_key])
+  @@index([organization_id, created_at])
+  @@index([task_id, state])
+  @@index([lease_owner])
+  @@index([lease_expires_at])
+}
+
+model task_events {
+  id              BigInt         @id @default(autoincrement())
+  organization_id String         @db.Uuid
+  task_id         String         @db.Uuid
+  seq             Int
+  type            String         @db.Text
+  data            Json?          @db.JsonB
+  actor           TaskEventActor @default(system)
+  actor_id        String?        @db.Uuid
+  trace_id        String?        @db.Text
+  created_at      DateTime       @default(now()) @db.Timestamptz
+
+  task         tasks         @relation(fields: [task_id], references: [id], onDelete: Cascade)
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+
+  @@unique([task_id, seq])
+  @@index([organization_id, created_at])
+  @@index([task_id, seq])
+  @@index([type, created_at])
+}
+
+model task_checkpoints {
+  id              String   @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id String   @db.Uuid
+  task_id         String   @db.Uuid
+  step_seq        Int
+  state_blob_enc  String?  @db.Text
+  workspace_ref   String?  @db.Text
+  created_at      DateTime @default(now()) @db.Timestamptz
+
+  task         tasks         @relation(fields: [task_id], references: [id], onDelete: Cascade)
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+
+  @@index([organization_id, created_at])
+  @@index([task_id, step_seq, created_at])
+}
+
+model outbox {
+  id              BigInt    @id @default(autoincrement())
+  aggregate_type  String    @db.Text
+  aggregate_id    String    @db.Uuid
+  organization_id String    @db.Uuid
+  event_type      String    @db.Text
+  payload         Json?     @db.JsonB
+  available_at    DateTime  @default(now()) @db.Timestamptz
+  attempts        Int       @default(0)
+  last_error      String?   @db.Text
+  processed_at    DateTime? @db.Timestamptz
+  created_at      DateTime  @default(now()) @db.Timestamptz
+
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+
+  @@index([processed_at, available_at])
+  @@index([organization_id, created_at])
+}
+
+model job_leases {
+  id            String   @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  resource_type String   @db.Text
+  resource_id   String   @db.Uuid
+  lease_id      String   @db.Uuid
+  owner         String   @db.Text
+  acquired_at   DateTime @default(now()) @db.Timestamptz
+  heartbeat_at  DateTime @default(now()) @db.Timestamptz
+  expires_at    DateTime @db.Timestamptz
+  created_at    DateTime @default(now()) @db.Timestamptz
+  updated_at    DateTime @updatedAt @db.Timestamptz
+
+  @@unique([resource_type, resource_id])
+  @@index([expires_at])
+}
+
+// A registered local runner (docs/planning/06 2.2; Phase 4, FR-DEV-01/02).
+model devices {
+  id              String       @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id String       @db.Uuid
+  user_id         String       @db.Uuid
+  name            String       @db.Text
+  os              String       @db.Text
+  os_version      String?      @db.Text
+  runner_version  String       @db.Text
+  // base64 SPKI DER of the device's Ed25519 public key. The private half never
+  // leaves the machine, so this row is all the API ever holds (FR-DEV-01).
+  public_key      String       @db.Text
+  key_algorithm   String       @default("ed25519") @db.Text
+  fingerprint     String       @db.Text
+  status          DeviceStatus @default(pending)
+  capabilities    Json?        @db.JsonB
+  last_seen_at    DateTime?    @db.Timestamptz
+  revoked_at      DateTime?    @db.Timestamptz
+  revoked_by      String?      @db.Uuid
+  revoke_reason   String?      @db.Text
+  created_at      DateTime     @default(now()) @db.Timestamptz
+  updated_at      DateTime     @updatedAt @db.Timestamptz
+
+  organization    organizations     @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+  owner           users             @relation("devices_owned_by", fields: [user_id], references: [id], onDelete: Restrict)
+  device_commands device_commands[]
+  workspaces      workspaces[]
+
+  @@unique([organization_id, fingerprint])
+  @@index([organization_id, created_at])
+  @@index([organization_id, status])
+}
+
+// A short-lived single-use authorisation code (docs/planning/06 2.2; FR-AUTH-07).
+// Only the hash is stored: the code itself is shown once, in the browser.
+model device_pairing_codes {
+  id                 String    @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id    String    @db.Uuid
+  code_hash          String    @unique @db.Text
+  created_by         String    @db.Uuid
+  expires_at         DateTime  @db.Timestamptz
+  redeemed_at        DateTime? @db.Timestamptz
+  // Audit pointer, deliberately not a foreign key: the code row outlives the
+  // device's own redemption and a cascade would erase who redeemed what.
+  redeemed_device_id String?   @db.Uuid
+  created_at         DateTime  @default(now()) @db.Timestamptz
+
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+
+  @@index([expires_at])
+  @@index([organization_id, created_at])
+}
+
+// Durable delivery of one command to one device — delivery, not state
+// (docs/planning/06 2.2). `seq` is monotonic per device and doubles as the
+// long-poll cursor, so a re-delivery after a reconnect is recognisable.
+model device_commands {
+  id              String             @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id String             @db.Uuid
+  device_id       String             @db.Uuid
+  task_id         String?            @db.Uuid
+  step_id         String?            @db.Uuid
+  kind            DeviceCommandKind
+  payload         Json?              @db.JsonB
+  command_digest  String             @db.Text
+  seq             Int
+  state           DeviceCommandState @default(pending)
+  created_at      DateTime           @default(now()) @db.Timestamptz
+  sent_at         DateTime?          @db.Timestamptz
+  acked_at        DateTime?          @db.Timestamptz
+  expires_at      DateTime           @db.Timestamptz
+
+  device       devices       @relation(fields: [device_id], references: [id], onDelete: Cascade)
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+
+  @@unique([device_id, seq])
+  @@index([device_id, state, seq])
+  @@index([organization_id, created_at])
+  @@index([expires_at])
+}
+
+// A directory a device may operate on (docs/planning/06 §2.2; Phase 4, FR-DEV-05).
+// `path` is the canonical form and is the authority — every later comparison uses
+// it. `raw_path` is what someone typed, kept so the browser can show what the
+// canonical path was made from (docs/planning/09 §6).
+model workspaces {
+  id              String        @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id String        @db.Uuid
+  device_id       String        @db.Uuid
+  path            String        @db.Text
+  raw_path        String        @db.Text
+  label           String        @db.Text
+  mode            WorkspaceMode @default(read_write)
+  created_by      String        @db.Uuid
+  // Set when a step runs here, so the browser can show the stale ones (Phase 5).
+  last_used_at    DateTime?     @db.Timestamptz
+  created_at      DateTime      @default(now()) @db.Timestamptz
+  updated_at      DateTime      @updatedAt @db.Timestamptz
+
+  organization organizations      @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+  device       devices            @relation(fields: [device_id], references: [id], onDelete: Cascade)
+  creator      users              @relation("workspaces_created_by", fields: [created_by], references: [id], onDelete: Restrict)
+  grants       workspace_grants[]
+
+  // One registration per directory per device: registering the same path twice is
+  // a conflict, not two roots that could be edited apart.
+  @@unique([device_id, path])
+  @@index([organization_id, created_at])
+  @@index([device_id])
+}
+
+// A standing `external_directory` grant (docs/planning/06 §2.2, `09` §6): the one
+// way a path outside every workspace becomes reachable, and the one thing that can
+// veto a path inside one. `path_pattern` is a canonical directory, not a glob.
+model workspace_grants {
+  id              String               @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id String               @db.Uuid
+  workspace_id    String               @db.Uuid
+  path_pattern    String               @db.Text
+  effect          WorkspaceGrantEffect
+  granted_by      String               @db.Uuid
+  expires_at      DateTime?            @db.Timestamptz
+  // Which policy revision granted this. The policy engine starts writing meaning
+  // into it in Phase 5; until then it is the default, which is honest.
+  policy_version  Int                  @default(1) @db.Integer
+  created_at      DateTime             @default(now()) @db.Timestamptz
+
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+  workspace    workspaces    @relation(fields: [workspace_id], references: [id], onDelete: Cascade)
+  granter      users         @relation("workspace_grants_granted_by", fields: [granted_by], references: [id], onDelete: Restrict)
+
+  @@index([organization_id, created_at])
+  @@index([workspace_id, effect])
+  @@index([expires_at])
 }

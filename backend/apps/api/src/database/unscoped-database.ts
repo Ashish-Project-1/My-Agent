@@ -15,8 +15,9 @@ import { LOGGER } from "../logging.module.js";
  * organization-scoped table.
  *
  * That is why it is confined to `src/identity`, `src/auth`, `src/organizations`,
- * `src/audit` and the readiness probe in `src/health`: `test/unscoped-client.test.ts`
- * fails if any other module injects it.
+ * `src/audit`, the readiness probe in `src/health`, and the task/session
+ * repositories that use it only to build a `forOrganization` scope:
+ * `test/unscoped-client.test.ts` fails if any other module injects it.
  */
 @Injectable()
 export class UnscopedDatabase implements OnModuleInit, OnApplicationShutdown {

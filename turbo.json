@@ -4,7 +4,8 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
+      "env": ["API_ORIGIN"]
     },
     "typecheck": {
       "dependsOn": ["^build"],
@@ -17,7 +18,8 @@
     "test:integration": {
       "dependsOn": ["^build"],
       "outputs": [],
-      "cache": false
+      "cache": false,
+      "env": ["DATABASE_URL", "REDIS_URL"]
     },
     "test:e2e": {
       "dependsOn": ["^build"],

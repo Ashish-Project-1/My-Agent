@@ -1,0 +1,8 @@
+/**
+ * `@ua/agent-engine` — the task state machine and (later) the agent loop
+ * (docs/planning/03 §5.7, 08).
+ *
+ * Depends on `@ua/contracts` only. No framework, no database, no I/O: the engine
+ * decides *what is legal*, the API and workers decide when to ask.
+ */
+export * from "./task-state.js";

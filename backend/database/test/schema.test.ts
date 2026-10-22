@@ -9,7 +9,24 @@ const schema = readFileSync(join(import.meta.dirname, "..", "prisma", "schema.pr
 
 // Tables carrying tenant-scoped rows; organizations itself is the tenancy root
 // and login_attempts is explicitly not tenant-scoped (docs/planning/06 §2.7, §5).
-const tenantTables = ["memberships", "invitations", "sessions", "idempotency_keys", "audit_events"];
+const tenantTables = [
+  "memberships",
+  "invitations",
+  "sessions",
+  "idempotency_keys",
+  "audit_events",
+  "agent_sessions",
+  "tasks",
+  "task_steps",
+  "task_events",
+  "task_checkpoints",
+  "devices",
+  "device_pairing_codes",
+  "device_commands",
+  "workspaces",
+  "workspace_grants",
+  "outbox",
+];
 
 const modelBlock = (model: string): string =>
   schema.split(`model ${model} {`)[1]?.split("\n}")[0] ?? "";
@@ -76,25 +93,35 @@ describe("prisma schema conventions (docs/planning/06 §1)", () => {
     }
   });
 
-  it("keeps credential columns confined to the four tables that need them", () => {
+  it("keeps credential columns confined to the tables that need them", () => {
     const holders = schema
       .split(/^model /m)
       .filter((block) => /password_hash|_enc\b|token_hash/.test(block))
       .map((block) => block.split(/[\s{]/)[0]);
     expect(new Set(holders)).toEqual(
-      new Set(["users", "sessions", "invitations", "refresh_tokens"]),
+      new Set(["users", "sessions", "invitations", "refresh_tokens", "task_checkpoints"]),
     );
   });
 
   it("only cascades a pure child, never a tenancy-root foreign key", () => {
     // Cascade is sanctioned only for pure children (docs/planning/06 §1).
-    // refresh_tokens are meaningless without their session; anything hanging
-    // off organizations/memberships must not take another tenant's data with it.
+    // refresh_tokens are meaningless without their session; task_steps/events/checkpoints
+    // are pure children of tasks; device_commands are delivery records that mean
+    // nothing without the device they were queued for; a workspace is a
+    // registration of a directory *on* a device, and a grant of a workspace.
     const blocks = schema.split(/^model /m).slice(1);
     const cascades = blocks
       .filter((b) => b.includes("onDelete: Cascade"))
       .map((b) => b.split(/[\s{]/)[0]);
-    expect(cascades).toEqual(["refresh_tokens"]);
+    expect(cascades).toEqual([
+      "refresh_tokens",
+      "task_steps",
+      "task_events",
+      "task_checkpoints",
+      "device_commands",
+      "workspaces",
+      "workspace_grants",
+    ]);
     expect(schema.match(/onDelete: Restrict/g)?.length ?? 0).toBeGreaterThan(4);
   });
 });

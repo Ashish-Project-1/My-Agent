@@ -26,6 +26,9 @@ export async function createApp(config = loadConfig()): Promise<NestFastifyAppli
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, adapter, {
     // The platform logger is injected; silence Nest's own logs.
     logger: false,
+    // Signed device requests cover the exact bytes of the body, so the raw body
+    // must survive parsing (docs/planning/07 §3.6).
+    rawBody: true,
   });
 
   await app.register(cookie);

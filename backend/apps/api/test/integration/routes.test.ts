@@ -1,3 +1,4 @@
+// scan-secrets:allow-file — the connection string is the local dev default, not a secret.
 import type { NestFastifyApplication } from "@nestjs/platform-fastify";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { createApp } from "../../src/app.js";
@@ -38,11 +39,27 @@ describe("route authorisation", () => {
     ["GET", "/v1/organizations"],
     ["POST", "/v1/organizations"],
     ["GET", "/v1/organizations/00000000-0000-0000-0000-000000000000"],
+    ["GET", "/v1/tasks"],
+    ["POST", "/v1/tasks"],
+    ["GET", "/v1/tasks/00000000-0000-0000-0000-000000000000"],
+    ["GET", "/v1/tasks/00000000-0000-0000-0000-000000000000/events"],
+    ["GET", "/v1/tasks/00000000-0000-0000-0000-000000000000/steps"],
+    ["GET", "/v1/tasks/00000000-0000-0000-0000-000000000000/stream"],
+    ["GET", "/v1/agent-sessions"],
+    ["GET", "/v1/agent-sessions/00000000-0000-0000-0000-000000000000"],
+    ["GET", "/v1/workspaces"],
+    ["POST", "/v1/workspaces"],
+    ["GET", "/v1/workspaces/00000000-0000-0000-0000-000000000000"],
+    ["PATCH", "/v1/workspaces/00000000-0000-0000-0000-000000000000"],
+    ["DELETE", "/v1/workspaces/00000000-0000-0000-0000-000000000000"],
+    ["GET", "/v1/workspaces/00000000-0000-0000-0000-000000000000/grants"],
+    ["POST", "/v1/workspaces/00000000-0000-0000-0000-000000000000/grants"],
+    ["DELETE", "/v1/grants/00000000-0000-0000-0000-000000000000"],
   ];
 
   it.each(protectedRoutes)("refuses %s %s without a session", async (method, url) => {
     const res = await app.inject({
-      method: method as "GET" | "POST",
+      method: method as "GET" | "POST" | "PATCH" | "DELETE",
       url,
       ...(method === "POST" ? { payload: {} } : {}),
     });

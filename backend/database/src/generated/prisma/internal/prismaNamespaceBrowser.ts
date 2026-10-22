@@ -59,7 +59,19 @@ export const ModelName = {
   refresh_tokens: 'refresh_tokens',
   login_attempts: 'login_attempts',
   idempotency_keys: 'idempotency_keys',
-  audit_events: 'audit_events'
+  audit_events: 'audit_events',
+  agent_sessions: 'agent_sessions',
+  tasks: 'tasks',
+  task_steps: 'task_steps',
+  task_events: 'task_events',
+  task_checkpoints: 'task_checkpoints',
+  outbox: 'outbox',
+  job_leases: 'job_leases',
+  devices: 'devices',
+  device_pairing_codes: 'device_pairing_codes',
+  device_commands: 'device_commands',
+  workspaces: 'workspaces',
+  workspace_grants: 'workspace_grants'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -228,6 +240,238 @@ export const Audit_eventsScalarFieldEnum = {
 } as const
 
 export type Audit_eventsScalarFieldEnum = (typeof Audit_eventsScalarFieldEnum)[keyof typeof Audit_eventsScalarFieldEnum]
+
+
+export const Agent_sessionsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  user_id: 'user_id',
+  title: 'title',
+  execution_location: 'execution_location',
+  model_config: 'model_config',
+  token_usage: 'token_usage',
+  created_at: 'created_at',
+  archived_at: 'archived_at'
+} as const
+
+export type Agent_sessionsScalarFieldEnum = (typeof Agent_sessionsScalarFieldEnum)[keyof typeof Agent_sessionsScalarFieldEnum]
+
+
+export const TasksScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  agent_session_id: 'agent_session_id',
+  created_by: 'created_by',
+  device_id: 'device_id',
+  goal: 'goal',
+  constraints: 'constraints',
+  execution_location: 'execution_location',
+  state: 'state',
+  state_changed_at: 'state_changed_at',
+  risk_class: 'risk_class',
+  plan: 'plan',
+  policy_version: 'policy_version',
+  budget_used: 'budget_used',
+  result_summary: 'result_summary',
+  error_code: 'error_code',
+  error_message: 'error_message',
+  idempotency_key_id: 'idempotency_key_id',
+  started_at: 'started_at',
+  finished_at: 'finished_at',
+  lease_owner: 'lease_owner',
+  lease_expires_at: 'lease_expires_at',
+  attempts: 'attempts',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type TasksScalarFieldEnum = (typeof TasksScalarFieldEnum)[keyof typeof TasksScalarFieldEnum]
+
+
+export const Task_stepsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  task_id: 'task_id',
+  seq: 'seq',
+  kind: 'kind',
+  title: 'title',
+  tool_name: 'tool_name',
+  tool_version: 'tool_version',
+  arguments: 'arguments',
+  arguments_digest: 'arguments_digest',
+  risk_class: 'risk_class',
+  state: 'state',
+  depends_on: 'depends_on',
+  attempts: 'attempts',
+  max_attempts: 'max_attempts',
+  lease_owner: 'lease_owner',
+  lease_expires_at: 'lease_expires_at',
+  heartbeat_at: 'heartbeat_at',
+  started_at: 'started_at',
+  finished_at: 'finished_at',
+  result: 'result',
+  result_digest: 'result_digest',
+  error_code: 'error_code',
+  idempotency_key: 'idempotency_key',
+  cost_minor: 'cost_minor',
+  tokens: 'tokens',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Task_stepsScalarFieldEnum = (typeof Task_stepsScalarFieldEnum)[keyof typeof Task_stepsScalarFieldEnum]
+
+
+export const Task_eventsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  task_id: 'task_id',
+  seq: 'seq',
+  type: 'type',
+  data: 'data',
+  actor: 'actor',
+  actor_id: 'actor_id',
+  trace_id: 'trace_id',
+  created_at: 'created_at'
+} as const
+
+export type Task_eventsScalarFieldEnum = (typeof Task_eventsScalarFieldEnum)[keyof typeof Task_eventsScalarFieldEnum]
+
+
+export const Task_checkpointsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  task_id: 'task_id',
+  step_seq: 'step_seq',
+  state_blob_enc: 'state_blob_enc',
+  workspace_ref: 'workspace_ref',
+  created_at: 'created_at'
+} as const
+
+export type Task_checkpointsScalarFieldEnum = (typeof Task_checkpointsScalarFieldEnum)[keyof typeof Task_checkpointsScalarFieldEnum]
+
+
+export const OutboxScalarFieldEnum = {
+  id: 'id',
+  aggregate_type: 'aggregate_type',
+  aggregate_id: 'aggregate_id',
+  organization_id: 'organization_id',
+  event_type: 'event_type',
+  payload: 'payload',
+  available_at: 'available_at',
+  attempts: 'attempts',
+  last_error: 'last_error',
+  processed_at: 'processed_at',
+  created_at: 'created_at'
+} as const
+
+export type OutboxScalarFieldEnum = (typeof OutboxScalarFieldEnum)[keyof typeof OutboxScalarFieldEnum]
+
+
+export const Job_leasesScalarFieldEnum = {
+  id: 'id',
+  resource_type: 'resource_type',
+  resource_id: 'resource_id',
+  lease_id: 'lease_id',
+  owner: 'owner',
+  acquired_at: 'acquired_at',
+  heartbeat_at: 'heartbeat_at',
+  expires_at: 'expires_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Job_leasesScalarFieldEnum = (typeof Job_leasesScalarFieldEnum)[keyof typeof Job_leasesScalarFieldEnum]
+
+
+export const DevicesScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  user_id: 'user_id',
+  name: 'name',
+  os: 'os',
+  os_version: 'os_version',
+  runner_version: 'runner_version',
+  public_key: 'public_key',
+  key_algorithm: 'key_algorithm',
+  fingerprint: 'fingerprint',
+  status: 'status',
+  capabilities: 'capabilities',
+  last_seen_at: 'last_seen_at',
+  revoked_at: 'revoked_at',
+  revoked_by: 'revoked_by',
+  revoke_reason: 'revoke_reason',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type DevicesScalarFieldEnum = (typeof DevicesScalarFieldEnum)[keyof typeof DevicesScalarFieldEnum]
+
+
+export const Device_pairing_codesScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  code_hash: 'code_hash',
+  created_by: 'created_by',
+  expires_at: 'expires_at',
+  redeemed_at: 'redeemed_at',
+  redeemed_device_id: 'redeemed_device_id',
+  created_at: 'created_at'
+} as const
+
+export type Device_pairing_codesScalarFieldEnum = (typeof Device_pairing_codesScalarFieldEnum)[keyof typeof Device_pairing_codesScalarFieldEnum]
+
+
+export const Device_commandsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  device_id: 'device_id',
+  task_id: 'task_id',
+  step_id: 'step_id',
+  kind: 'kind',
+  payload: 'payload',
+  command_digest: 'command_digest',
+  seq: 'seq',
+  state: 'state',
+  created_at: 'created_at',
+  sent_at: 'sent_at',
+  acked_at: 'acked_at',
+  expires_at: 'expires_at'
+} as const
+
+export type Device_commandsScalarFieldEnum = (typeof Device_commandsScalarFieldEnum)[keyof typeof Device_commandsScalarFieldEnum]
+
+
+export const WorkspacesScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  device_id: 'device_id',
+  path: 'path',
+  raw_path: 'raw_path',
+  label: 'label',
+  mode: 'mode',
+  created_by: 'created_by',
+  last_used_at: 'last_used_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type WorkspacesScalarFieldEnum = (typeof WorkspacesScalarFieldEnum)[keyof typeof WorkspacesScalarFieldEnum]
+
+
+export const Workspace_grantsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  workspace_id: 'workspace_id',
+  path_pattern: 'path_pattern',
+  effect: 'effect',
+  granted_by: 'granted_by',
+  expires_at: 'expires_at',
+  policy_version: 'policy_version',
+  created_at: 'created_at'
+} as const
+
+export type Workspace_grantsScalarFieldEnum = (typeof Workspace_grantsScalarFieldEnum)[keyof typeof Workspace_grantsScalarFieldEnum]
 
 
 export const SortOrder = {

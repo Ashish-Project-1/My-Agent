@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Last updated | 2026-10-16 |
+| Last updated | 2026-10-17 |
 | Owner | Architecture |
 | Purpose | The single place that says what is **built** versus what the planning documents only describe as planned. |
 
@@ -141,24 +141,226 @@ it yet.
   error shape (`meta.driverAdapterError.cause.constraint.index`), not only the
   older `meta.target`, so a duplicate email is a 409 rather than a 500.
 
-**Not built:** the desktop/agent runtime, RLS policies, Terraform, and everything
-from Phase 3 onward. There is no agent loop, no tools, no approvals, and no
-frontend code.
+**Phase 3 — task core (in progress).** The database, the task API, the state
+machine, the SSE task stream and the durable worker are built.
+
+- Schema (`backend/database`) gains `agent_sessions`, `tasks`, `task_steps`,
+  `task_events`, `task_checkpoints`, `outbox` and `job_leases` (`06` §2.3, §2.8)
+  plus the `TaskState`, `TaskStepKind`, `TaskStepState`, `TaskEventActor` and
+  `ExecutionLocation` enums, in migration `20261017115347_add_task_pipeline`.
+  `TaskState` mirrors the contract exactly (`08` §4: `QUEUED … PAUSED, VERIFYING,
+  … EXPIRED`); an earlier draft drifted (`TIMED_OUT`, no `PAUSED`) and the dev
+  database was reset to fold the correction into one forward migration.
+- Task children (`task_steps`, `task_events`, `task_checkpoints`) and
+  `refresh_tokens` are the only `ON DELETE CASCADE` relations; every
+  `organization_id` stays a `RESTRICT` foreign key. The task tables are added to
+  the tenant scope (`src/tenant.ts`), so their reads/writes are filtered and
+  stamped like every other tenant table and `test/schema.test.ts` pins the two
+  lists together.
+- Read API (`backend/apps/api/src/tasks`, `…/agent-sessions`): `GET /v1/tasks`,
+  `GET /v1/tasks/:taskId`, `GET /v1/tasks/:taskId/events`,
+  `GET /v1/tasks/:taskId/steps`, `GET /v1/agent-sessions`,
+  `GET /v1/agent-sessions/:sessionId`. Every route is tenant-scoped through
+  `forOrganization`; a foreign-tenant id resolves to 404, not 403.
+- Write API: `POST /v1/tasks` (FR-TASK-01/10) writes the task, its first
+  `task.created` event, its `task.created` outbox row and its idempotency key in
+  one transaction, so a task exists if and only if the work is queued
+  (NFR-REL-02). A repeated `Idempotency-Key` with the same body returns the
+  original task; a different body is `409 idempotency_conflict`. An
+  `agentSessionId` must belong to the caller's org (else 404); when omitted a new
+  agent session is opened in the same transaction.
+- Contracts (`@ua/contracts`): `TaskSummary`, `TaskStepSummary`, `TaskEventSummary`
+  and their list responses, `CreateTaskRequest`, plus `AgentSessionSummary`/list,
+  `TaskStepState` and `TaskEventActor`; OpenAPI regenerated to 37 schemas.
+- State machine (`backend/modules/agent-engine`, `@ua/agent-engine`): the legal
+  task transitions from `08` §4.1 as one table, with `canTransitionTask`,
+  `assertTaskTransition` and `IllegalTaskTransitionError`. Terminal states are
+  final and the `any non-terminal → FAILED` failsafe holds. It depends on
+  `@ua/contracts` only — no DB, no framework — so it is the single authority on
+  `tasks.state` and the first real module behind a former placeholder package.
+- SSE task stream (`GET /v1/tasks/:taskId/stream`, `07` §5): replays
+  `task_events` after the client's `Last-Event-ID` (`{taskId}:{seq}`), then
+  follows the log live, emitting `id`/`event`/`data` frames with a `:hb` comment
+  every 15 s, and `event: done` on a terminal state. A 404 is a normal
+  `application/problem+json` body; a mid-stream failure is `event: resync`.
+  `shortcut:` liveness is DB polling, not the Redis pub/sub fan-out in `07` §5.
+- Durable worker (`backend/apps/workers/worker-code`, ADR-005): the API never
+  touches Redis — its outbox row *is* the hand-off, written in the same
+  transaction as the task. One process runs two independent halves:
+  `outbox-publisher.ts` polls `outbox` and relays `task.created` → `task.plan`
+  onto BullMQ (queue `ua.tasks`), and `task-runner.ts` consumes it. The job id is
+  `outbox-{id}`, and BullMQ ignores an add whose id already exists, so a crash
+  between the add and the `processed_at` update replays safely — that is the
+  "outbox replay is idempotent" gate. A failed publish leaves the row pending and
+  increments `attempts`.
+- The `task.plan` consumer makes the state machine real: every write of
+  `tasks.state` goes through `assertTaskTransition`, then a compare-and-set
+  (`updateMany` on `state = from`) so a second delivery loses and stops. It plans
+  (a mock `CodingEngine`, one step), runs the step, records `verification.passed`
+  and completes — `RUNNING → COMPLETED` is illegal, so `VERIFYING` is never
+  skipped. Events append with the next per-task `seq` under the
+  `unique(task_id, seq)` constraint. `@ua/agent-engine` now has a caller.
+- `job_leases` heartbeat: the claim is the insert itself (one row per
+  `(resource_type, resource_id)`), extended every `leaseTtlMs / 3` and released in
+  a `finally`. A live lease drops the job; an expired one is taken over.
+- "A module only touches its own tables" (`03` §4) is a failing lint rather than
+  a convention: `scripts/check-module-boundaries.mjs` reads the model names
+  straight out of `schema.prisma`, matches `.<model>.<prismaOperation>` across
+  every source file, and pins the two crossings that already existed (identity →
+  organizations/memberships, tasks → agent_sessions) as documented exceptions
+  instead of refactoring them. Path-normalised so the exceptions match on
+  Windows. Chained into `pnpm lint`, which reports
+  `16 tables owned across 6 modules, 2 documented exception(s)`.
+- The web app shell (`frontend/web-app`, Next.js 16 App Router + Tailwind 4) is
+  the first code under `frontend/` and covers the four surfaces `03` §5.1 lists
+  first: task list, sign-in and registration, task creation, and a workspace with
+  plan, timeline and live stream. The browser only ever talks to this app's own
+  origin — a build-time `rewrites()` forwards `/v1/*` to the API — so the HttpOnly
+  session cookie stays first-party and the API needs no CORS. `@ua/ui`
+  (`shared/ui`) holds the `12` §4 design tokens as a Tailwind 4 `@theme`; the SSE
+  frame parser, the reconnect loop (4xx ends the stream, a 500 retries, an abort
+  is silent, the last id is resumed from) and the seq-keyed event merge in
+  `frontend/web-app/src/lib` are unit-tested, and the whole journey (register →
+  create → live stream → terminal) was driven end to end in a real browser
+  against a running API and worker.
+
+**Phase 3 is complete** against `planning/17` §179: every deliverable above is
+built, and the gate items (crash-survival, duplicate submission, SSE resume,
+illegal transitions rejected, idempotent outbox replay) all have tests. What
+remains missing elsewhere: the worker's shortcuts — one `task.plan` job drives
+the whole `QUEUED → COMPLETED` lifecycle (per-step `task.step.execute` and
+`task.verify` jobs plus a real `CodingEngine` arrive in Phase 5), the mock engine
+calls no model and validates nothing against the tool registry,
+`verification.passed` records a run rather than a result, and a lease is taken
+over on expiry without a reaper — and Phase 2's email verification and
+password-reset flows. There is still no agent loop and no tools.
+
+**Phase 4 — local runner (in progress).** Slice A — device identity, pairing and
+the command channel — is built; **slice B1** (workspaces registry, canonical
+path policy, grants, device policy and runner enforcement hooks) is built;
+**slice B2** (Windows job-object/AppContainer, argv allow-list, sandbox
+self-test that gates mutating tools) is not; **slice C** (CLI packaging,
+Electron shell, Ollama runtime, diagnostics screen) and **slice D** (outbound
+WSS, long poll remains a fallback) are not.
+
+- Schema (`backend/database`): `devices`, `device_pairing_codes` and
+  `device_commands` plus the `DeviceStatus`, `DeviceCommandState` and
+  `DeviceCommandKind` enums, in migration `20261018105903_add_device_identity`.
+  Both pairing and device tables are tenant tables (`organization_id`), so
+  `src/tenant.ts` and `test/schema.test.ts` grew with them; `device_commands`
+  cascades from its device — a command for a device that no longer exists is not
+  work.
+- Device requests are **Ed25519-signed, not bearer-authenticated** (FR-DEV-01).
+  The device sends `x-ua-device-id`, `x-ua-timestamp` and `x-ua-signature`, over
+  `"v1\n" + timestamp + "\n" + METHOD + "\n" + path + "\n" + bodySha256`. The API
+  stores only the public key, so it cannot leak a usable credential, and
+  revocation is immediate because every request re-reads the device row — there
+  is no already-issued token to wait out. The canonical string is a pure
+  function in `@ua/contracts` (`canonicalDeviceRequest`), shared by the API
+  verifier and the runner signer; the Ed25519 maths stays out of the
+  browser-safe package.
+- The signed body is the **exact bytes** it arrived as: `app.ts` passes
+  `rawBody: true` (the tests boot the same `createApp`), and the signed path is
+  `request.url` including the query string, so a signature for one page of
+  commands cannot be spent on another.
+- Pairing is a code, not a token. `POST /v1/devices/pairing-codes` mints 40 bits
+  of Crockford base32 with I/L/O/U removed (it gets read aloud and typed by
+  hand), shown once, single-use, ten minutes. Only a keyed digest is stored:
+  40 bits is small enough that plain SHA-256 digests could be brute-forced.
+- Routes, member (session + CSRF): `POST /v1/devices/pairing-codes` (201),
+  `GET /v1/devices`, `GET /v1/devices/:deviceId`,
+  `POST /v1/devices/:deviceId/approve|deny|revoke` (200) and
+  `POST /v1/devices/:deviceId/commands` (201). Device (signed):
+  `POST /v1/devices` (201, registration — the signature is checked against the
+  key in the body, which is what proves the device holds its private half),
+  `GET /v1/devices/:deviceId/commands` (long poll, `waitSeconds` 0–30, 0 returns
+  immediately) and `POST /v1/devices/:deviceId/commands/:commandId/ack` (204).
+- Authority: the device's owner or an organization `admin`/`owner` may approve,
+  deny, revoke and command; a plain member sees the list only. Another tenant's
+  device id is `not_found`, never `forbidden` — a 403 would confirm it exists.
+- Delivery is **at-least-once**: a claimed command is marked `sent` and offered
+  again 60 s later if it was never acknowledged — longer than the 30 s maximum
+  poll, so a command in flight is not handed to a second poll. The runner's
+  persisted cursor is the highest sequence it *acknowledged*, so a command that
+  arrived and did not finish stays behind the cursor instead of being skipped.
+  A command carries a `commandDigest` over `canonicalDeviceCommand`, so the
+  device can tell a re-delivery from a new command.
+- A request that fails to authenticate is one 401 `unauthenticated` — "This
+  request is not signed." or "This request is not signed by the key it
+  presents." — whether the header is missing, the device is unknown, not active,
+  or the signature is wrong. The response never says which half was wrong, and
+  only a structured `logger.warn` records it: no audit row for a caller that was
+  never authenticated.
+- The runner (`runtime/local-runner`, `@ua/local-runner`) is `ua-runner pair
+  --code <CODE>` (generate a keypair, register, wait for a human to approve),
+  `ua-runner run` (hold the channel, execute through one `switch` — only
+  `diagnostics_ping` today, printed locally) and `ua-runner status`. The keypair
+  is written to a per-user file that the private half never leaves, and the only
+  dependencies are `@ua/contracts` and `zod`.
+- Web: `/devices` mints a pairing code and prints the exact
+  `ua-runner pair --code …` line to run, then lists devices with approve, deny,
+  revoke and "run diagnostics". Device calls live with the rest of the typed
+  browser layer in `frontend/web-app/src/lib/api.ts`.
+- `audit_events.device_id` gained its first writer: a device registering itself
+  is `actor_type: device` with `actor_id` **null** (that column is a foreign key
+  to `users`, which a device is not) and `device_id` naming it. The integration
+  suite caught this as a 500 — the constraint was the design saying so.
+- **Workspaces (slice B1):** `runtime/sandbox-manager` (`@ua/sandbox-manager`) is
+  a pure, fs-free path policy (canonicalisation, Windows/POSIX, traversal/UNC/
+  verbatim/device/ADS/reserved/trailing-dot-or-space/length/control, containment
+  by components with case rules, grant/deny/denied-path/read-only enforcement)
+  shared by API and runner. `backend/database` adds `WorkspaceMode`,
+  `WorkspaceGrantEffect`, `workspaces` (`id, organization_id, device_id, path,
+  raw_path, label, mode, created_by, last_used_at, created_at, updated_at`,
+  `@@unique([device_id, path])`) and `workspace_grants` (`id,
+  organization_id, workspace_id, path_pattern, effect, granted_by, expires_at,
+  policy_version @default(1), created_at`) with cascades from `workspaces` to
+  grants and from `devices` to workspaces; `status` from `06` §2.2 is **not**
+  implemented (hard delete). Routes: `POST/GET/PATCH/DELETE /v1/workspaces`,
+  `GET/POST /v1/workspaces/:id/grants`, `DELETE /v1/grants/:id`, device-signed
+  `GET /v1/devices/:id/workspaces` returns `DeviceWorkspacePolicy`. The API
+  canonicalises syntactically; the runner resolves with `fs.realpath` and
+  refuses missing/escaped/unusable roots (including deny-list and junction
+  escapes). Web `/workspaces` lists grouped by device, registers with path/
+  label/mode, manages grants with canonical-vs-raw display. The API imports
+  `@ua/sandbox-manager` (backend→runtime import, deviation recorded in §4);
+  `policy_version` is a plain integer (no `policy_documents` yet).
 
 ## 3. Verification
 
 All of the following pass locally from this working tree:
 
 ```
-pnpm build            7 packages compiled (the other 19 are placeholders with no build task)
-pnpm typecheck        the same 7 packages with a typecheck task, src/ and test/ both clean
-pnpm test             172 tests across 7 packages, 0 failures
-pnpm test:integration 38 tests against PostgreSQL 18, 0 failures (15 tenant isolation, 23 API)
-pnpm lint             123 files checked, 0 errors
-pnpm generate:openapi 12 schemas → backend/contracts/openapi.json
-pnpm check:env        .env.example intact and credential-free
-pnpm scan:secrets     133 tracked files clean (4 opted out; pnpm-lock.yaml is skipped)
+pnpm build            11 packages compiled (the other 14 are placeholders with no build task)
+pnpm typecheck        the same 11 packages with a typecheck task, src/ and test/ both clean
+pnpm test             249 tests across 11 packages, 0 failures
+pnpm test:integration 74 tests against PostgreSQL 18 and Redis 8, 0 failures
+                      (15 tenant isolation, 51 API, 8 worker durability)
+pnpm lint             203 files checked, 0 errors (Biome + the module-boundary rule)
+pnpm generate:openapi 67 schemas → backend/contracts/openapi.json
+pnpm check:env        2 .env.example files intact and credential-free
+pnpm scan:secrets     tracked files clean (8 opted out; pnpm-lock.yaml is skipped)
 ```
+
+The web app was additionally driven in a real browser against a running API and
+worker: signed-out → sign in prompt, register, task creation, then the workspace
+watching `task.created → plan.created → step.succeeded → verification.passed →
+task.completed` arrive over the stream (0 → 10 events in under nine seconds),
+ending at `COMPLETED` with a consistent plan. Computed styles confirm the `@ua/ui`
+tokens are live (`#4f46e5` primary, `#15803d` success badge, 8/12/999 px radii,
+`--shadow-card`).
+
+The Phase 4 slice A gate was walked the same way, with the real runner rather
+than a stub: register → `/devices` → "Pair a device" mints `GSM2-AATN` →
+`ua-runner pair --code GSM2-AATN --api http://127.0.0.1:3005` registers the
+machine and waits → the browser shows it `pending` and approves it → the runner
+persists its identity and starts `ua-runner run` → "Run diagnostics" in the
+browser is long-polled by the runner, printed locally and acknowledged
+(`diagnostics_ping #1: acked`, and the device's "Seen" time moves) → revoking it
+makes the next poll `401 unauthenticated`, which the runner reports and exits on.
+The runner's live report on this machine: `win32 10.0.26300`, 12 CPUs, 23906 MiB
+total / 4938 MiB free — the same ~4.9 GiB free that `17` §Phase 4 lists as R-05,
+which is why the runner and the dev stack were run in separate shells.
 
 `pnpm --filter @ua/database db:deploy` has been run against the compose
 PostgreSQL 18: the `20251015_init_identity_tenancy` migration applies cleanly and
@@ -260,6 +462,75 @@ anticipating either, because Phase 1 had no decorators).
   silently breaks the server. Turning it off for the API package is the fix;
   every other package keeps the rule.
 
+**11. `@ua/client` is a local fetch module, not a package.**
+`planning/07` §7 step 3 and `planning/14` §106 say `@ua/client` is **generated**
+from `@ua/contracts` alongside the OpenAPI document; the generator does not exist
+yet, so a hand-written package would be thrown away. The web app therefore keeps
+a thin typed layer at `frontend/web-app/src/lib/api.ts` (contract types only,
+session cookie + double-submit CSRF, RFC 9457 error parsing) and a pure SSE
+parser at `src/lib/sse.ts` — exactly the `lib/` slot `planning/12` §5's layout
+reserves. Both move behind `@ua/client` when the generator lands. `@ua/ui` *is*
+placed now, at `shared/ui` — see Decision 5 below.
+
+**12. Biome needed `css.parser.tailwindDirectives`.**
+Biome refuses to parse `@theme` in `shared/ui/src/index.css` — a parse error, so
+`pnpm format` aborts for the whole repository, not just that file. The setting
+enables Tailwind 4 syntax for every CSS file; it changes nothing for the CSS the
+repo already had. Biome's own config file is parsed as strict JSON (the
+`json.parser.allowComments` setting covers files Biome *formats*, not
+`biome.json`), so no comment may be added there.
+
+**13. Phase 4 is sliced, and slice A ships a long poll where `17` §Phase 4 asks
+for WSS.** The phase is 4–7 person-weeks and the deliverable list spans device
+identity, workspace grants, a Windows sandbox, an Electron shell and an Ollama
+runtime. Slice A is device identity, pairing and the command channel; **slice B1**
+is workspace registry, canonical path policy, grants, device policy and runner
+enforcement hooks (built); **slice B2** is Windows sandbox layering (job-object/
+AppContainer), argv allow-list and a sandbox self-test that gates mutating tools;
+**slice C** is CLI packaging, Electron shell, Ollama runtime and diagnostics
+screen; **slice D** is outbound WSS (long poll remains the fallback). `FR-DEV-03`
+explicitly allows a long-poll fallback, so slice A/B1 are not missing features
+but the fallback posture arriving first — the same `device_commands` durability,
+acknowledgement and expiry serve the socket when it lands.
+
+**14. No `Idempotency-Key` on any device route.** `planning/11` requires the
+header on writes that create a resource. Every device route here is naturally
+idempotent instead: a registration is refused a second time because the pairing
+code is single-use, an approval or revocation is a state transition whose second
+application is a no-op, and a poll is a read. The one genuinely repeatable
+producer, `POST /v1/devices/:deviceId/commands`, queues a *new* command each
+time by design — the person pressed "run diagnostics" twice. Recorded rather
+than implemented, because adding a key to routes that do not need one is
+machinery without a caller.
+
+**15. Pairing-code creation is not rate-limited.** 40 bits, single-use, and a
+ten-minute expiry are the whole defence; the code is only useful to someone who
+can already reach an authenticated member's browser session or guess a code
+before the member types it. `planning/11` §T-AUTH does call for throttling on
+credential endpoints, so this is a deliberate gap: `createPairingCode` is where
+the limiter goes when pairing becomes a target.
+
+**16. Diagnostics results are not stored.** The runner prints its report locally
+and acknowledges the command with an outcome; `AckDeviceCommandRequest` carries
+only `outcome` and `error`. `12` §5.4's diagnostics are for the device's own
+operator, and there is no column for a report yet — adding one before anything
+reads it would be a table with one writer.
+
+**17. Revoking a device needs no re-authentication.** `planning/11` lists
+step-up re-authentication for sensitive actions. Revoke is not one: it removes
+access rather than granting it, it is already restricted to the device's owner
+or an org admin, and making it harder to do would make an owner slower to
+contain a machine they have lost. Approval is the action worth a step-up and it
+is not here yet either — both wait for the session-level step-up mechanism,
+which Phase 6 builds for the whole console.
+
+**18. `device_commands.seq` is `max(seq) + 1` inside the writer's transaction.**
+Two concurrent producers for one device would serialise on the transaction, so
+it is correct, but it is a per-device table scan where a sequence would be O(1).
+Phase 5 queues step commands from the dispatch path, which is the first caller
+that can be concurrent at volume; an atomic counter is the upgrade then. Marked
+in the code as a `shortcut:`.
+
 ## 5. Open decisions
 
 | # | Decision | Blocks | Where |
@@ -268,9 +539,42 @@ anticipating either, because Phase 1 had no decorators).
 | 2 | Git remote host + branch protection on `main` | Phase 1 exit criteria | `planning/15` §7 |
 | 3 | Repository licence (Q-DEV-6) | Public release | `planning/20` |
 | 4 | `CONTRIBUTING.md` contents | Public contribution | `planning/17` §Phase 0 |
-| 5 | Where `@ua/ui` and `@ua/client` live — `planning/03` §5 names them as dependencies but never places them | Phase 6 frontend work | `planning/03` §5 |
+| 5 | Where `@ua/client` lives (and when it is generated) — `@ua/ui` is resolved at `shared/ui` | Phase 6 frontend work | `planning/03` §5, `planning/07` §7 |
 | 6 | Managed Postgres/Redis provider (Q-T2) | Phase 2 deploy | `planning/20` |
 
-Deviations 3–10 are recorded here because a planning document still says
+Deviations 3–12 are recorded here because a planning document still says
 otherwise. When a decision is made, update both the planning document and this
 file in the same commit.
+
+**19. `policy_version` on `workspace_grants` has no `policy_documents` table.**
+`06` §2.2 shows `policy_version` on `workspace_grants` but the documents do not
+define a `policy_documents` table yet; Phase 5 may introduce one. For now the
+column exists as a plain integer with `@default(1)` to match the schema shape
+without a dangling foreign key. The API and runner do not read it for semantics
+yet.
+
+**20. `workspaces.status` from `06` §2.2 is not implemented.**
+Removal is a hard delete, so there is no second state to store; re-registering
+the same directory is an ordinary registration. If soft delete becomes necessary
+later it can be added without changing the unique constraint semantics in a
+surprising way.
+
+**21. The API imports `@ua/sandbox-manager` (backend → runtime).**
+The path policy must be shared by the API and the local runner so there is
+exactly one implementation. That crosses the `backend/` → `runtime/`
+direction the package layout implies; the import is direct and the package is
+dependency-free and fs-free by design. If this becomes a layering concern it
+should be moved to `shared/` without changing its semantics.
+
+**22. The deny list is built by the runner, not the API.**
+`deniedPaths` needs the machine's environment (`%WINDIR%`, `%PROGRAMFILES%`,
+`~/.ssh`, `~/.aws`, runner data dir); the API passes nothing and only does
+syntactic canonicalisation. Browser-profile and credential-store entries are
+deferred with a `shortcut:` in `runtime/sandbox-manager/src/path-policy.ts`
+(Phase 4 slice C).
+
+**23. Device authentication guard exported for cross-module use.**
+`DeviceAuthGuard` and `DevicesRepository` are exported by `DevicesModule` so the
+workspaces device-signed route can authenticate without duplicating the
+Ed25519 check; the repository export is the sanctioned cross-module channel per
+the boundary rules.

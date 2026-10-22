@@ -42,6 +42,18 @@ catalog:
   argon2: 0.45.1
   ulid: 3.0.2
   reflect-metadata: 0.2.2
+  # Queue (ADR-005, docs/planning/15 §5). BullMQ brings its own ioredis; the
+  # worker never imports ioredis directly, so it is not pinned here.
+  bullmq: 6.3.16
+  # Frontend (docs/planning/05 §4, 12 §2) — Next.js App Router, React 19,
+  # Tailwind 4 with design tokens in `@ua/ui`.
+  next: 16.4.1
+  react: 19.3.1
+  react-dom: 19.3.1
+  '@types/react': 19.3.0
+  '@types/react-dom': 19.3.0
+  tailwindcss: 4.3.3
+  '@tailwindcss/postcss': 4.3.3
 
 # Package build scripts may only run for these. Everything else stays unbuilt, so
 # a compromised transitive dependency cannot execute code by adding a postinstall.
@@ -56,3 +68,4 @@ allowBuilds:
   # `node-gyp-build`, which links the bundled N-API prebuild and only compiles
   # if none matches — no toolchain is needed for the platforms we ship.
   argon2: true
+  msgpackr-extract: true

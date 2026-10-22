@@ -62,3 +62,63 @@ export type idempotency_keys = Prisma.idempotency_keysModel
  * 
  */
 export type audit_events = Prisma.audit_eventsModel
+/**
+ * Model agent_sessions
+ * 
+ */
+export type agent_sessions = Prisma.agent_sessionsModel
+/**
+ * Model tasks
+ * 
+ */
+export type tasks = Prisma.tasksModel
+/**
+ * Model task_steps
+ * 
+ */
+export type task_steps = Prisma.task_stepsModel
+/**
+ * Model task_events
+ * 
+ */
+export type task_events = Prisma.task_eventsModel
+/**
+ * Model task_checkpoints
+ * 
+ */
+export type task_checkpoints = Prisma.task_checkpointsModel
+/**
+ * Model outbox
+ * 
+ */
+export type outbox = Prisma.outboxModel
+/**
+ * Model job_leases
+ * 
+ */
+export type job_leases = Prisma.job_leasesModel
+/**
+ * Model devices
+ * 
+ */
+export type devices = Prisma.devicesModel
+/**
+ * Model device_pairing_codes
+ * 
+ */
+export type device_pairing_codes = Prisma.device_pairing_codesModel
+/**
+ * Model device_commands
+ * 
+ */
+export type device_commands = Prisma.device_commandsModel
+/**
+ * Model workspaces
+ * 
+ */
+export type workspaces = Prisma.workspacesModel
+/**
+ * Model workspace_grants
+ * 
+ */
+export type workspace_grants = Prisma.workspace_grantsModel

@@ -16,6 +16,16 @@ const ALLOWED_PREFIXES = [
   "organizations",
   "audit",
   "health", // the /readyz connection probe reads no tenant rows
+  "tasks", // injects the unscoped client only to build a forOrganization scope
+  "agent-sessions", // as above: tenant rows are read through forOrganization
+  // Device authentication has no tenant to start from: a device names itself
+  // with a signature, and the row it resolves to is what supplies the
+  // organization (docs/planning/07 §3.6).
+  "devices",
+  // As above, plus a transaction per write: registering a directory and its
+  // audit row must land together, and `forOrganization` cannot wrap a
+  // transaction client. Reads go through `forOrganization`.
+  "workspaces",
 ];
 
 const SRC = fileURLToPath(new URL("../src", import.meta.url));

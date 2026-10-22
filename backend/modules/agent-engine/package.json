@@ -2,5 +2,30 @@
   "name": "@ua/agent-engine",
   "version": "0.0.0",
   "private": true,
-  "description": "Placeholder package, no code yet. Specified by docs/planning/03-system-architecture.md 5.7."
+  "description": "Task state machine and agent loop (docs/planning/03 §5.7, 08).",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@ua/contracts": "workspace:*"
+  },
+  "devDependencies": {
+    "@ua/tsconfig": "workspace:*",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
 }
