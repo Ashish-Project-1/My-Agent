@@ -24,6 +24,8 @@ export const AUDIT_ACTIONS = {
   workspaceRemove: "workspace.remove",
   workspaceGrantCreate: "workspace.grant.create",
   workspaceGrantRevoke: "workspace.grant.revoke",
+  approvalGrant: "approval.grant",
+  approvalDeny: "approval.deny",
 } as const;
 
 export type AuditAction = (typeof AUDIT_ACTIONS)[keyof typeof AUDIT_ACTIONS];

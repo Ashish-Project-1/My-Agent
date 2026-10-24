@@ -410,6 +410,7 @@ export type task_stepsWhereInput = {
   updated_at?: Prisma.DateTimeFilter<"task_steps"> | Date | string
   task?: Prisma.XOR<Prisma.TasksScalarRelationFilter, Prisma.tasksWhereInput>
   organization?: Prisma.XOR<Prisma.OrganizationsScalarRelationFilter, Prisma.organizationsWhereInput>
+  approval_requests?: Prisma.Approval_requestsListRelationFilter
 }
 
 export type task_stepsOrderByWithRelationInput = {
@@ -443,6 +444,7 @@ export type task_stepsOrderByWithRelationInput = {
   updated_at?: Prisma.SortOrder
   task?: Prisma.tasksOrderByWithRelationInput
   organization?: Prisma.organizationsOrderByWithRelationInput
+  approval_requests?: Prisma.approval_requestsOrderByRelationAggregateInput
 }
 
 export type task_stepsWhereUniqueInput = Prisma.AtLeast<{
@@ -481,6 +483,7 @@ export type task_stepsWhereUniqueInput = Prisma.AtLeast<{
   updated_at?: Prisma.DateTimeFilter<"task_steps"> | Date | string
   task?: Prisma.XOR<Prisma.TasksScalarRelationFilter, Prisma.tasksWhereInput>
   organization?: Prisma.XOR<Prisma.OrganizationsScalarRelationFilter, Prisma.organizationsWhereInput>
+  approval_requests?: Prisma.Approval_requestsListRelationFilter
 }, "id" | "task_id_seq" | "task_id_idempotency_key">
 
 export type task_stepsOrderByWithAggregationInput = {
@@ -582,6 +585,7 @@ export type task_stepsCreateInput = {
   updated_at?: Date | string
   task: Prisma.tasksCreateNestedOneWithoutTask_stepsInput
   organization: Prisma.organizationsCreateNestedOneWithoutTask_stepsInput
+  approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutStepInput
 }
 
 export type task_stepsUncheckedCreateInput = {
@@ -613,6 +617,7 @@ export type task_stepsUncheckedCreateInput = {
   tokens?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutStepInput
 }
 
 export type task_stepsUpdateInput = {
@@ -644,6 +649,7 @@ export type task_stepsUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   task?: Prisma.tasksUpdateOneRequiredWithoutTask_stepsNestedInput
   organization?: Prisma.organizationsUpdateOneRequiredWithoutTask_stepsNestedInput
+  approval_requests?: Prisma.approval_requestsUpdateManyWithoutStepNestedInput
 }
 
 export type task_stepsUncheckedUpdateInput = {
@@ -675,6 +681,7 @@ export type task_stepsUncheckedUpdateInput = {
   tokens?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutStepNestedInput
 }
 
 export type task_stepsCreateManyInput = {
@@ -901,6 +908,11 @@ export type task_stepsSumOrderByAggregateInput = {
   tokens?: Prisma.SortOrder
 }
 
+export type Task_stepsScalarRelationFilter = {
+  is?: Prisma.task_stepsWhereInput
+  isNot?: Prisma.task_stepsWhereInput
+}
+
 export type task_stepsCreateNestedManyWithoutOrganizationInput = {
   create?: Prisma.XOR<Prisma.task_stepsCreateWithoutOrganizationInput, Prisma.task_stepsUncheckedCreateWithoutOrganizationInput> | Prisma.task_stepsCreateWithoutOrganizationInput[] | Prisma.task_stepsUncheckedCreateWithoutOrganizationInput[]
   connectOrCreate?: Prisma.task_stepsCreateOrConnectWithoutOrganizationInput | Prisma.task_stepsCreateOrConnectWithoutOrganizationInput[]
@@ -1010,6 +1022,20 @@ export type NullableBigIntFieldUpdateOperationsInput = {
   divide?: bigint | number
 }
 
+export type task_stepsCreateNestedOneWithoutApproval_requestsInput = {
+  create?: Prisma.XOR<Prisma.task_stepsCreateWithoutApproval_requestsInput, Prisma.task_stepsUncheckedCreateWithoutApproval_requestsInput>
+  connectOrCreate?: Prisma.task_stepsCreateOrConnectWithoutApproval_requestsInput
+  connect?: Prisma.task_stepsWhereUniqueInput
+}
+
+export type task_stepsUpdateOneRequiredWithoutApproval_requestsNestedInput = {
+  create?: Prisma.XOR<Prisma.task_stepsCreateWithoutApproval_requestsInput, Prisma.task_stepsUncheckedCreateWithoutApproval_requestsInput>
+  connectOrCreate?: Prisma.task_stepsCreateOrConnectWithoutApproval_requestsInput
+  upsert?: Prisma.task_stepsUpsertWithoutApproval_requestsInput
+  connect?: Prisma.task_stepsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.task_stepsUpdateToOneWithWhereWithoutApproval_requestsInput, Prisma.task_stepsUpdateWithoutApproval_requestsInput>, Prisma.task_stepsUncheckedUpdateWithoutApproval_requestsInput>
+}
+
 export type task_stepsCreateWithoutOrganizationInput = {
   id?: string
   seq: number
@@ -1038,6 +1064,7 @@ export type task_stepsCreateWithoutOrganizationInput = {
   created_at?: Date | string
   updated_at?: Date | string
   task: Prisma.tasksCreateNestedOneWithoutTask_stepsInput
+  approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutStepInput
 }
 
 export type task_stepsUncheckedCreateWithoutOrganizationInput = {
@@ -1068,6 +1095,7 @@ export type task_stepsUncheckedCreateWithoutOrganizationInput = {
   tokens?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutStepInput
 }
 
 export type task_stepsCreateOrConnectWithoutOrganizationInput = {
@@ -1158,6 +1186,7 @@ export type task_stepsCreateWithoutTaskInput = {
   created_at?: Date | string
   updated_at?: Date | string
   organization: Prisma.organizationsCreateNestedOneWithoutTask_stepsInput
+  approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutStepInput
 }
 
 export type task_stepsUncheckedCreateWithoutTaskInput = {
@@ -1188,6 +1217,7 @@ export type task_stepsUncheckedCreateWithoutTaskInput = {
   tokens?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutStepInput
 }
 
 export type task_stepsCreateOrConnectWithoutTaskInput = {
@@ -1214,6 +1244,146 @@ export type task_stepsUpdateWithWhereUniqueWithoutTaskInput = {
 export type task_stepsUpdateManyWithWhereWithoutTaskInput = {
   where: Prisma.task_stepsScalarWhereInput
   data: Prisma.XOR<Prisma.task_stepsUpdateManyMutationInput, Prisma.task_stepsUncheckedUpdateManyWithoutTaskInput>
+}
+
+export type task_stepsCreateWithoutApproval_requestsInput = {
+  id?: string
+  seq: number
+  kind: $Enums.TaskStepKind
+  title: string
+  tool_name?: string | null
+  tool_version?: string | null
+  arguments?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  arguments_digest?: string | null
+  risk_class?: string | null
+  state?: $Enums.TaskStepState
+  depends_on?: Prisma.task_stepsCreatedepends_onInput | number[]
+  attempts?: number
+  max_attempts?: number
+  lease_owner?: string | null
+  lease_expires_at?: Date | string | null
+  heartbeat_at?: Date | string | null
+  started_at?: Date | string | null
+  finished_at?: Date | string | null
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: string | null
+  error_code?: string | null
+  idempotency_key?: string | null
+  cost_minor?: bigint | number | null
+  tokens?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  task: Prisma.tasksCreateNestedOneWithoutTask_stepsInput
+  organization: Prisma.organizationsCreateNestedOneWithoutTask_stepsInput
+}
+
+export type task_stepsUncheckedCreateWithoutApproval_requestsInput = {
+  id?: string
+  organization_id: string
+  task_id: string
+  seq: number
+  kind: $Enums.TaskStepKind
+  title: string
+  tool_name?: string | null
+  tool_version?: string | null
+  arguments?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  arguments_digest?: string | null
+  risk_class?: string | null
+  state?: $Enums.TaskStepState
+  depends_on?: Prisma.task_stepsCreatedepends_onInput | number[]
+  attempts?: number
+  max_attempts?: number
+  lease_owner?: string | null
+  lease_expires_at?: Date | string | null
+  heartbeat_at?: Date | string | null
+  started_at?: Date | string | null
+  finished_at?: Date | string | null
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: string | null
+  error_code?: string | null
+  idempotency_key?: string | null
+  cost_minor?: bigint | number | null
+  tokens?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+}
+
+export type task_stepsCreateOrConnectWithoutApproval_requestsInput = {
+  where: Prisma.task_stepsWhereUniqueInput
+  create: Prisma.XOR<Prisma.task_stepsCreateWithoutApproval_requestsInput, Prisma.task_stepsUncheckedCreateWithoutApproval_requestsInput>
+}
+
+export type task_stepsUpsertWithoutApproval_requestsInput = {
+  update: Prisma.XOR<Prisma.task_stepsUpdateWithoutApproval_requestsInput, Prisma.task_stepsUncheckedUpdateWithoutApproval_requestsInput>
+  create: Prisma.XOR<Prisma.task_stepsCreateWithoutApproval_requestsInput, Prisma.task_stepsUncheckedCreateWithoutApproval_requestsInput>
+  where?: Prisma.task_stepsWhereInput
+}
+
+export type task_stepsUpdateToOneWithWhereWithoutApproval_requestsInput = {
+  where?: Prisma.task_stepsWhereInput
+  data: Prisma.XOR<Prisma.task_stepsUpdateWithoutApproval_requestsInput, Prisma.task_stepsUncheckedUpdateWithoutApproval_requestsInput>
+}
+
+export type task_stepsUpdateWithoutApproval_requestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  seq?: Prisma.IntFieldUpdateOperationsInput | number
+  kind?: Prisma.EnumTaskStepKindFieldUpdateOperationsInput | $Enums.TaskStepKind
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  tool_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tool_version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  arguments?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  arguments_digest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  risk_class?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.EnumTaskStepStateFieldUpdateOperationsInput | $Enums.TaskStepState
+  depends_on?: Prisma.task_stepsUpdatedepends_onInput | number[]
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  max_attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lease_owner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lease_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  heartbeat_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finished_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotency_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cost_minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  tokens?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  task?: Prisma.tasksUpdateOneRequiredWithoutTask_stepsNestedInput
+  organization?: Prisma.organizationsUpdateOneRequiredWithoutTask_stepsNestedInput
+}
+
+export type task_stepsUncheckedUpdateWithoutApproval_requestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organization_id?: Prisma.StringFieldUpdateOperationsInput | string
+  task_id?: Prisma.StringFieldUpdateOperationsInput | string
+  seq?: Prisma.IntFieldUpdateOperationsInput | number
+  kind?: Prisma.EnumTaskStepKindFieldUpdateOperationsInput | $Enums.TaskStepKind
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  tool_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tool_version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  arguments?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  arguments_digest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  risk_class?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.EnumTaskStepStateFieldUpdateOperationsInput | $Enums.TaskStepState
+  depends_on?: Prisma.task_stepsUpdatedepends_onInput | number[]
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  max_attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lease_owner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lease_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  heartbeat_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finished_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotency_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cost_minor?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  tokens?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type task_stepsCreateManyOrganizationInput = {
@@ -1274,6 +1444,7 @@ export type task_stepsUpdateWithoutOrganizationInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   task?: Prisma.tasksUpdateOneRequiredWithoutTask_stepsNestedInput
+  approval_requests?: Prisma.approval_requestsUpdateManyWithoutStepNestedInput
 }
 
 export type task_stepsUncheckedUpdateWithoutOrganizationInput = {
@@ -1304,6 +1475,7 @@ export type task_stepsUncheckedUpdateWithoutOrganizationInput = {
   tokens?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutStepNestedInput
 }
 
 export type task_stepsUncheckedUpdateManyWithoutOrganizationInput = {
@@ -1394,6 +1566,7 @@ export type task_stepsUpdateWithoutTaskInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.organizationsUpdateOneRequiredWithoutTask_stepsNestedInput
+  approval_requests?: Prisma.approval_requestsUpdateManyWithoutStepNestedInput
 }
 
 export type task_stepsUncheckedUpdateWithoutTaskInput = {
@@ -1424,6 +1597,7 @@ export type task_stepsUncheckedUpdateWithoutTaskInput = {
   tokens?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutStepNestedInput
 }
 
 export type task_stepsUncheckedUpdateManyWithoutTaskInput = {
@@ -1457,6 +1631,35 @@ export type task_stepsUncheckedUpdateManyWithoutTaskInput = {
 }
 
 
+/**
+ * Count Type Task_stepsCountOutputType
+ */
+
+export type Task_stepsCountOutputType = {
+  approval_requests: number
+}
+
+export type Task_stepsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  approval_requests?: boolean | Task_stepsCountOutputTypeCountApproval_requestsArgs
+}
+
+/**
+ * Task_stepsCountOutputType without action
+ */
+export type Task_stepsCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Task_stepsCountOutputType
+   */
+  select?: Prisma.Task_stepsCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * Task_stepsCountOutputType without action
+ */
+export type Task_stepsCountOutputTypeCountApproval_requestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.approval_requestsWhereInput
+}
+
 
 export type task_stepsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1489,6 +1692,8 @@ export type task_stepsSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   updated_at?: boolean
   task?: boolean | Prisma.tasksDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
+  approval_requests?: boolean | Prisma.task_steps$approval_requestsArgs<ExtArgs>
+  _count?: boolean | Prisma.Task_stepsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["task_steps"]>
 
 export type task_stepsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1592,6 +1797,8 @@ export type task_stepsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type task_stepsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   task?: boolean | Prisma.tasksDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
+  approval_requests?: boolean | Prisma.task_steps$approval_requestsArgs<ExtArgs>
+  _count?: boolean | Prisma.Task_stepsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type task_stepsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   task?: boolean | Prisma.tasksDefaultArgs<ExtArgs>
@@ -1607,6 +1814,7 @@ export type $task_stepsPayload<ExtArgs extends runtime.Types.Extensions.Internal
   objects: {
     task: Prisma.$tasksPayload<ExtArgs>
     organization: Prisma.$organizationsPayload<ExtArgs>
+    approval_requests: Prisma.$approval_requestsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2033,6 +2241,7 @@ export interface Prisma__task_stepsClient<T, Null = never, ExtArgs extends runti
   readonly [Symbol.toStringTag]: "PrismaPromise"
   task<T extends Prisma.tasksDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tasksDefaultArgs<ExtArgs>>): Prisma.Prisma__tasksClient<runtime.Types.Result.GetResult<Prisma.$tasksPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   organization<T extends Prisma.organizationsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizationsDefaultArgs<ExtArgs>>): Prisma.Prisma__organizationsClient<runtime.Types.Result.GetResult<Prisma.$organizationsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  approval_requests<T extends Prisma.task_steps$approval_requestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.task_steps$approval_requestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$approval_requestsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2488,6 +2697,30 @@ export type task_stepsDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Limit how many task_steps to delete.
    */
   limit?: number
+}
+
+/**
+ * task_steps.approval_requests
+ */
+export type task_steps$approval_requestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the approval_requests
+   */
+  select?: Prisma.approval_requestsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the approval_requests
+   */
+  omit?: Prisma.approval_requestsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.approval_requestsInclude<ExtArgs> | null
+  where?: Prisma.approval_requestsWhereInput
+  orderBy?: Prisma.approval_requestsOrderByWithRelationInput | Prisma.approval_requestsOrderByWithRelationInput[]
+  cursor?: Prisma.approval_requestsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Approval_requestsScalarFieldEnum | Prisma.Approval_requestsScalarFieldEnum[]
 }
 
 /**

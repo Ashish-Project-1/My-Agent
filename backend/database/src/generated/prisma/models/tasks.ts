@@ -40,6 +40,7 @@ export type TasksMinAggregateOutputType = {
   agent_session_id: string | null
   created_by: string | null
   device_id: string | null
+  workspace_id: string | null
   goal: string | null
   execution_location: $Enums.ExecutionLocation | null
   state: $Enums.TaskState | null
@@ -65,6 +66,7 @@ export type TasksMaxAggregateOutputType = {
   agent_session_id: string | null
   created_by: string | null
   device_id: string | null
+  workspace_id: string | null
   goal: string | null
   execution_location: $Enums.ExecutionLocation | null
   state: $Enums.TaskState | null
@@ -90,6 +92,7 @@ export type TasksCountAggregateOutputType = {
   agent_session_id: number
   created_by: number
   device_id: number
+  workspace_id: number
   goal: number
   constraints: number
   execution_location: number
@@ -128,6 +131,7 @@ export type TasksMinAggregateInputType = {
   agent_session_id?: true
   created_by?: true
   device_id?: true
+  workspace_id?: true
   goal?: true
   execution_location?: true
   state?: true
@@ -153,6 +157,7 @@ export type TasksMaxAggregateInputType = {
   agent_session_id?: true
   created_by?: true
   device_id?: true
+  workspace_id?: true
   goal?: true
   execution_location?: true
   state?: true
@@ -178,6 +183,7 @@ export type TasksCountAggregateInputType = {
   agent_session_id?: true
   created_by?: true
   device_id?: true
+  workspace_id?: true
   goal?: true
   constraints?: true
   execution_location?: true
@@ -293,6 +299,7 @@ export type TasksGroupByOutputType = {
   agent_session_id: string
   created_by: string | null
   device_id: string | null
+  workspace_id: string | null
   goal: string
   constraints: runtime.JsonValue | null
   execution_location: $Enums.ExecutionLocation
@@ -344,6 +351,7 @@ export type tasksWhereInput = {
   agent_session_id?: Prisma.UuidFilter<"tasks"> | string
   created_by?: Prisma.UuidNullableFilter<"tasks"> | string | null
   device_id?: Prisma.UuidNullableFilter<"tasks"> | string | null
+  workspace_id?: Prisma.UuidNullableFilter<"tasks"> | string | null
   goal?: Prisma.StringFilter<"tasks"> | string
   constraints?: Prisma.JsonNullableFilter<"tasks">
   execution_location?: Prisma.EnumExecutionLocationFilter<"tasks"> | $Enums.ExecutionLocation
@@ -367,9 +375,12 @@ export type tasksWhereInput = {
   organization?: Prisma.XOR<Prisma.OrganizationsScalarRelationFilter, Prisma.organizationsWhereInput>
   agent_session?: Prisma.XOR<Prisma.Agent_sessionsScalarRelationFilter, Prisma.agent_sessionsWhereInput>
   created_by_user?: Prisma.XOR<Prisma.UsersNullableScalarRelationFilter, Prisma.usersWhereInput> | null
+  workspace?: Prisma.XOR<Prisma.WorkspacesNullableScalarRelationFilter, Prisma.workspacesWhereInput> | null
   task_steps?: Prisma.Task_stepsListRelationFilter
   task_events?: Prisma.Task_eventsListRelationFilter
   task_checkpoints?: Prisma.Task_checkpointsListRelationFilter
+  approval_requests?: Prisma.Approval_requestsListRelationFilter
+  policy_decisions?: Prisma.Policy_decisionsListRelationFilter
 }
 
 export type tasksOrderByWithRelationInput = {
@@ -378,6 +389,7 @@ export type tasksOrderByWithRelationInput = {
   agent_session_id?: Prisma.SortOrder
   created_by?: Prisma.SortOrderInput | Prisma.SortOrder
   device_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  workspace_id?: Prisma.SortOrderInput | Prisma.SortOrder
   goal?: Prisma.SortOrder
   constraints?: Prisma.SortOrderInput | Prisma.SortOrder
   execution_location?: Prisma.SortOrder
@@ -401,9 +413,12 @@ export type tasksOrderByWithRelationInput = {
   organization?: Prisma.organizationsOrderByWithRelationInput
   agent_session?: Prisma.agent_sessionsOrderByWithRelationInput
   created_by_user?: Prisma.usersOrderByWithRelationInput
+  workspace?: Prisma.workspacesOrderByWithRelationInput
   task_steps?: Prisma.task_stepsOrderByRelationAggregateInput
   task_events?: Prisma.task_eventsOrderByRelationAggregateInput
   task_checkpoints?: Prisma.task_checkpointsOrderByRelationAggregateInput
+  approval_requests?: Prisma.approval_requestsOrderByRelationAggregateInput
+  policy_decisions?: Prisma.policy_decisionsOrderByRelationAggregateInput
 }
 
 export type tasksWhereUniqueInput = Prisma.AtLeast<{
@@ -415,6 +430,7 @@ export type tasksWhereUniqueInput = Prisma.AtLeast<{
   agent_session_id?: Prisma.UuidFilter<"tasks"> | string
   created_by?: Prisma.UuidNullableFilter<"tasks"> | string | null
   device_id?: Prisma.UuidNullableFilter<"tasks"> | string | null
+  workspace_id?: Prisma.UuidNullableFilter<"tasks"> | string | null
   goal?: Prisma.StringFilter<"tasks"> | string
   constraints?: Prisma.JsonNullableFilter<"tasks">
   execution_location?: Prisma.EnumExecutionLocationFilter<"tasks"> | $Enums.ExecutionLocation
@@ -438,9 +454,12 @@ export type tasksWhereUniqueInput = Prisma.AtLeast<{
   organization?: Prisma.XOR<Prisma.OrganizationsScalarRelationFilter, Prisma.organizationsWhereInput>
   agent_session?: Prisma.XOR<Prisma.Agent_sessionsScalarRelationFilter, Prisma.agent_sessionsWhereInput>
   created_by_user?: Prisma.XOR<Prisma.UsersNullableScalarRelationFilter, Prisma.usersWhereInput> | null
+  workspace?: Prisma.XOR<Prisma.WorkspacesNullableScalarRelationFilter, Prisma.workspacesWhereInput> | null
   task_steps?: Prisma.Task_stepsListRelationFilter
   task_events?: Prisma.Task_eventsListRelationFilter
   task_checkpoints?: Prisma.Task_checkpointsListRelationFilter
+  approval_requests?: Prisma.Approval_requestsListRelationFilter
+  policy_decisions?: Prisma.Policy_decisionsListRelationFilter
 }, "id">
 
 export type tasksOrderByWithAggregationInput = {
@@ -449,6 +468,7 @@ export type tasksOrderByWithAggregationInput = {
   agent_session_id?: Prisma.SortOrder
   created_by?: Prisma.SortOrderInput | Prisma.SortOrder
   device_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  workspace_id?: Prisma.SortOrderInput | Prisma.SortOrder
   goal?: Prisma.SortOrder
   constraints?: Prisma.SortOrderInput | Prisma.SortOrder
   execution_location?: Prisma.SortOrder
@@ -485,6 +505,7 @@ export type tasksScalarWhereWithAggregatesInput = {
   agent_session_id?: Prisma.UuidWithAggregatesFilter<"tasks"> | string
   created_by?: Prisma.UuidNullableWithAggregatesFilter<"tasks"> | string | null
   device_id?: Prisma.UuidNullableWithAggregatesFilter<"tasks"> | string | null
+  workspace_id?: Prisma.UuidNullableWithAggregatesFilter<"tasks"> | string | null
   goal?: Prisma.StringWithAggregatesFilter<"tasks"> | string
   constraints?: Prisma.JsonNullableWithAggregatesFilter<"tasks">
   execution_location?: Prisma.EnumExecutionLocationWithAggregatesFilter<"tasks"> | $Enums.ExecutionLocation
@@ -533,9 +554,12 @@ export type tasksCreateInput = {
   organization: Prisma.organizationsCreateNestedOneWithoutTasksInput
   agent_session: Prisma.agent_sessionsCreateNestedOneWithoutTasksInput
   created_by_user?: Prisma.usersCreateNestedOneWithoutTasksInput
+  workspace?: Prisma.workspacesCreateNestedOneWithoutTasksInput
   task_steps?: Prisma.task_stepsCreateNestedManyWithoutTaskInput
   task_events?: Prisma.task_eventsCreateNestedManyWithoutTaskInput
   task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUncheckedCreateInput = {
@@ -544,6 +568,7 @@ export type tasksUncheckedCreateInput = {
   agent_session_id: string
   created_by?: string | null
   device_id?: string | null
+  workspace_id?: string | null
   goal: string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: $Enums.ExecutionLocation
@@ -567,6 +592,8 @@ export type tasksUncheckedCreateInput = {
   task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutTaskInput
   task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutTaskInput
   task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUpdateInput = {
@@ -595,9 +622,12 @@ export type tasksUpdateInput = {
   organization?: Prisma.organizationsUpdateOneRequiredWithoutTasksNestedInput
   agent_session?: Prisma.agent_sessionsUpdateOneRequiredWithoutTasksNestedInput
   created_by_user?: Prisma.usersUpdateOneWithoutTasksNestedInput
+  workspace?: Prisma.workspacesUpdateOneWithoutTasksNestedInput
   task_steps?: Prisma.task_stepsUpdateManyWithoutTaskNestedInput
   task_events?: Prisma.task_eventsUpdateManyWithoutTaskNestedInput
   task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateInput = {
@@ -606,6 +636,7 @@ export type tasksUncheckedUpdateInput = {
   agent_session_id?: Prisma.StringFieldUpdateOperationsInput | string
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspace_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   goal?: Prisma.StringFieldUpdateOperationsInput | string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
@@ -629,6 +660,8 @@ export type tasksUncheckedUpdateInput = {
   task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutTaskNestedInput
   task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutTaskNestedInput
   task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksCreateManyInput = {
@@ -637,6 +670,7 @@ export type tasksCreateManyInput = {
   agent_session_id: string
   created_by?: string | null
   device_id?: string | null
+  workspace_id?: string | null
   goal: string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: $Enums.ExecutionLocation
@@ -690,6 +724,7 @@ export type tasksUncheckedUpdateManyInput = {
   agent_session_id?: Prisma.StringFieldUpdateOperationsInput | string
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspace_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   goal?: Prisma.StringFieldUpdateOperationsInput | string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
@@ -728,6 +763,7 @@ export type tasksCountOrderByAggregateInput = {
   agent_session_id?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
   device_id?: Prisma.SortOrder
+  workspace_id?: Prisma.SortOrder
   goal?: Prisma.SortOrder
   constraints?: Prisma.SortOrder
   execution_location?: Prisma.SortOrder
@@ -760,6 +796,7 @@ export type tasksMaxOrderByAggregateInput = {
   agent_session_id?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
   device_id?: Prisma.SortOrder
+  workspace_id?: Prisma.SortOrder
   goal?: Prisma.SortOrder
   execution_location?: Prisma.SortOrder
   state?: Prisma.SortOrder
@@ -785,6 +822,7 @@ export type tasksMinOrderByAggregateInput = {
   agent_session_id?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
   device_id?: Prisma.SortOrder
+  workspace_id?: Prisma.SortOrder
   goal?: Prisma.SortOrder
   execution_location?: Prisma.SortOrder
   state?: Prisma.SortOrder
@@ -993,6 +1031,76 @@ export type tasksUpdateOneRequiredWithoutTask_checkpointsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.tasksUpdateToOneWithWhereWithoutTask_checkpointsInput, Prisma.tasksUpdateWithoutTask_checkpointsInput>, Prisma.tasksUncheckedUpdateWithoutTask_checkpointsInput>
 }
 
+export type tasksCreateNestedManyWithoutWorkspaceInput = {
+  create?: Prisma.XOR<Prisma.tasksCreateWithoutWorkspaceInput, Prisma.tasksUncheckedCreateWithoutWorkspaceInput> | Prisma.tasksCreateWithoutWorkspaceInput[] | Prisma.tasksUncheckedCreateWithoutWorkspaceInput[]
+  connectOrCreate?: Prisma.tasksCreateOrConnectWithoutWorkspaceInput | Prisma.tasksCreateOrConnectWithoutWorkspaceInput[]
+  createMany?: Prisma.tasksCreateManyWorkspaceInputEnvelope
+  connect?: Prisma.tasksWhereUniqueInput | Prisma.tasksWhereUniqueInput[]
+}
+
+export type tasksUncheckedCreateNestedManyWithoutWorkspaceInput = {
+  create?: Prisma.XOR<Prisma.tasksCreateWithoutWorkspaceInput, Prisma.tasksUncheckedCreateWithoutWorkspaceInput> | Prisma.tasksCreateWithoutWorkspaceInput[] | Prisma.tasksUncheckedCreateWithoutWorkspaceInput[]
+  connectOrCreate?: Prisma.tasksCreateOrConnectWithoutWorkspaceInput | Prisma.tasksCreateOrConnectWithoutWorkspaceInput[]
+  createMany?: Prisma.tasksCreateManyWorkspaceInputEnvelope
+  connect?: Prisma.tasksWhereUniqueInput | Prisma.tasksWhereUniqueInput[]
+}
+
+export type tasksUpdateManyWithoutWorkspaceNestedInput = {
+  create?: Prisma.XOR<Prisma.tasksCreateWithoutWorkspaceInput, Prisma.tasksUncheckedCreateWithoutWorkspaceInput> | Prisma.tasksCreateWithoutWorkspaceInput[] | Prisma.tasksUncheckedCreateWithoutWorkspaceInput[]
+  connectOrCreate?: Prisma.tasksCreateOrConnectWithoutWorkspaceInput | Prisma.tasksCreateOrConnectWithoutWorkspaceInput[]
+  upsert?: Prisma.tasksUpsertWithWhereUniqueWithoutWorkspaceInput | Prisma.tasksUpsertWithWhereUniqueWithoutWorkspaceInput[]
+  createMany?: Prisma.tasksCreateManyWorkspaceInputEnvelope
+  set?: Prisma.tasksWhereUniqueInput | Prisma.tasksWhereUniqueInput[]
+  disconnect?: Prisma.tasksWhereUniqueInput | Prisma.tasksWhereUniqueInput[]
+  delete?: Prisma.tasksWhereUniqueInput | Prisma.tasksWhereUniqueInput[]
+  connect?: Prisma.tasksWhereUniqueInput | Prisma.tasksWhereUniqueInput[]
+  update?: Prisma.tasksUpdateWithWhereUniqueWithoutWorkspaceInput | Prisma.tasksUpdateWithWhereUniqueWithoutWorkspaceInput[]
+  updateMany?: Prisma.tasksUpdateManyWithWhereWithoutWorkspaceInput | Prisma.tasksUpdateManyWithWhereWithoutWorkspaceInput[]
+  deleteMany?: Prisma.tasksScalarWhereInput | Prisma.tasksScalarWhereInput[]
+}
+
+export type tasksUncheckedUpdateManyWithoutWorkspaceNestedInput = {
+  create?: Prisma.XOR<Prisma.tasksCreateWithoutWorkspaceInput, Prisma.tasksUncheckedCreateWithoutWorkspaceInput> | Prisma.tasksCreateWithoutWorkspaceInput[] | Prisma.tasksUncheckedCreateWithoutWorkspaceInput[]
+  connectOrCreate?: Prisma.tasksCreateOrConnectWithoutWorkspaceInput | Prisma.tasksCreateOrConnectWithoutWorkspaceInput[]
+  upsert?: Prisma.tasksUpsertWithWhereUniqueWithoutWorkspaceInput | Prisma.tasksUpsertWithWhereUniqueWithoutWorkspaceInput[]
+  createMany?: Prisma.tasksCreateManyWorkspaceInputEnvelope
+  set?: Prisma.tasksWhereUniqueInput | Prisma.tasksWhereUniqueInput[]
+  disconnect?: Prisma.tasksWhereUniqueInput | Prisma.tasksWhereUniqueInput[]
+  delete?: Prisma.tasksWhereUniqueInput | Prisma.tasksWhereUniqueInput[]
+  connect?: Prisma.tasksWhereUniqueInput | Prisma.tasksWhereUniqueInput[]
+  update?: Prisma.tasksUpdateWithWhereUniqueWithoutWorkspaceInput | Prisma.tasksUpdateWithWhereUniqueWithoutWorkspaceInput[]
+  updateMany?: Prisma.tasksUpdateManyWithWhereWithoutWorkspaceInput | Prisma.tasksUpdateManyWithWhereWithoutWorkspaceInput[]
+  deleteMany?: Prisma.tasksScalarWhereInput | Prisma.tasksScalarWhereInput[]
+}
+
+export type tasksCreateNestedOneWithoutApproval_requestsInput = {
+  create?: Prisma.XOR<Prisma.tasksCreateWithoutApproval_requestsInput, Prisma.tasksUncheckedCreateWithoutApproval_requestsInput>
+  connectOrCreate?: Prisma.tasksCreateOrConnectWithoutApproval_requestsInput
+  connect?: Prisma.tasksWhereUniqueInput
+}
+
+export type tasksUpdateOneRequiredWithoutApproval_requestsNestedInput = {
+  create?: Prisma.XOR<Prisma.tasksCreateWithoutApproval_requestsInput, Prisma.tasksUncheckedCreateWithoutApproval_requestsInput>
+  connectOrCreate?: Prisma.tasksCreateOrConnectWithoutApproval_requestsInput
+  upsert?: Prisma.tasksUpsertWithoutApproval_requestsInput
+  connect?: Prisma.tasksWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.tasksUpdateToOneWithWhereWithoutApproval_requestsInput, Prisma.tasksUpdateWithoutApproval_requestsInput>, Prisma.tasksUncheckedUpdateWithoutApproval_requestsInput>
+}
+
+export type tasksCreateNestedOneWithoutPolicy_decisionsInput = {
+  create?: Prisma.XOR<Prisma.tasksCreateWithoutPolicy_decisionsInput, Prisma.tasksUncheckedCreateWithoutPolicy_decisionsInput>
+  connectOrCreate?: Prisma.tasksCreateOrConnectWithoutPolicy_decisionsInput
+  connect?: Prisma.tasksWhereUniqueInput
+}
+
+export type tasksUpdateOneRequiredWithoutPolicy_decisionsNestedInput = {
+  create?: Prisma.XOR<Prisma.tasksCreateWithoutPolicy_decisionsInput, Prisma.tasksUncheckedCreateWithoutPolicy_decisionsInput>
+  connectOrCreate?: Prisma.tasksCreateOrConnectWithoutPolicy_decisionsInput
+  upsert?: Prisma.tasksUpsertWithoutPolicy_decisionsInput
+  connect?: Prisma.tasksWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.tasksUpdateToOneWithWhereWithoutPolicy_decisionsInput, Prisma.tasksUpdateWithoutPolicy_decisionsInput>, Prisma.tasksUncheckedUpdateWithoutPolicy_decisionsInput>
+}
+
 export type tasksCreateWithoutCreated_by_userInput = {
   id?: string
   device_id?: string | null
@@ -1018,9 +1126,12 @@ export type tasksCreateWithoutCreated_by_userInput = {
   updated_at?: Date | string
   organization: Prisma.organizationsCreateNestedOneWithoutTasksInput
   agent_session: Prisma.agent_sessionsCreateNestedOneWithoutTasksInput
+  workspace?: Prisma.workspacesCreateNestedOneWithoutTasksInput
   task_steps?: Prisma.task_stepsCreateNestedManyWithoutTaskInput
   task_events?: Prisma.task_eventsCreateNestedManyWithoutTaskInput
   task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUncheckedCreateWithoutCreated_by_userInput = {
@@ -1028,6 +1139,7 @@ export type tasksUncheckedCreateWithoutCreated_by_userInput = {
   organization_id: string
   agent_session_id: string
   device_id?: string | null
+  workspace_id?: string | null
   goal: string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: $Enums.ExecutionLocation
@@ -1051,6 +1163,8 @@ export type tasksUncheckedCreateWithoutCreated_by_userInput = {
   task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutTaskInput
   task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutTaskInput
   task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type tasksCreateOrConnectWithoutCreated_by_userInput = {
@@ -1088,6 +1202,7 @@ export type tasksScalarWhereInput = {
   agent_session_id?: Prisma.UuidFilter<"tasks"> | string
   created_by?: Prisma.UuidNullableFilter<"tasks"> | string | null
   device_id?: Prisma.UuidNullableFilter<"tasks"> | string | null
+  workspace_id?: Prisma.UuidNullableFilter<"tasks"> | string | null
   goal?: Prisma.StringFilter<"tasks"> | string
   constraints?: Prisma.JsonNullableFilter<"tasks">
   execution_location?: Prisma.EnumExecutionLocationFilter<"tasks"> | $Enums.ExecutionLocation
@@ -1135,9 +1250,12 @@ export type tasksCreateWithoutOrganizationInput = {
   updated_at?: Date | string
   agent_session: Prisma.agent_sessionsCreateNestedOneWithoutTasksInput
   created_by_user?: Prisma.usersCreateNestedOneWithoutTasksInput
+  workspace?: Prisma.workspacesCreateNestedOneWithoutTasksInput
   task_steps?: Prisma.task_stepsCreateNestedManyWithoutTaskInput
   task_events?: Prisma.task_eventsCreateNestedManyWithoutTaskInput
   task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUncheckedCreateWithoutOrganizationInput = {
@@ -1145,6 +1263,7 @@ export type tasksUncheckedCreateWithoutOrganizationInput = {
   agent_session_id: string
   created_by?: string | null
   device_id?: string | null
+  workspace_id?: string | null
   goal: string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: $Enums.ExecutionLocation
@@ -1168,6 +1287,8 @@ export type tasksUncheckedCreateWithoutOrganizationInput = {
   task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutTaskInput
   task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutTaskInput
   task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type tasksCreateOrConnectWithoutOrganizationInput = {
@@ -1221,9 +1342,12 @@ export type tasksCreateWithoutAgent_sessionInput = {
   updated_at?: Date | string
   organization: Prisma.organizationsCreateNestedOneWithoutTasksInput
   created_by_user?: Prisma.usersCreateNestedOneWithoutTasksInput
+  workspace?: Prisma.workspacesCreateNestedOneWithoutTasksInput
   task_steps?: Prisma.task_stepsCreateNestedManyWithoutTaskInput
   task_events?: Prisma.task_eventsCreateNestedManyWithoutTaskInput
   task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUncheckedCreateWithoutAgent_sessionInput = {
@@ -1231,6 +1355,7 @@ export type tasksUncheckedCreateWithoutAgent_sessionInput = {
   organization_id: string
   created_by?: string | null
   device_id?: string | null
+  workspace_id?: string | null
   goal: string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: $Enums.ExecutionLocation
@@ -1254,6 +1379,8 @@ export type tasksUncheckedCreateWithoutAgent_sessionInput = {
   task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutTaskInput
   task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutTaskInput
   task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type tasksCreateOrConnectWithoutAgent_sessionInput = {
@@ -1308,8 +1435,11 @@ export type tasksCreateWithoutTask_stepsInput = {
   organization: Prisma.organizationsCreateNestedOneWithoutTasksInput
   agent_session: Prisma.agent_sessionsCreateNestedOneWithoutTasksInput
   created_by_user?: Prisma.usersCreateNestedOneWithoutTasksInput
+  workspace?: Prisma.workspacesCreateNestedOneWithoutTasksInput
   task_events?: Prisma.task_eventsCreateNestedManyWithoutTaskInput
   task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUncheckedCreateWithoutTask_stepsInput = {
@@ -1318,6 +1448,7 @@ export type tasksUncheckedCreateWithoutTask_stepsInput = {
   agent_session_id: string
   created_by?: string | null
   device_id?: string | null
+  workspace_id?: string | null
   goal: string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: $Enums.ExecutionLocation
@@ -1340,6 +1471,8 @@ export type tasksUncheckedCreateWithoutTask_stepsInput = {
   updated_at?: Date | string
   task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutTaskInput
   task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type tasksCreateOrConnectWithoutTask_stepsInput = {
@@ -1384,8 +1517,11 @@ export type tasksUpdateWithoutTask_stepsInput = {
   organization?: Prisma.organizationsUpdateOneRequiredWithoutTasksNestedInput
   agent_session?: Prisma.agent_sessionsUpdateOneRequiredWithoutTasksNestedInput
   created_by_user?: Prisma.usersUpdateOneWithoutTasksNestedInput
+  workspace?: Prisma.workspacesUpdateOneWithoutTasksNestedInput
   task_events?: Prisma.task_eventsUpdateManyWithoutTaskNestedInput
   task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateWithoutTask_stepsInput = {
@@ -1394,6 +1530,7 @@ export type tasksUncheckedUpdateWithoutTask_stepsInput = {
   agent_session_id?: Prisma.StringFieldUpdateOperationsInput | string
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspace_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   goal?: Prisma.StringFieldUpdateOperationsInput | string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
@@ -1416,6 +1553,8 @@ export type tasksUncheckedUpdateWithoutTask_stepsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutTaskNestedInput
   task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksCreateWithoutTask_eventsInput = {
@@ -1444,8 +1583,11 @@ export type tasksCreateWithoutTask_eventsInput = {
   organization: Prisma.organizationsCreateNestedOneWithoutTasksInput
   agent_session: Prisma.agent_sessionsCreateNestedOneWithoutTasksInput
   created_by_user?: Prisma.usersCreateNestedOneWithoutTasksInput
+  workspace?: Prisma.workspacesCreateNestedOneWithoutTasksInput
   task_steps?: Prisma.task_stepsCreateNestedManyWithoutTaskInput
   task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUncheckedCreateWithoutTask_eventsInput = {
@@ -1454,6 +1596,7 @@ export type tasksUncheckedCreateWithoutTask_eventsInput = {
   agent_session_id: string
   created_by?: string | null
   device_id?: string | null
+  workspace_id?: string | null
   goal: string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: $Enums.ExecutionLocation
@@ -1476,6 +1619,8 @@ export type tasksUncheckedCreateWithoutTask_eventsInput = {
   updated_at?: Date | string
   task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutTaskInput
   task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type tasksCreateOrConnectWithoutTask_eventsInput = {
@@ -1520,8 +1665,11 @@ export type tasksUpdateWithoutTask_eventsInput = {
   organization?: Prisma.organizationsUpdateOneRequiredWithoutTasksNestedInput
   agent_session?: Prisma.agent_sessionsUpdateOneRequiredWithoutTasksNestedInput
   created_by_user?: Prisma.usersUpdateOneWithoutTasksNestedInput
+  workspace?: Prisma.workspacesUpdateOneWithoutTasksNestedInput
   task_steps?: Prisma.task_stepsUpdateManyWithoutTaskNestedInput
   task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateWithoutTask_eventsInput = {
@@ -1530,6 +1678,7 @@ export type tasksUncheckedUpdateWithoutTask_eventsInput = {
   agent_session_id?: Prisma.StringFieldUpdateOperationsInput | string
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspace_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   goal?: Prisma.StringFieldUpdateOperationsInput | string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
@@ -1552,6 +1701,8 @@ export type tasksUncheckedUpdateWithoutTask_eventsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutTaskNestedInput
   task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksCreateWithoutTask_checkpointsInput = {
@@ -1580,8 +1731,11 @@ export type tasksCreateWithoutTask_checkpointsInput = {
   organization: Prisma.organizationsCreateNestedOneWithoutTasksInput
   agent_session: Prisma.agent_sessionsCreateNestedOneWithoutTasksInput
   created_by_user?: Prisma.usersCreateNestedOneWithoutTasksInput
+  workspace?: Prisma.workspacesCreateNestedOneWithoutTasksInput
   task_steps?: Prisma.task_stepsCreateNestedManyWithoutTaskInput
   task_events?: Prisma.task_eventsCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUncheckedCreateWithoutTask_checkpointsInput = {
@@ -1590,6 +1744,7 @@ export type tasksUncheckedCreateWithoutTask_checkpointsInput = {
   agent_session_id: string
   created_by?: string | null
   device_id?: string | null
+  workspace_id?: string | null
   goal: string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: $Enums.ExecutionLocation
@@ -1612,6 +1767,8 @@ export type tasksUncheckedCreateWithoutTask_checkpointsInput = {
   updated_at?: Date | string
   task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutTaskInput
   task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type tasksCreateOrConnectWithoutTask_checkpointsInput = {
@@ -1656,8 +1813,11 @@ export type tasksUpdateWithoutTask_checkpointsInput = {
   organization?: Prisma.organizationsUpdateOneRequiredWithoutTasksNestedInput
   agent_session?: Prisma.agent_sessionsUpdateOneRequiredWithoutTasksNestedInput
   created_by_user?: Prisma.usersUpdateOneWithoutTasksNestedInput
+  workspace?: Prisma.workspacesUpdateOneWithoutTasksNestedInput
   task_steps?: Prisma.task_stepsUpdateManyWithoutTaskNestedInput
   task_events?: Prisma.task_eventsUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateWithoutTask_checkpointsInput = {
@@ -1666,6 +1826,7 @@ export type tasksUncheckedUpdateWithoutTask_checkpointsInput = {
   agent_session_id?: Prisma.StringFieldUpdateOperationsInput | string
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspace_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   goal?: Prisma.StringFieldUpdateOperationsInput | string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
@@ -1688,6 +1849,396 @@ export type tasksUncheckedUpdateWithoutTask_checkpointsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutTaskNestedInput
   task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
+}
+
+export type tasksCreateWithoutWorkspaceInput = {
+  id?: string
+  device_id?: string | null
+  goal: string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: $Enums.ExecutionLocation
+  state?: $Enums.TaskState
+  state_changed_at?: Date | string
+  risk_class?: string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: string | null
+  error_code?: string | null
+  error_message?: string | null
+  idempotency_key_id?: string | null
+  started_at?: Date | string | null
+  finished_at?: Date | string | null
+  lease_owner?: string | null
+  lease_expires_at?: Date | string | null
+  attempts?: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  organization: Prisma.organizationsCreateNestedOneWithoutTasksInput
+  agent_session: Prisma.agent_sessionsCreateNestedOneWithoutTasksInput
+  created_by_user?: Prisma.usersCreateNestedOneWithoutTasksInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutTaskInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutTaskInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
+}
+
+export type tasksUncheckedCreateWithoutWorkspaceInput = {
+  id?: string
+  organization_id: string
+  agent_session_id: string
+  created_by?: string | null
+  device_id?: string | null
+  goal: string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: $Enums.ExecutionLocation
+  state?: $Enums.TaskState
+  state_changed_at?: Date | string
+  risk_class?: string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: string | null
+  error_code?: string | null
+  error_message?: string | null
+  idempotency_key_id?: string | null
+  started_at?: Date | string | null
+  finished_at?: Date | string | null
+  lease_owner?: string | null
+  lease_expires_at?: Date | string | null
+  attempts?: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutTaskInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutTaskInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
+}
+
+export type tasksCreateOrConnectWithoutWorkspaceInput = {
+  where: Prisma.tasksWhereUniqueInput
+  create: Prisma.XOR<Prisma.tasksCreateWithoutWorkspaceInput, Prisma.tasksUncheckedCreateWithoutWorkspaceInput>
+}
+
+export type tasksCreateManyWorkspaceInputEnvelope = {
+  data: Prisma.tasksCreateManyWorkspaceInput | Prisma.tasksCreateManyWorkspaceInput[]
+  skipDuplicates?: boolean
+}
+
+export type tasksUpsertWithWhereUniqueWithoutWorkspaceInput = {
+  where: Prisma.tasksWhereUniqueInput
+  update: Prisma.XOR<Prisma.tasksUpdateWithoutWorkspaceInput, Prisma.tasksUncheckedUpdateWithoutWorkspaceInput>
+  create: Prisma.XOR<Prisma.tasksCreateWithoutWorkspaceInput, Prisma.tasksUncheckedCreateWithoutWorkspaceInput>
+}
+
+export type tasksUpdateWithWhereUniqueWithoutWorkspaceInput = {
+  where: Prisma.tasksWhereUniqueInput
+  data: Prisma.XOR<Prisma.tasksUpdateWithoutWorkspaceInput, Prisma.tasksUncheckedUpdateWithoutWorkspaceInput>
+}
+
+export type tasksUpdateManyWithWhereWithoutWorkspaceInput = {
+  where: Prisma.tasksScalarWhereInput
+  data: Prisma.XOR<Prisma.tasksUpdateManyMutationInput, Prisma.tasksUncheckedUpdateManyWithoutWorkspaceInput>
+}
+
+export type tasksCreateWithoutApproval_requestsInput = {
+  id?: string
+  device_id?: string | null
+  goal: string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: $Enums.ExecutionLocation
+  state?: $Enums.TaskState
+  state_changed_at?: Date | string
+  risk_class?: string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: string | null
+  error_code?: string | null
+  error_message?: string | null
+  idempotency_key_id?: string | null
+  started_at?: Date | string | null
+  finished_at?: Date | string | null
+  lease_owner?: string | null
+  lease_expires_at?: Date | string | null
+  attempts?: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  organization: Prisma.organizationsCreateNestedOneWithoutTasksInput
+  agent_session: Prisma.agent_sessionsCreateNestedOneWithoutTasksInput
+  created_by_user?: Prisma.usersCreateNestedOneWithoutTasksInput
+  workspace?: Prisma.workspacesCreateNestedOneWithoutTasksInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutTaskInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutTaskInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
+}
+
+export type tasksUncheckedCreateWithoutApproval_requestsInput = {
+  id?: string
+  organization_id: string
+  agent_session_id: string
+  created_by?: string | null
+  device_id?: string | null
+  workspace_id?: string | null
+  goal: string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: $Enums.ExecutionLocation
+  state?: $Enums.TaskState
+  state_changed_at?: Date | string
+  risk_class?: string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: string | null
+  error_code?: string | null
+  error_message?: string | null
+  idempotency_key_id?: string | null
+  started_at?: Date | string | null
+  finished_at?: Date | string | null
+  lease_owner?: string | null
+  lease_expires_at?: Date | string | null
+  attempts?: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutTaskInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutTaskInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
+}
+
+export type tasksCreateOrConnectWithoutApproval_requestsInput = {
+  where: Prisma.tasksWhereUniqueInput
+  create: Prisma.XOR<Prisma.tasksCreateWithoutApproval_requestsInput, Prisma.tasksUncheckedCreateWithoutApproval_requestsInput>
+}
+
+export type tasksUpsertWithoutApproval_requestsInput = {
+  update: Prisma.XOR<Prisma.tasksUpdateWithoutApproval_requestsInput, Prisma.tasksUncheckedUpdateWithoutApproval_requestsInput>
+  create: Prisma.XOR<Prisma.tasksCreateWithoutApproval_requestsInput, Prisma.tasksUncheckedCreateWithoutApproval_requestsInput>
+  where?: Prisma.tasksWhereInput
+}
+
+export type tasksUpdateToOneWithWhereWithoutApproval_requestsInput = {
+  where?: Prisma.tasksWhereInput
+  data: Prisma.XOR<Prisma.tasksUpdateWithoutApproval_requestsInput, Prisma.tasksUncheckedUpdateWithoutApproval_requestsInput>
+}
+
+export type tasksUpdateWithoutApproval_requestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  goal?: Prisma.StringFieldUpdateOperationsInput | string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
+  state?: Prisma.EnumTaskStateFieldUpdateOperationsInput | $Enums.TaskState
+  state_changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  risk_class?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotency_key_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finished_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lease_owner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lease_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.organizationsUpdateOneRequiredWithoutTasksNestedInput
+  agent_session?: Prisma.agent_sessionsUpdateOneRequiredWithoutTasksNestedInput
+  created_by_user?: Prisma.usersUpdateOneWithoutTasksNestedInput
+  workspace?: Prisma.workspacesUpdateOneWithoutTasksNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutTaskNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutTaskNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
+}
+
+export type tasksUncheckedUpdateWithoutApproval_requestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organization_id?: Prisma.StringFieldUpdateOperationsInput | string
+  agent_session_id?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspace_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  goal?: Prisma.StringFieldUpdateOperationsInput | string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
+  state?: Prisma.EnumTaskStateFieldUpdateOperationsInput | $Enums.TaskState
+  state_changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  risk_class?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotency_key_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finished_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lease_owner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lease_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutTaskNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutTaskNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
+}
+
+export type tasksCreateWithoutPolicy_decisionsInput = {
+  id?: string
+  device_id?: string | null
+  goal: string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: $Enums.ExecutionLocation
+  state?: $Enums.TaskState
+  state_changed_at?: Date | string
+  risk_class?: string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: string | null
+  error_code?: string | null
+  error_message?: string | null
+  idempotency_key_id?: string | null
+  started_at?: Date | string | null
+  finished_at?: Date | string | null
+  lease_owner?: string | null
+  lease_expires_at?: Date | string | null
+  attempts?: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  organization: Prisma.organizationsCreateNestedOneWithoutTasksInput
+  agent_session: Prisma.agent_sessionsCreateNestedOneWithoutTasksInput
+  created_by_user?: Prisma.usersCreateNestedOneWithoutTasksInput
+  workspace?: Prisma.workspacesCreateNestedOneWithoutTasksInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutTaskInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutTaskInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
+}
+
+export type tasksUncheckedCreateWithoutPolicy_decisionsInput = {
+  id?: string
+  organization_id: string
+  agent_session_id: string
+  created_by?: string | null
+  device_id?: string | null
+  workspace_id?: string | null
+  goal: string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: $Enums.ExecutionLocation
+  state?: $Enums.TaskState
+  state_changed_at?: Date | string
+  risk_class?: string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: string | null
+  error_code?: string | null
+  error_message?: string | null
+  idempotency_key_id?: string | null
+  started_at?: Date | string | null
+  finished_at?: Date | string | null
+  lease_owner?: string | null
+  lease_expires_at?: Date | string | null
+  attempts?: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutTaskInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutTaskInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
+}
+
+export type tasksCreateOrConnectWithoutPolicy_decisionsInput = {
+  where: Prisma.tasksWhereUniqueInput
+  create: Prisma.XOR<Prisma.tasksCreateWithoutPolicy_decisionsInput, Prisma.tasksUncheckedCreateWithoutPolicy_decisionsInput>
+}
+
+export type tasksUpsertWithoutPolicy_decisionsInput = {
+  update: Prisma.XOR<Prisma.tasksUpdateWithoutPolicy_decisionsInput, Prisma.tasksUncheckedUpdateWithoutPolicy_decisionsInput>
+  create: Prisma.XOR<Prisma.tasksCreateWithoutPolicy_decisionsInput, Prisma.tasksUncheckedCreateWithoutPolicy_decisionsInput>
+  where?: Prisma.tasksWhereInput
+}
+
+export type tasksUpdateToOneWithWhereWithoutPolicy_decisionsInput = {
+  where?: Prisma.tasksWhereInput
+  data: Prisma.XOR<Prisma.tasksUpdateWithoutPolicy_decisionsInput, Prisma.tasksUncheckedUpdateWithoutPolicy_decisionsInput>
+}
+
+export type tasksUpdateWithoutPolicy_decisionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  goal?: Prisma.StringFieldUpdateOperationsInput | string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
+  state?: Prisma.EnumTaskStateFieldUpdateOperationsInput | $Enums.TaskState
+  state_changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  risk_class?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotency_key_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finished_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lease_owner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lease_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.organizationsUpdateOneRequiredWithoutTasksNestedInput
+  agent_session?: Prisma.agent_sessionsUpdateOneRequiredWithoutTasksNestedInput
+  created_by_user?: Prisma.usersUpdateOneWithoutTasksNestedInput
+  workspace?: Prisma.workspacesUpdateOneWithoutTasksNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutTaskNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutTaskNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
+}
+
+export type tasksUncheckedUpdateWithoutPolicy_decisionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organization_id?: Prisma.StringFieldUpdateOperationsInput | string
+  agent_session_id?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspace_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  goal?: Prisma.StringFieldUpdateOperationsInput | string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
+  state?: Prisma.EnumTaskStateFieldUpdateOperationsInput | $Enums.TaskState
+  state_changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  risk_class?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotency_key_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finished_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lease_owner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lease_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutTaskNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutTaskNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksCreateManyCreated_by_userInput = {
@@ -1695,6 +2246,7 @@ export type tasksCreateManyCreated_by_userInput = {
   organization_id: string
   agent_session_id: string
   device_id?: string | null
+  workspace_id?: string | null
   goal: string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: $Enums.ExecutionLocation
@@ -1742,9 +2294,12 @@ export type tasksUpdateWithoutCreated_by_userInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.organizationsUpdateOneRequiredWithoutTasksNestedInput
   agent_session?: Prisma.agent_sessionsUpdateOneRequiredWithoutTasksNestedInput
+  workspace?: Prisma.workspacesUpdateOneWithoutTasksNestedInput
   task_steps?: Prisma.task_stepsUpdateManyWithoutTaskNestedInput
   task_events?: Prisma.task_eventsUpdateManyWithoutTaskNestedInput
   task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateWithoutCreated_by_userInput = {
@@ -1752,6 +2307,7 @@ export type tasksUncheckedUpdateWithoutCreated_by_userInput = {
   organization_id?: Prisma.StringFieldUpdateOperationsInput | string
   agent_session_id?: Prisma.StringFieldUpdateOperationsInput | string
   device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspace_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   goal?: Prisma.StringFieldUpdateOperationsInput | string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
@@ -1775,6 +2331,8 @@ export type tasksUncheckedUpdateWithoutCreated_by_userInput = {
   task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutTaskNestedInput
   task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutTaskNestedInput
   task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateManyWithoutCreated_by_userInput = {
@@ -1782,6 +2340,7 @@ export type tasksUncheckedUpdateManyWithoutCreated_by_userInput = {
   organization_id?: Prisma.StringFieldUpdateOperationsInput | string
   agent_session_id?: Prisma.StringFieldUpdateOperationsInput | string
   device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspace_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   goal?: Prisma.StringFieldUpdateOperationsInput | string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
@@ -1809,6 +2368,7 @@ export type tasksCreateManyOrganizationInput = {
   agent_session_id: string
   created_by?: string | null
   device_id?: string | null
+  workspace_id?: string | null
   goal: string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: $Enums.ExecutionLocation
@@ -1856,9 +2416,12 @@ export type tasksUpdateWithoutOrganizationInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   agent_session?: Prisma.agent_sessionsUpdateOneRequiredWithoutTasksNestedInput
   created_by_user?: Prisma.usersUpdateOneWithoutTasksNestedInput
+  workspace?: Prisma.workspacesUpdateOneWithoutTasksNestedInput
   task_steps?: Prisma.task_stepsUpdateManyWithoutTaskNestedInput
   task_events?: Prisma.task_eventsUpdateManyWithoutTaskNestedInput
   task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateWithoutOrganizationInput = {
@@ -1866,6 +2429,7 @@ export type tasksUncheckedUpdateWithoutOrganizationInput = {
   agent_session_id?: Prisma.StringFieldUpdateOperationsInput | string
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspace_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   goal?: Prisma.StringFieldUpdateOperationsInput | string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
@@ -1889,6 +2453,8 @@ export type tasksUncheckedUpdateWithoutOrganizationInput = {
   task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutTaskNestedInput
   task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutTaskNestedInput
   task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateManyWithoutOrganizationInput = {
@@ -1896,6 +2462,7 @@ export type tasksUncheckedUpdateManyWithoutOrganizationInput = {
   agent_session_id?: Prisma.StringFieldUpdateOperationsInput | string
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspace_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   goal?: Prisma.StringFieldUpdateOperationsInput | string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
@@ -1923,6 +2490,7 @@ export type tasksCreateManyAgent_sessionInput = {
   organization_id: string
   created_by?: string | null
   device_id?: string | null
+  workspace_id?: string | null
   goal: string
   constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   execution_location?: $Enums.ExecutionLocation
@@ -1970,14 +2538,140 @@ export type tasksUpdateWithoutAgent_sessionInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.organizationsUpdateOneRequiredWithoutTasksNestedInput
   created_by_user?: Prisma.usersUpdateOneWithoutTasksNestedInput
+  workspace?: Prisma.workspacesUpdateOneWithoutTasksNestedInput
   task_steps?: Prisma.task_stepsUpdateManyWithoutTaskNestedInput
   task_events?: Prisma.task_eventsUpdateManyWithoutTaskNestedInput
   task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateWithoutAgent_sessionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organization_id?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspace_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  goal?: Prisma.StringFieldUpdateOperationsInput | string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
+  state?: Prisma.EnumTaskStateFieldUpdateOperationsInput | $Enums.TaskState
+  state_changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  risk_class?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotency_key_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finished_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lease_owner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lease_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutTaskNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutTaskNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
+}
+
+export type tasksUncheckedUpdateManyWithoutAgent_sessionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organization_id?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspace_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  goal?: Prisma.StringFieldUpdateOperationsInput | string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
+  state?: Prisma.EnumTaskStateFieldUpdateOperationsInput | $Enums.TaskState
+  state_changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  risk_class?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotency_key_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finished_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lease_owner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lease_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type tasksCreateManyWorkspaceInput = {
+  id?: string
+  organization_id: string
+  agent_session_id: string
+  created_by?: string | null
+  device_id?: string | null
+  goal: string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: $Enums.ExecutionLocation
+  state?: $Enums.TaskState
+  state_changed_at?: Date | string
+  risk_class?: string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: string | null
+  error_code?: string | null
+  error_message?: string | null
+  idempotency_key_id?: string | null
+  started_at?: Date | string | null
+  finished_at?: Date | string | null
+  lease_owner?: string | null
+  lease_expires_at?: Date | string | null
+  attempts?: number
+  created_at?: Date | string
+  updated_at?: Date | string
+}
+
+export type tasksUpdateWithoutWorkspaceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  goal?: Prisma.StringFieldUpdateOperationsInput | string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
+  state?: Prisma.EnumTaskStateFieldUpdateOperationsInput | $Enums.TaskState
+  state_changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  risk_class?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotency_key_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finished_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lease_owner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lease_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.organizationsUpdateOneRequiredWithoutTasksNestedInput
+  agent_session?: Prisma.agent_sessionsUpdateOneRequiredWithoutTasksNestedInput
+  created_by_user?: Prisma.usersUpdateOneWithoutTasksNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutTaskNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutTaskNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
+}
+
+export type tasksUncheckedUpdateWithoutWorkspaceInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organization_id?: Prisma.StringFieldUpdateOperationsInput | string
+  agent_session_id?: Prisma.StringFieldUpdateOperationsInput | string
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   goal?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2003,11 +2697,14 @@ export type tasksUncheckedUpdateWithoutAgent_sessionInput = {
   task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutTaskNestedInput
   task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutTaskNestedInput
   task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
 }
 
-export type tasksUncheckedUpdateManyWithoutAgent_sessionInput = {
+export type tasksUncheckedUpdateManyWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   organization_id?: Prisma.StringFieldUpdateOperationsInput | string
+  agent_session_id?: Prisma.StringFieldUpdateOperationsInput | string
   created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   goal?: Prisma.StringFieldUpdateOperationsInput | string
@@ -2041,12 +2738,16 @@ export type TasksCountOutputType = {
   task_steps: number
   task_events: number
   task_checkpoints: number
+  approval_requests: number
+  policy_decisions: number
 }
 
 export type TasksCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   task_steps?: boolean | TasksCountOutputTypeCountTask_stepsArgs
   task_events?: boolean | TasksCountOutputTypeCountTask_eventsArgs
   task_checkpoints?: boolean | TasksCountOutputTypeCountTask_checkpointsArgs
+  approval_requests?: boolean | TasksCountOutputTypeCountApproval_requestsArgs
+  policy_decisions?: boolean | TasksCountOutputTypeCountPolicy_decisionsArgs
 }
 
 /**
@@ -2080,6 +2781,20 @@ export type TasksCountOutputTypeCountTask_checkpointsArgs<ExtArgs extends runtim
   where?: Prisma.task_checkpointsWhereInput
 }
 
+/**
+ * TasksCountOutputType without action
+ */
+export type TasksCountOutputTypeCountApproval_requestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.approval_requestsWhereInput
+}
+
+/**
+ * TasksCountOutputType without action
+ */
+export type TasksCountOutputTypeCountPolicy_decisionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.policy_decisionsWhereInput
+}
+
 
 export type tasksSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2087,6 +2802,7 @@ export type tasksSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   agent_session_id?: boolean
   created_by?: boolean
   device_id?: boolean
+  workspace_id?: boolean
   goal?: boolean
   constraints?: boolean
   execution_location?: boolean
@@ -2110,9 +2826,12 @@ export type tasksSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
   agent_session?: boolean | Prisma.agent_sessionsDefaultArgs<ExtArgs>
   created_by_user?: boolean | Prisma.tasks$created_by_userArgs<ExtArgs>
+  workspace?: boolean | Prisma.tasks$workspaceArgs<ExtArgs>
   task_steps?: boolean | Prisma.tasks$task_stepsArgs<ExtArgs>
   task_events?: boolean | Prisma.tasks$task_eventsArgs<ExtArgs>
   task_checkpoints?: boolean | Prisma.tasks$task_checkpointsArgs<ExtArgs>
+  approval_requests?: boolean | Prisma.tasks$approval_requestsArgs<ExtArgs>
+  policy_decisions?: boolean | Prisma.tasks$policy_decisionsArgs<ExtArgs>
   _count?: boolean | Prisma.TasksCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tasks"]>
 
@@ -2122,6 +2841,7 @@ export type tasksSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   agent_session_id?: boolean
   created_by?: boolean
   device_id?: boolean
+  workspace_id?: boolean
   goal?: boolean
   constraints?: boolean
   execution_location?: boolean
@@ -2145,6 +2865,7 @@ export type tasksSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
   agent_session?: boolean | Prisma.agent_sessionsDefaultArgs<ExtArgs>
   created_by_user?: boolean | Prisma.tasks$created_by_userArgs<ExtArgs>
+  workspace?: boolean | Prisma.tasks$workspaceArgs<ExtArgs>
 }, ExtArgs["result"]["tasks"]>
 
 export type tasksSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -2153,6 +2874,7 @@ export type tasksSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   agent_session_id?: boolean
   created_by?: boolean
   device_id?: boolean
+  workspace_id?: boolean
   goal?: boolean
   constraints?: boolean
   execution_location?: boolean
@@ -2176,6 +2898,7 @@ export type tasksSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
   agent_session?: boolean | Prisma.agent_sessionsDefaultArgs<ExtArgs>
   created_by_user?: boolean | Prisma.tasks$created_by_userArgs<ExtArgs>
+  workspace?: boolean | Prisma.tasks$workspaceArgs<ExtArgs>
 }, ExtArgs["result"]["tasks"]>
 
 export type tasksSelectScalar = {
@@ -2184,6 +2907,7 @@ export type tasksSelectScalar = {
   agent_session_id?: boolean
   created_by?: boolean
   device_id?: boolean
+  workspace_id?: boolean
   goal?: boolean
   constraints?: boolean
   execution_location?: boolean
@@ -2206,25 +2930,30 @@ export type tasksSelectScalar = {
   updated_at?: boolean
 }
 
-export type tasksOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organization_id" | "agent_session_id" | "created_by" | "device_id" | "goal" | "constraints" | "execution_location" | "state" | "state_changed_at" | "risk_class" | "plan" | "policy_version" | "budget_used" | "result_summary" | "error_code" | "error_message" | "idempotency_key_id" | "started_at" | "finished_at" | "lease_owner" | "lease_expires_at" | "attempts" | "created_at" | "updated_at", ExtArgs["result"]["tasks"]>
+export type tasksOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organization_id" | "agent_session_id" | "created_by" | "device_id" | "workspace_id" | "goal" | "constraints" | "execution_location" | "state" | "state_changed_at" | "risk_class" | "plan" | "policy_version" | "budget_used" | "result_summary" | "error_code" | "error_message" | "idempotency_key_id" | "started_at" | "finished_at" | "lease_owner" | "lease_expires_at" | "attempts" | "created_at" | "updated_at", ExtArgs["result"]["tasks"]>
 export type tasksInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
   agent_session?: boolean | Prisma.agent_sessionsDefaultArgs<ExtArgs>
   created_by_user?: boolean | Prisma.tasks$created_by_userArgs<ExtArgs>
+  workspace?: boolean | Prisma.tasks$workspaceArgs<ExtArgs>
   task_steps?: boolean | Prisma.tasks$task_stepsArgs<ExtArgs>
   task_events?: boolean | Prisma.tasks$task_eventsArgs<ExtArgs>
   task_checkpoints?: boolean | Prisma.tasks$task_checkpointsArgs<ExtArgs>
+  approval_requests?: boolean | Prisma.tasks$approval_requestsArgs<ExtArgs>
+  policy_decisions?: boolean | Prisma.tasks$policy_decisionsArgs<ExtArgs>
   _count?: boolean | Prisma.TasksCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type tasksIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
   agent_session?: boolean | Prisma.agent_sessionsDefaultArgs<ExtArgs>
   created_by_user?: boolean | Prisma.tasks$created_by_userArgs<ExtArgs>
+  workspace?: boolean | Prisma.tasks$workspaceArgs<ExtArgs>
 }
 export type tasksIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
   agent_session?: boolean | Prisma.agent_sessionsDefaultArgs<ExtArgs>
   created_by_user?: boolean | Prisma.tasks$created_by_userArgs<ExtArgs>
+  workspace?: boolean | Prisma.tasks$workspaceArgs<ExtArgs>
 }
 
 export type $tasksPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2233,9 +2962,12 @@ export type $tasksPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     organization: Prisma.$organizationsPayload<ExtArgs>
     agent_session: Prisma.$agent_sessionsPayload<ExtArgs>
     created_by_user: Prisma.$usersPayload<ExtArgs> | null
+    workspace: Prisma.$workspacesPayload<ExtArgs> | null
     task_steps: Prisma.$task_stepsPayload<ExtArgs>[]
     task_events: Prisma.$task_eventsPayload<ExtArgs>[]
     task_checkpoints: Prisma.$task_checkpointsPayload<ExtArgs>[]
+    approval_requests: Prisma.$approval_requestsPayload<ExtArgs>[]
+    policy_decisions: Prisma.$policy_decisionsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2243,6 +2975,7 @@ export type $tasksPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     agent_session_id: string
     created_by: string | null
     device_id: string | null
+    workspace_id: string | null
     goal: string
     constraints: runtime.JsonValue | null
     execution_location: $Enums.ExecutionLocation
@@ -2660,9 +3393,12 @@ export interface Prisma__tasksClient<T, Null = never, ExtArgs extends runtime.Ty
   organization<T extends Prisma.organizationsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizationsDefaultArgs<ExtArgs>>): Prisma.Prisma__organizationsClient<runtime.Types.Result.GetResult<Prisma.$organizationsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   agent_session<T extends Prisma.agent_sessionsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.agent_sessionsDefaultArgs<ExtArgs>>): Prisma.Prisma__agent_sessionsClient<runtime.Types.Result.GetResult<Prisma.$agent_sessionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   created_by_user<T extends Prisma.tasks$created_by_userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tasks$created_by_userArgs<ExtArgs>>): Prisma.Prisma__usersClient<runtime.Types.Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  workspace<T extends Prisma.tasks$workspaceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tasks$workspaceArgs<ExtArgs>>): Prisma.Prisma__workspacesClient<runtime.Types.Result.GetResult<Prisma.$workspacesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   task_steps<T extends Prisma.tasks$task_stepsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tasks$task_stepsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$task_stepsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   task_events<T extends Prisma.tasks$task_eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tasks$task_eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$task_eventsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   task_checkpoints<T extends Prisma.tasks$task_checkpointsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tasks$task_checkpointsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$task_checkpointsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  approval_requests<T extends Prisma.tasks$approval_requestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tasks$approval_requestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$approval_requestsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  policy_decisions<T extends Prisma.tasks$policy_decisionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tasks$policy_decisionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$policy_decisionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2697,6 +3433,7 @@ export interface tasksFieldRefs {
   readonly agent_session_id: Prisma.FieldRef<"tasks", 'String'>
   readonly created_by: Prisma.FieldRef<"tasks", 'String'>
   readonly device_id: Prisma.FieldRef<"tasks", 'String'>
+  readonly workspace_id: Prisma.FieldRef<"tasks", 'String'>
   readonly goal: Prisma.FieldRef<"tasks", 'String'>
   readonly constraints: Prisma.FieldRef<"tasks", 'Json'>
   readonly execution_location: Prisma.FieldRef<"tasks", 'ExecutionLocation'>
@@ -3137,6 +3874,25 @@ export type tasks$created_by_userArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
+ * tasks.workspace
+ */
+export type tasks$workspaceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the workspaces
+   */
+  select?: Prisma.workspacesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the workspaces
+   */
+  omit?: Prisma.workspacesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.workspacesInclude<ExtArgs> | null
+  where?: Prisma.workspacesWhereInput
+}
+
+/**
  * tasks.task_steps
  */
 export type tasks$task_stepsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3206,6 +3962,54 @@ export type tasks$task_checkpointsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.Task_checkpointsScalarFieldEnum | Prisma.Task_checkpointsScalarFieldEnum[]
+}
+
+/**
+ * tasks.approval_requests
+ */
+export type tasks$approval_requestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the approval_requests
+   */
+  select?: Prisma.approval_requestsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the approval_requests
+   */
+  omit?: Prisma.approval_requestsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.approval_requestsInclude<ExtArgs> | null
+  where?: Prisma.approval_requestsWhereInput
+  orderBy?: Prisma.approval_requestsOrderByWithRelationInput | Prisma.approval_requestsOrderByWithRelationInput[]
+  cursor?: Prisma.approval_requestsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Approval_requestsScalarFieldEnum | Prisma.Approval_requestsScalarFieldEnum[]
+}
+
+/**
+ * tasks.policy_decisions
+ */
+export type tasks$policy_decisionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the policy_decisions
+   */
+  select?: Prisma.policy_decisionsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the policy_decisions
+   */
+  omit?: Prisma.policy_decisionsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.policy_decisionsInclude<ExtArgs> | null
+  where?: Prisma.policy_decisionsWhereInput
+  orderBy?: Prisma.policy_decisionsOrderByWithRelationInput | Prisma.policy_decisionsOrderByWithRelationInput[]
+  cursor?: Prisma.policy_decisionsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Policy_decisionsScalarFieldEnum | Prisma.Policy_decisionsScalarFieldEnum[]
 }
 
 /**

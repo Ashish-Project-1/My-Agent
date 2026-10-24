@@ -8,6 +8,7 @@
  *
  * Depends on Zod only — no framework, no database, no I/O.
  */
+export * from "./approval.js";
 export * from "./auth.js";
 export * from "./common.js";
 export * from "./device.js";
@@ -16,4 +17,5 @@ export * from "./queue.js";
 export * from "./registry.js";
 export * from "./risk.js";
 export * from "./task.js";
+export * from "./tool.js";
 export * from "./workspace.js";

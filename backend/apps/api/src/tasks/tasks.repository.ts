@@ -16,6 +16,8 @@ const TASK_SELECT = {
   goal: true,
   state: true,
   execution_location: true,
+  device_id: true,
+  workspace_id: true,
   risk_class: true,
   result_summary: true,
   error_code: true,
@@ -31,6 +33,8 @@ type RawTask = {
   goal: string;
   state: TaskSummary["state"];
   execution_location: TaskSummary["executionLocation"];
+  device_id: string | null;
+  workspace_id: string | null;
   risk_class: string | null;
   result_summary: string | null;
   error_code: string | null;
@@ -48,6 +52,8 @@ const toTaskRow = (row: RawTask): TaskRow => ({
   goal: row.goal,
   state: row.state,
   executionLocation: row.execution_location,
+  deviceId: row.device_id,
+  workspaceId: row.workspace_id,
   riskClass: row.risk_class,
   resultSummary: row.result_summary,
   errorCode: row.error_code,
@@ -201,7 +207,14 @@ export class TasksRepository {
 
   async createTask(
     writer: DbWriter,
-    input: { organizationId: string; agentSessionId: string; createdBy: string; goal: string },
+    input: {
+      organizationId: string;
+      agentSessionId: string;
+      createdBy: string;
+      goal: string;
+      deviceId: string | null;
+      workspaceId: string | null;
+    },
   ): Promise<TaskRow> {
     const row = await writer.tasks.create({
       data: {
@@ -210,6 +223,9 @@ export class TasksRepository {
         created_by: input.createdBy,
         goal: input.goal,
         state: "QUEUED",
+        execution_location: input.deviceId === null ? "cloud" : "device",
+        device_id: input.deviceId,
+        workspace_id: input.workspaceId,
       },
       select: TASK_SELECT,
     });

@@ -123,6 +123,7 @@ enum DeviceCommandState {
 
 enum DeviceCommandKind {
   diagnostics_ping
+  tool_execute
 }
 
 // Workspace mode: what the user allowed, not what the tool asked for
@@ -138,6 +139,15 @@ enum WorkspaceMode {
 enum WorkspaceGrantEffect {
   allow
   deny
+}
+
+// A decision on one digest-bound action (docs/planning/06 §2.4, 10 §4).
+// `pending` is the only state that can be decided; the rest are final.
+enum ApprovalState {
+  pending
+  granted
+  denied
+  expired
 }
 
 model users {
@@ -167,6 +177,7 @@ model users {
   devices             devices[]          @relation("devices_owned_by")
   workspaces          workspaces[]       @relation("workspaces_created_by")
   workspace_grants    workspace_grants[] @relation("workspace_grants_granted_by")
+  approvals_decided   approval_requests[] @relation("approval_requests_decided_by")
 }
 
 // Organizations are the tenancy root (ADR-008)
@@ -198,6 +209,10 @@ model organizations {
   device_commands      device_commands[]
   workspaces           workspaces[]
   workspace_grants     workspace_grants[]
+  approval_requests    approval_requests[]
+  approval_grants       approval_grants[]
+  policy_decisions     policy_decisions[]
+  policy_documents     policy_documents[]
   outbox               outbox[]
 }
 
@@ -365,6 +380,7 @@ model tasks {
   agent_session_id   String            @db.Uuid
   created_by         String?           @db.Uuid
   device_id          String?           @db.Uuid
+  workspace_id       String?           @db.Uuid
   goal               String            @db.Text
   constraints        Json?             @db.JsonB
   execution_location ExecutionLocation @default(cloud)
@@ -389,13 +405,17 @@ model tasks {
   organization     organizations      @relation(fields: [organization_id], references: [id], onDelete: Restrict)
   agent_session    agent_sessions     @relation(fields: [agent_session_id], references: [id], onDelete: Restrict)
   created_by_user  users?             @relation("tasks_created_by", fields: [created_by], references: [id], onDelete: SetNull)
+  workspace        workspaces?        @relation(fields: [workspace_id], references: [id], onDelete: Restrict)
   task_steps       task_steps[]
   task_events      task_events[]
   task_checkpoints task_checkpoints[]
+  approval_requests approval_requests[]
+  policy_decisions policy_decisions[]
 
   @@index([organization_id, created_at])
   @@index([organization_id, state, created_at])
   @@index([agent_session_id, created_at])
+  @@index([workspace_id])
   @@index([lease_owner])
   @@index([lease_expires_at])
 }
@@ -432,6 +452,7 @@ model task_steps {
 
   task         tasks         @relation(fields: [task_id], references: [id], onDelete: Cascade)
   organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+  approval_requests approval_requests[]
 
   @@unique([task_id, seq])
   @@unique([task_id, idempotency_key])
@@ -580,6 +601,11 @@ model device_commands {
   command_digest  String             @db.Text
   seq             Int
   state           DeviceCommandState @default(pending)
+  // What the device reported doing, and the digest over it (Phase 5, FR-TOOL-03).
+  // `error` is set instead when the command was understood and failed.
+  result          Json?              @db.JsonB
+  result_digest   String?            @db.Text
+  error           String?            @db.Text
   created_at      DateTime           @default(now()) @db.Timestamptz
   sent_at         DateTime?          @db.Timestamptz
   acked_at        DateTime?          @db.Timestamptz
@@ -616,6 +642,7 @@ model workspaces {
   device       devices            @relation(fields: [device_id], references: [id], onDelete: Cascade)
   creator      users              @relation("workspaces_created_by", fields: [created_by], references: [id], onDelete: Restrict)
   grants       workspace_grants[]
+  tasks        tasks[]
 
   // One registration per directory per device: registering the same path twice is
   // a conflict, not two roots that could be edited apart.
@@ -647,4 +674,107 @@ model workspace_grants {
   @@index([organization_id, created_at])
   @@index([workspace_id, effect])
   @@index([expires_at])
+}
+
+// One approval request for one concrete action (docs/planning/06 §2.4, 10 §4;
+// Phase 5, FR-APPR-01/03/04). The digest is the authority: a decision names it,
+// and every field a user is approving is inside it. There is deliberately no
+// separate grant token — this row's `granted` state is the grant, and it is
+// single-use because a step that ran is `COMPLETED`.
+model approval_requests {
+  id              String        @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id String        @db.Uuid
+  task_id         String        @db.Uuid
+  step_id         String        @db.Uuid
+  tool_name       String        @db.Text
+  risk_class      String        @db.Text
+  summary         String        @db.Text
+  action_digest   String        @db.Text
+  policy_version  String        @db.Text
+  // Copied at request time so the inbox can answer "is this mine?" without
+  // reading another module's table (docs/planning/03 §4).
+  task_created_by String?       @db.Uuid
+  state           ApprovalState @default(pending)
+  expires_at      DateTime      @db.Timestamptz
+  decided_at      DateTime?     @db.Timestamptz
+  decided_by      String?       @db.Uuid
+  decision_note   String?       @db.Text
+  created_at      DateTime      @default(now()) @db.Timestamptz
+  updated_at      DateTime      @updatedAt @db.Timestamptz
+
+  organization organizations     @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+  task         tasks             @relation(fields: [task_id], references: [id], onDelete: Cascade)
+  step         task_steps        @relation(fields: [step_id], references: [id], onDelete: Cascade)
+  decider      users?            @relation("approval_requests_decided_by", fields: [decided_by], references: [id], onDelete: SetNull)
+  grants       approval_grants[]
+
+  @@index([organization_id, state, created_at])
+  @@index([task_id, step_id])
+  @@index([expires_at])
+}
+
+model approval_grants {
+  id                String    @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id   String    @db.Uuid
+  request_id        String?   @db.Uuid
+  grant_token_hash  String    @unique @db.Text
+  action_digest     String    @db.Text
+  arguments_digest  String    @db.Text
+  target_digest     String    @db.Text
+  user_id           String    @db.Uuid
+  device_id         String    @db.Uuid
+  task_id           String    @db.Uuid
+  step_id           String    @db.Uuid
+  policy_version    String    @db.Text
+  nonce             String    @db.Text
+  issued_at         DateTime  @default(now()) @db.Timestamptz
+  expires_at        DateTime  @db.Timestamptz
+  use_count         Int       @default(0)
+  max_uses          Int       @default(1)
+  revoked_at        DateTime? @db.Timestamptz
+
+  organization organizations      @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+  request      approval_requests?  @relation(fields: [request_id], references: [id], onDelete: SetNull)
+
+  @@index([organization_id, expires_at])
+  @@index([request_id])
+}
+
+// Every policy evaluation worth explaining (docs/planning/06 §2.4, FR-POL-05).
+// Append-only: a later rule change must not rewrite why an old action ran.
+model policy_decisions {
+  id              String   @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id String   @db.Uuid
+  task_id         String   @db.Uuid
+  step_id         String   @db.Uuid
+  tool_name       String   @db.Text
+  action_digest   String   @db.Text
+  risk_class      String   @db.Text
+  decision        String   @db.Text
+  matched_rule    String   @db.Text
+  policy_version  String   @db.Text
+  reasons         Json?    @db.JsonB
+  created_at      DateTime @default(now()) @db.Timestamptz
+
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+  task         tasks         @relation(fields: [task_id], references: [id], onDelete: Cascade)
+
+  @@index([organization_id, created_at])
+  @@index([task_id, step_id])
+}
+
+model policy_documents {
+  id              String   @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id String   @db.Uuid
+  version         String   @db.Text
+  name            String   @db.Text
+  content         Json     @db.JsonB
+  status          String   @db.Text
+  created_at      DateTime @default(now()) @db.Timestamptz
+  updated_at      DateTime @updatedAt @db.Timestamptz
+
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+
+  @@unique([organization_id, version])
+  @@index([organization_id, status])
 }

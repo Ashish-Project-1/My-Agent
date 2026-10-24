@@ -44,6 +44,8 @@ export type Device_commandsMinAggregateOutputType = {
   command_digest: string | null
   seq: number | null
   state: $Enums.DeviceCommandState | null
+  result_digest: string | null
+  error: string | null
   created_at: Date | null
   sent_at: Date | null
   acked_at: Date | null
@@ -60,6 +62,8 @@ export type Device_commandsMaxAggregateOutputType = {
   command_digest: string | null
   seq: number | null
   state: $Enums.DeviceCommandState | null
+  result_digest: string | null
+  error: string | null
   created_at: Date | null
   sent_at: Date | null
   acked_at: Date | null
@@ -77,6 +81,9 @@ export type Device_commandsCountAggregateOutputType = {
   command_digest: number
   seq: number
   state: number
+  result: number
+  result_digest: number
+  error: number
   created_at: number
   sent_at: number
   acked_at: number
@@ -103,6 +110,8 @@ export type Device_commandsMinAggregateInputType = {
   command_digest?: true
   seq?: true
   state?: true
+  result_digest?: true
+  error?: true
   created_at?: true
   sent_at?: true
   acked_at?: true
@@ -119,6 +128,8 @@ export type Device_commandsMaxAggregateInputType = {
   command_digest?: true
   seq?: true
   state?: true
+  result_digest?: true
+  error?: true
   created_at?: true
   sent_at?: true
   acked_at?: true
@@ -136,6 +147,9 @@ export type Device_commandsCountAggregateInputType = {
   command_digest?: true
   seq?: true
   state?: true
+  result?: true
+  result_digest?: true
+  error?: true
   created_at?: true
   sent_at?: true
   acked_at?: true
@@ -240,6 +254,9 @@ export type Device_commandsGroupByOutputType = {
   command_digest: string
   seq: number
   state: $Enums.DeviceCommandState
+  result: runtime.JsonValue | null
+  result_digest: string | null
+  error: string | null
   created_at: Date
   sent_at: Date | null
   acked_at: Date | null
@@ -280,6 +297,9 @@ export type device_commandsWhereInput = {
   command_digest?: Prisma.StringFilter<"device_commands"> | string
   seq?: Prisma.IntFilter<"device_commands"> | number
   state?: Prisma.EnumDeviceCommandStateFilter<"device_commands"> | $Enums.DeviceCommandState
+  result?: Prisma.JsonNullableFilter<"device_commands">
+  result_digest?: Prisma.StringNullableFilter<"device_commands"> | string | null
+  error?: Prisma.StringNullableFilter<"device_commands"> | string | null
   created_at?: Prisma.DateTimeFilter<"device_commands"> | Date | string
   sent_at?: Prisma.DateTimeNullableFilter<"device_commands"> | Date | string | null
   acked_at?: Prisma.DateTimeNullableFilter<"device_commands"> | Date | string | null
@@ -299,6 +319,9 @@ export type device_commandsOrderByWithRelationInput = {
   command_digest?: Prisma.SortOrder
   seq?: Prisma.SortOrder
   state?: Prisma.SortOrder
+  result?: Prisma.SortOrderInput | Prisma.SortOrder
+  result_digest?: Prisma.SortOrderInput | Prisma.SortOrder
+  error?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   sent_at?: Prisma.SortOrderInput | Prisma.SortOrder
   acked_at?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -322,6 +345,9 @@ export type device_commandsWhereUniqueInput = Prisma.AtLeast<{
   command_digest?: Prisma.StringFilter<"device_commands"> | string
   seq?: Prisma.IntFilter<"device_commands"> | number
   state?: Prisma.EnumDeviceCommandStateFilter<"device_commands"> | $Enums.DeviceCommandState
+  result?: Prisma.JsonNullableFilter<"device_commands">
+  result_digest?: Prisma.StringNullableFilter<"device_commands"> | string | null
+  error?: Prisma.StringNullableFilter<"device_commands"> | string | null
   created_at?: Prisma.DateTimeFilter<"device_commands"> | Date | string
   sent_at?: Prisma.DateTimeNullableFilter<"device_commands"> | Date | string | null
   acked_at?: Prisma.DateTimeNullableFilter<"device_commands"> | Date | string | null
@@ -341,6 +367,9 @@ export type device_commandsOrderByWithAggregationInput = {
   command_digest?: Prisma.SortOrder
   seq?: Prisma.SortOrder
   state?: Prisma.SortOrder
+  result?: Prisma.SortOrderInput | Prisma.SortOrder
+  result_digest?: Prisma.SortOrderInput | Prisma.SortOrder
+  error?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   sent_at?: Prisma.SortOrderInput | Prisma.SortOrder
   acked_at?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -366,6 +395,9 @@ export type device_commandsScalarWhereWithAggregatesInput = {
   command_digest?: Prisma.StringWithAggregatesFilter<"device_commands"> | string
   seq?: Prisma.IntWithAggregatesFilter<"device_commands"> | number
   state?: Prisma.EnumDeviceCommandStateWithAggregatesFilter<"device_commands"> | $Enums.DeviceCommandState
+  result?: Prisma.JsonNullableWithAggregatesFilter<"device_commands">
+  result_digest?: Prisma.StringNullableWithAggregatesFilter<"device_commands"> | string | null
+  error?: Prisma.StringNullableWithAggregatesFilter<"device_commands"> | string | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"device_commands"> | Date | string
   sent_at?: Prisma.DateTimeNullableWithAggregatesFilter<"device_commands"> | Date | string | null
   acked_at?: Prisma.DateTimeNullableWithAggregatesFilter<"device_commands"> | Date | string | null
@@ -381,6 +413,9 @@ export type device_commandsCreateInput = {
   command_digest: string
   seq: number
   state?: $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: string | null
+  error?: string | null
   created_at?: Date | string
   sent_at?: Date | string | null
   acked_at?: Date | string | null
@@ -400,6 +435,9 @@ export type device_commandsUncheckedCreateInput = {
   command_digest: string
   seq: number
   state?: $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: string | null
+  error?: string | null
   created_at?: Date | string
   sent_at?: Date | string | null
   acked_at?: Date | string | null
@@ -415,6 +453,9 @@ export type device_commandsUpdateInput = {
   command_digest?: Prisma.StringFieldUpdateOperationsInput | string
   seq?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumDeviceCommandStateFieldUpdateOperationsInput | $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sent_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   acked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -434,6 +475,9 @@ export type device_commandsUncheckedUpdateInput = {
   command_digest?: Prisma.StringFieldUpdateOperationsInput | string
   seq?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumDeviceCommandStateFieldUpdateOperationsInput | $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sent_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   acked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -451,6 +495,9 @@ export type device_commandsCreateManyInput = {
   command_digest: string
   seq: number
   state?: $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: string | null
+  error?: string | null
   created_at?: Date | string
   sent_at?: Date | string | null
   acked_at?: Date | string | null
@@ -466,6 +513,9 @@ export type device_commandsUpdateManyMutationInput = {
   command_digest?: Prisma.StringFieldUpdateOperationsInput | string
   seq?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumDeviceCommandStateFieldUpdateOperationsInput | $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sent_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   acked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -483,6 +533,9 @@ export type device_commandsUncheckedUpdateManyInput = {
   command_digest?: Prisma.StringFieldUpdateOperationsInput | string
   seq?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumDeviceCommandStateFieldUpdateOperationsInput | $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sent_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   acked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -515,6 +568,9 @@ export type device_commandsCountOrderByAggregateInput = {
   command_digest?: Prisma.SortOrder
   seq?: Prisma.SortOrder
   state?: Prisma.SortOrder
+  result?: Prisma.SortOrder
+  result_digest?: Prisma.SortOrder
+  error?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   sent_at?: Prisma.SortOrder
   acked_at?: Prisma.SortOrder
@@ -535,6 +591,8 @@ export type device_commandsMaxOrderByAggregateInput = {
   command_digest?: Prisma.SortOrder
   seq?: Prisma.SortOrder
   state?: Prisma.SortOrder
+  result_digest?: Prisma.SortOrder
+  error?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   sent_at?: Prisma.SortOrder
   acked_at?: Prisma.SortOrder
@@ -551,6 +609,8 @@ export type device_commandsMinOrderByAggregateInput = {
   command_digest?: Prisma.SortOrder
   seq?: Prisma.SortOrder
   state?: Prisma.SortOrder
+  result_digest?: Prisma.SortOrder
+  error?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   sent_at?: Prisma.SortOrder
   acked_at?: Prisma.SortOrder
@@ -662,6 +722,9 @@ export type device_commandsCreateWithoutOrganizationInput = {
   command_digest: string
   seq: number
   state?: $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: string | null
+  error?: string | null
   created_at?: Date | string
   sent_at?: Date | string | null
   acked_at?: Date | string | null
@@ -679,6 +742,9 @@ export type device_commandsUncheckedCreateWithoutOrganizationInput = {
   command_digest: string
   seq: number
   state?: $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: string | null
+  error?: string | null
   created_at?: Date | string
   sent_at?: Date | string | null
   acked_at?: Date | string | null
@@ -725,6 +791,9 @@ export type device_commandsScalarWhereInput = {
   command_digest?: Prisma.StringFilter<"device_commands"> | string
   seq?: Prisma.IntFilter<"device_commands"> | number
   state?: Prisma.EnumDeviceCommandStateFilter<"device_commands"> | $Enums.DeviceCommandState
+  result?: Prisma.JsonNullableFilter<"device_commands">
+  result_digest?: Prisma.StringNullableFilter<"device_commands"> | string | null
+  error?: Prisma.StringNullableFilter<"device_commands"> | string | null
   created_at?: Prisma.DateTimeFilter<"device_commands"> | Date | string
   sent_at?: Prisma.DateTimeNullableFilter<"device_commands"> | Date | string | null
   acked_at?: Prisma.DateTimeNullableFilter<"device_commands"> | Date | string | null
@@ -740,6 +809,9 @@ export type device_commandsCreateWithoutDeviceInput = {
   command_digest: string
   seq: number
   state?: $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: string | null
+  error?: string | null
   created_at?: Date | string
   sent_at?: Date | string | null
   acked_at?: Date | string | null
@@ -757,6 +829,9 @@ export type device_commandsUncheckedCreateWithoutDeviceInput = {
   command_digest: string
   seq: number
   state?: $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: string | null
+  error?: string | null
   created_at?: Date | string
   sent_at?: Date | string | null
   acked_at?: Date | string | null
@@ -799,6 +874,9 @@ export type device_commandsCreateManyOrganizationInput = {
   command_digest: string
   seq: number
   state?: $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: string | null
+  error?: string | null
   created_at?: Date | string
   sent_at?: Date | string | null
   acked_at?: Date | string | null
@@ -814,6 +892,9 @@ export type device_commandsUpdateWithoutOrganizationInput = {
   command_digest?: Prisma.StringFieldUpdateOperationsInput | string
   seq?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumDeviceCommandStateFieldUpdateOperationsInput | $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sent_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   acked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -831,6 +912,9 @@ export type device_commandsUncheckedUpdateWithoutOrganizationInput = {
   command_digest?: Prisma.StringFieldUpdateOperationsInput | string
   seq?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumDeviceCommandStateFieldUpdateOperationsInput | $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sent_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   acked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -847,6 +931,9 @@ export type device_commandsUncheckedUpdateManyWithoutOrganizationInput = {
   command_digest?: Prisma.StringFieldUpdateOperationsInput | string
   seq?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumDeviceCommandStateFieldUpdateOperationsInput | $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sent_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   acked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -863,6 +950,9 @@ export type device_commandsCreateManyDeviceInput = {
   command_digest: string
   seq: number
   state?: $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: string | null
+  error?: string | null
   created_at?: Date | string
   sent_at?: Date | string | null
   acked_at?: Date | string | null
@@ -878,6 +968,9 @@ export type device_commandsUpdateWithoutDeviceInput = {
   command_digest?: Prisma.StringFieldUpdateOperationsInput | string
   seq?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumDeviceCommandStateFieldUpdateOperationsInput | $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sent_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   acked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -895,6 +988,9 @@ export type device_commandsUncheckedUpdateWithoutDeviceInput = {
   command_digest?: Prisma.StringFieldUpdateOperationsInput | string
   seq?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumDeviceCommandStateFieldUpdateOperationsInput | $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sent_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   acked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -911,6 +1007,9 @@ export type device_commandsUncheckedUpdateManyWithoutDeviceInput = {
   command_digest?: Prisma.StringFieldUpdateOperationsInput | string
   seq?: Prisma.IntFieldUpdateOperationsInput | number
   state?: Prisma.EnumDeviceCommandStateFieldUpdateOperationsInput | $Enums.DeviceCommandState
+  result?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_digest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sent_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   acked_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -930,6 +1029,9 @@ export type device_commandsSelect<ExtArgs extends runtime.Types.Extensions.Inter
   command_digest?: boolean
   seq?: boolean
   state?: boolean
+  result?: boolean
+  result_digest?: boolean
+  error?: boolean
   created_at?: boolean
   sent_at?: boolean
   acked_at?: boolean
@@ -949,6 +1051,9 @@ export type device_commandsSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   command_digest?: boolean
   seq?: boolean
   state?: boolean
+  result?: boolean
+  result_digest?: boolean
+  error?: boolean
   created_at?: boolean
   sent_at?: boolean
   acked_at?: boolean
@@ -968,6 +1073,9 @@ export type device_commandsSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   command_digest?: boolean
   seq?: boolean
   state?: boolean
+  result?: boolean
+  result_digest?: boolean
+  error?: boolean
   created_at?: boolean
   sent_at?: boolean
   acked_at?: boolean
@@ -987,13 +1095,16 @@ export type device_commandsSelectScalar = {
   command_digest?: boolean
   seq?: boolean
   state?: boolean
+  result?: boolean
+  result_digest?: boolean
+  error?: boolean
   created_at?: boolean
   sent_at?: boolean
   acked_at?: boolean
   expires_at?: boolean
 }
 
-export type device_commandsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organization_id" | "device_id" | "task_id" | "step_id" | "kind" | "payload" | "command_digest" | "seq" | "state" | "created_at" | "sent_at" | "acked_at" | "expires_at", ExtArgs["result"]["device_commands"]>
+export type device_commandsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "organization_id" | "device_id" | "task_id" | "step_id" | "kind" | "payload" | "command_digest" | "seq" | "state" | "result" | "result_digest" | "error" | "created_at" | "sent_at" | "acked_at" | "expires_at", ExtArgs["result"]["device_commands"]>
 export type device_commandsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   device?: boolean | Prisma.devicesDefaultArgs<ExtArgs>
   organization?: boolean | Prisma.organizationsDefaultArgs<ExtArgs>
@@ -1024,6 +1135,9 @@ export type $device_commandsPayload<ExtArgs extends runtime.Types.Extensions.Int
     command_digest: string
     seq: number
     state: $Enums.DeviceCommandState
+    result: runtime.JsonValue | null
+    result_digest: string | null
+    error: string | null
     created_at: Date
     sent_at: Date | null
     acked_at: Date | null
@@ -1463,6 +1577,9 @@ export interface device_commandsFieldRefs {
   readonly command_digest: Prisma.FieldRef<"device_commands", 'String'>
   readonly seq: Prisma.FieldRef<"device_commands", 'Int'>
   readonly state: Prisma.FieldRef<"device_commands", 'DeviceCommandState'>
+  readonly result: Prisma.FieldRef<"device_commands", 'Json'>
+  readonly result_digest: Prisma.FieldRef<"device_commands", 'String'>
+  readonly error: Prisma.FieldRef<"device_commands", 'String'>
   readonly created_at: Prisma.FieldRef<"device_commands", 'DateTime'>
   readonly sent_at: Prisma.FieldRef<"device_commands", 'DateTime'>
   readonly acked_at: Prisma.FieldRef<"device_commands", 'DateTime'>

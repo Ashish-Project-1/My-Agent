@@ -234,6 +234,7 @@ export type workspacesWhereInput = {
   device?: Prisma.XOR<Prisma.DevicesScalarRelationFilter, Prisma.devicesWhereInput>
   creator?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
   grants?: Prisma.Workspace_grantsListRelationFilter
+  tasks?: Prisma.TasksListRelationFilter
 }
 
 export type workspacesOrderByWithRelationInput = {
@@ -252,6 +253,7 @@ export type workspacesOrderByWithRelationInput = {
   device?: Prisma.devicesOrderByWithRelationInput
   creator?: Prisma.usersOrderByWithRelationInput
   grants?: Prisma.workspace_grantsOrderByRelationAggregateInput
+  tasks?: Prisma.tasksOrderByRelationAggregateInput
 }
 
 export type workspacesWhereUniqueInput = Prisma.AtLeast<{
@@ -274,6 +276,7 @@ export type workspacesWhereUniqueInput = Prisma.AtLeast<{
   device?: Prisma.XOR<Prisma.DevicesScalarRelationFilter, Prisma.devicesWhereInput>
   creator?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
   grants?: Prisma.Workspace_grantsListRelationFilter
+  tasks?: Prisma.TasksListRelationFilter
 }, "id" | "device_id_path">
 
 export type workspacesOrderByWithAggregationInput = {
@@ -323,6 +326,7 @@ export type workspacesCreateInput = {
   device: Prisma.devicesCreateNestedOneWithoutWorkspacesInput
   creator: Prisma.usersCreateNestedOneWithoutWorkspacesInput
   grants?: Prisma.workspace_grantsCreateNestedManyWithoutWorkspaceInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutWorkspaceInput
 }
 
 export type workspacesUncheckedCreateInput = {
@@ -338,6 +342,7 @@ export type workspacesUncheckedCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutWorkspaceInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
 export type workspacesUpdateInput = {
@@ -353,6 +358,7 @@ export type workspacesUpdateInput = {
   device?: Prisma.devicesUpdateOneRequiredWithoutWorkspacesNestedInput
   creator?: Prisma.usersUpdateOneRequiredWithoutWorkspacesNestedInput
   grants?: Prisma.workspace_grantsUpdateManyWithoutWorkspaceNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type workspacesUncheckedUpdateInput = {
@@ -368,6 +374,7 @@ export type workspacesUncheckedUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutWorkspaceNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type workspacesCreateManyInput = {
@@ -417,6 +424,11 @@ export type WorkspacesListRelationFilter = {
 
 export type workspacesOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type WorkspacesNullableScalarRelationFilter = {
+  is?: Prisma.workspacesWhereInput | null
+  isNot?: Prisma.workspacesWhereInput | null
 }
 
 export type workspacesDevice_idPathCompoundUniqueInput = {
@@ -555,6 +567,22 @@ export type workspacesUncheckedUpdateManyWithoutOrganizationNestedInput = {
   deleteMany?: Prisma.workspacesScalarWhereInput | Prisma.workspacesScalarWhereInput[]
 }
 
+export type workspacesCreateNestedOneWithoutTasksInput = {
+  create?: Prisma.XOR<Prisma.workspacesCreateWithoutTasksInput, Prisma.workspacesUncheckedCreateWithoutTasksInput>
+  connectOrCreate?: Prisma.workspacesCreateOrConnectWithoutTasksInput
+  connect?: Prisma.workspacesWhereUniqueInput
+}
+
+export type workspacesUpdateOneWithoutTasksNestedInput = {
+  create?: Prisma.XOR<Prisma.workspacesCreateWithoutTasksInput, Prisma.workspacesUncheckedCreateWithoutTasksInput>
+  connectOrCreate?: Prisma.workspacesCreateOrConnectWithoutTasksInput
+  upsert?: Prisma.workspacesUpsertWithoutTasksInput
+  disconnect?: Prisma.workspacesWhereInput | boolean
+  delete?: Prisma.workspacesWhereInput | boolean
+  connect?: Prisma.workspacesWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.workspacesUpdateToOneWithWhereWithoutTasksInput, Prisma.workspacesUpdateWithoutTasksInput>, Prisma.workspacesUncheckedUpdateWithoutTasksInput>
+}
+
 export type workspacesCreateNestedManyWithoutDeviceInput = {
   create?: Prisma.XOR<Prisma.workspacesCreateWithoutDeviceInput, Prisma.workspacesUncheckedCreateWithoutDeviceInput> | Prisma.workspacesCreateWithoutDeviceInput[] | Prisma.workspacesUncheckedCreateWithoutDeviceInput[]
   connectOrCreate?: Prisma.workspacesCreateOrConnectWithoutDeviceInput | Prisma.workspacesCreateOrConnectWithoutDeviceInput[]
@@ -627,6 +655,7 @@ export type workspacesCreateWithoutCreatorInput = {
   organization: Prisma.organizationsCreateNestedOneWithoutWorkspacesInput
   device: Prisma.devicesCreateNestedOneWithoutWorkspacesInput
   grants?: Prisma.workspace_grantsCreateNestedManyWithoutWorkspaceInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutWorkspaceInput
 }
 
 export type workspacesUncheckedCreateWithoutCreatorInput = {
@@ -641,6 +670,7 @@ export type workspacesUncheckedCreateWithoutCreatorInput = {
   created_at?: Date | string
   updated_at?: Date | string
   grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutWorkspaceInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
 export type workspacesCreateOrConnectWithoutCreatorInput = {
@@ -698,6 +728,7 @@ export type workspacesCreateWithoutOrganizationInput = {
   device: Prisma.devicesCreateNestedOneWithoutWorkspacesInput
   creator: Prisma.usersCreateNestedOneWithoutWorkspacesInput
   grants?: Prisma.workspace_grantsCreateNestedManyWithoutWorkspaceInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutWorkspaceInput
 }
 
 export type workspacesUncheckedCreateWithoutOrganizationInput = {
@@ -712,6 +743,7 @@ export type workspacesUncheckedCreateWithoutOrganizationInput = {
   created_at?: Date | string
   updated_at?: Date | string
   grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutWorkspaceInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
 export type workspacesCreateOrConnectWithoutOrganizationInput = {
@@ -740,6 +772,82 @@ export type workspacesUpdateManyWithWhereWithoutOrganizationInput = {
   data: Prisma.XOR<Prisma.workspacesUpdateManyMutationInput, Prisma.workspacesUncheckedUpdateManyWithoutOrganizationInput>
 }
 
+export type workspacesCreateWithoutTasksInput = {
+  id?: string
+  path: string
+  raw_path: string
+  label: string
+  mode?: $Enums.WorkspaceMode
+  last_used_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  organization: Prisma.organizationsCreateNestedOneWithoutWorkspacesInput
+  device: Prisma.devicesCreateNestedOneWithoutWorkspacesInput
+  creator: Prisma.usersCreateNestedOneWithoutWorkspacesInput
+  grants?: Prisma.workspace_grantsCreateNestedManyWithoutWorkspaceInput
+}
+
+export type workspacesUncheckedCreateWithoutTasksInput = {
+  id?: string
+  organization_id: string
+  device_id: string
+  path: string
+  raw_path: string
+  label: string
+  mode?: $Enums.WorkspaceMode
+  created_by: string
+  last_used_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutWorkspaceInput
+}
+
+export type workspacesCreateOrConnectWithoutTasksInput = {
+  where: Prisma.workspacesWhereUniqueInput
+  create: Prisma.XOR<Prisma.workspacesCreateWithoutTasksInput, Prisma.workspacesUncheckedCreateWithoutTasksInput>
+}
+
+export type workspacesUpsertWithoutTasksInput = {
+  update: Prisma.XOR<Prisma.workspacesUpdateWithoutTasksInput, Prisma.workspacesUncheckedUpdateWithoutTasksInput>
+  create: Prisma.XOR<Prisma.workspacesCreateWithoutTasksInput, Prisma.workspacesUncheckedCreateWithoutTasksInput>
+  where?: Prisma.workspacesWhereInput
+}
+
+export type workspacesUpdateToOneWithWhereWithoutTasksInput = {
+  where?: Prisma.workspacesWhereInput
+  data: Prisma.XOR<Prisma.workspacesUpdateWithoutTasksInput, Prisma.workspacesUncheckedUpdateWithoutTasksInput>
+}
+
+export type workspacesUpdateWithoutTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
+  raw_path?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
+  mode?: Prisma.EnumWorkspaceModeFieldUpdateOperationsInput | $Enums.WorkspaceMode
+  last_used_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.organizationsUpdateOneRequiredWithoutWorkspacesNestedInput
+  device?: Prisma.devicesUpdateOneRequiredWithoutWorkspacesNestedInput
+  creator?: Prisma.usersUpdateOneRequiredWithoutWorkspacesNestedInput
+  grants?: Prisma.workspace_grantsUpdateManyWithoutWorkspaceNestedInput
+}
+
+export type workspacesUncheckedUpdateWithoutTasksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organization_id?: Prisma.StringFieldUpdateOperationsInput | string
+  device_id?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
+  raw_path?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.StringFieldUpdateOperationsInput | string
+  mode?: Prisma.EnumWorkspaceModeFieldUpdateOperationsInput | $Enums.WorkspaceMode
+  created_by?: Prisma.StringFieldUpdateOperationsInput | string
+  last_used_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutWorkspaceNestedInput
+}
+
 export type workspacesCreateWithoutDeviceInput = {
   id?: string
   path: string
@@ -752,6 +860,7 @@ export type workspacesCreateWithoutDeviceInput = {
   organization: Prisma.organizationsCreateNestedOneWithoutWorkspacesInput
   creator: Prisma.usersCreateNestedOneWithoutWorkspacesInput
   grants?: Prisma.workspace_grantsCreateNestedManyWithoutWorkspaceInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutWorkspaceInput
 }
 
 export type workspacesUncheckedCreateWithoutDeviceInput = {
@@ -766,6 +875,7 @@ export type workspacesUncheckedCreateWithoutDeviceInput = {
   created_at?: Date | string
   updated_at?: Date | string
   grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutWorkspaceInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
 export type workspacesCreateOrConnectWithoutDeviceInput = {
@@ -806,6 +916,7 @@ export type workspacesCreateWithoutGrantsInput = {
   organization: Prisma.organizationsCreateNestedOneWithoutWorkspacesInput
   device: Prisma.devicesCreateNestedOneWithoutWorkspacesInput
   creator: Prisma.usersCreateNestedOneWithoutWorkspacesInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutWorkspaceInput
 }
 
 export type workspacesUncheckedCreateWithoutGrantsInput = {
@@ -820,6 +931,7 @@ export type workspacesUncheckedCreateWithoutGrantsInput = {
   last_used_at?: Date | string | null
   created_at?: Date | string
   updated_at?: Date | string
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
 export type workspacesCreateOrConnectWithoutGrantsInput = {
@@ -850,6 +962,7 @@ export type workspacesUpdateWithoutGrantsInput = {
   organization?: Prisma.organizationsUpdateOneRequiredWithoutWorkspacesNestedInput
   device?: Prisma.devicesUpdateOneRequiredWithoutWorkspacesNestedInput
   creator?: Prisma.usersUpdateOneRequiredWithoutWorkspacesNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type workspacesUncheckedUpdateWithoutGrantsInput = {
@@ -864,6 +977,7 @@ export type workspacesUncheckedUpdateWithoutGrantsInput = {
   last_used_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type workspacesCreateManyCreatorInput = {
@@ -891,6 +1005,7 @@ export type workspacesUpdateWithoutCreatorInput = {
   organization?: Prisma.organizationsUpdateOneRequiredWithoutWorkspacesNestedInput
   device?: Prisma.devicesUpdateOneRequiredWithoutWorkspacesNestedInput
   grants?: Prisma.workspace_grantsUpdateManyWithoutWorkspaceNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type workspacesUncheckedUpdateWithoutCreatorInput = {
@@ -905,6 +1020,7 @@ export type workspacesUncheckedUpdateWithoutCreatorInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutWorkspaceNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type workspacesUncheckedUpdateManyWithoutCreatorInput = {
@@ -945,6 +1061,7 @@ export type workspacesUpdateWithoutOrganizationInput = {
   device?: Prisma.devicesUpdateOneRequiredWithoutWorkspacesNestedInput
   creator?: Prisma.usersUpdateOneRequiredWithoutWorkspacesNestedInput
   grants?: Prisma.workspace_grantsUpdateManyWithoutWorkspaceNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type workspacesUncheckedUpdateWithoutOrganizationInput = {
@@ -959,6 +1076,7 @@ export type workspacesUncheckedUpdateWithoutOrganizationInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutWorkspaceNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type workspacesUncheckedUpdateManyWithoutOrganizationInput = {
@@ -999,6 +1117,7 @@ export type workspacesUpdateWithoutDeviceInput = {
   organization?: Prisma.organizationsUpdateOneRequiredWithoutWorkspacesNestedInput
   creator?: Prisma.usersUpdateOneRequiredWithoutWorkspacesNestedInput
   grants?: Prisma.workspace_grantsUpdateManyWithoutWorkspaceNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type workspacesUncheckedUpdateWithoutDeviceInput = {
@@ -1013,6 +1132,7 @@ export type workspacesUncheckedUpdateWithoutDeviceInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutWorkspaceNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type workspacesUncheckedUpdateManyWithoutDeviceInput = {
@@ -1035,10 +1155,12 @@ export type workspacesUncheckedUpdateManyWithoutDeviceInput = {
 
 export type WorkspacesCountOutputType = {
   grants: number
+  tasks: number
 }
 
 export type WorkspacesCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grants?: boolean | WorkspacesCountOutputTypeCountGrantsArgs
+  tasks?: boolean | WorkspacesCountOutputTypeCountTasksArgs
 }
 
 /**
@@ -1058,6 +1180,13 @@ export type WorkspacesCountOutputTypeCountGrantsArgs<ExtArgs extends runtime.Typ
   where?: Prisma.workspace_grantsWhereInput
 }
 
+/**
+ * WorkspacesCountOutputType without action
+ */
+export type WorkspacesCountOutputTypeCountTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.tasksWhereInput
+}
+
 
 export type workspacesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1075,6 +1204,7 @@ export type workspacesSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   device?: boolean | Prisma.devicesDefaultArgs<ExtArgs>
   creator?: boolean | Prisma.usersDefaultArgs<ExtArgs>
   grants?: boolean | Prisma.workspaces$grantsArgs<ExtArgs>
+  tasks?: boolean | Prisma.workspaces$tasksArgs<ExtArgs>
   _count?: boolean | Prisma.WorkspacesCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["workspaces"]>
 
@@ -1132,6 +1262,7 @@ export type workspacesInclude<ExtArgs extends runtime.Types.Extensions.InternalA
   device?: boolean | Prisma.devicesDefaultArgs<ExtArgs>
   creator?: boolean | Prisma.usersDefaultArgs<ExtArgs>
   grants?: boolean | Prisma.workspaces$grantsArgs<ExtArgs>
+  tasks?: boolean | Prisma.workspaces$tasksArgs<ExtArgs>
   _count?: boolean | Prisma.WorkspacesCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type workspacesIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1152,6 +1283,7 @@ export type $workspacesPayload<ExtArgs extends runtime.Types.Extensions.Internal
     device: Prisma.$devicesPayload<ExtArgs>
     creator: Prisma.$usersPayload<ExtArgs>
     grants: Prisma.$workspace_grantsPayload<ExtArgs>[]
+    tasks: Prisma.$tasksPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1563,6 +1695,7 @@ export interface Prisma__workspacesClient<T, Null = never, ExtArgs extends runti
   device<T extends Prisma.devicesDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.devicesDefaultArgs<ExtArgs>>): Prisma.Prisma__devicesClient<runtime.Types.Result.GetResult<Prisma.$devicesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   creator<T extends Prisma.usersDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.usersDefaultArgs<ExtArgs>>): Prisma.Prisma__usersClient<runtime.Types.Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   grants<T extends Prisma.workspaces$grantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.workspaces$grantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$workspace_grantsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tasks<T extends Prisma.workspaces$tasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.workspaces$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$tasksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2025,6 +2158,30 @@ export type workspaces$grantsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.Workspace_grantsScalarFieldEnum | Prisma.Workspace_grantsScalarFieldEnum[]
+}
+
+/**
+ * workspaces.tasks
+ */
+export type workspaces$tasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the tasks
+   */
+  select?: Prisma.tasksSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the tasks
+   */
+  omit?: Prisma.tasksOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.tasksInclude<ExtArgs> | null
+  where?: Prisma.tasksWhereInput
+  orderBy?: Prisma.tasksOrderByWithRelationInput | Prisma.tasksOrderByWithRelationInput[]
+  cursor?: Prisma.tasksWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TasksScalarFieldEnum | Prisma.TasksScalarFieldEnum[]
 }
 
 /**

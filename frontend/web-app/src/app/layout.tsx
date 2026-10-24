@@ -31,6 +31,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 Workspaces
               </Link>
               <Link
+                href="/approvals"
+                className="text-ink-muted transition-colors duration-hover ease-standard hover:text-ink"
+              >
+                Approvals
+              </Link>
+              <Link
                 href="/tasks/new"
                 className="rounded-control bg-primary px-3 py-1.5 font-medium text-on-primary transition-colors duration-hover ease-standard hover:bg-primary-strong"
               >

@@ -17,6 +17,7 @@ import { ApiError, DeviceClient, type DeviceCredentials } from "./client.js";
 import { loadConfig, RUNNER_VERSION, type RunnerConfig } from "./config.js";
 import { deviceFilePath, loadDevice, type StoredDevice, saveDevice } from "./device-store.js";
 import { generateDeviceKeys } from "./keys.js";
+import { executeToolCommand } from "./tool-executor.js";
 import {
   enforcementRoots,
   grantRules,
@@ -246,6 +247,20 @@ async function run(config: RunnerConfig): Promise<number> {
     `Polling ${config.apiOrigin}, up to ${config.pollWaitSeconds}s per poll. Ctrl+C to stop.`,
   );
 
+  // One self-test decides whether this machine may mutate anything at all; a
+  // failure here disables tool commands rather than letting them run unchecked.
+  const selfTest = await runSandboxSelfTest({
+    flavour: flavourForOs(platform()),
+    jobController: new InMemoryJobObjectController(),
+    platform: platform(),
+  });
+  if (!selfTest.allowsMutations) {
+    console.warn(
+      "Sandbox self-test failed: mutating tool commands will be refused. " +
+        "Run `ua-runner sandbox-test` for details.",
+    );
+  }
+
   const state: StoredDevice = { ...stored };
   for (;;) {
     let batch: DeviceCommandListResponse;
@@ -265,7 +280,7 @@ async function run(config: RunnerConfig): Promise<number> {
     }
 
     for (const command of batch.commands) {
-      const done = await handle(client, credentials, command);
+      const done = await handle(client, credentials, config, command, selfTest.allowsMutations);
       if (done !== null && done > state.cursor) {
         state.cursor = done;
         saveDevice(config.dataDir, state);
@@ -393,7 +408,13 @@ async function sandboxTest(_config: RunnerConfig): Promise<number> {
  * left alone: silently ignoring it would leave it pending until it expired, and
  * the API would have no way to tell "never delivered" from "not understood".
  */
-function execute(command: DeviceCommandSummary): AckDeviceCommandRequest {
+async function execute(
+  client: DeviceClient,
+  credentials: DeviceCredentials,
+  config: RunnerConfig,
+  command: DeviceCommandSummary,
+  allowsMutations: boolean,
+): Promise<AckDeviceCommandRequest> {
   switch (command.kind) {
     case "diagnostics_ping": {
       // Printed rather than sent: there is no column for a report yet, and the
@@ -402,6 +423,31 @@ function execute(command: DeviceCommandSummary): AckDeviceCommandRequest {
         `[${new Date().toISOString()}] diagnostics ${JSON.stringify(diagnosticsReport())}`,
       );
       return { outcome: "acked" };
+    }
+    case "tool_execute": {
+      // The policy is fetched per command, not cached: a workspace removed in
+      // the browser must stop working here at once (`06` §2.2).
+      let policy: Awaited<ReturnType<DeviceClient["workspacePolicy"]>>;
+      try {
+        policy = await client.workspacePolicy(credentials);
+      } catch (error) {
+        return { outcome: "failed", error: `workspace policy unavailable: ${describe(error)}` };
+      }
+      const flavour = flavourForOs(platform());
+      const denied = deniedPaths(flavour, hostEnvironment(process.env, config.dataDir));
+      const outcome = executeToolCommand({
+        command,
+        deviceId: credentials.deviceId,
+        policy,
+        roots: inspectWorkspaceRoots(policy, { flavour, denied }),
+        flavour,
+        denied,
+        allowsMutations,
+      });
+      if (outcome.writtenPath !== null) {
+        console.log(`wrote ${outcome.writtenPath}`);
+      }
+      return outcome.ack;
     }
     default: {
       const unknown: string = command.kind;
@@ -414,9 +460,11 @@ function execute(command: DeviceCommandSummary): AckDeviceCommandRequest {
 async function handle(
   client: DeviceClient,
   credentials: DeviceCredentials,
+  config: RunnerConfig,
   command: DeviceCommandSummary,
+  allowsMutations: boolean,
 ): Promise<number | null> {
-  const ack = execute(command);
+  const ack = await execute(client, credentials, config, command, allowsMutations);
   try {
     await client.ack(credentials, command.id, ack);
   } catch (error) {

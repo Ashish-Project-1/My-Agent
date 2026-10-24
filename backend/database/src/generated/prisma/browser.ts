@@ -122,3 +122,23 @@ export type workspaces = Prisma.workspacesModel
  * 
  */
 export type workspace_grants = Prisma.workspace_grantsModel
+/**
+ * Model approval_requests
+ * 
+ */
+export type approval_requests = Prisma.approval_requestsModel
+/**
+ * Model approval_grants
+ * 
+ */
+export type approval_grants = Prisma.approval_grantsModel
+/**
+ * Model policy_decisions
+ * 
+ */
+export type policy_decisions = Prisma.policy_decisionsModel
+/**
+ * Model policy_documents
+ * 
+ */
+export type policy_documents = Prisma.policy_documentsModel

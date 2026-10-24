@@ -233,15 +233,17 @@ the whole `QUEUED → COMPLETED` lifecycle (per-step `task.step.execute` and
 calls no model and validates nothing against the tool registry,
 `verification.passed` records a run rather than a result, and a lease is taken
 over on expiry without a reaper — and Phase 2's email verification and
-password-reset flows. There is still no agent loop and no tools.
+password-reset flows. Phase 5 adds the device tool loop below; cloud tasks still
+run this mock path.
 
 **Phase 4 — local runner (in progress).** Slice A — device identity, pairing and
 the command channel — is built; **slice B1** (workspaces registry, canonical
 path policy, grants, device policy and runner enforcement hooks) is built;
-**slice B2** (Windows job-object/AppContainer, argv allow-list, sandbox
-self-test that gates mutating tools) is not; **slice C** (CLI packaging,
-Electron shell, Ollama runtime, diagnostics screen) and **slice D** (outbound
-WSS, long poll remains a fallback) are not.
+**slice B2** is partly built — the sandbox self-test and its mutation gate exist,
+and Phase 5 refuses every tool command when it fails, but Windows
+job-object/AppContainer and the argv allow-list are not; **slice C** (CLI
+packaging, Electron shell, Ollama runtime, diagnostics screen) and **slice D**
+(outbound WSS, long poll remains a fallback) are not.
 
 - Schema (`backend/database`): `devices`, `device_pairing_codes` and
   `device_commands` plus the `DeviceStatus`, `DeviceCommandState` and
@@ -293,8 +295,9 @@ WSS, long poll remains a fallback) are not.
   never authenticated.
 - The runner (`runtime/local-runner`, `@ua/local-runner`) is `ua-runner pair
   --code <CODE>` (generate a keypair, register, wait for a human to approve),
-  `ua-runner run` (hold the channel, execute through one `switch` — only
-  `diagnostics_ping` today, printed locally) and `ua-runner status`. The keypair
+  `ua-runner run` (hold the channel, execute through one `switch` —
+  `diagnostics_ping` printed locally and `tool_execute` through the tool
+  executor) and `ua-runner status`. The keypair
   is written to a per-user file that the private half never leaves, and the only
   dependencies are `@ua/contracts` and `zod`.
 - Web: `/devices` mints a pairing code and prints the exact
@@ -326,20 +329,79 @@ WSS, long poll remains a fallback) are not.
   `@ua/sandbox-manager` (backend→runtime import, deviation recorded in §4);
   `policy_version` is a plain integer (no `policy_documents` yet).
 
+**Phase 5 — agent engine, tools, policy, approvals (in progress).** The M0
+vertical slice is built: a device task is planned, evaluated, approved, executed
+on the machine and verified end to end. Cloud tasks still take the Phase 3 mock
+path (deviation 24).
+
+- `@ua/agent-engine` stays pure (`@ua/contracts` plus `node:crypto`): the tool
+  manifest registry (only `workspace.write_file`, version `1.0.0`, 256 KiB of
+  text), `validateWorkspacePath`, the policy floor (`workspace_write` allow →
+  `no_snapshot_escalation` ask → `risk_ceiling` deny → `workspace_read_only`
+  deny → `invalid_arguments` deny → `unknown_tool` deny, last match wins, default
+  deny), `canonicalToolAction`, `verifyToolResult` and loop detection (three
+  identical action digests).
+- Schema: `tasks.workspace_id`, `ApprovalState` with `approval_requests`, the
+  append-only `policy_decisions`, `device_commands.result/result_digest/error`
+  and `DeviceCommandKind.tool_execute`, in migrations
+  `20261022094405_add_approvals_and_execution_results` and
+  `20261022095045_add_tool_execute_command`. Both new tables are tenant tables
+  and cascade from their task/step; `src/tenant.ts` and `test/schema.test.ts`
+  grew with them.
+- An approval binds one digest over tool, version, arguments, device, workspace,
+  policy version and expiry. The decision route requires that digest, refuses an
+  expired request (`approval_expired`) and decides exactly once (a
+  compare-and-set on `state = pending` plus the digest). There is no separate
+  grant token: the granted row is the grant, and a step that ran is `COMPLETED`.
+- Routes, member: `GET /v1/approvals` (own items; admins see the organization;
+  optional `state`), `GET /v1/approvals/:id`,
+  `POST /v1/approvals/:id/grant|deny`. `POST /v1/tasks` accepts `deviceId` and
+  `workspaceId` together, requires control of an active device and checks that
+  the workspace belongs to it.
+- The worker drives a device task from durable rows, not a replay: policy per
+  step (recorded once in `policy_decisions`), approval wait, one command per step
+  (reused after a crash), result verification, `VERIFYING`, `COMPLETED`. Budgets
+  are 8 steps and 20 minutes from `started_at`; a repeated action is a loop.
+- The runner executes `tool_execute` by recomputing the command and action
+  digests, resolving the workspace with `fs.realpath`, checking the target
+  against the workspace root and the grants (a grant cannot widen this tool),
+  refusing a symlink at the last component, then writing and reporting
+  `{path, bytes, sha256}` with a digest over it. Every tool command is refused
+  while the sandbox self-test does not allow mutations.
+- Web `/approvals` lists the inbox (pending by default), shows the risk class,
+  summary and digest, and grants or denies with the digest it displayed. The new
+  task form can target an active device and one of its workspaces.
+
+The worker side of the loop is covered against real rows
+(`test/integration/device-loop.test.ts`): plan → policy ask → approval → command
+→ a simulated device ack → verification → `COMPLETED`, plus a mismatched report,
+a denied approval, a pending approval that expires, and a grant that expires
+before a resumed worker uses it.
+
+The loop was also walked live against a running API, worker and the real runner
+on 2026-10-23: register → pairing code → `ua-runner pair` → approve → `ua-runner
+run` → workspace → device task → R2 ask → grant with the digest from the inbox →
+the runner wrote `.ua/<taskId>.md` → verification → `COMPLETED`. That pass
+found a real bug: the command digest was computed over an object whose key order
+the `jsonb` column does not preserve, so every device command failed the transit
+check (`"the command was modified in transit (digest mismatch)"`). `canonicalDeviceCommand`
+now sorts keys through `canonicalJson`, with a contracts unit test and an
+integration assertion that recompute the digest from the stored row.
+
 ## 3. Verification
 
 All of the following pass locally from this working tree:
 
 ```
-pnpm build            11 packages compiled (the other 14 are placeholders with no build task)
-pnpm typecheck        the same 11 packages with a typecheck task, src/ and test/ both clean
-pnpm test             249 tests across 11 packages, 0 failures
-pnpm test:integration 74 tests against PostgreSQL 18 and Redis 8, 0 failures
-                      (15 tenant isolation, 51 API, 8 worker durability)
-pnpm lint             203 files checked, 0 errors (Biome + the module-boundary rule)
-pnpm generate:openapi 67 schemas → backend/contracts/openapi.json
-pnpm check:env        2 .env.example files intact and credential-free
-pnpm scan:secrets     tracked files clean (8 opted out; pnpm-lock.yaml is skipped)
+pnpm build            13 packages compiled (the other 14 are placeholders with no build task)
+pnpm typecheck        the same 13 packages with a typecheck task, src/ and test/ both clean
+pnpm test             320 tests across 12 packages, 0 failures
+pnpm test:integration 99 tests against PostgreSQL 18 and Redis 8, 0 failures
+                      (15 tenant isolation, 71 API, 13 worker durability)
+pnpm lint             249 files checked, 0 errors (Biome + the module-boundary rule)
+pnpm generate:openapi 78 schemas → backend/contracts/openapi.json
+pnpm check:env        4 .env.example files intact and credential-free
+pnpm scan:secrets     tracked files clean (306 tracked, 12 opted out; pnpm-lock.yaml is skipped)
 ```
 
 The web app was additionally driven in a real browser against a running API and
@@ -511,10 +573,11 @@ credential endpoints, so this is a deliberate gap: `createPairingCode` is where
 the limiter goes when pairing becomes a target.
 
 **16. Diagnostics results are not stored.** The runner prints its report locally
-and acknowledges the command with an outcome; `AckDeviceCommandRequest` carries
-only `outcome` and `error`. `12` §5.4's diagnostics are for the device's own
-operator, and there is no column for a report yet — adding one before anything
-reads it would be a table with one writer.
+and acknowledges the command with an outcome. `AckDeviceCommandRequest` now also
+carries an optional `result` (Phase 5 uses it for tool output), but diagnostics
+still send none: `12` §5.4's diagnostics are for the device's own operator, and
+there is no column for a report yet — adding one before anything reads it would
+be a table with one writer.
 
 **17. Revoking a device needs no re-authentication.** `planning/11` lists
 step-up re-authentication for sensitive actions. Revoke is not one: it removes
@@ -578,3 +641,29 @@ deferred with a `shortcut:` in `runtime/sandbox-manager/src/path-policy.ts`
 workspaces device-signed route can authenticate without duplicating the
 Ed25519 check; the repository export is the sanctioned cross-module channel per
 the boundary rules.
+
+**24. Cloud tasks still run the Phase 3 mock loop.** A task created without
+`deviceId`/`workspaceId` keeps the existing behaviour, so the durability tests
+and the event sequence they assert stay identical; only a device task runs the
+real tool loop. The embedded executor that replaces the mock is the next slice.
+
+**25. No `policy_documents` table.** `policy_version` is the constant string
+`"1"` on approvals and policy decisions, which keeps the schema shape without a
+table nothing writes yet.
+
+**26. No snapshots, so every mutation is `ask`.** The policy floor escalates any
+`workspace.write_file` to R2 because `snapshotAvailable` is always false; once
+snapshots exist the same rule becomes `allow` and the R1 row in `action.ts` is
+already written for it.
+
+**27. A write is verified from the device's report, not read back.** The worker
+checks the reported path, byte count and sha256 against the approved arguments
+and the result digest covers the payload, but nothing re-reads the file after the
+acknowledgement. A lying device is a compromised device; an independent check
+needs an API-side read-back channel, which does not exist.
+
+**28. `device_commands.seq` is retried rather than allocated.** The worker tries
+`max(seq) + 1` and treats a `P2002` on the unique key as a lost race, up to five
+times. Correct for a handful of concurrent dispatches per device; an atomic
+counter is the upgrade when dispatch volume grows. Marked in the code as a
+`shortcut:`.

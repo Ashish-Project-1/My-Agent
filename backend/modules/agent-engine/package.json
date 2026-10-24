@@ -24,6 +24,7 @@
     "@ua/contracts": "workspace:*"
   },
   "devDependencies": {
+    "@types/node": "catalog:",
     "@ua/tsconfig": "workspace:*",
     "typescript": "catalog:",
     "vitest": "catalog:"

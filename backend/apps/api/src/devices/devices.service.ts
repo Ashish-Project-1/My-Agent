@@ -443,6 +443,9 @@ export class DevicesService {
       deviceId: device.deviceId,
       commandId,
       now: new Date(),
+      result: input.result === null || input.result === undefined ? null : input.result.payload,
+      resultDigest: input.result?.digest ?? null,
+      error: input.error ?? null,
     });
 
     if (!acked) {

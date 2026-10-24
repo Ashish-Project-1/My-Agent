@@ -1,4 +1,11 @@
 import {
+  ApprovalDecisionRequest,
+  ApprovalListQuery,
+  ApprovalListResponse,
+  ApprovalRequestSummary,
+  ApprovalState,
+} from "./approval.js";
+import {
   AuthSessionResponse,
   CreateOrganizationRequest,
   ForgotPasswordRequest,
@@ -25,6 +32,7 @@ import {
   DeviceCommandKind,
   DeviceCommandListResponse,
   DeviceCommandQuery,
+  DeviceCommandResult,
   DeviceCommandState,
   DeviceCommandSummary,
   DeviceListResponse,
@@ -54,6 +62,13 @@ import {
   TaskStepSummary,
   TaskSummary,
 } from "./task.js";
+import {
+  ToolExecuteCommandPayload,
+  ToolName,
+  ToolVersion,
+  WorkspaceWriteArguments,
+  WorkspaceWriteResult,
+} from "./tool.js";
 import {
   CreateWorkspaceGrantRequest,
   DeviceWorkspacePolicy,
@@ -134,8 +149,21 @@ export const SCHEMAS = {
   DeviceCommandSummary,
   DeviceCommandListResponse,
   AckDeviceCommandRequest,
+  DeviceCommandResult,
   CreateDeviceCommandRequest,
   CreateDeviceCommandResponse,
+  // Approvals (docs/planning/07 §3.4, 10 §4)
+  ApprovalState,
+  ApprovalRequestSummary,
+  ApprovalListQuery,
+  ApprovalListResponse,
+  ApprovalDecisionRequest,
+  // Tool registry (docs/planning/10 §3)
+  ToolName,
+  ToolVersion,
+  ToolExecuteCommandPayload,
+  WorkspaceWriteArguments,
+  WorkspaceWriteResult,
   // Workspaces and external_directory grants (docs/planning/07 §3.6, 09 §6)
   WorkspaceMode,
   WorkspaceGrantEffect,

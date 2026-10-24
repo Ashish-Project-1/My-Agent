@@ -8,6 +8,8 @@ import { AuditService } from "../audit/audit.service.js";
 import { AUDIT_ACTIONS } from "../audit/audit-actions.js";
 import type { Principal } from "../common/principal.js";
 import type { RequestMeta } from "../common/request-meta.js";
+import { DevicesService } from "../devices/devices.service.js";
+import { WorkspacesService } from "../workspaces/workspaces.service.js";
 import { TasksRepository } from "./tasks.repository.js";
 
 /** The idempotency scope: one route, so a key cannot collide across routes. */
@@ -22,7 +24,14 @@ const IDEMPOTENCY_CONFLICT =
 /** A stable digest of the request body, so a replay with a different body is rejected. */
 function requestDigest(input: CreateTaskRequest): string {
   return createHash("sha256")
-    .update(JSON.stringify({ goal: input.goal }))
+    .update(
+      JSON.stringify({
+        goal: input.goal,
+        agentSessionId: input.agentSessionId ?? null,
+        deviceId: input.deviceId ?? null,
+        workspaceId: input.workspaceId ?? null,
+      }),
+    )
     .digest("hex");
 }
 
@@ -39,6 +48,8 @@ export class TasksService {
   constructor(
     private readonly repository: TasksRepository,
     private readonly audit: AuditService,
+    private readonly devices: DevicesService,
+    private readonly workspaces: WorkspacesService,
   ) {}
 
   list(organizationId: string) {
@@ -70,6 +81,29 @@ export class TasksService {
   ): Promise<TaskSummary> {
     const organizationId = principal.organizationId;
     const digest = requestDigest(input);
+
+    // A device task needs both halves of the pair, and the caller must control
+    // the machine: handing a colleague's workspace to an agent is not theirs to
+    // do (docs/planning/09 §6). Both checks read through their own module.
+    if (((input.deviceId ?? null) === null) !== ((input.workspaceId ?? null) === null)) {
+      throw new AppError(
+        "validation_failed",
+        "deviceId and workspaceId must be supplied together.",
+      );
+    }
+    const device =
+      input.deviceId == null
+        ? null
+        : await this.devices.requireDeviceControl(principal, input.deviceId);
+    if (device !== null && device.status !== "active") {
+      throw new AppError("state_conflict", "That device is not active.");
+    }
+    if (input.workspaceId != null) {
+      const workspace = await this.workspaces.get(organizationId, input.workspaceId);
+      if (workspace.deviceId !== input.deviceId) {
+        throw new AppError("validation_failed", "That workspace is not registered on that device.");
+      }
+    }
 
     return this.repository.transaction(async (writer) => {
       let idempotencyId: string | null = null;
@@ -125,6 +159,8 @@ export class TasksService {
         agentSessionId,
         createdBy: principal.userId,
         goal: input.goal,
+        deviceId: input.deviceId ?? null,
+        workspaceId: input.workspaceId ?? null,
       });
 
       await this.repository.appendTaskEvent(writer, {

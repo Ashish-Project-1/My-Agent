@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { APP_GUARD } from "@nestjs/core";
 import { AgentSessionsModule } from "./agent-sessions/agent-sessions.module.js";
+import { ApprovalsModule } from "./approvals/approvals.module.js";
 import { AuditModule } from "./audit/audit.module.js";
 import { AuthModule } from "./auth/auth.module.js";
 import { AuthGuard } from "./common/auth.guard.js";
@@ -31,6 +32,7 @@ import { WorkspacesModule } from "./workspaces/workspaces.module.js";
     AgentSessionsModule,
     DevicesModule,
     WorkspacesModule,
+    ApprovalsModule,
   ],
   controllers: [HealthController],
   providers: [

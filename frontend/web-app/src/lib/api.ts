@@ -1,4 +1,8 @@
 import type {
+  ApprovalDecisionRequest,
+  ApprovalListQuery,
+  ApprovalListResponse,
+  ApprovalRequestSummary,
   ApproveDeviceRequest,
   CreateTaskRequest,
   CreateWorkspaceGrantRequest,
@@ -137,7 +141,7 @@ export function approveDevice(deviceId: string, body: ApproveDeviceRequest): Pro
 }
 
 export function denyDevice(deviceId: string): Promise<unknown> {
-  return request("/v1/devices/${deviceId}/deny", { method: "POST", body: "{}" });
+  return request(`/v1/devices/${deviceId}/deny`, { method: "POST", body: "{}" });
 }
 
 export function revokeDevice(deviceId: string, body: RevokeDeviceRequest): Promise<unknown> {
@@ -198,6 +202,38 @@ export function createWorkspaceGrant(
 
 export function revokeWorkspaceGrant(grantId: string): Promise<unknown> {
   return request(`/v1/grants/${grantId}`, { method: "DELETE" });
+}
+
+// --- Approvals (docs/planning/07 §3.4, 10 §4) --------------------------------
+//
+// A decision always sends back the digest the page was shown, so an inbox left
+// open while the action changed cannot approve the newer one (FR-APPR-03).
+
+export function listApprovals(query: ApprovalListQuery = {}): Promise<ApprovalListResponse> {
+  const params = new URLSearchParams();
+  if (query.state !== undefined) params.set("state", query.state);
+  const suffix = params.size === 0 ? "" : `?${params.toString()}`;
+  return request(`/v1/approvals${suffix}`);
+}
+
+export function grantApproval(
+  approvalId: string,
+  body: ApprovalDecisionRequest,
+): Promise<ApprovalRequestSummary> {
+  return request(`/v1/approvals/${approvalId}/grant`, {
+    method: "POST",
+    body: JSON.stringify(body),
+  });
+}
+
+export function denyApproval(
+  approvalId: string,
+  body: ApprovalDecisionRequest,
+): Promise<ApprovalRequestSummary> {
+  return request(`/v1/approvals/${approvalId}/deny`, {
+    method: "POST",
+    body: JSON.stringify(body),
+  });
 }
 
 // --- Auth ------------------------------------------------------------------

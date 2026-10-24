@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { Timestamp, Uuid } from "./common.js";
+import { canonicalJson, Sha256Hex } from "./tool.js";
 
 /**
  * Devices (docs/planning/07 §3.6, `06` §2.2, Phase 4).
@@ -18,7 +19,7 @@ export const DeviceCommandState = z.enum(["pending", "sent", "acked", "expired"]
 export type DeviceCommandState = z.infer<typeof DeviceCommandState>;
 
 /** Growing by one value per command the runner learns to honour. */
-export const DeviceCommandKind = z.enum(["diagnostics_ping"]);
+export const DeviceCommandKind = z.enum(["diagnostics_ping", "tool_execute"]);
 export type DeviceCommandKind = z.infer<typeof DeviceCommandKind>;
 
 export const DeviceName = z.string().trim().min(1).max(120);
@@ -156,10 +157,24 @@ export const DeviceCommandListResponse = z
   .strict();
 export type DeviceCommandListResponse = z.infer<typeof DeviceCommandListResponse>;
 
+/**
+ * The outcome of a command that produced something. `digest` is over
+ * `canonicalJson(payload)`, so the API stores a result it can verify against
+ * the bytes the device claims to have written (FR-TOOL-03).
+ */
+export const DeviceCommandResult = z
+  .object({
+    payload: z.record(z.string(), z.unknown()),
+    digest: Sha256Hex,
+  })
+  .strict();
+export type DeviceCommandResult = z.infer<typeof DeviceCommandResult>;
+
 export const AckDeviceCommandRequest = z
   .object({
     outcome: z.enum(["acked", "failed"]),
     error: z.string().trim().max(500).nullish(),
+    result: DeviceCommandResult.nullish(),
   })
   .strict();
 export type AckDeviceCommandRequest = z.infer<typeof AckDeviceCommandRequest>;
@@ -187,7 +202,10 @@ export function canonicalDeviceCommand(input: {
   payload: Record<string, unknown> | null;
   expiresAt: string;
 }): string {
-  return JSON.stringify({
+  // Sorted keys, because the payload reaches the device through a `jsonb`
+  // column: Postgres is free to reorder an object's keys, and the device would
+  // otherwise hash different bytes than the worker that queued the command.
+  return canonicalJson({
     v: 1,
     deviceId: input.deviceId,
     kind: input.kind,

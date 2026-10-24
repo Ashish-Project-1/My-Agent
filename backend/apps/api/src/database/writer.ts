@@ -25,6 +25,8 @@ export type DbWriter = Pick<
   | "device_commands"
   | "workspaces"
   | "workspace_grants"
+  | "approval_requests"
+  | "policy_decisions"
   | "outbox"
   | "idempotency_keys"
 >;

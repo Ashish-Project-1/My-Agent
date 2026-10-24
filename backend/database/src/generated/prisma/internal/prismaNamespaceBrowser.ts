@@ -71,7 +71,11 @@ export const ModelName = {
   device_pairing_codes: 'device_pairing_codes',
   device_commands: 'device_commands',
   workspaces: 'workspaces',
-  workspace_grants: 'workspace_grants'
+  workspace_grants: 'workspace_grants',
+  approval_requests: 'approval_requests',
+  approval_grants: 'approval_grants',
+  policy_decisions: 'policy_decisions',
+  policy_documents: 'policy_documents'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -263,6 +267,7 @@ export const TasksScalarFieldEnum = {
   agent_session_id: 'agent_session_id',
   created_by: 'created_by',
   device_id: 'device_id',
+  workspace_id: 'workspace_id',
   goal: 'goal',
   constraints: 'constraints',
   execution_location: 'execution_location',
@@ -433,6 +438,9 @@ export const Device_commandsScalarFieldEnum = {
   command_digest: 'command_digest',
   seq: 'seq',
   state: 'state',
+  result: 'result',
+  result_digest: 'result_digest',
+  error: 'error',
   created_at: 'created_at',
   sent_at: 'sent_at',
   acked_at: 'acked_at',
@@ -474,6 +482,85 @@ export const Workspace_grantsScalarFieldEnum = {
 export type Workspace_grantsScalarFieldEnum = (typeof Workspace_grantsScalarFieldEnum)[keyof typeof Workspace_grantsScalarFieldEnum]
 
 
+export const Approval_requestsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  task_id: 'task_id',
+  step_id: 'step_id',
+  tool_name: 'tool_name',
+  risk_class: 'risk_class',
+  summary: 'summary',
+  action_digest: 'action_digest',
+  policy_version: 'policy_version',
+  task_created_by: 'task_created_by',
+  state: 'state',
+  expires_at: 'expires_at',
+  decided_at: 'decided_at',
+  decided_by: 'decided_by',
+  decision_note: 'decision_note',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Approval_requestsScalarFieldEnum = (typeof Approval_requestsScalarFieldEnum)[keyof typeof Approval_requestsScalarFieldEnum]
+
+
+export const Approval_grantsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  request_id: 'request_id',
+  grant_token_hash: 'grant_token_hash',
+  action_digest: 'action_digest',
+  arguments_digest: 'arguments_digest',
+  target_digest: 'target_digest',
+  user_id: 'user_id',
+  device_id: 'device_id',
+  task_id: 'task_id',
+  step_id: 'step_id',
+  policy_version: 'policy_version',
+  nonce: 'nonce',
+  issued_at: 'issued_at',
+  expires_at: 'expires_at',
+  use_count: 'use_count',
+  max_uses: 'max_uses',
+  revoked_at: 'revoked_at'
+} as const
+
+export type Approval_grantsScalarFieldEnum = (typeof Approval_grantsScalarFieldEnum)[keyof typeof Approval_grantsScalarFieldEnum]
+
+
+export const Policy_decisionsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  task_id: 'task_id',
+  step_id: 'step_id',
+  tool_name: 'tool_name',
+  action_digest: 'action_digest',
+  risk_class: 'risk_class',
+  decision: 'decision',
+  matched_rule: 'matched_rule',
+  policy_version: 'policy_version',
+  reasons: 'reasons',
+  created_at: 'created_at'
+} as const
+
+export type Policy_decisionsScalarFieldEnum = (typeof Policy_decisionsScalarFieldEnum)[keyof typeof Policy_decisionsScalarFieldEnum]
+
+
+export const Policy_documentsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  version: 'version',
+  name: 'name',
+  content: 'content',
+  status: 'status',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Policy_documentsScalarFieldEnum = (typeof Policy_documentsScalarFieldEnum)[keyof typeof Policy_documentsScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -488,6 +575,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {

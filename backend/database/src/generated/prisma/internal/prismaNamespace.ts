@@ -417,7 +417,11 @@ export const ModelName = {
   device_pairing_codes: 'device_pairing_codes',
   device_commands: 'device_commands',
   workspaces: 'workspaces',
-  workspace_grants: 'workspace_grants'
+  workspace_grants: 'workspace_grants',
+  approval_requests: 'approval_requests',
+  approval_grants: 'approval_grants',
+  policy_decisions: 'policy_decisions',
+  policy_documents: 'policy_documents'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -433,7 +437,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "users" | "organizations" | "memberships" | "invitations" | "sessions" | "refresh_tokens" | "login_attempts" | "idempotency_keys" | "audit_events" | "agent_sessions" | "tasks" | "task_steps" | "task_events" | "task_checkpoints" | "outbox" | "job_leases" | "devices" | "device_pairing_codes" | "device_commands" | "workspaces" | "workspace_grants"
+    modelProps: "users" | "organizations" | "memberships" | "invitations" | "sessions" | "refresh_tokens" | "login_attempts" | "idempotency_keys" | "audit_events" | "agent_sessions" | "tasks" | "task_steps" | "task_events" | "task_checkpoints" | "outbox" | "job_leases" | "devices" | "device_pairing_codes" | "device_commands" | "workspaces" | "workspace_grants" | "approval_requests" | "approval_grants" | "policy_decisions" | "policy_documents"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1991,6 +1995,302 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    approval_requests: {
+      payload: Prisma.$approval_requestsPayload<ExtArgs>
+      fields: Prisma.approval_requestsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.approval_requestsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_requestsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.approval_requestsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_requestsPayload>
+        }
+        findFirst: {
+          args: Prisma.approval_requestsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_requestsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.approval_requestsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_requestsPayload>
+        }
+        findMany: {
+          args: Prisma.approval_requestsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_requestsPayload>[]
+        }
+        create: {
+          args: Prisma.approval_requestsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_requestsPayload>
+        }
+        createMany: {
+          args: Prisma.approval_requestsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.approval_requestsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_requestsPayload>[]
+        }
+        delete: {
+          args: Prisma.approval_requestsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_requestsPayload>
+        }
+        update: {
+          args: Prisma.approval_requestsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_requestsPayload>
+        }
+        deleteMany: {
+          args: Prisma.approval_requestsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.approval_requestsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.approval_requestsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_requestsPayload>[]
+        }
+        upsert: {
+          args: Prisma.approval_requestsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_requestsPayload>
+        }
+        aggregate: {
+          args: Prisma.Approval_requestsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateApproval_requests>
+        }
+        groupBy: {
+          args: Prisma.approval_requestsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Approval_requestsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.approval_requestsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Approval_requestsCountAggregateOutputType> | number
+        }
+      }
+    }
+    approval_grants: {
+      payload: Prisma.$approval_grantsPayload<ExtArgs>
+      fields: Prisma.approval_grantsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.approval_grantsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_grantsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.approval_grantsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_grantsPayload>
+        }
+        findFirst: {
+          args: Prisma.approval_grantsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_grantsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.approval_grantsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_grantsPayload>
+        }
+        findMany: {
+          args: Prisma.approval_grantsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_grantsPayload>[]
+        }
+        create: {
+          args: Prisma.approval_grantsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_grantsPayload>
+        }
+        createMany: {
+          args: Prisma.approval_grantsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.approval_grantsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_grantsPayload>[]
+        }
+        delete: {
+          args: Prisma.approval_grantsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_grantsPayload>
+        }
+        update: {
+          args: Prisma.approval_grantsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_grantsPayload>
+        }
+        deleteMany: {
+          args: Prisma.approval_grantsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.approval_grantsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.approval_grantsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_grantsPayload>[]
+        }
+        upsert: {
+          args: Prisma.approval_grantsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$approval_grantsPayload>
+        }
+        aggregate: {
+          args: Prisma.Approval_grantsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateApproval_grants>
+        }
+        groupBy: {
+          args: Prisma.approval_grantsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Approval_grantsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.approval_grantsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Approval_grantsCountAggregateOutputType> | number
+        }
+      }
+    }
+    policy_decisions: {
+      payload: Prisma.$policy_decisionsPayload<ExtArgs>
+      fields: Prisma.policy_decisionsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.policy_decisionsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_decisionsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.policy_decisionsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_decisionsPayload>
+        }
+        findFirst: {
+          args: Prisma.policy_decisionsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_decisionsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.policy_decisionsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_decisionsPayload>
+        }
+        findMany: {
+          args: Prisma.policy_decisionsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_decisionsPayload>[]
+        }
+        create: {
+          args: Prisma.policy_decisionsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_decisionsPayload>
+        }
+        createMany: {
+          args: Prisma.policy_decisionsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.policy_decisionsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_decisionsPayload>[]
+        }
+        delete: {
+          args: Prisma.policy_decisionsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_decisionsPayload>
+        }
+        update: {
+          args: Prisma.policy_decisionsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_decisionsPayload>
+        }
+        deleteMany: {
+          args: Prisma.policy_decisionsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.policy_decisionsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.policy_decisionsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_decisionsPayload>[]
+        }
+        upsert: {
+          args: Prisma.policy_decisionsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_decisionsPayload>
+        }
+        aggregate: {
+          args: Prisma.Policy_decisionsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePolicy_decisions>
+        }
+        groupBy: {
+          args: Prisma.policy_decisionsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Policy_decisionsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.policy_decisionsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Policy_decisionsCountAggregateOutputType> | number
+        }
+      }
+    }
+    policy_documents: {
+      payload: Prisma.$policy_documentsPayload<ExtArgs>
+      fields: Prisma.policy_documentsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.policy_documentsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_documentsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.policy_documentsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_documentsPayload>
+        }
+        findFirst: {
+          args: Prisma.policy_documentsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_documentsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.policy_documentsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_documentsPayload>
+        }
+        findMany: {
+          args: Prisma.policy_documentsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_documentsPayload>[]
+        }
+        create: {
+          args: Prisma.policy_documentsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_documentsPayload>
+        }
+        createMany: {
+          args: Prisma.policy_documentsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.policy_documentsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_documentsPayload>[]
+        }
+        delete: {
+          args: Prisma.policy_documentsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_documentsPayload>
+        }
+        update: {
+          args: Prisma.policy_documentsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_documentsPayload>
+        }
+        deleteMany: {
+          args: Prisma.policy_documentsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.policy_documentsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.policy_documentsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_documentsPayload>[]
+        }
+        upsert: {
+          args: Prisma.policy_documentsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$policy_documentsPayload>
+        }
+        aggregate: {
+          args: Prisma.Policy_documentsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePolicy_documents>
+        }
+        groupBy: {
+          args: Prisma.policy_documentsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Policy_documentsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.policy_documentsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Policy_documentsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2203,6 +2503,7 @@ export const TasksScalarFieldEnum = {
   agent_session_id: 'agent_session_id',
   created_by: 'created_by',
   device_id: 'device_id',
+  workspace_id: 'workspace_id',
   goal: 'goal',
   constraints: 'constraints',
   execution_location: 'execution_location',
@@ -2373,6 +2674,9 @@ export const Device_commandsScalarFieldEnum = {
   command_digest: 'command_digest',
   seq: 'seq',
   state: 'state',
+  result: 'result',
+  result_digest: 'result_digest',
+  error: 'error',
   created_at: 'created_at',
   sent_at: 'sent_at',
   acked_at: 'acked_at',
@@ -2414,6 +2718,85 @@ export const Workspace_grantsScalarFieldEnum = {
 export type Workspace_grantsScalarFieldEnum = (typeof Workspace_grantsScalarFieldEnum)[keyof typeof Workspace_grantsScalarFieldEnum]
 
 
+export const Approval_requestsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  task_id: 'task_id',
+  step_id: 'step_id',
+  tool_name: 'tool_name',
+  risk_class: 'risk_class',
+  summary: 'summary',
+  action_digest: 'action_digest',
+  policy_version: 'policy_version',
+  task_created_by: 'task_created_by',
+  state: 'state',
+  expires_at: 'expires_at',
+  decided_at: 'decided_at',
+  decided_by: 'decided_by',
+  decision_note: 'decision_note',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Approval_requestsScalarFieldEnum = (typeof Approval_requestsScalarFieldEnum)[keyof typeof Approval_requestsScalarFieldEnum]
+
+
+export const Approval_grantsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  request_id: 'request_id',
+  grant_token_hash: 'grant_token_hash',
+  action_digest: 'action_digest',
+  arguments_digest: 'arguments_digest',
+  target_digest: 'target_digest',
+  user_id: 'user_id',
+  device_id: 'device_id',
+  task_id: 'task_id',
+  step_id: 'step_id',
+  policy_version: 'policy_version',
+  nonce: 'nonce',
+  issued_at: 'issued_at',
+  expires_at: 'expires_at',
+  use_count: 'use_count',
+  max_uses: 'max_uses',
+  revoked_at: 'revoked_at'
+} as const
+
+export type Approval_grantsScalarFieldEnum = (typeof Approval_grantsScalarFieldEnum)[keyof typeof Approval_grantsScalarFieldEnum]
+
+
+export const Policy_decisionsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  task_id: 'task_id',
+  step_id: 'step_id',
+  tool_name: 'tool_name',
+  action_digest: 'action_digest',
+  risk_class: 'risk_class',
+  decision: 'decision',
+  matched_rule: 'matched_rule',
+  policy_version: 'policy_version',
+  reasons: 'reasons',
+  created_at: 'created_at'
+} as const
+
+export type Policy_decisionsScalarFieldEnum = (typeof Policy_decisionsScalarFieldEnum)[keyof typeof Policy_decisionsScalarFieldEnum]
+
+
+export const Policy_documentsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  version: 'version',
+  name: 'name',
+  content: 'content',
+  status: 'status',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Policy_documentsScalarFieldEnum = (typeof Policy_documentsScalarFieldEnum)[keyof typeof Policy_documentsScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -2428,6 +2811,13 @@ export const NullableJsonNullValueInput = {
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -2791,6 +3181,20 @@ export type ListEnumWorkspaceGrantEffectFieldRefInput<$PrismaModel> = FieldRefIn
 
 
 /**
+ * Reference to a field of type 'ApprovalState'
+ */
+export type EnumApprovalStateFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApprovalState'>
+    
+
+
+/**
+ * Reference to a field of type 'ApprovalState[]'
+ */
+export type ListEnumApprovalStateFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApprovalState[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -2975,6 +3379,10 @@ export type GlobalOmitConfig = {
   device_commands?: Prisma.device_commandsOmit
   workspaces?: Prisma.workspacesOmit
   workspace_grants?: Prisma.workspace_grantsOmit
+  approval_requests?: Prisma.approval_requestsOmit
+  approval_grants?: Prisma.approval_grantsOmit
+  policy_decisions?: Prisma.policy_decisionsOmit
+  policy_documents?: Prisma.policy_documentsOmit
 }
 
 /* Types for Logging */

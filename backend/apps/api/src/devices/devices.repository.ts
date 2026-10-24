@@ -417,6 +417,10 @@ export class DevicesRepository {
     deviceId: string;
     commandId: string;
     now: Date;
+    /** What the command produced, or null for a command that produces nothing. */
+    result: Record<string, unknown> | null;
+    resultDigest: string | null;
+    error: string | null;
   }): Promise<boolean> {
     const result = await this.database.client.device_commands.updateMany({
       where: {
@@ -425,7 +429,13 @@ export class DevicesRepository {
         organization_id: input.organizationId,
         state: { in: ["pending", "sent"] },
       },
-      data: { state: "acked", acked_at: input.now },
+      data: {
+        state: "acked",
+        acked_at: input.now,
+        ...(input.result === null ? {} : { result: input.result as Prisma.InputJsonValue }),
+        result_digest: input.resultDigest,
+        error: input.error,
+      },
     });
     if (result.count > 0) {
       return true;

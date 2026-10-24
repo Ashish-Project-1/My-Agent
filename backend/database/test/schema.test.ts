@@ -25,6 +25,8 @@ const tenantTables = [
   "device_commands",
   "workspaces",
   "workspace_grants",
+  "approval_requests",
+  "policy_decisions",
   "outbox",
 ];
 
@@ -99,7 +101,14 @@ describe("prisma schema conventions (docs/planning/06 §1)", () => {
       .filter((block) => /password_hash|_enc\b|token_hash/.test(block))
       .map((block) => block.split(/[\s{]/)[0]);
     expect(new Set(holders)).toEqual(
-      new Set(["users", "sessions", "invitations", "refresh_tokens", "task_checkpoints"]),
+      new Set([
+        "users",
+        "sessions",
+        "invitations",
+        "refresh_tokens",
+        "task_checkpoints",
+        "approval_grants",
+      ]),
     );
   });
 
@@ -109,6 +118,7 @@ describe("prisma schema conventions (docs/planning/06 §1)", () => {
     // are pure children of tasks; device_commands are delivery records that mean
     // nothing without the device they were queued for; a workspace is a
     // registration of a directory *on* a device, and a grant of a workspace.
+    // An approval or a policy decision explains one step of one task and dies with it.
     const blocks = schema.split(/^model /m).slice(1);
     const cascades = blocks
       .filter((b) => b.includes("onDelete: Cascade"))
@@ -121,6 +131,8 @@ describe("prisma schema conventions (docs/planning/06 §1)", () => {
       "device_commands",
       "workspaces",
       "workspace_grants",
+      "approval_requests",
+      "policy_decisions",
     ]);
     expect(schema.match(/onDelete: Restrict/g)?.length ?? 0).toBeGreaterThan(4);
   });

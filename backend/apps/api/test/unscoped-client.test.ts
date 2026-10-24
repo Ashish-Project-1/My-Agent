@@ -26,6 +26,9 @@ const ALLOWED_PREFIXES = [
   // audit row must land together, and `forOrganization` cannot wrap a
   // transaction client. Reads go through `forOrganization`.
   "workspaces",
+  // A decision and its audit row commit together; reads go through
+  // `forOrganization`. The worker is the writer of the request, not this module.
+  "approvals",
 ];
 
 const SRC = fileURLToPath(new URL("../src", import.meta.url));

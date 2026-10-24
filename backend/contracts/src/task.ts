@@ -81,6 +81,13 @@ export const CreateTaskRequest = z
      * without first creating a session.
      */
     agentSessionId: Uuid.nullish(),
+    /**
+     * Run on a paired device, inside one of its registered workspaces
+     * (docs/planning/17 Phase 5, M0). Both are required together and are
+     * checked in the service; the pair is what makes the task device-located.
+     */
+    deviceId: Uuid.nullish(),
+    workspaceId: Uuid.nullish(),
   })
   .strict();
 export type CreateTaskRequest = z.infer<typeof CreateTaskRequest>;
@@ -92,6 +99,8 @@ export const TaskSummary = z
     goal: z.string(),
     state: TaskState,
     executionLocation: ExecutionLocation,
+    deviceId: Uuid.nullable(),
+    workspaceId: Uuid.nullable(),
     riskClass: z.string().nullable(),
     resultSummary: z.string().nullable(),
     errorCode: z.string().nullable(),

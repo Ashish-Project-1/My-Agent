@@ -10,5 +10,8 @@ export default defineConfig({
     include: ["test/integration/**/*.test.ts"],
     exclude: ["**/node_modules/**", "**/dist/**"],
     fileParallelism: false,
+    // The device loop waits on approval and command rows (500 ms poll), so a
+    // test is seconds, not milliseconds.
+    testTimeout: 15_000,
   },
 });

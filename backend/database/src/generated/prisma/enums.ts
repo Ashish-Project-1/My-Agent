@@ -168,7 +168,8 @@ export type DeviceCommandState = (typeof DeviceCommandState)[keyof typeof Device
 
 
 export const DeviceCommandKind = {
-  diagnostics_ping: 'diagnostics_ping'
+  diagnostics_ping: 'diagnostics_ping',
+  tool_execute: 'tool_execute'
 } as const
 
 export type DeviceCommandKind = (typeof DeviceCommandKind)[keyof typeof DeviceCommandKind]
@@ -188,3 +189,13 @@ export const WorkspaceGrantEffect = {
 } as const
 
 export type WorkspaceGrantEffect = (typeof WorkspaceGrantEffect)[keyof typeof WorkspaceGrantEffect]
+
+
+export const ApprovalState = {
+  pending: 'pending',
+  granted: 'granted',
+  denied: 'denied',
+  expired: 'expired'
+} as const
+
+export type ApprovalState = (typeof ApprovalState)[keyof typeof ApprovalState]
