@@ -2,5 +2,26 @@
   "name": "@ua/worker-document",
   "version": "0.0.0",
   "private": true,
-  "description": "Placeholder package, no code yet. Specified by docs/planning/03-system-architecture.md 5.6."
+  "description": "Document worker (docs/planning/03 §5.6, 17 Phase 7).",
+  "type": "module",
+  "main": "./dist/main.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "start": "node dist/main.js"
+  },
+  "dependencies": {
+    "@ua/contracts": "workspace:*",
+    "@ua/database": "workspace:*",
+    "@ua/logger": "workspace:*",
+    "bullmq": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@ua/tsconfig": "workspace:*",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
 }
