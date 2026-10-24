@@ -12,6 +12,7 @@ import { HealthController } from "./health/health.controller.js";
 import { IdentityModule } from "./identity/identity.module.js";
 import { LoggingModule } from "./logging.module.js";
 import { OrganizationsModule } from "./organizations/organizations.module.js";
+import { PolicyModule } from "./policy/policy.module.js";
 import { TasksModule } from "./tasks/tasks.module.js";
 import { WorkspacesModule } from "./workspaces/workspaces.module.js";
 
@@ -33,6 +34,7 @@ import { WorkspacesModule } from "./workspaces/workspaces.module.js";
     DevicesModule,
     WorkspacesModule,
     ApprovalsModule,
+    PolicyModule,
   ],
   controllers: [HealthController],
   providers: [
