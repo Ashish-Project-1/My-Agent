@@ -28,6 +28,12 @@ export interface PolicyContext {
    * R1 write into an R2 approval (docs/planning/10 §6, control 11).
    */
   readonly snapshotAvailable: boolean;
+  /** Device-level policy constraints (tightening only). */
+  readonly devicePolicy?: {
+    readonly allowTools?: readonly string[];
+    readonly denyTools?: readonly string[];
+    readonly requireApprovalForMutations?: boolean;
+  };
 }
 
 export interface PolicyOutcome {
@@ -77,6 +83,25 @@ function outcome(
  * rule can never loosen the answer a later rule already tightened.
  */
 export const FLOOR_RULES: readonly PolicyRule[] = [
+  {
+    id: "policy.device_deny_tool",
+    evaluate: (action, context) => {
+      const deny = context.devicePolicy?.denyTools;
+      return deny?.includes(action.tool)
+        ? outcome("policy.device_deny_tool", "deny", "R3", "blocked by device policy")
+        : null;
+    },
+  },
+  {
+    id: "policy.device_allow_tool",
+    evaluate: (action, context) => {
+      const allow = context.devicePolicy?.allowTools;
+      if (!allow) return null;
+      return allow.includes(action.tool)
+        ? null
+        : outcome("policy.device_allow_tool", "deny", "R3", "not allowed by device policy");
+    },
+  },
   {
     id: "policy.workspace_write",
     evaluate: (action, context) => {
