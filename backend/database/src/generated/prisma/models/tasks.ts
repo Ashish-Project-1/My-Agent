@@ -381,6 +381,7 @@ export type tasksWhereInput = {
   task_checkpoints?: Prisma.Task_checkpointsListRelationFilter
   approval_requests?: Prisma.Approval_requestsListRelationFilter
   policy_decisions?: Prisma.Policy_decisionsListRelationFilter
+  usage_records?: Prisma.Usage_recordsListRelationFilter
 }
 
 export type tasksOrderByWithRelationInput = {
@@ -419,6 +420,7 @@ export type tasksOrderByWithRelationInput = {
   task_checkpoints?: Prisma.task_checkpointsOrderByRelationAggregateInput
   approval_requests?: Prisma.approval_requestsOrderByRelationAggregateInput
   policy_decisions?: Prisma.policy_decisionsOrderByRelationAggregateInput
+  usage_records?: Prisma.usage_recordsOrderByRelationAggregateInput
 }
 
 export type tasksWhereUniqueInput = Prisma.AtLeast<{
@@ -460,6 +462,7 @@ export type tasksWhereUniqueInput = Prisma.AtLeast<{
   task_checkpoints?: Prisma.Task_checkpointsListRelationFilter
   approval_requests?: Prisma.Approval_requestsListRelationFilter
   policy_decisions?: Prisma.Policy_decisionsListRelationFilter
+  usage_records?: Prisma.Usage_recordsListRelationFilter
 }, "id">
 
 export type tasksOrderByWithAggregationInput = {
@@ -560,6 +563,7 @@ export type tasksCreateInput = {
   task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUncheckedCreateInput = {
@@ -594,6 +598,7 @@ export type tasksUncheckedCreateInput = {
   task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUpdateInput = {
@@ -628,6 +633,7 @@ export type tasksUpdateInput = {
   task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateInput = {
@@ -662,6 +668,7 @@ export type tasksUncheckedUpdateInput = {
   task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksCreateManyInput = {
@@ -849,6 +856,11 @@ export type tasksSumOrderByAggregateInput = {
 export type TasksScalarRelationFilter = {
   is?: Prisma.tasksWhereInput
   isNot?: Prisma.tasksWhereInput
+}
+
+export type TasksNullableScalarRelationFilter = {
+  is?: Prisma.tasksWhereInput | null
+  isNot?: Prisma.tasksWhereInput | null
 }
 
 export type tasksCreateNestedManyWithoutCreated_by_userInput = {
@@ -1101,6 +1113,22 @@ export type tasksUpdateOneRequiredWithoutPolicy_decisionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.tasksUpdateToOneWithWhereWithoutPolicy_decisionsInput, Prisma.tasksUpdateWithoutPolicy_decisionsInput>, Prisma.tasksUncheckedUpdateWithoutPolicy_decisionsInput>
 }
 
+export type tasksCreateNestedOneWithoutUsage_recordsInput = {
+  create?: Prisma.XOR<Prisma.tasksCreateWithoutUsage_recordsInput, Prisma.tasksUncheckedCreateWithoutUsage_recordsInput>
+  connectOrCreate?: Prisma.tasksCreateOrConnectWithoutUsage_recordsInput
+  connect?: Prisma.tasksWhereUniqueInput
+}
+
+export type tasksUpdateOneWithoutUsage_recordsNestedInput = {
+  create?: Prisma.XOR<Prisma.tasksCreateWithoutUsage_recordsInput, Prisma.tasksUncheckedCreateWithoutUsage_recordsInput>
+  connectOrCreate?: Prisma.tasksCreateOrConnectWithoutUsage_recordsInput
+  upsert?: Prisma.tasksUpsertWithoutUsage_recordsInput
+  disconnect?: Prisma.tasksWhereInput | boolean
+  delete?: Prisma.tasksWhereInput | boolean
+  connect?: Prisma.tasksWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.tasksUpdateToOneWithWhereWithoutUsage_recordsInput, Prisma.tasksUpdateWithoutUsage_recordsInput>, Prisma.tasksUncheckedUpdateWithoutUsage_recordsInput>
+}
+
 export type tasksCreateWithoutCreated_by_userInput = {
   id?: string
   device_id?: string | null
@@ -1132,6 +1160,7 @@ export type tasksCreateWithoutCreated_by_userInput = {
   task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUncheckedCreateWithoutCreated_by_userInput = {
@@ -1165,6 +1194,7 @@ export type tasksUncheckedCreateWithoutCreated_by_userInput = {
   task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type tasksCreateOrConnectWithoutCreated_by_userInput = {
@@ -1256,6 +1286,7 @@ export type tasksCreateWithoutOrganizationInput = {
   task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUncheckedCreateWithoutOrganizationInput = {
@@ -1289,6 +1320,7 @@ export type tasksUncheckedCreateWithoutOrganizationInput = {
   task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type tasksCreateOrConnectWithoutOrganizationInput = {
@@ -1348,6 +1380,7 @@ export type tasksCreateWithoutAgent_sessionInput = {
   task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUncheckedCreateWithoutAgent_sessionInput = {
@@ -1381,6 +1414,7 @@ export type tasksUncheckedCreateWithoutAgent_sessionInput = {
   task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type tasksCreateOrConnectWithoutAgent_sessionInput = {
@@ -1440,6 +1474,7 @@ export type tasksCreateWithoutTask_stepsInput = {
   task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUncheckedCreateWithoutTask_stepsInput = {
@@ -1473,6 +1508,7 @@ export type tasksUncheckedCreateWithoutTask_stepsInput = {
   task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type tasksCreateOrConnectWithoutTask_stepsInput = {
@@ -1522,6 +1558,7 @@ export type tasksUpdateWithoutTask_stepsInput = {
   task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateWithoutTask_stepsInput = {
@@ -1555,6 +1592,7 @@ export type tasksUncheckedUpdateWithoutTask_stepsInput = {
   task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksCreateWithoutTask_eventsInput = {
@@ -1588,6 +1626,7 @@ export type tasksCreateWithoutTask_eventsInput = {
   task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUncheckedCreateWithoutTask_eventsInput = {
@@ -1621,6 +1660,7 @@ export type tasksUncheckedCreateWithoutTask_eventsInput = {
   task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type tasksCreateOrConnectWithoutTask_eventsInput = {
@@ -1670,6 +1710,7 @@ export type tasksUpdateWithoutTask_eventsInput = {
   task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateWithoutTask_eventsInput = {
@@ -1703,6 +1744,7 @@ export type tasksUncheckedUpdateWithoutTask_eventsInput = {
   task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksCreateWithoutTask_checkpointsInput = {
@@ -1736,6 +1778,7 @@ export type tasksCreateWithoutTask_checkpointsInput = {
   task_events?: Prisma.task_eventsCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUncheckedCreateWithoutTask_checkpointsInput = {
@@ -1769,6 +1812,7 @@ export type tasksUncheckedCreateWithoutTask_checkpointsInput = {
   task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type tasksCreateOrConnectWithoutTask_checkpointsInput = {
@@ -1818,6 +1862,7 @@ export type tasksUpdateWithoutTask_checkpointsInput = {
   task_events?: Prisma.task_eventsUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateWithoutTask_checkpointsInput = {
@@ -1851,6 +1896,7 @@ export type tasksUncheckedUpdateWithoutTask_checkpointsInput = {
   task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksCreateWithoutWorkspaceInput = {
@@ -1884,6 +1930,7 @@ export type tasksCreateWithoutWorkspaceInput = {
   task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUncheckedCreateWithoutWorkspaceInput = {
@@ -1917,6 +1964,7 @@ export type tasksUncheckedCreateWithoutWorkspaceInput = {
   task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type tasksCreateOrConnectWithoutWorkspaceInput = {
@@ -1976,6 +2024,7 @@ export type tasksCreateWithoutApproval_requestsInput = {
   task_events?: Prisma.task_eventsCreateNestedManyWithoutTaskInput
   task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUncheckedCreateWithoutApproval_requestsInput = {
@@ -2009,6 +2058,7 @@ export type tasksUncheckedCreateWithoutApproval_requestsInput = {
   task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutTaskInput
   task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type tasksCreateOrConnectWithoutApproval_requestsInput = {
@@ -2058,6 +2108,7 @@ export type tasksUpdateWithoutApproval_requestsInput = {
   task_events?: Prisma.task_eventsUpdateManyWithoutTaskNestedInput
   task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateWithoutApproval_requestsInput = {
@@ -2091,6 +2142,7 @@ export type tasksUncheckedUpdateWithoutApproval_requestsInput = {
   task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutTaskNestedInput
   task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksCreateWithoutPolicy_decisionsInput = {
@@ -2124,6 +2176,7 @@ export type tasksCreateWithoutPolicy_decisionsInput = {
   task_events?: Prisma.task_eventsCreateNestedManyWithoutTaskInput
   task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutTaskInput
 }
 
 export type tasksUncheckedCreateWithoutPolicy_decisionsInput = {
@@ -2157,6 +2210,7 @@ export type tasksUncheckedCreateWithoutPolicy_decisionsInput = {
   task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutTaskInput
   task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
   approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutTaskInput
 }
 
 export type tasksCreateOrConnectWithoutPolicy_decisionsInput = {
@@ -2206,6 +2260,7 @@ export type tasksUpdateWithoutPolicy_decisionsInput = {
   task_events?: Prisma.task_eventsUpdateManyWithoutTaskNestedInput
   task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateWithoutPolicy_decisionsInput = {
@@ -2239,6 +2294,159 @@ export type tasksUncheckedUpdateWithoutPolicy_decisionsInput = {
   task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutTaskNestedInput
   task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutTaskNestedInput
+}
+
+export type tasksCreateWithoutUsage_recordsInput = {
+  id?: string
+  device_id?: string | null
+  goal: string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: $Enums.ExecutionLocation
+  state?: $Enums.TaskState
+  state_changed_at?: Date | string
+  risk_class?: string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: string | null
+  error_code?: string | null
+  error_message?: string | null
+  idempotency_key_id?: string | null
+  started_at?: Date | string | null
+  finished_at?: Date | string | null
+  lease_owner?: string | null
+  lease_expires_at?: Date | string | null
+  attempts?: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  organization: Prisma.organizationsCreateNestedOneWithoutTasksInput
+  agent_session: Prisma.agent_sessionsCreateNestedOneWithoutTasksInput
+  created_by_user?: Prisma.usersCreateNestedOneWithoutTasksInput
+  workspace?: Prisma.workspacesCreateNestedOneWithoutTasksInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutTaskInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutTaskInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutTaskInput
+}
+
+export type tasksUncheckedCreateWithoutUsage_recordsInput = {
+  id?: string
+  organization_id: string
+  agent_session_id: string
+  created_by?: string | null
+  device_id?: string | null
+  workspace_id?: string | null
+  goal: string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: $Enums.ExecutionLocation
+  state?: $Enums.TaskState
+  state_changed_at?: Date | string
+  risk_class?: string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: string | null
+  error_code?: string | null
+  error_message?: string | null
+  idempotency_key_id?: string | null
+  started_at?: Date | string | null
+  finished_at?: Date | string | null
+  lease_owner?: string | null
+  lease_expires_at?: Date | string | null
+  attempts?: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutTaskInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutTaskInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutTaskInput
+  approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutTaskInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutTaskInput
+}
+
+export type tasksCreateOrConnectWithoutUsage_recordsInput = {
+  where: Prisma.tasksWhereUniqueInput
+  create: Prisma.XOR<Prisma.tasksCreateWithoutUsage_recordsInput, Prisma.tasksUncheckedCreateWithoutUsage_recordsInput>
+}
+
+export type tasksUpsertWithoutUsage_recordsInput = {
+  update: Prisma.XOR<Prisma.tasksUpdateWithoutUsage_recordsInput, Prisma.tasksUncheckedUpdateWithoutUsage_recordsInput>
+  create: Prisma.XOR<Prisma.tasksCreateWithoutUsage_recordsInput, Prisma.tasksUncheckedCreateWithoutUsage_recordsInput>
+  where?: Prisma.tasksWhereInput
+}
+
+export type tasksUpdateToOneWithWhereWithoutUsage_recordsInput = {
+  where?: Prisma.tasksWhereInput
+  data: Prisma.XOR<Prisma.tasksUpdateWithoutUsage_recordsInput, Prisma.tasksUncheckedUpdateWithoutUsage_recordsInput>
+}
+
+export type tasksUpdateWithoutUsage_recordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  goal?: Prisma.StringFieldUpdateOperationsInput | string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
+  state?: Prisma.EnumTaskStateFieldUpdateOperationsInput | $Enums.TaskState
+  state_changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  risk_class?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotency_key_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finished_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lease_owner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lease_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  organization?: Prisma.organizationsUpdateOneRequiredWithoutTasksNestedInput
+  agent_session?: Prisma.agent_sessionsUpdateOneRequiredWithoutTasksNestedInput
+  created_by_user?: Prisma.usersUpdateOneWithoutTasksNestedInput
+  workspace?: Prisma.workspacesUpdateOneWithoutTasksNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutTaskNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutTaskNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
+}
+
+export type tasksUncheckedUpdateWithoutUsage_recordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  organization_id?: Prisma.StringFieldUpdateOperationsInput | string
+  agent_session_id?: Prisma.StringFieldUpdateOperationsInput | string
+  created_by?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  device_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspace_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  goal?: Prisma.StringFieldUpdateOperationsInput | string
+  constraints?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  execution_location?: Prisma.EnumExecutionLocationFieldUpdateOperationsInput | $Enums.ExecutionLocation
+  state?: Prisma.EnumTaskStateFieldUpdateOperationsInput | $Enums.TaskState
+  state_changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  risk_class?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  plan?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  policy_version?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  budget_used?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  result_summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  error_message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  idempotency_key_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  started_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finished_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lease_owner?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lease_expires_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutTaskNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutTaskNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
+  approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksCreateManyCreated_by_userInput = {
@@ -2300,6 +2508,7 @@ export type tasksUpdateWithoutCreated_by_userInput = {
   task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateWithoutCreated_by_userInput = {
@@ -2333,6 +2542,7 @@ export type tasksUncheckedUpdateWithoutCreated_by_userInput = {
   task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateManyWithoutCreated_by_userInput = {
@@ -2422,6 +2632,7 @@ export type tasksUpdateWithoutOrganizationInput = {
   task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateWithoutOrganizationInput = {
@@ -2455,6 +2666,7 @@ export type tasksUncheckedUpdateWithoutOrganizationInput = {
   task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateManyWithoutOrganizationInput = {
@@ -2544,6 +2756,7 @@ export type tasksUpdateWithoutAgent_sessionInput = {
   task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateWithoutAgent_sessionInput = {
@@ -2577,6 +2790,7 @@ export type tasksUncheckedUpdateWithoutAgent_sessionInput = {
   task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateManyWithoutAgent_sessionInput = {
@@ -2666,6 +2880,7 @@ export type tasksUpdateWithoutWorkspaceInput = {
   task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateWithoutWorkspaceInput = {
@@ -2699,6 +2914,7 @@ export type tasksUncheckedUpdateWithoutWorkspaceInput = {
   task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutTaskNestedInput
   approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutTaskNestedInput
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutTaskNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutTaskNestedInput
 }
 
 export type tasksUncheckedUpdateManyWithoutWorkspaceInput = {
@@ -2740,6 +2956,7 @@ export type TasksCountOutputType = {
   task_checkpoints: number
   approval_requests: number
   policy_decisions: number
+  usage_records: number
 }
 
 export type TasksCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2748,6 +2965,7 @@ export type TasksCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.
   task_checkpoints?: boolean | TasksCountOutputTypeCountTask_checkpointsArgs
   approval_requests?: boolean | TasksCountOutputTypeCountApproval_requestsArgs
   policy_decisions?: boolean | TasksCountOutputTypeCountPolicy_decisionsArgs
+  usage_records?: boolean | TasksCountOutputTypeCountUsage_recordsArgs
 }
 
 /**
@@ -2795,6 +3013,13 @@ export type TasksCountOutputTypeCountPolicy_decisionsArgs<ExtArgs extends runtim
   where?: Prisma.policy_decisionsWhereInput
 }
 
+/**
+ * TasksCountOutputType without action
+ */
+export type TasksCountOutputTypeCountUsage_recordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.usage_recordsWhereInput
+}
+
 
 export type tasksSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2832,6 +3057,7 @@ export type tasksSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   task_checkpoints?: boolean | Prisma.tasks$task_checkpointsArgs<ExtArgs>
   approval_requests?: boolean | Prisma.tasks$approval_requestsArgs<ExtArgs>
   policy_decisions?: boolean | Prisma.tasks$policy_decisionsArgs<ExtArgs>
+  usage_records?: boolean | Prisma.tasks$usage_recordsArgs<ExtArgs>
   _count?: boolean | Prisma.TasksCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tasks"]>
 
@@ -2941,6 +3167,7 @@ export type tasksInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   task_checkpoints?: boolean | Prisma.tasks$task_checkpointsArgs<ExtArgs>
   approval_requests?: boolean | Prisma.tasks$approval_requestsArgs<ExtArgs>
   policy_decisions?: boolean | Prisma.tasks$policy_decisionsArgs<ExtArgs>
+  usage_records?: boolean | Prisma.tasks$usage_recordsArgs<ExtArgs>
   _count?: boolean | Prisma.TasksCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type tasksIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2968,6 +3195,7 @@ export type $tasksPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     task_checkpoints: Prisma.$task_checkpointsPayload<ExtArgs>[]
     approval_requests: Prisma.$approval_requestsPayload<ExtArgs>[]
     policy_decisions: Prisma.$policy_decisionsPayload<ExtArgs>[]
+    usage_records: Prisma.$usage_recordsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3399,6 +3627,7 @@ export interface Prisma__tasksClient<T, Null = never, ExtArgs extends runtime.Ty
   task_checkpoints<T extends Prisma.tasks$task_checkpointsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tasks$task_checkpointsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$task_checkpointsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   approval_requests<T extends Prisma.tasks$approval_requestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tasks$approval_requestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$approval_requestsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   policy_decisions<T extends Prisma.tasks$policy_decisionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tasks$policy_decisionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$policy_decisionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  usage_records<T extends Prisma.tasks$usage_recordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tasks$usage_recordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$usage_recordsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4010,6 +4239,30 @@ export type tasks$policy_decisionsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.Policy_decisionsScalarFieldEnum | Prisma.Policy_decisionsScalarFieldEnum[]
+}
+
+/**
+ * tasks.usage_records
+ */
+export type tasks$usage_recordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the usage_records
+   */
+  select?: Prisma.usage_recordsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the usage_records
+   */
+  omit?: Prisma.usage_recordsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.usage_recordsInclude<ExtArgs> | null
+  where?: Prisma.usage_recordsWhereInput
+  orderBy?: Prisma.usage_recordsOrderByWithRelationInput | Prisma.usage_recordsOrderByWithRelationInput[]
+  cursor?: Prisma.usage_recordsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Usage_recordsScalarFieldEnum | Prisma.Usage_recordsScalarFieldEnum[]
 }
 
 /**

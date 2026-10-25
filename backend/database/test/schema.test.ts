@@ -28,6 +28,12 @@ const tenantTables = [
   "approval_requests",
   "policy_decisions",
   "outbox",
+  "policy_documents",
+  "approval_grants",
+  "usage_records",
+  "usage_rollups",
+  "quotas",
+  "notifications",
 ];
 
 const modelBlock = (model: string): string =>
@@ -133,6 +139,7 @@ describe("prisma schema conventions (docs/planning/06 §1)", () => {
       "workspace_grants",
       "approval_requests",
       "policy_decisions",
+      "notifications",
     ]);
     expect(schema.match(/onDelete: Restrict/g)?.length ?? 0).toBeGreaterThan(4);
   });

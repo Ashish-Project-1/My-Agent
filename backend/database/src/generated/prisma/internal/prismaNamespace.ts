@@ -421,7 +421,11 @@ export const ModelName = {
   approval_requests: 'approval_requests',
   approval_grants: 'approval_grants',
   policy_decisions: 'policy_decisions',
-  policy_documents: 'policy_documents'
+  policy_documents: 'policy_documents',
+  usage_records: 'usage_records',
+  usage_rollups: 'usage_rollups',
+  quotas: 'quotas',
+  notifications: 'notifications'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -437,7 +441,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "users" | "organizations" | "memberships" | "invitations" | "sessions" | "refresh_tokens" | "login_attempts" | "idempotency_keys" | "audit_events" | "agent_sessions" | "tasks" | "task_steps" | "task_events" | "task_checkpoints" | "outbox" | "job_leases" | "devices" | "device_pairing_codes" | "device_commands" | "workspaces" | "workspace_grants" | "approval_requests" | "approval_grants" | "policy_decisions" | "policy_documents"
+    modelProps: "users" | "organizations" | "memberships" | "invitations" | "sessions" | "refresh_tokens" | "login_attempts" | "idempotency_keys" | "audit_events" | "agent_sessions" | "tasks" | "task_steps" | "task_events" | "task_checkpoints" | "outbox" | "job_leases" | "devices" | "device_pairing_codes" | "device_commands" | "workspaces" | "workspace_grants" | "approval_requests" | "approval_grants" | "policy_decisions" | "policy_documents" | "usage_records" | "usage_rollups" | "quotas" | "notifications"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2291,6 +2295,302 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    usage_records: {
+      payload: Prisma.$usage_recordsPayload<ExtArgs>
+      fields: Prisma.usage_recordsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.usage_recordsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_recordsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.usage_recordsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_recordsPayload>
+        }
+        findFirst: {
+          args: Prisma.usage_recordsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_recordsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.usage_recordsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_recordsPayload>
+        }
+        findMany: {
+          args: Prisma.usage_recordsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_recordsPayload>[]
+        }
+        create: {
+          args: Prisma.usage_recordsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_recordsPayload>
+        }
+        createMany: {
+          args: Prisma.usage_recordsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.usage_recordsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_recordsPayload>[]
+        }
+        delete: {
+          args: Prisma.usage_recordsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_recordsPayload>
+        }
+        update: {
+          args: Prisma.usage_recordsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_recordsPayload>
+        }
+        deleteMany: {
+          args: Prisma.usage_recordsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.usage_recordsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.usage_recordsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_recordsPayload>[]
+        }
+        upsert: {
+          args: Prisma.usage_recordsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_recordsPayload>
+        }
+        aggregate: {
+          args: Prisma.Usage_recordsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUsage_records>
+        }
+        groupBy: {
+          args: Prisma.usage_recordsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Usage_recordsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.usage_recordsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Usage_recordsCountAggregateOutputType> | number
+        }
+      }
+    }
+    usage_rollups: {
+      payload: Prisma.$usage_rollupsPayload<ExtArgs>
+      fields: Prisma.usage_rollupsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.usage_rollupsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_rollupsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.usage_rollupsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_rollupsPayload>
+        }
+        findFirst: {
+          args: Prisma.usage_rollupsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_rollupsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.usage_rollupsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_rollupsPayload>
+        }
+        findMany: {
+          args: Prisma.usage_rollupsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_rollupsPayload>[]
+        }
+        create: {
+          args: Prisma.usage_rollupsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_rollupsPayload>
+        }
+        createMany: {
+          args: Prisma.usage_rollupsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.usage_rollupsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_rollupsPayload>[]
+        }
+        delete: {
+          args: Prisma.usage_rollupsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_rollupsPayload>
+        }
+        update: {
+          args: Prisma.usage_rollupsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_rollupsPayload>
+        }
+        deleteMany: {
+          args: Prisma.usage_rollupsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.usage_rollupsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.usage_rollupsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_rollupsPayload>[]
+        }
+        upsert: {
+          args: Prisma.usage_rollupsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$usage_rollupsPayload>
+        }
+        aggregate: {
+          args: Prisma.Usage_rollupsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUsage_rollups>
+        }
+        groupBy: {
+          args: Prisma.usage_rollupsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Usage_rollupsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.usage_rollupsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Usage_rollupsCountAggregateOutputType> | number
+        }
+      }
+    }
+    quotas: {
+      payload: Prisma.$quotasPayload<ExtArgs>
+      fields: Prisma.quotasFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.quotasFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$quotasPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.quotasFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$quotasPayload>
+        }
+        findFirst: {
+          args: Prisma.quotasFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$quotasPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.quotasFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$quotasPayload>
+        }
+        findMany: {
+          args: Prisma.quotasFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$quotasPayload>[]
+        }
+        create: {
+          args: Prisma.quotasCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$quotasPayload>
+        }
+        createMany: {
+          args: Prisma.quotasCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.quotasCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$quotasPayload>[]
+        }
+        delete: {
+          args: Prisma.quotasDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$quotasPayload>
+        }
+        update: {
+          args: Prisma.quotasUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$quotasPayload>
+        }
+        deleteMany: {
+          args: Prisma.quotasDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.quotasUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.quotasUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$quotasPayload>[]
+        }
+        upsert: {
+          args: Prisma.quotasUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$quotasPayload>
+        }
+        aggregate: {
+          args: Prisma.QuotasAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateQuotas>
+        }
+        groupBy: {
+          args: Prisma.quotasGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QuotasGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.quotasCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.QuotasCountAggregateOutputType> | number
+        }
+      }
+    }
+    notifications: {
+      payload: Prisma.$notificationsPayload<ExtArgs>
+      fields: Prisma.notificationsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.notificationsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.notificationsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>
+        }
+        findFirst: {
+          args: Prisma.notificationsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.notificationsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>
+        }
+        findMany: {
+          args: Prisma.notificationsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>[]
+        }
+        create: {
+          args: Prisma.notificationsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>
+        }
+        createMany: {
+          args: Prisma.notificationsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.notificationsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>[]
+        }
+        delete: {
+          args: Prisma.notificationsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>
+        }
+        update: {
+          args: Prisma.notificationsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>
+        }
+        deleteMany: {
+          args: Prisma.notificationsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.notificationsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.notificationsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>[]
+        }
+        upsert: {
+          args: Prisma.notificationsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notificationsPayload>
+        }
+        aggregate: {
+          args: Prisma.NotificationsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateNotifications>
+        }
+        groupBy: {
+          args: Prisma.notificationsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NotificationsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.notificationsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NotificationsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2795,6 +3095,65 @@ export const Policy_documentsScalarFieldEnum = {
 } as const
 
 export type Policy_documentsScalarFieldEnum = (typeof Policy_documentsScalarFieldEnum)[keyof typeof Policy_documentsScalarFieldEnum]
+
+
+export const Usage_recordsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  task_id: 'task_id',
+  user_id: 'user_id',
+  kind: 'kind',
+  quantity: 'quantity',
+  unit: 'unit',
+  metadata: 'metadata',
+  created_at: 'created_at'
+} as const
+
+export type Usage_recordsScalarFieldEnum = (typeof Usage_recordsScalarFieldEnum)[keyof typeof Usage_recordsScalarFieldEnum]
+
+
+export const Usage_rollupsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  bucket_start: 'bucket_start',
+  bucket_end: 'bucket_end',
+  kind: 'kind',
+  total: 'total',
+  unit: 'unit',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Usage_rollupsScalarFieldEnum = (typeof Usage_rollupsScalarFieldEnum)[keyof typeof Usage_rollupsScalarFieldEnum]
+
+
+export const QuotasScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  kind: 'kind',
+  limit: 'limit',
+  period: 'period',
+  enabled: 'enabled',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type QuotasScalarFieldEnum = (typeof QuotasScalarFieldEnum)[keyof typeof QuotasScalarFieldEnum]
+
+
+export const NotificationsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  user_id: 'user_id',
+  type: 'type',
+  title: 'title',
+  body: 'body',
+  read_at: 'read_at',
+  metadata: 'metadata',
+  created_at: 'created_at'
+} as const
+
+export type NotificationsScalarFieldEnum = (typeof NotificationsScalarFieldEnum)[keyof typeof NotificationsScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -3383,6 +3742,10 @@ export type GlobalOmitConfig = {
   approval_grants?: Prisma.approval_grantsOmit
   policy_decisions?: Prisma.policy_decisionsOmit
   policy_documents?: Prisma.policy_documentsOmit
+  usage_records?: Prisma.usage_recordsOmit
+  usage_rollups?: Prisma.usage_rollupsOmit
+  quotas?: Prisma.quotasOmit
+  notifications?: Prisma.notificationsOmit
 }
 
 /* Types for Logging */

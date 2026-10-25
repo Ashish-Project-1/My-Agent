@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { createLogger } from "@ua/logger";
 import { Worker } from "bullmq";
+import { MaintenanceWorker } from "./maintenance-worker.js";
 
 const MAINTENANCE_QUEUE = "maintenance.job";
 
@@ -14,12 +15,17 @@ async function main(): Promise<void> {
   const config = loadConfig();
   const logger = createLogger({ service: "worker-maintenance", level: config.logLevel });
   const owner = `worker-maintenance:${process.pid}:${randomUUID().slice(0, 8)}`;
+  const maintenance = new MaintenanceWorker();
 
   const worker = new Worker(
     MAINTENANCE_QUEUE,
     async (job) => {
       logger.info("maintenance job received", { jobId: job.id, name: job.name });
-      // retention sweeps, orphan reaping, webhook retries, usage rollups
+      const data = job.data as any;
+      if (data?.type) {
+        return await maintenance.run({ type: data.type });
+      }
+      return { ok: true, processed: 0 };
     },
     { connection: { url: config.redisUrl, maxRetriesPerRequest: null } },
   );

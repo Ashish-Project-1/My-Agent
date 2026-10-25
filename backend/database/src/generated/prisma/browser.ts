@@ -142,3 +142,23 @@ export type policy_decisions = Prisma.policy_decisionsModel
  * 
  */
 export type policy_documents = Prisma.policy_documentsModel
+/**
+ * Model usage_records
+ * 
+ */
+export type usage_records = Prisma.usage_recordsModel
+/**
+ * Model usage_rollups
+ * 
+ */
+export type usage_rollups = Prisma.usage_rollupsModel
+/**
+ * Model quotas
+ * 
+ */
+export type quotas = Prisma.quotasModel
+/**
+ * Model notifications
+ * 
+ */
+export type notifications = Prisma.notificationsModel

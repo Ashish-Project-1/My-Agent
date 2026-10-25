@@ -178,6 +178,8 @@ model users {
   workspaces          workspaces[]       @relation("workspaces_created_by")
   workspace_grants    workspace_grants[] @relation("workspace_grants_granted_by")
   approvals_decided   approval_requests[] @relation("approval_requests_decided_by")
+  usage_records       usage_records[]
+  notifications       notifications[]
 }
 
 // Organizations are the tenancy root (ADR-008)
@@ -214,6 +216,10 @@ model organizations {
   policy_decisions     policy_decisions[]
   policy_documents     policy_documents[]
   outbox               outbox[]
+  usage_records        usage_records[]
+  usage_rollups        usage_rollups[]
+  quotas               quotas[]
+  notifications        notifications[]
 }
 
 model memberships {
@@ -411,6 +417,7 @@ model tasks {
   task_checkpoints task_checkpoints[]
   approval_requests approval_requests[]
   policy_decisions policy_decisions[]
+  usage_records     usage_records[]
 
   @@index([organization_id, created_at])
   @@index([organization_id, state, created_at])
@@ -777,4 +784,73 @@ model policy_documents {
 
   @@unique([organization_id, version])
   @@index([organization_id, status])
+}
+
+model usage_records {
+  id              String   @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id String   @db.Uuid
+  task_id         String?  @db.Uuid
+  user_id         String?  @db.Uuid
+  kind            String   @db.Text
+  quantity        Int      @default(1)
+  unit            String   @db.Text
+  metadata        Json?    @db.JsonB
+  created_at      DateTime @default(now()) @db.Timestamptz
+
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+  task         tasks?        @relation(fields: [task_id], references: [id], onDelete: SetNull)
+  user         users?        @relation(fields: [user_id], references: [id], onDelete: SetNull)
+
+  @@index([organization_id, kind, created_at])
+  @@index([task_id])
+}
+
+model usage_rollups {
+  id              String   @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id String   @db.Uuid
+  bucket_start    DateTime @db.Timestamptz
+  bucket_end      DateTime @db.Timestamptz
+  kind            String   @db.Text
+  total           BigInt   @default(0)
+  unit            String   @db.Text
+  created_at      DateTime @default(now()) @db.Timestamptz
+  updated_at      DateTime @updatedAt @db.Timestamptz
+
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+
+  @@unique([organization_id, bucket_start, bucket_end, kind, unit])
+  @@index([organization_id, bucket_start])
+}
+
+model quotas {
+  id              String   @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id String   @db.Uuid
+  kind            String   @db.Text
+  limit           BigInt
+  period          String   @db.Text
+  enabled         Boolean  @default(true)
+  created_at      DateTime @default(now()) @db.Timestamptz
+  updated_at      DateTime @updatedAt @db.Timestamptz
+
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+
+  @@unique([organization_id, kind, period])
+  @@index([organization_id, enabled])
+}
+
+model notifications {
+  id              String    @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  organization_id String    @db.Uuid
+  user_id         String?   @db.Uuid
+  type            String    @db.Text
+  title           String    @db.Text
+  body            String    @db.Text
+  read_at         DateTime? @db.Timestamptz
+  metadata        Json?     @db.JsonB
+  created_at      DateTime  @default(now()) @db.Timestamptz
+
+  organization organizations @relation(fields: [organization_id], references: [id], onDelete: Restrict)
+  user         users?        @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([organization_id, user_id, read_at, created_at])
 }

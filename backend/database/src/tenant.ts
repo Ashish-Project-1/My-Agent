@@ -31,6 +31,10 @@ export const TENANT_MODELS = [
   "policy_decisions",
   "policy_documents",
   "outbox",
+  "usage_records",
+  "usage_rollups",
+  "quotas",
+  "notifications",
 ] as const;
 
 const TENANT_MODEL_SET: ReadonlySet<string> = new Set(TENANT_MODELS);
@@ -62,6 +66,7 @@ export const RELATION_FIELDS: Record<string, readonly string[]> = {
     "task_checkpoints",
     "approval_requests",
     "policy_decisions",
+    "usage_records",
   ],
   task_steps: ["task", "organization", "approval_requests"],
   task_events: ["task", "organization"],
@@ -76,6 +81,10 @@ export const RELATION_FIELDS: Record<string, readonly string[]> = {
   policy_decisions: ["organization", "task"],
   policy_documents: ["organization"],
   outbox: ["organization"],
+  usage_records: ["organization", "task", "user"],
+  usage_rollups: ["organization"],
+  quotas: ["organization"],
+  notifications: ["organization", "user"],
 };
 
 /** Raised when a caller asks an organization scope to do something it cannot make safe. */

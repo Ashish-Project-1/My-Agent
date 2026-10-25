@@ -273,6 +273,8 @@ export type usersWhereInput = {
   workspaces?: Prisma.WorkspacesListRelationFilter
   workspace_grants?: Prisma.Workspace_grantsListRelationFilter
   approvals_decided?: Prisma.Approval_requestsListRelationFilter
+  usage_records?: Prisma.Usage_recordsListRelationFilter
+  notifications?: Prisma.NotificationsListRelationFilter
 }
 
 export type usersOrderByWithRelationInput = {
@@ -302,6 +304,8 @@ export type usersOrderByWithRelationInput = {
   workspaces?: Prisma.workspacesOrderByRelationAggregateInput
   workspace_grants?: Prisma.workspace_grantsOrderByRelationAggregateInput
   approvals_decided?: Prisma.approval_requestsOrderByRelationAggregateInput
+  usage_records?: Prisma.usage_recordsOrderByRelationAggregateInput
+  notifications?: Prisma.notificationsOrderByRelationAggregateInput
 }
 
 export type usersWhereUniqueInput = Prisma.AtLeast<{
@@ -334,6 +338,8 @@ export type usersWhereUniqueInput = Prisma.AtLeast<{
   workspaces?: Prisma.WorkspacesListRelationFilter
   workspace_grants?: Prisma.Workspace_grantsListRelationFilter
   approvals_decided?: Prisma.Approval_requestsListRelationFilter
+  usage_records?: Prisma.Usage_recordsListRelationFilter
+  notifications?: Prisma.NotificationsListRelationFilter
 }, "id" | "email">
 
 export type usersOrderByWithAggregationInput = {
@@ -405,6 +411,8 @@ export type usersCreateInput = {
   workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutUserInput
 }
 
 export type usersUncheckedCreateInput = {
@@ -434,6 +442,8 @@ export type usersUncheckedCreateInput = {
   workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type usersUpdateInput = {
@@ -463,6 +473,8 @@ export type usersUpdateInput = {
   workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutUserNestedInput
 }
 
 export type usersUncheckedUpdateInput = {
@@ -492,6 +504,8 @@ export type usersUncheckedUpdateInput = {
   workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUncheckedUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type usersCreateManyInput = {
@@ -798,6 +812,38 @@ export type usersUpdateOneWithoutApprovals_decidedNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutApprovals_decidedInput, Prisma.usersUpdateWithoutApprovals_decidedInput>, Prisma.usersUncheckedUpdateWithoutApprovals_decidedInput>
 }
 
+export type usersCreateNestedOneWithoutUsage_recordsInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutUsage_recordsInput, Prisma.usersUncheckedCreateWithoutUsage_recordsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutUsage_recordsInput
+  connect?: Prisma.usersWhereUniqueInput
+}
+
+export type usersUpdateOneWithoutUsage_recordsNestedInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutUsage_recordsInput, Prisma.usersUncheckedCreateWithoutUsage_recordsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutUsage_recordsInput
+  upsert?: Prisma.usersUpsertWithoutUsage_recordsInput
+  disconnect?: Prisma.usersWhereInput | boolean
+  delete?: Prisma.usersWhereInput | boolean
+  connect?: Prisma.usersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutUsage_recordsInput, Prisma.usersUpdateWithoutUsage_recordsInput>, Prisma.usersUncheckedUpdateWithoutUsage_recordsInput>
+}
+
+export type usersCreateNestedOneWithoutNotificationsInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutNotificationsInput, Prisma.usersUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutNotificationsInput
+  connect?: Prisma.usersWhereUniqueInput
+}
+
+export type usersUpdateOneWithoutNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutNotificationsInput, Prisma.usersUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutNotificationsInput
+  upsert?: Prisma.usersUpsertWithoutNotificationsInput
+  disconnect?: Prisma.usersWhereInput | boolean
+  delete?: Prisma.usersWhereInput | boolean
+  connect?: Prisma.usersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutNotificationsInput, Prisma.usersUpdateWithoutNotificationsInput>, Prisma.usersUncheckedUpdateWithoutNotificationsInput>
+}
+
 export type usersCreateWithoutMembershipsInput = {
   id?: string
   email: string
@@ -824,6 +870,8 @@ export type usersCreateWithoutMembershipsInput = {
   workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutUserInput
 }
 
 export type usersUncheckedCreateWithoutMembershipsInput = {
@@ -852,6 +900,8 @@ export type usersUncheckedCreateWithoutMembershipsInput = {
   workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type usersCreateOrConnectWithoutMembershipsInput = {
@@ -885,6 +935,8 @@ export type usersCreateWithoutInvited_membershipsInput = {
   workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutUserInput
 }
 
 export type usersUncheckedCreateWithoutInvited_membershipsInput = {
@@ -913,6 +965,8 @@ export type usersUncheckedCreateWithoutInvited_membershipsInput = {
   workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type usersCreateOrConnectWithoutInvited_membershipsInput = {
@@ -957,6 +1011,8 @@ export type usersUpdateWithoutMembershipsInput = {
   workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutUserNestedInput
 }
 
 export type usersUncheckedUpdateWithoutMembershipsInput = {
@@ -985,6 +1041,8 @@ export type usersUncheckedUpdateWithoutMembershipsInput = {
   workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUncheckedUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type usersUpsertWithoutInvited_membershipsInput = {
@@ -1024,6 +1082,8 @@ export type usersUpdateWithoutInvited_membershipsInput = {
   workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutUserNestedInput
 }
 
 export type usersUncheckedUpdateWithoutInvited_membershipsInput = {
@@ -1052,6 +1112,8 @@ export type usersUncheckedUpdateWithoutInvited_membershipsInput = {
   workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUncheckedUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type usersCreateWithoutInvitations_byInput = {
@@ -1080,6 +1142,8 @@ export type usersCreateWithoutInvitations_byInput = {
   workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutUserInput
 }
 
 export type usersUncheckedCreateWithoutInvitations_byInput = {
@@ -1108,6 +1172,8 @@ export type usersUncheckedCreateWithoutInvitations_byInput = {
   workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type usersCreateOrConnectWithoutInvitations_byInput = {
@@ -1152,6 +1218,8 @@ export type usersUpdateWithoutInvitations_byInput = {
   workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutUserNestedInput
 }
 
 export type usersUncheckedUpdateWithoutInvitations_byInput = {
@@ -1180,6 +1248,8 @@ export type usersUncheckedUpdateWithoutInvitations_byInput = {
   workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUncheckedUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type usersCreateWithoutSessionsInput = {
@@ -1208,6 +1278,8 @@ export type usersCreateWithoutSessionsInput = {
   workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutUserInput
 }
 
 export type usersUncheckedCreateWithoutSessionsInput = {
@@ -1236,6 +1308,8 @@ export type usersUncheckedCreateWithoutSessionsInput = {
   workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type usersCreateOrConnectWithoutSessionsInput = {
@@ -1280,6 +1354,8 @@ export type usersUpdateWithoutSessionsInput = {
   workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutUserNestedInput
 }
 
 export type usersUncheckedUpdateWithoutSessionsInput = {
@@ -1308,6 +1384,8 @@ export type usersUncheckedUpdateWithoutSessionsInput = {
   workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUncheckedUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type usersCreateWithoutAudit_eventsInput = {
@@ -1336,6 +1414,8 @@ export type usersCreateWithoutAudit_eventsInput = {
   workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutUserInput
 }
 
 export type usersUncheckedCreateWithoutAudit_eventsInput = {
@@ -1364,6 +1444,8 @@ export type usersUncheckedCreateWithoutAudit_eventsInput = {
   workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type usersCreateOrConnectWithoutAudit_eventsInput = {
@@ -1408,6 +1490,8 @@ export type usersUpdateWithoutAudit_eventsInput = {
   workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutUserNestedInput
 }
 
 export type usersUncheckedUpdateWithoutAudit_eventsInput = {
@@ -1436,6 +1520,8 @@ export type usersUncheckedUpdateWithoutAudit_eventsInput = {
   workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUncheckedUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type usersCreateWithoutAgent_sessionsInput = {
@@ -1464,6 +1550,8 @@ export type usersCreateWithoutAgent_sessionsInput = {
   workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutUserInput
 }
 
 export type usersUncheckedCreateWithoutAgent_sessionsInput = {
@@ -1492,6 +1580,8 @@ export type usersUncheckedCreateWithoutAgent_sessionsInput = {
   workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type usersCreateOrConnectWithoutAgent_sessionsInput = {
@@ -1536,6 +1626,8 @@ export type usersUpdateWithoutAgent_sessionsInput = {
   workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutUserNestedInput
 }
 
 export type usersUncheckedUpdateWithoutAgent_sessionsInput = {
@@ -1564,6 +1656,8 @@ export type usersUncheckedUpdateWithoutAgent_sessionsInput = {
   workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUncheckedUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type usersCreateWithoutTasksInput = {
@@ -1592,6 +1686,8 @@ export type usersCreateWithoutTasksInput = {
   workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutUserInput
 }
 
 export type usersUncheckedCreateWithoutTasksInput = {
@@ -1620,6 +1716,8 @@ export type usersUncheckedCreateWithoutTasksInput = {
   workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type usersCreateOrConnectWithoutTasksInput = {
@@ -1664,6 +1762,8 @@ export type usersUpdateWithoutTasksInput = {
   workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutUserNestedInput
 }
 
 export type usersUncheckedUpdateWithoutTasksInput = {
@@ -1692,6 +1792,8 @@ export type usersUncheckedUpdateWithoutTasksInput = {
   workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUncheckedUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type usersCreateWithoutDevicesInput = {
@@ -1720,6 +1822,8 @@ export type usersCreateWithoutDevicesInput = {
   workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutUserInput
 }
 
 export type usersUncheckedCreateWithoutDevicesInput = {
@@ -1748,6 +1852,8 @@ export type usersUncheckedCreateWithoutDevicesInput = {
   workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type usersCreateOrConnectWithoutDevicesInput = {
@@ -1792,6 +1898,8 @@ export type usersUpdateWithoutDevicesInput = {
   workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutUserNestedInput
 }
 
 export type usersUncheckedUpdateWithoutDevicesInput = {
@@ -1820,6 +1928,8 @@ export type usersUncheckedUpdateWithoutDevicesInput = {
   workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUncheckedUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type usersCreateWithoutWorkspacesInput = {
@@ -1848,6 +1958,8 @@ export type usersCreateWithoutWorkspacesInput = {
   devices?: Prisma.devicesCreateNestedManyWithoutOwnerInput
   workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutUserInput
 }
 
 export type usersUncheckedCreateWithoutWorkspacesInput = {
@@ -1876,6 +1988,8 @@ export type usersUncheckedCreateWithoutWorkspacesInput = {
   devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOwnerInput
   workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
   approvals_decided?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type usersCreateOrConnectWithoutWorkspacesInput = {
@@ -1920,6 +2034,8 @@ export type usersUpdateWithoutWorkspacesInput = {
   devices?: Prisma.devicesUpdateManyWithoutOwnerNestedInput
   workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutUserNestedInput
 }
 
 export type usersUncheckedUpdateWithoutWorkspacesInput = {
@@ -1948,6 +2064,8 @@ export type usersUncheckedUpdateWithoutWorkspacesInput = {
   devices?: Prisma.devicesUncheckedUpdateManyWithoutOwnerNestedInput
   workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
   approvals_decided?: Prisma.approval_requestsUncheckedUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type usersCreateWithoutWorkspace_grantsInput = {
@@ -1976,6 +2094,8 @@ export type usersCreateWithoutWorkspace_grantsInput = {
   devices?: Prisma.devicesCreateNestedManyWithoutOwnerInput
   workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
   approvals_decided?: Prisma.approval_requestsCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutUserInput
 }
 
 export type usersUncheckedCreateWithoutWorkspace_grantsInput = {
@@ -2004,6 +2124,8 @@ export type usersUncheckedCreateWithoutWorkspace_grantsInput = {
   devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOwnerInput
   workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
   approvals_decided?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type usersCreateOrConnectWithoutWorkspace_grantsInput = {
@@ -2048,6 +2170,8 @@ export type usersUpdateWithoutWorkspace_grantsInput = {
   devices?: Prisma.devicesUpdateManyWithoutOwnerNestedInput
   workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
   approvals_decided?: Prisma.approval_requestsUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutUserNestedInput
 }
 
 export type usersUncheckedUpdateWithoutWorkspace_grantsInput = {
@@ -2076,6 +2200,8 @@ export type usersUncheckedUpdateWithoutWorkspace_grantsInput = {
   devices?: Prisma.devicesUncheckedUpdateManyWithoutOwnerNestedInput
   workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
   approvals_decided?: Prisma.approval_requestsUncheckedUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type usersCreateWithoutApprovals_decidedInput = {
@@ -2104,6 +2230,8 @@ export type usersCreateWithoutApprovals_decidedInput = {
   devices?: Prisma.devicesCreateNestedManyWithoutOwnerInput
   workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutUserInput
 }
 
 export type usersUncheckedCreateWithoutApprovals_decidedInput = {
@@ -2132,6 +2260,8 @@ export type usersUncheckedCreateWithoutApprovals_decidedInput = {
   devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOwnerInput
   workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
   workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type usersCreateOrConnectWithoutApprovals_decidedInput = {
@@ -2176,6 +2306,8 @@ export type usersUpdateWithoutApprovals_decidedInput = {
   devices?: Prisma.devicesUpdateManyWithoutOwnerNestedInput
   workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutUserNestedInput
 }
 
 export type usersUncheckedUpdateWithoutApprovals_decidedInput = {
@@ -2204,6 +2336,280 @@ export type usersUncheckedUpdateWithoutApprovals_decidedInput = {
   devices?: Prisma.devicesUncheckedUpdateManyWithoutOwnerNestedInput
   workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
   workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type usersCreateWithoutUsage_recordsInput = {
+  id?: string
+  email: string
+  email_verified_at?: Date | string | null
+  password_hash: string
+  password_changed_at?: Date | string | null
+  display_name?: string | null
+  locale?: string | null
+  timezone?: string | null
+  mfa_enabled?: boolean
+  totp_secret_enc?: string | null
+  status?: $Enums.UserStatus
+  last_login_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutUserInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutUserInput
+  invitations_by?: Prisma.invitationsCreateNestedManyWithoutInviterInput
+  invited_memberships?: Prisma.membershipsCreateNestedManyWithoutInviterInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
+  approvals_decided?: Prisma.approval_requestsCreateNestedManyWithoutDeciderInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutUserInput
+}
+
+export type usersUncheckedCreateWithoutUsage_recordsInput = {
+  id?: string
+  email: string
+  email_verified_at?: Date | string | null
+  password_hash: string
+  password_changed_at?: Date | string | null
+  display_name?: string | null
+  locale?: string | null
+  timezone?: string | null
+  mfa_enabled?: boolean
+  totp_secret_enc?: string | null
+  status?: $Enums.UserStatus
+  last_login_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutUserInput
+  invitations_by?: Prisma.invitationsUncheckedCreateNestedManyWithoutInviterInput
+  invited_memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutInviterInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
+  approvals_decided?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutDeciderInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type usersCreateOrConnectWithoutUsage_recordsInput = {
+  where: Prisma.usersWhereUniqueInput
+  create: Prisma.XOR<Prisma.usersCreateWithoutUsage_recordsInput, Prisma.usersUncheckedCreateWithoutUsage_recordsInput>
+}
+
+export type usersUpsertWithoutUsage_recordsInput = {
+  update: Prisma.XOR<Prisma.usersUpdateWithoutUsage_recordsInput, Prisma.usersUncheckedUpdateWithoutUsage_recordsInput>
+  create: Prisma.XOR<Prisma.usersCreateWithoutUsage_recordsInput, Prisma.usersUncheckedCreateWithoutUsage_recordsInput>
+  where?: Prisma.usersWhereInput
+}
+
+export type usersUpdateToOneWithWhereWithoutUsage_recordsInput = {
+  where?: Prisma.usersWhereInput
+  data: Prisma.XOR<Prisma.usersUpdateWithoutUsage_recordsInput, Prisma.usersUncheckedUpdateWithoutUsage_recordsInput>
+}
+
+export type usersUpdateWithoutUsage_recordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  password_changed_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  display_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mfa_enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totp_secret_enc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutUserNestedInput
+  invitations_by?: Prisma.invitationsUpdateManyWithoutInviterNestedInput
+  invited_memberships?: Prisma.membershipsUpdateManyWithoutInviterNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
+  approvals_decided?: Prisma.approval_requestsUpdateManyWithoutDeciderNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutUserNestedInput
+}
+
+export type usersUncheckedUpdateWithoutUsage_recordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  password_changed_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  display_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mfa_enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totp_secret_enc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutUserNestedInput
+  invitations_by?: Prisma.invitationsUncheckedUpdateManyWithoutInviterNestedInput
+  invited_memberships?: Prisma.membershipsUncheckedUpdateManyWithoutInviterNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
+  approvals_decided?: Prisma.approval_requestsUncheckedUpdateManyWithoutDeciderNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type usersCreateWithoutNotificationsInput = {
+  id?: string
+  email: string
+  email_verified_at?: Date | string | null
+  password_hash: string
+  password_changed_at?: Date | string | null
+  display_name?: string | null
+  locale?: string | null
+  timezone?: string | null
+  mfa_enabled?: boolean
+  totp_secret_enc?: string | null
+  status?: $Enums.UserStatus
+  last_login_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutUserInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutUserInput
+  invitations_by?: Prisma.invitationsCreateNestedManyWithoutInviterInput
+  invited_memberships?: Prisma.membershipsCreateNestedManyWithoutInviterInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutGranterInput
+  approvals_decided?: Prisma.approval_requestsCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutUserInput
+}
+
+export type usersUncheckedCreateWithoutNotificationsInput = {
+  id?: string
+  email: string
+  email_verified_at?: Date | string | null
+  password_hash: string
+  password_changed_at?: Date | string | null
+  display_name?: string | null
+  locale?: string | null
+  timezone?: string | null
+  mfa_enabled?: boolean
+  totp_secret_enc?: string | null
+  status?: $Enums.UserStatus
+  last_login_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutUserInput
+  invitations_by?: Prisma.invitationsUncheckedCreateNestedManyWithoutInviterInput
+  invited_memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutInviterInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutUserInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutCreated_by_userInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOwnerInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutCreatorInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutGranterInput
+  approvals_decided?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutDeciderInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type usersCreateOrConnectWithoutNotificationsInput = {
+  where: Prisma.usersWhereUniqueInput
+  create: Prisma.XOR<Prisma.usersCreateWithoutNotificationsInput, Prisma.usersUncheckedCreateWithoutNotificationsInput>
+}
+
+export type usersUpsertWithoutNotificationsInput = {
+  update: Prisma.XOR<Prisma.usersUpdateWithoutNotificationsInput, Prisma.usersUncheckedUpdateWithoutNotificationsInput>
+  create: Prisma.XOR<Prisma.usersCreateWithoutNotificationsInput, Prisma.usersUncheckedCreateWithoutNotificationsInput>
+  where?: Prisma.usersWhereInput
+}
+
+export type usersUpdateToOneWithWhereWithoutNotificationsInput = {
+  where?: Prisma.usersWhereInput
+  data: Prisma.XOR<Prisma.usersUpdateWithoutNotificationsInput, Prisma.usersUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type usersUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  password_changed_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  display_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mfa_enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totp_secret_enc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutUserNestedInput
+  invitations_by?: Prisma.invitationsUpdateManyWithoutInviterNestedInput
+  invited_memberships?: Prisma.membershipsUpdateManyWithoutInviterNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutGranterNestedInput
+  approvals_decided?: Prisma.approval_requestsUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutUserNestedInput
+}
+
+export type usersUncheckedUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email_verified_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  password_changed_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  display_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locale?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mfa_enabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totp_secret_enc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+  last_login_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutUserNestedInput
+  invitations_by?: Prisma.invitationsUncheckedUpdateManyWithoutInviterNestedInput
+  invited_memberships?: Prisma.membershipsUncheckedUpdateManyWithoutInviterNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutUserNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutCreated_by_userNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOwnerNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutCreatorNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutGranterNestedInput
+  approvals_decided?: Prisma.approval_requestsUncheckedUpdateManyWithoutDeciderNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -2223,6 +2629,8 @@ export type UsersCountOutputType = {
   workspaces: number
   workspace_grants: number
   approvals_decided: number
+  usage_records: number
+  notifications: number
 }
 
 export type UsersCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2237,6 +2645,8 @@ export type UsersCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.
   workspaces?: boolean | UsersCountOutputTypeCountWorkspacesArgs
   workspace_grants?: boolean | UsersCountOutputTypeCountWorkspace_grantsArgs
   approvals_decided?: boolean | UsersCountOutputTypeCountApprovals_decidedArgs
+  usage_records?: boolean | UsersCountOutputTypeCountUsage_recordsArgs
+  notifications?: boolean | UsersCountOutputTypeCountNotificationsArgs
 }
 
 /**
@@ -2326,6 +2736,20 @@ export type UsersCountOutputTypeCountApprovals_decidedArgs<ExtArgs extends runti
   where?: Prisma.approval_requestsWhereInput
 }
 
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountUsage_recordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.usage_recordsWhereInput
+}
+
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.notificationsWhereInput
+}
+
 
 export type usersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2354,6 +2778,8 @@ export type usersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   workspaces?: boolean | Prisma.users$workspacesArgs<ExtArgs>
   workspace_grants?: boolean | Prisma.users$workspace_grantsArgs<ExtArgs>
   approvals_decided?: boolean | Prisma.users$approvals_decidedArgs<ExtArgs>
+  usage_records?: boolean | Prisma.users$usage_recordsArgs<ExtArgs>
+  notifications?: boolean | Prisma.users$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["users"]>
 
@@ -2424,6 +2850,8 @@ export type usersInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   workspaces?: boolean | Prisma.users$workspacesArgs<ExtArgs>
   workspace_grants?: boolean | Prisma.users$workspace_grantsArgs<ExtArgs>
   approvals_decided?: boolean | Prisma.users$approvals_decidedArgs<ExtArgs>
+  usage_records?: boolean | Prisma.users$usage_recordsArgs<ExtArgs>
+  notifications?: boolean | Prisma.users$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type usersIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2443,6 +2871,8 @@ export type $usersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     workspaces: Prisma.$workspacesPayload<ExtArgs>[]
     workspace_grants: Prisma.$workspace_grantsPayload<ExtArgs>[]
     approvals_decided: Prisma.$approval_requestsPayload<ExtArgs>[]
+    usage_records: Prisma.$usage_recordsPayload<ExtArgs>[]
+    notifications: Prisma.$notificationsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2865,6 +3295,8 @@ export interface Prisma__usersClient<T, Null = never, ExtArgs extends runtime.Ty
   workspaces<T extends Prisma.users$workspacesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$workspacesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$workspacesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workspace_grants<T extends Prisma.users$workspace_grantsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$workspace_grantsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$workspace_grantsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   approvals_decided<T extends Prisma.users$approvals_decidedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$approvals_decidedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$approval_requestsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  usage_records<T extends Prisma.users$usage_recordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$usage_recordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$usage_recordsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.users$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$notificationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3563,6 +3995,54 @@ export type users$approvals_decidedArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.Approval_requestsScalarFieldEnum | Prisma.Approval_requestsScalarFieldEnum[]
+}
+
+/**
+ * users.usage_records
+ */
+export type users$usage_recordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the usage_records
+   */
+  select?: Prisma.usage_recordsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the usage_records
+   */
+  omit?: Prisma.usage_recordsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.usage_recordsInclude<ExtArgs> | null
+  where?: Prisma.usage_recordsWhereInput
+  orderBy?: Prisma.usage_recordsOrderByWithRelationInput | Prisma.usage_recordsOrderByWithRelationInput[]
+  cursor?: Prisma.usage_recordsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Usage_recordsScalarFieldEnum | Prisma.Usage_recordsScalarFieldEnum[]
+}
+
+/**
+ * users.notifications
+ */
+export type users$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the notifications
+   */
+  select?: Prisma.notificationsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the notifications
+   */
+  omit?: Prisma.notificationsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.notificationsInclude<ExtArgs> | null
+  where?: Prisma.notificationsWhereInput
+  orderBy?: Prisma.notificationsOrderByWithRelationInput | Prisma.notificationsOrderByWithRelationInput[]
+  cursor?: Prisma.notificationsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationsScalarFieldEnum | Prisma.NotificationsScalarFieldEnum[]
 }
 
 /**

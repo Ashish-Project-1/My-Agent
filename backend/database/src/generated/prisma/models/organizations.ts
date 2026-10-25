@@ -280,6 +280,10 @@ export type organizationsWhereInput = {
   policy_decisions?: Prisma.Policy_decisionsListRelationFilter
   policy_documents?: Prisma.Policy_documentsListRelationFilter
   outbox?: Prisma.OutboxListRelationFilter
+  usage_records?: Prisma.Usage_recordsListRelationFilter
+  usage_rollups?: Prisma.Usage_rollupsListRelationFilter
+  quotas?: Prisma.QuotasListRelationFilter
+  notifications?: Prisma.NotificationsListRelationFilter
 }
 
 export type organizationsOrderByWithRelationInput = {
@@ -314,6 +318,10 @@ export type organizationsOrderByWithRelationInput = {
   policy_decisions?: Prisma.policy_decisionsOrderByRelationAggregateInput
   policy_documents?: Prisma.policy_documentsOrderByRelationAggregateInput
   outbox?: Prisma.outboxOrderByRelationAggregateInput
+  usage_records?: Prisma.usage_recordsOrderByRelationAggregateInput
+  usage_rollups?: Prisma.usage_rollupsOrderByRelationAggregateInput
+  quotas?: Prisma.quotasOrderByRelationAggregateInput
+  notifications?: Prisma.notificationsOrderByRelationAggregateInput
 }
 
 export type organizationsWhereUniqueInput = Prisma.AtLeast<{
@@ -351,6 +359,10 @@ export type organizationsWhereUniqueInput = Prisma.AtLeast<{
   policy_decisions?: Prisma.Policy_decisionsListRelationFilter
   policy_documents?: Prisma.Policy_documentsListRelationFilter
   outbox?: Prisma.OutboxListRelationFilter
+  usage_records?: Prisma.Usage_recordsListRelationFilter
+  usage_rollups?: Prisma.Usage_rollupsListRelationFilter
+  quotas?: Prisma.QuotasListRelationFilter
+  notifications?: Prisma.NotificationsListRelationFilter
 }, "id" | "slug">
 
 export type organizationsOrderByWithAggregationInput = {
@@ -421,6 +433,10 @@ export type organizationsCreateInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateInput = {
@@ -455,6 +471,10 @@ export type organizationsUncheckedCreateInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUpdateInput = {
@@ -489,6 +509,10 @@ export type organizationsUpdateInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateInput = {
@@ -523,6 +547,10 @@ export type organizationsUncheckedUpdateInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateManyInput = {
@@ -923,6 +951,62 @@ export type organizationsUpdateOneRequiredWithoutPolicy_documentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutPolicy_documentsInput, Prisma.organizationsUpdateWithoutPolicy_documentsInput>, Prisma.organizationsUncheckedUpdateWithoutPolicy_documentsInput>
 }
 
+export type organizationsCreateNestedOneWithoutUsage_recordsInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutUsage_recordsInput, Prisma.organizationsUncheckedCreateWithoutUsage_recordsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutUsage_recordsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+}
+
+export type organizationsUpdateOneRequiredWithoutUsage_recordsNestedInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutUsage_recordsInput, Prisma.organizationsUncheckedCreateWithoutUsage_recordsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutUsage_recordsInput
+  upsert?: Prisma.organizationsUpsertWithoutUsage_recordsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutUsage_recordsInput, Prisma.organizationsUpdateWithoutUsage_recordsInput>, Prisma.organizationsUncheckedUpdateWithoutUsage_recordsInput>
+}
+
+export type organizationsCreateNestedOneWithoutUsage_rollupsInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutUsage_rollupsInput, Prisma.organizationsUncheckedCreateWithoutUsage_rollupsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutUsage_rollupsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+}
+
+export type organizationsUpdateOneRequiredWithoutUsage_rollupsNestedInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutUsage_rollupsInput, Prisma.organizationsUncheckedCreateWithoutUsage_rollupsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutUsage_rollupsInput
+  upsert?: Prisma.organizationsUpsertWithoutUsage_rollupsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutUsage_rollupsInput, Prisma.organizationsUpdateWithoutUsage_rollupsInput>, Prisma.organizationsUncheckedUpdateWithoutUsage_rollupsInput>
+}
+
+export type organizationsCreateNestedOneWithoutQuotasInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutQuotasInput, Prisma.organizationsUncheckedCreateWithoutQuotasInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutQuotasInput
+  connect?: Prisma.organizationsWhereUniqueInput
+}
+
+export type organizationsUpdateOneRequiredWithoutQuotasNestedInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutQuotasInput, Prisma.organizationsUncheckedCreateWithoutQuotasInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutQuotasInput
+  upsert?: Prisma.organizationsUpsertWithoutQuotasInput
+  connect?: Prisma.organizationsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutQuotasInput, Prisma.organizationsUpdateWithoutQuotasInput>, Prisma.organizationsUncheckedUpdateWithoutQuotasInput>
+}
+
+export type organizationsCreateNestedOneWithoutNotificationsInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutNotificationsInput, Prisma.organizationsUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutNotificationsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+}
+
+export type organizationsUpdateOneRequiredWithoutNotificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.organizationsCreateWithoutNotificationsInput, Prisma.organizationsUncheckedCreateWithoutNotificationsInput>
+  connectOrCreate?: Prisma.organizationsCreateOrConnectWithoutNotificationsInput
+  upsert?: Prisma.organizationsUpsertWithoutNotificationsInput
+  connect?: Prisma.organizationsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.organizationsUpdateToOneWithWhereWithoutNotificationsInput, Prisma.organizationsUpdateWithoutNotificationsInput>, Prisma.organizationsUncheckedUpdateWithoutNotificationsInput>
+}
+
 export type organizationsCreateWithoutMembershipsInput = {
   id?: string
   name: string
@@ -954,6 +1038,10 @@ export type organizationsCreateWithoutMembershipsInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutMembershipsInput = {
@@ -987,6 +1075,10 @@ export type organizationsUncheckedCreateWithoutMembershipsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutMembershipsInput = {
@@ -1036,6 +1128,10 @@ export type organizationsUpdateWithoutMembershipsInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutMembershipsInput = {
@@ -1069,6 +1165,10 @@ export type organizationsUncheckedUpdateWithoutMembershipsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutInvitationsInput = {
@@ -1102,6 +1202,10 @@ export type organizationsCreateWithoutInvitationsInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutInvitationsInput = {
@@ -1135,6 +1239,10 @@ export type organizationsUncheckedCreateWithoutInvitationsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutInvitationsInput = {
@@ -1184,6 +1292,10 @@ export type organizationsUpdateWithoutInvitationsInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutInvitationsInput = {
@@ -1217,6 +1329,10 @@ export type organizationsUncheckedUpdateWithoutInvitationsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutSessionsInput = {
@@ -1250,6 +1366,10 @@ export type organizationsCreateWithoutSessionsInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutSessionsInput = {
@@ -1283,6 +1403,10 @@ export type organizationsUncheckedCreateWithoutSessionsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutSessionsInput = {
@@ -1332,6 +1456,10 @@ export type organizationsUpdateWithoutSessionsInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutSessionsInput = {
@@ -1365,6 +1493,10 @@ export type organizationsUncheckedUpdateWithoutSessionsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutIdempotency_keysInput = {
@@ -1398,6 +1530,10 @@ export type organizationsCreateWithoutIdempotency_keysInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutIdempotency_keysInput = {
@@ -1431,6 +1567,10 @@ export type organizationsUncheckedCreateWithoutIdempotency_keysInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutIdempotency_keysInput = {
@@ -1480,6 +1620,10 @@ export type organizationsUpdateWithoutIdempotency_keysInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutIdempotency_keysInput = {
@@ -1513,6 +1657,10 @@ export type organizationsUncheckedUpdateWithoutIdempotency_keysInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutAudit_eventsInput = {
@@ -1546,6 +1694,10 @@ export type organizationsCreateWithoutAudit_eventsInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutAudit_eventsInput = {
@@ -1579,6 +1731,10 @@ export type organizationsUncheckedCreateWithoutAudit_eventsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutAudit_eventsInput = {
@@ -1628,6 +1784,10 @@ export type organizationsUpdateWithoutAudit_eventsInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutAudit_eventsInput = {
@@ -1661,6 +1821,10 @@ export type organizationsUncheckedUpdateWithoutAudit_eventsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutAgent_sessionsInput = {
@@ -1694,6 +1858,10 @@ export type organizationsCreateWithoutAgent_sessionsInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutAgent_sessionsInput = {
@@ -1727,6 +1895,10 @@ export type organizationsUncheckedCreateWithoutAgent_sessionsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutAgent_sessionsInput = {
@@ -1776,6 +1948,10 @@ export type organizationsUpdateWithoutAgent_sessionsInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutAgent_sessionsInput = {
@@ -1809,6 +1985,10 @@ export type organizationsUncheckedUpdateWithoutAgent_sessionsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutTasksInput = {
@@ -1842,6 +2022,10 @@ export type organizationsCreateWithoutTasksInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutTasksInput = {
@@ -1875,6 +2059,10 @@ export type organizationsUncheckedCreateWithoutTasksInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutTasksInput = {
@@ -1924,6 +2112,10 @@ export type organizationsUpdateWithoutTasksInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutTasksInput = {
@@ -1957,6 +2149,10 @@ export type organizationsUncheckedUpdateWithoutTasksInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutTask_stepsInput = {
@@ -1990,6 +2186,10 @@ export type organizationsCreateWithoutTask_stepsInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutTask_stepsInput = {
@@ -2023,6 +2223,10 @@ export type organizationsUncheckedCreateWithoutTask_stepsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutTask_stepsInput = {
@@ -2072,6 +2276,10 @@ export type organizationsUpdateWithoutTask_stepsInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutTask_stepsInput = {
@@ -2105,6 +2313,10 @@ export type organizationsUncheckedUpdateWithoutTask_stepsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutTask_eventsInput = {
@@ -2138,6 +2350,10 @@ export type organizationsCreateWithoutTask_eventsInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutTask_eventsInput = {
@@ -2171,6 +2387,10 @@ export type organizationsUncheckedCreateWithoutTask_eventsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutTask_eventsInput = {
@@ -2220,6 +2440,10 @@ export type organizationsUpdateWithoutTask_eventsInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutTask_eventsInput = {
@@ -2253,6 +2477,10 @@ export type organizationsUncheckedUpdateWithoutTask_eventsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutTask_checkpointsInput = {
@@ -2286,6 +2514,10 @@ export type organizationsCreateWithoutTask_checkpointsInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutTask_checkpointsInput = {
@@ -2319,6 +2551,10 @@ export type organizationsUncheckedCreateWithoutTask_checkpointsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutTask_checkpointsInput = {
@@ -2368,6 +2604,10 @@ export type organizationsUpdateWithoutTask_checkpointsInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutTask_checkpointsInput = {
@@ -2401,6 +2641,10 @@ export type organizationsUncheckedUpdateWithoutTask_checkpointsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutOutboxInput = {
@@ -2434,6 +2678,10 @@ export type organizationsCreateWithoutOutboxInput = {
   approval_grants?: Prisma.approval_grantsCreateNestedManyWithoutOrganizationInput
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutOutboxInput = {
@@ -2467,6 +2715,10 @@ export type organizationsUncheckedCreateWithoutOutboxInput = {
   approval_grants?: Prisma.approval_grantsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutOutboxInput = {
@@ -2516,6 +2768,10 @@ export type organizationsUpdateWithoutOutboxInput = {
   approval_grants?: Prisma.approval_grantsUpdateManyWithoutOrganizationNestedInput
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutOutboxInput = {
@@ -2549,6 +2805,10 @@ export type organizationsUncheckedUpdateWithoutOutboxInput = {
   approval_grants?: Prisma.approval_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutDevicesInput = {
@@ -2582,6 +2842,10 @@ export type organizationsCreateWithoutDevicesInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutDevicesInput = {
@@ -2615,6 +2879,10 @@ export type organizationsUncheckedCreateWithoutDevicesInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutDevicesInput = {
@@ -2664,6 +2932,10 @@ export type organizationsUpdateWithoutDevicesInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutDevicesInput = {
@@ -2697,6 +2969,10 @@ export type organizationsUncheckedUpdateWithoutDevicesInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutDevice_pairing_codesInput = {
@@ -2730,6 +3006,10 @@ export type organizationsCreateWithoutDevice_pairing_codesInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutDevice_pairing_codesInput = {
@@ -2763,6 +3043,10 @@ export type organizationsUncheckedCreateWithoutDevice_pairing_codesInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutDevice_pairing_codesInput = {
@@ -2812,6 +3096,10 @@ export type organizationsUpdateWithoutDevice_pairing_codesInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutDevice_pairing_codesInput = {
@@ -2845,6 +3133,10 @@ export type organizationsUncheckedUpdateWithoutDevice_pairing_codesInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutDevice_commandsInput = {
@@ -2878,6 +3170,10 @@ export type organizationsCreateWithoutDevice_commandsInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutDevice_commandsInput = {
@@ -2911,6 +3207,10 @@ export type organizationsUncheckedCreateWithoutDevice_commandsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutDevice_commandsInput = {
@@ -2960,6 +3260,10 @@ export type organizationsUpdateWithoutDevice_commandsInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutDevice_commandsInput = {
@@ -2993,6 +3297,10 @@ export type organizationsUncheckedUpdateWithoutDevice_commandsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutWorkspacesInput = {
@@ -3026,6 +3334,10 @@ export type organizationsCreateWithoutWorkspacesInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutWorkspacesInput = {
@@ -3059,6 +3371,10 @@ export type organizationsUncheckedCreateWithoutWorkspacesInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutWorkspacesInput = {
@@ -3108,6 +3424,10 @@ export type organizationsUpdateWithoutWorkspacesInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutWorkspacesInput = {
@@ -3141,6 +3461,10 @@ export type organizationsUncheckedUpdateWithoutWorkspacesInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutWorkspace_grantsInput = {
@@ -3174,6 +3498,10 @@ export type organizationsCreateWithoutWorkspace_grantsInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutWorkspace_grantsInput = {
@@ -3207,6 +3535,10 @@ export type organizationsUncheckedCreateWithoutWorkspace_grantsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutWorkspace_grantsInput = {
@@ -3256,6 +3588,10 @@ export type organizationsUpdateWithoutWorkspace_grantsInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutWorkspace_grantsInput = {
@@ -3289,6 +3625,10 @@ export type organizationsUncheckedUpdateWithoutWorkspace_grantsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutApproval_requestsInput = {
@@ -3322,6 +3662,10 @@ export type organizationsCreateWithoutApproval_requestsInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutApproval_requestsInput = {
@@ -3355,6 +3699,10 @@ export type organizationsUncheckedCreateWithoutApproval_requestsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutApproval_requestsInput = {
@@ -3404,6 +3752,10 @@ export type organizationsUpdateWithoutApproval_requestsInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutApproval_requestsInput = {
@@ -3437,6 +3789,10 @@ export type organizationsUncheckedUpdateWithoutApproval_requestsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutApproval_grantsInput = {
@@ -3470,6 +3826,10 @@ export type organizationsCreateWithoutApproval_grantsInput = {
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutApproval_grantsInput = {
@@ -3503,6 +3863,10 @@ export type organizationsUncheckedCreateWithoutApproval_grantsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutApproval_grantsInput = {
@@ -3552,6 +3916,10 @@ export type organizationsUpdateWithoutApproval_grantsInput = {
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutApproval_grantsInput = {
@@ -3585,6 +3953,10 @@ export type organizationsUncheckedUpdateWithoutApproval_grantsInput = {
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutPolicy_decisionsInput = {
@@ -3618,6 +3990,10 @@ export type organizationsCreateWithoutPolicy_decisionsInput = {
   approval_grants?: Prisma.approval_grantsCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutPolicy_decisionsInput = {
@@ -3651,6 +4027,10 @@ export type organizationsUncheckedCreateWithoutPolicy_decisionsInput = {
   approval_grants?: Prisma.approval_grantsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutPolicy_decisionsInput = {
@@ -3700,6 +4080,10 @@ export type organizationsUpdateWithoutPolicy_decisionsInput = {
   approval_grants?: Prisma.approval_grantsUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutPolicy_decisionsInput = {
@@ -3733,6 +4117,10 @@ export type organizationsUncheckedUpdateWithoutPolicy_decisionsInput = {
   approval_grants?: Prisma.approval_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsCreateWithoutPolicy_documentsInput = {
@@ -3766,6 +4154,10 @@ export type organizationsCreateWithoutPolicy_documentsInput = {
   approval_grants?: Prisma.approval_grantsCreateNestedManyWithoutOrganizationInput
   policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsUncheckedCreateWithoutPolicy_documentsInput = {
@@ -3799,6 +4191,10 @@ export type organizationsUncheckedCreateWithoutPolicy_documentsInput = {
   approval_grants?: Prisma.approval_grantsUncheckedCreateNestedManyWithoutOrganizationInput
   policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
   outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
 }
 
 export type organizationsCreateOrConnectWithoutPolicy_documentsInput = {
@@ -3848,6 +4244,10 @@ export type organizationsUpdateWithoutPolicy_documentsInput = {
   approval_grants?: Prisma.approval_grantsUpdateManyWithoutOrganizationNestedInput
   policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
 }
 
 export type organizationsUncheckedUpdateWithoutPolicy_documentsInput = {
@@ -3881,6 +4281,666 @@ export type organizationsUncheckedUpdateWithoutPolicy_documentsInput = {
   approval_grants?: Prisma.approval_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
   policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
   outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsCreateWithoutUsage_recordsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutOrganizationInput
+  approval_grants?: Prisma.approval_grantsCreateNestedManyWithoutOrganizationInput
+  policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
+  policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsUncheckedCreateWithoutUsage_recordsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutOrganizationInput
+  approval_grants?: Prisma.approval_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
+  policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsCreateOrConnectWithoutUsage_recordsInput = {
+  where: Prisma.organizationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutUsage_recordsInput, Prisma.organizationsUncheckedCreateWithoutUsage_recordsInput>
+}
+
+export type organizationsUpsertWithoutUsage_recordsInput = {
+  update: Prisma.XOR<Prisma.organizationsUpdateWithoutUsage_recordsInput, Prisma.organizationsUncheckedUpdateWithoutUsage_recordsInput>
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutUsage_recordsInput, Prisma.organizationsUncheckedCreateWithoutUsage_recordsInput>
+  where?: Prisma.organizationsWhereInput
+}
+
+export type organizationsUpdateToOneWithWhereWithoutUsage_recordsInput = {
+  where?: Prisma.organizationsWhereInput
+  data: Prisma.XOR<Prisma.organizationsUpdateWithoutUsage_recordsInput, Prisma.organizationsUncheckedUpdateWithoutUsage_recordsInput>
+}
+
+export type organizationsUpdateWithoutUsage_recordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  approval_requests?: Prisma.approval_requestsUpdateManyWithoutOrganizationNestedInput
+  approval_grants?: Prisma.approval_grantsUpdateManyWithoutOrganizationNestedInput
+  policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
+  policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsUncheckedUpdateWithoutUsage_recordsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutOrganizationNestedInput
+  approval_grants?: Prisma.approval_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsCreateWithoutUsage_rollupsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutOrganizationInput
+  approval_grants?: Prisma.approval_grantsCreateNestedManyWithoutOrganizationInput
+  policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
+  policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsUncheckedCreateWithoutUsage_rollupsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutOrganizationInput
+  approval_grants?: Prisma.approval_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
+  policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsCreateOrConnectWithoutUsage_rollupsInput = {
+  where: Prisma.organizationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutUsage_rollupsInput, Prisma.organizationsUncheckedCreateWithoutUsage_rollupsInput>
+}
+
+export type organizationsUpsertWithoutUsage_rollupsInput = {
+  update: Prisma.XOR<Prisma.organizationsUpdateWithoutUsage_rollupsInput, Prisma.organizationsUncheckedUpdateWithoutUsage_rollupsInput>
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutUsage_rollupsInput, Prisma.organizationsUncheckedCreateWithoutUsage_rollupsInput>
+  where?: Prisma.organizationsWhereInput
+}
+
+export type organizationsUpdateToOneWithWhereWithoutUsage_rollupsInput = {
+  where?: Prisma.organizationsWhereInput
+  data: Prisma.XOR<Prisma.organizationsUpdateWithoutUsage_rollupsInput, Prisma.organizationsUncheckedUpdateWithoutUsage_rollupsInput>
+}
+
+export type organizationsUpdateWithoutUsage_rollupsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  approval_requests?: Prisma.approval_requestsUpdateManyWithoutOrganizationNestedInput
+  approval_grants?: Prisma.approval_grantsUpdateManyWithoutOrganizationNestedInput
+  policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
+  policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsUncheckedUpdateWithoutUsage_rollupsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutOrganizationNestedInput
+  approval_grants?: Prisma.approval_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsCreateWithoutQuotasInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutOrganizationInput
+  approval_grants?: Prisma.approval_grantsCreateNestedManyWithoutOrganizationInput
+  policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
+  policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsUncheckedCreateWithoutQuotasInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutOrganizationInput
+  approval_grants?: Prisma.approval_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
+  policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  notifications?: Prisma.notificationsUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsCreateOrConnectWithoutQuotasInput = {
+  where: Prisma.organizationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutQuotasInput, Prisma.organizationsUncheckedCreateWithoutQuotasInput>
+}
+
+export type organizationsUpsertWithoutQuotasInput = {
+  update: Prisma.XOR<Prisma.organizationsUpdateWithoutQuotasInput, Prisma.organizationsUncheckedUpdateWithoutQuotasInput>
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutQuotasInput, Prisma.organizationsUncheckedCreateWithoutQuotasInput>
+  where?: Prisma.organizationsWhereInput
+}
+
+export type organizationsUpdateToOneWithWhereWithoutQuotasInput = {
+  where?: Prisma.organizationsWhereInput
+  data: Prisma.XOR<Prisma.organizationsUpdateWithoutQuotasInput, Prisma.organizationsUncheckedUpdateWithoutQuotasInput>
+}
+
+export type organizationsUpdateWithoutQuotasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  approval_requests?: Prisma.approval_requestsUpdateManyWithoutOrganizationNestedInput
+  approval_grants?: Prisma.approval_grantsUpdateManyWithoutOrganizationNestedInput
+  policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
+  policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsUncheckedUpdateWithoutQuotasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutOrganizationNestedInput
+  approval_grants?: Prisma.approval_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  notifications?: Prisma.notificationsUncheckedUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsCreateWithoutNotificationsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsCreateNestedManyWithoutOrganizationInput
+  approval_requests?: Prisma.approval_requestsCreateNestedManyWithoutOrganizationInput
+  approval_grants?: Prisma.approval_grantsCreateNestedManyWithoutOrganizationInput
+  policy_decisions?: Prisma.policy_decisionsCreateNestedManyWithoutOrganizationInput
+  policy_documents?: Prisma.policy_documentsCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsUncheckedCreateWithoutNotificationsInput = {
+  id?: string
+  name: string
+  slug: string
+  kind?: $Enums.OrgKind
+  default_execution_location?: string | null
+  data_retention_days?: number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.OrgStatus
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  memberships?: Prisma.membershipsUncheckedCreateNestedManyWithoutOrganizationInput
+  invitations?: Prisma.invitationsUncheckedCreateNestedManyWithoutOrganizationInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  audit_events?: Prisma.audit_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedCreateNestedManyWithoutOrganizationInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedCreateNestedManyWithoutOrganizationInput
+  tasks?: Prisma.tasksUncheckedCreateNestedManyWithoutOrganizationInput
+  task_steps?: Prisma.task_stepsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_events?: Prisma.task_eventsUncheckedCreateNestedManyWithoutOrganizationInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedCreateNestedManyWithoutOrganizationInput
+  devices?: Prisma.devicesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedCreateNestedManyWithoutOrganizationInput
+  device_commands?: Prisma.device_commandsUncheckedCreateNestedManyWithoutOrganizationInput
+  workspaces?: Prisma.workspacesUncheckedCreateNestedManyWithoutOrganizationInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  approval_requests?: Prisma.approval_requestsUncheckedCreateNestedManyWithoutOrganizationInput
+  approval_grants?: Prisma.approval_grantsUncheckedCreateNestedManyWithoutOrganizationInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedCreateNestedManyWithoutOrganizationInput
+  policy_documents?: Prisma.policy_documentsUncheckedCreateNestedManyWithoutOrganizationInput
+  outbox?: Prisma.outboxUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_records?: Prisma.usage_recordsUncheckedCreateNestedManyWithoutOrganizationInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedCreateNestedManyWithoutOrganizationInput
+  quotas?: Prisma.quotasUncheckedCreateNestedManyWithoutOrganizationInput
+}
+
+export type organizationsCreateOrConnectWithoutNotificationsInput = {
+  where: Prisma.organizationsWhereUniqueInput
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutNotificationsInput, Prisma.organizationsUncheckedCreateWithoutNotificationsInput>
+}
+
+export type organizationsUpsertWithoutNotificationsInput = {
+  update: Prisma.XOR<Prisma.organizationsUpdateWithoutNotificationsInput, Prisma.organizationsUncheckedUpdateWithoutNotificationsInput>
+  create: Prisma.XOR<Prisma.organizationsCreateWithoutNotificationsInput, Prisma.organizationsUncheckedCreateWithoutNotificationsInput>
+  where?: Prisma.organizationsWhereInput
+}
+
+export type organizationsUpdateToOneWithWhereWithoutNotificationsInput = {
+  where?: Prisma.organizationsWhereInput
+  data: Prisma.XOR<Prisma.organizationsUpdateWithoutNotificationsInput, Prisma.organizationsUncheckedUpdateWithoutNotificationsInput>
+}
+
+export type organizationsUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUpdateManyWithoutOrganizationNestedInput
+  approval_requests?: Prisma.approval_requestsUpdateManyWithoutOrganizationNestedInput
+  approval_grants?: Prisma.approval_grantsUpdateManyWithoutOrganizationNestedInput
+  policy_decisions?: Prisma.policy_decisionsUpdateManyWithoutOrganizationNestedInput
+  policy_documents?: Prisma.policy_documentsUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUpdateManyWithoutOrganizationNestedInput
+}
+
+export type organizationsUncheckedUpdateWithoutNotificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  kind?: Prisma.EnumOrgKindFieldUpdateOperationsInput | $Enums.OrgKind
+  default_execution_location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  data_retention_days?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  settings?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumOrgStatusFieldUpdateOperationsInput | $Enums.OrgStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  memberships?: Prisma.membershipsUncheckedUpdateManyWithoutOrganizationNestedInput
+  invitations?: Prisma.invitationsUncheckedUpdateManyWithoutOrganizationNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  audit_events?: Prisma.audit_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  idempotency_keys?: Prisma.idempotency_keysUncheckedUpdateManyWithoutOrganizationNestedInput
+  agent_sessions?: Prisma.agent_sessionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  tasks?: Prisma.tasksUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_steps?: Prisma.task_stepsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_events?: Prisma.task_eventsUncheckedUpdateManyWithoutOrganizationNestedInput
+  task_checkpoints?: Prisma.task_checkpointsUncheckedUpdateManyWithoutOrganizationNestedInput
+  devices?: Prisma.devicesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_pairing_codes?: Prisma.device_pairing_codesUncheckedUpdateManyWithoutOrganizationNestedInput
+  device_commands?: Prisma.device_commandsUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspaces?: Prisma.workspacesUncheckedUpdateManyWithoutOrganizationNestedInput
+  workspace_grants?: Prisma.workspace_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  approval_requests?: Prisma.approval_requestsUncheckedUpdateManyWithoutOrganizationNestedInput
+  approval_grants?: Prisma.approval_grantsUncheckedUpdateManyWithoutOrganizationNestedInput
+  policy_decisions?: Prisma.policy_decisionsUncheckedUpdateManyWithoutOrganizationNestedInput
+  policy_documents?: Prisma.policy_documentsUncheckedUpdateManyWithoutOrganizationNestedInput
+  outbox?: Prisma.outboxUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_records?: Prisma.usage_recordsUncheckedUpdateManyWithoutOrganizationNestedInput
+  usage_rollups?: Prisma.usage_rollupsUncheckedUpdateManyWithoutOrganizationNestedInput
+  quotas?: Prisma.quotasUncheckedUpdateManyWithoutOrganizationNestedInput
 }
 
 
@@ -3909,6 +4969,10 @@ export type OrganizationsCountOutputType = {
   policy_decisions: number
   policy_documents: number
   outbox: number
+  usage_records: number
+  usage_rollups: number
+  quotas: number
+  notifications: number
 }
 
 export type OrganizationsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3932,6 +4996,10 @@ export type OrganizationsCountOutputTypeSelect<ExtArgs extends runtime.Types.Ext
   policy_decisions?: boolean | OrganizationsCountOutputTypeCountPolicy_decisionsArgs
   policy_documents?: boolean | OrganizationsCountOutputTypeCountPolicy_documentsArgs
   outbox?: boolean | OrganizationsCountOutputTypeCountOutboxArgs
+  usage_records?: boolean | OrganizationsCountOutputTypeCountUsage_recordsArgs
+  usage_rollups?: boolean | OrganizationsCountOutputTypeCountUsage_rollupsArgs
+  quotas?: boolean | OrganizationsCountOutputTypeCountQuotasArgs
+  notifications?: boolean | OrganizationsCountOutputTypeCountNotificationsArgs
 }
 
 /**
@@ -4084,6 +5152,34 @@ export type OrganizationsCountOutputTypeCountOutboxArgs<ExtArgs extends runtime.
   where?: Prisma.outboxWhereInput
 }
 
+/**
+ * OrganizationsCountOutputType without action
+ */
+export type OrganizationsCountOutputTypeCountUsage_recordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.usage_recordsWhereInput
+}
+
+/**
+ * OrganizationsCountOutputType without action
+ */
+export type OrganizationsCountOutputTypeCountUsage_rollupsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.usage_rollupsWhereInput
+}
+
+/**
+ * OrganizationsCountOutputType without action
+ */
+export type OrganizationsCountOutputTypeCountQuotasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.quotasWhereInput
+}
+
+/**
+ * OrganizationsCountOutputType without action
+ */
+export type OrganizationsCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.notificationsWhereInput
+}
+
 
 export type organizationsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -4117,6 +5213,10 @@ export type organizationsSelect<ExtArgs extends runtime.Types.Extensions.Interna
   policy_decisions?: boolean | Prisma.organizations$policy_decisionsArgs<ExtArgs>
   policy_documents?: boolean | Prisma.organizations$policy_documentsArgs<ExtArgs>
   outbox?: boolean | Prisma.organizations$outboxArgs<ExtArgs>
+  usage_records?: boolean | Prisma.organizations$usage_recordsArgs<ExtArgs>
+  usage_rollups?: boolean | Prisma.organizations$usage_rollupsArgs<ExtArgs>
+  quotas?: boolean | Prisma.organizations$quotasArgs<ExtArgs>
+  notifications?: boolean | Prisma.organizations$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["organizations"]>
 
@@ -4184,6 +5284,10 @@ export type organizationsInclude<ExtArgs extends runtime.Types.Extensions.Intern
   policy_decisions?: boolean | Prisma.organizations$policy_decisionsArgs<ExtArgs>
   policy_documents?: boolean | Prisma.organizations$policy_documentsArgs<ExtArgs>
   outbox?: boolean | Prisma.organizations$outboxArgs<ExtArgs>
+  usage_records?: boolean | Prisma.organizations$usage_recordsArgs<ExtArgs>
+  usage_rollups?: boolean | Prisma.organizations$usage_rollupsArgs<ExtArgs>
+  quotas?: boolean | Prisma.organizations$quotasArgs<ExtArgs>
+  notifications?: boolean | Prisma.organizations$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.OrganizationsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type organizationsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -4212,6 +5316,10 @@ export type $organizationsPayload<ExtArgs extends runtime.Types.Extensions.Inter
     policy_decisions: Prisma.$policy_decisionsPayload<ExtArgs>[]
     policy_documents: Prisma.$policy_documentsPayload<ExtArgs>[]
     outbox: Prisma.$outboxPayload<ExtArgs>[]
+    usage_records: Prisma.$usage_recordsPayload<ExtArgs>[]
+    usage_rollups: Prisma.$usage_rollupsPayload<ExtArgs>[]
+    quotas: Prisma.$quotasPayload<ExtArgs>[]
+    notifications: Prisma.$notificationsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -4639,6 +5747,10 @@ export interface Prisma__organizationsClient<T, Null = never, ExtArgs extends ru
   policy_decisions<T extends Prisma.organizations$policy_decisionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$policy_decisionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$policy_decisionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   policy_documents<T extends Prisma.organizations$policy_documentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$policy_documentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$policy_documentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   outbox<T extends Prisma.organizations$outboxArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$outboxArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$outboxPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  usage_records<T extends Prisma.organizations$usage_recordsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$usage_recordsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$usage_recordsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  usage_rollups<T extends Prisma.organizations$usage_rollupsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$usage_rollupsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$usage_rollupsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  quotas<T extends Prisma.organizations$quotasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$quotasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$quotasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notifications<T extends Prisma.organizations$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.organizations$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$notificationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5549,6 +6661,102 @@ export type organizations$outboxArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.OutboxScalarFieldEnum | Prisma.OutboxScalarFieldEnum[]
+}
+
+/**
+ * organizations.usage_records
+ */
+export type organizations$usage_recordsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the usage_records
+   */
+  select?: Prisma.usage_recordsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the usage_records
+   */
+  omit?: Prisma.usage_recordsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.usage_recordsInclude<ExtArgs> | null
+  where?: Prisma.usage_recordsWhereInput
+  orderBy?: Prisma.usage_recordsOrderByWithRelationInput | Prisma.usage_recordsOrderByWithRelationInput[]
+  cursor?: Prisma.usage_recordsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Usage_recordsScalarFieldEnum | Prisma.Usage_recordsScalarFieldEnum[]
+}
+
+/**
+ * organizations.usage_rollups
+ */
+export type organizations$usage_rollupsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the usage_rollups
+   */
+  select?: Prisma.usage_rollupsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the usage_rollups
+   */
+  omit?: Prisma.usage_rollupsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.usage_rollupsInclude<ExtArgs> | null
+  where?: Prisma.usage_rollupsWhereInput
+  orderBy?: Prisma.usage_rollupsOrderByWithRelationInput | Prisma.usage_rollupsOrderByWithRelationInput[]
+  cursor?: Prisma.usage_rollupsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Usage_rollupsScalarFieldEnum | Prisma.Usage_rollupsScalarFieldEnum[]
+}
+
+/**
+ * organizations.quotas
+ */
+export type organizations$quotasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the quotas
+   */
+  select?: Prisma.quotasSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the quotas
+   */
+  omit?: Prisma.quotasOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.quotasInclude<ExtArgs> | null
+  where?: Prisma.quotasWhereInput
+  orderBy?: Prisma.quotasOrderByWithRelationInput | Prisma.quotasOrderByWithRelationInput[]
+  cursor?: Prisma.quotasWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QuotasScalarFieldEnum | Prisma.QuotasScalarFieldEnum[]
+}
+
+/**
+ * organizations.notifications
+ */
+export type organizations$notificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the notifications
+   */
+  select?: Prisma.notificationsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the notifications
+   */
+  omit?: Prisma.notificationsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.notificationsInclude<ExtArgs> | null
+  where?: Prisma.notificationsWhereInput
+  orderBy?: Prisma.notificationsOrderByWithRelationInput | Prisma.notificationsOrderByWithRelationInput[]
+  cursor?: Prisma.notificationsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificationsScalarFieldEnum | Prisma.NotificationsScalarFieldEnum[]
 }
 
 /**

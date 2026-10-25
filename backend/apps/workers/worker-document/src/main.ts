@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { createLogger } from "@ua/logger";
 import { Worker } from "bullmq";
+import { DocumentWorker } from "./document-worker.js";
 
 const DOCUMENT_QUEUE = "document.ingest";
 
@@ -14,12 +15,22 @@ async function main(): Promise<void> {
   const config = loadConfig();
   const logger = createLogger({ service: "worker-document", level: config.logLevel });
   const owner = `worker-document:${process.pid}:${randomUUID().slice(0, 8)}`;
+  const documentWorker = new DocumentWorker();
 
   const worker = new Worker(
     DOCUMENT_QUEUE,
     async (job) => {
       logger.info("document ingest received", { jobId: job.id, name: job.name });
-      // PDF/DOCX/XLSX/CSV/image/text ingest -> artifacts
+      const data = job.data as any;
+      if (data?.filename && data?.content) {
+        const result = await documentWorker.ingest({
+          filename: data.filename,
+          content: Buffer.from(data.content, data.encoding || "utf8"),
+          mimeType: data.mimeType,
+        });
+        return result;
+      }
+      return { ok: true };
     },
     { connection: { url: config.redisUrl, maxRetriesPerRequest: null } },
   );

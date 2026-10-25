@@ -75,7 +75,11 @@ export const ModelName = {
   approval_requests: 'approval_requests',
   approval_grants: 'approval_grants',
   policy_decisions: 'policy_decisions',
-  policy_documents: 'policy_documents'
+  policy_documents: 'policy_documents',
+  usage_records: 'usage_records',
+  usage_rollups: 'usage_rollups',
+  quotas: 'quotas',
+  notifications: 'notifications'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -559,6 +563,65 @@ export const Policy_documentsScalarFieldEnum = {
 } as const
 
 export type Policy_documentsScalarFieldEnum = (typeof Policy_documentsScalarFieldEnum)[keyof typeof Policy_documentsScalarFieldEnum]
+
+
+export const Usage_recordsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  task_id: 'task_id',
+  user_id: 'user_id',
+  kind: 'kind',
+  quantity: 'quantity',
+  unit: 'unit',
+  metadata: 'metadata',
+  created_at: 'created_at'
+} as const
+
+export type Usage_recordsScalarFieldEnum = (typeof Usage_recordsScalarFieldEnum)[keyof typeof Usage_recordsScalarFieldEnum]
+
+
+export const Usage_rollupsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  bucket_start: 'bucket_start',
+  bucket_end: 'bucket_end',
+  kind: 'kind',
+  total: 'total',
+  unit: 'unit',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Usage_rollupsScalarFieldEnum = (typeof Usage_rollupsScalarFieldEnum)[keyof typeof Usage_rollupsScalarFieldEnum]
+
+
+export const QuotasScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  kind: 'kind',
+  limit: 'limit',
+  period: 'period',
+  enabled: 'enabled',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type QuotasScalarFieldEnum = (typeof QuotasScalarFieldEnum)[keyof typeof QuotasScalarFieldEnum]
+
+
+export const NotificationsScalarFieldEnum = {
+  id: 'id',
+  organization_id: 'organization_id',
+  user_id: 'user_id',
+  type: 'type',
+  title: 'title',
+  body: 'body',
+  read_at: 'read_at',
+  metadata: 'metadata',
+  created_at: 'created_at'
+} as const
+
+export type NotificationsScalarFieldEnum = (typeof NotificationsScalarFieldEnum)[keyof typeof NotificationsScalarFieldEnum]
 
 
 export const SortOrder = {

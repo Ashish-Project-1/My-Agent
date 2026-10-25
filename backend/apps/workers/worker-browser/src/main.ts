@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { createLogger } from "@ua/logger";
 import { Worker } from "bullmq";
+import { BrowserWorker } from "./browser-worker.js";
 
 const BROWSER_QUEUE = "browser.task";
 
@@ -15,12 +16,23 @@ async function main(): Promise<void> {
   const config = loadConfig();
   const logger = createLogger({ service: "worker-browser", level: config.logLevel });
   const owner = `worker-browser:${process.pid}:${randomUUID().slice(0, 8)}`;
+  const browser = new BrowserWorker();
 
   const worker = new Worker(
     BROWSER_QUEUE,
     async (job) => {
       logger.info("browser task received", { jobId: job.id, name: job.name });
-      // Isolated context per task, no shared cookies; domain allow/deny enforced
+      const data = job.data as any;
+      if (data?.url) {
+        const result = await browser.runTask({
+          url: data.url,
+          action: data.action ?? "navigate",
+          allowDomains: data.allowDomains,
+          denyDomains: data.denyDomains,
+        });
+        return result;
+      }
+      return { ok: true };
     },
     { connection: { url: config.redisUrl, maxRetriesPerRequest: null } },
   );
@@ -33,6 +45,7 @@ async function main(): Promise<void> {
   const stop = async (signal: NodeJS.Signals): Promise<void> => {
     logger.info(`${signal} received, shutting down`);
     await worker.close();
+    await browser.close();
     process.exit(0);
   };
   process.once("SIGINT", () => void stop("SIGINT"));
